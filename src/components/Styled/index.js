@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components/macro'
 import { mq } from 'containers/Layout/theme'
 
 export const Img = styled.img`

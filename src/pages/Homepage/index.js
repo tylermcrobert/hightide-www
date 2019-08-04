@@ -3,7 +3,7 @@ import { RichText } from 'prismic-reactjs'
 import { AppCtx } from 'containers/App'
 import Styled from './Styled'
 import { Wrap, Section } from 'components/Styled'
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components/macro'
 
 function Homepage() {
   const { homepage, capacity, brand, work } = useContext(AppCtx)

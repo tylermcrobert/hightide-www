@@ -1,6 +1,6 @@
 import React from 'react'
 import Nav from 'components/Nav'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components/macro'
 import GlobalStyle from './GlobalStyle'
 import theme from './theme'
 
