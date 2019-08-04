@@ -3,6 +3,10 @@ import { reset } from 'styled-reset'
 import { mq } from './theme'
 
 const style = css`
+  h1,
+  h2 {
+    font: f;
+  }
   * {
     box-sizing: border-box;
   }
@@ -56,7 +60,7 @@ const style = css`
   h5,
   h6,
   p {
-    margin: 0.75rem 0;
+    margin-bottom: 1rem;
   }
 
   h1 {
@@ -72,18 +76,18 @@ const style = css`
       font-size: ${props => props.theme.fontSizes[7]};
     }
   }
-  h2 {
-    font-size: ${props => props.theme.fontSizes[4]};
-  }
-  h3 {
-    font-size: ${props => props.theme.fontSizes[4]};
-  }
+
+  h2,
+  h3,
   h4 {
     font-size: ${props => props.theme.fontSizes[4]};
+
+    @media ${mq.md} {
+      font-size: ${props => props.theme.fontSizes[5]};
+    }
   }
-  h5 {
-    font-size: ${props => props.theme.fontSizes[2]};
-  }
+
+  h5,
   h6 {
     font-size: ${props => props.theme.fontSizes[2]};
   }

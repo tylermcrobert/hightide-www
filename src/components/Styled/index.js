@@ -9,7 +9,7 @@ export const Img = styled.img`
 export const Wrap = styled.div`
   margin: 0px auto;
   padding: 0 1rem;
-  max-width: 68rem;
+  max-width: 70rem;
   width: 100%;
 `
 

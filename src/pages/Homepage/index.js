@@ -74,7 +74,7 @@ function TextSwitcher({ data }) {
       {data.map((item, i) => (
         <div key={i}>
           <h2 onClick={() => handleTitle(i)}>{item.heading}</h2>
-          {i === currentIndex && item.body}
+          <p>{i === currentIndex && item.body}</p>
         </div>
       ))}
     </div>
