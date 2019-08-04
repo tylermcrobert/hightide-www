@@ -7,6 +7,7 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 99;
 
   background: ${props => props.theme.colors.secondary};
 `
@@ -24,7 +25,7 @@ const Logo = styled(LogoSvg)`
 `
 
 const NavItem = styled.a`
-  margin: 0 0.25rem;
+  margin: 0 0.5em;
   text-decoration: none;
 
   &:last-child {
