@@ -3,6 +3,9 @@ import { reset } from 'styled-reset'
 import { mq } from './theme'
 
 const style = css`
+  * {
+    box-sizing: border-box;
+  }
   body,
   html {
     font-size: 20px;
@@ -25,6 +28,7 @@ const style = css`
     line-height: 1.2;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding-top: ${props => props.theme.navHeight};
   }
 
   a {

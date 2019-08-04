@@ -1,6 +1,6 @@
 import modularScale from './modularScale'
 
-export const navHeight = '5rem'
+export const navHeight = '4rem'
 
 export const fontSizes = modularScale.map(item => `${item}rem`)
 
@@ -10,8 +10,8 @@ export const fontFamilies = {
 }
 
 export const colors = {
-  black: '#2E2A25',
-  white: '#ffffff',
+  primary: '#000000',
+  secondary: '#ffffff',
   midGrey: '#8C8C8C',
   offWhite: '#fbfbfb'
 }
