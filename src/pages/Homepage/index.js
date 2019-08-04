@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { RichText } from 'prismic-reactjs'
 import { AppCtx } from 'containers/App'
-
+import Styled from './Styled'
+import { Wrap, Section } from 'components/Styled'
 function Homepage() {
   const { homepage, capacity, brand, work } = useContext(AppCtx)
   const brands = brand.results.map(res => res.data.logo.url)
@@ -10,22 +11,30 @@ function Homepage() {
 
   return (
     <>
-      {RichText.render(homepage.data.hero_text)}
-      <hr />
-      <FeaturedWork.Wrapper data={featuredProjects[0]} />
-
-      <TextSwitcher
-        data={capacity.results.map(item => ({
-          heading: RichText.asText(item.data.title),
-          body: RichText.asText(item.data.description)
-        }))}
-      />
-      <hr />
-      {brands.map((item, i) => (
-        <img src={item} key={i} alt="" />
-      ))}
-      <hr />
-      <FeaturedWork.Wrapper data={featuredProjects[1]} />
+      <Wrap>
+        <Section>{RichText.render(homepage.data.hero_text)} </Section>
+        <Section>
+          <FeaturedWork.Wrapper data={featuredProjects[0]} />
+        </Section>
+        <Section>
+          <TextSwitcher
+            data={capacity.results.map(item => ({
+              heading: RichText.asText(item.data.title),
+              body: RichText.asText(item.data.description)
+            }))}
+          />
+        </Section>
+        <Section>
+          <Styled.Grid cols={4}>
+            {brands.map((item, i) => (
+              <img src={item} key={i} alt="" />
+            ))}
+          </Styled.Grid>
+        </Section>
+        <Section>
+          <FeaturedWork.Wrapper data={featuredProjects[1]} />
+        </Section>
+      </Wrap>
     </>
   )
 }
@@ -33,7 +42,7 @@ function Homepage() {
 function FeaturedWork({ name, img }) {
   return (
     <div>
-      <h3>Featured Work: {name}</h3>
+      <h5>Featured Work: {name}</h5>
       <img src={img} style={{ width: '100%' }} alt="" />
     </div>
   )

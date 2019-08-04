@@ -1,8 +1,11 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
-
+import { Wrap } from 'components/Styled'
 function Nav() {
-  return <nav>HIGH TIDE</nav>
+  return (
+    <nav>
+      <Wrap>HIGH TIDE</Wrap>
+    </nav>
+  )
 }
 
 // Nav.propTypes = {}
