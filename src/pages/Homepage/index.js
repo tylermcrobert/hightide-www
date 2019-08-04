@@ -8,7 +8,6 @@ function Homepage() {
   const projects = work.results.map(item => item.data)
   const featuredProjects = projects.filter(item => item.featured === 'Featured')
 
-  console.log()
   return (
     <div>
       {RichText.render(homepage.data.hero_text)}

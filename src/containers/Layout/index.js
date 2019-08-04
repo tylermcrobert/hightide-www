@@ -1,16 +1,21 @@
 import React from 'react'
 import Nav from 'components/Nav'
-// import PropTypes from 'prop-types'
+import { ThemeProvider } from 'styled-components'
+import GlobalStyle from './GlobalStyle'
+import theme from './theme'
 
 function Layout({ children }) {
   return (
-    <>
-      <Nav />
-      <hr />
-      <main>{children}</main>
-      <hr />
-      Footer
-    </>
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalStyle />
+        <Nav />
+        <hr />
+        <main>{children}</main>
+        <hr />
+        Footer
+      </>
+    </ThemeProvider>
   )
 }
 
