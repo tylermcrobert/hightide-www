@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import { mq } from 'containers/Layout/theme'
 
 const Grid = styled.div`
   display: grid;
@@ -20,4 +21,10 @@ const Header = styled.div`
   }
 `
 
-export default { Grid, Header }
+const Intro = styled.h1`
+  @media ${mq.sm} {
+    width: 75%;
+  }
+`
+
+export default { Grid, Header, Intro }

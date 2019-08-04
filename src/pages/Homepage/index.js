@@ -15,12 +15,17 @@ function Homepage() {
     <>
       <Wrap>
         <Section.Large>
-          {RichText.render(homepage.data.hero_text)}{' '}
+          <Styled.Intro>
+            {RichText.asText(homepage.data.hero_text)}
+          </Styled.Intro>
         </Section.Large>
         <Section>
           <FeaturedWork.Wrapper data={featuredProjects[0]} />
         </Section>
         <Section>
+          <Header link={<a href="">See more capabilities</a>}>
+            What We Do
+          </Header>
           <TextSwitcher
             data={capacity.results.map(item => ({
               heading: RichText.asText(item.data.title),
@@ -29,9 +34,7 @@ function Homepage() {
           />
         </Section>
         <Section>
-          <Header link={<a href="">See more Capabilities</a>}>
-            What We Do
-          </Header>
+          <Header>Clients</Header>
           <Styled.Grid cols={4}>
             {brands.map((item, i) => (
               <img src={item} key={i} alt="" />
@@ -82,10 +85,12 @@ function Header({ children, link }) {
   return (
     <Styled.Header>
       <h5>{children}</h5>
-      <h5>
-        {link}
-        <Arrow />
-      </h5>
+      {link && (
+        <h5>
+          {link}
+          <Arrow />
+        </h5>
+      )}
     </Styled.Header>
   )
 }
@@ -99,7 +104,7 @@ const ArrowSvg = ({ className }) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <g stroke="#000" fill="none" fill-rule="evenodd" stroke-linecap="square">
-      <path d="M1.25 9H58.5M59 9l-9 9M59 9l-9-9" stroke-width="1.4" />
+      <path d="M1.25 9H58.5M59 9l-9 9M59 9l-9-9" stroke-width="1.8" />
     </g>
   </svg>
 )
