@@ -18,7 +18,11 @@ export default function useApiData() {
       Prismic.Predicates.at('document.type', 'capacity')
     )
 
-    setData({ homepage, brand, capacity })
+    const work = await client.query(
+      Prismic.Predicates.at('document.type', 'work')
+    )
+
+    setData({ homepage, brand, capacity, work })
   }
   useEffect(() => {
     getData()
