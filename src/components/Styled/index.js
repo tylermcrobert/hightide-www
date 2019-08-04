@@ -33,4 +33,14 @@ export const Section = styled.div`
     `}
 `
 
+Section.Large = styled(Section)`
+  margin: 2rem 0;
+
+  @media ${mq.md} {
+    margin: 4rem 0;
+  }
+  @media ${mq.lg} {
+    margin: 5rem 0;
+  }
+`
 export default null

@@ -3,7 +3,9 @@ import { Wrap } from 'components/Styled'
 function Nav() {
   return (
     <nav>
-      <Wrap>HIGH TIDE</Wrap>
+      <Wrap>
+        <h5>High Tide</h5>
+      </Wrap>
     </nav>
   )
 }

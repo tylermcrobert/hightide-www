@@ -10,9 +10,7 @@ function Layout({ children }) {
       <>
         <GlobalStyle />
         <Nav />
-        <hr />
         <main>{children}</main>
-        <hr />
         Footer
       </>
     </ThemeProvider>

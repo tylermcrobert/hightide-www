@@ -27,6 +27,10 @@ const style = css`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  a {
+    color: black;
+  }
+
   img {
     display: block;
     width: 100%;

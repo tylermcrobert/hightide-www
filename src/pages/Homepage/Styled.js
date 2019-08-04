@@ -8,4 +8,16 @@ const Grid = styled.div`
   grid-gap: 1rem;
 `
 
-export default { Grid }
+const Header = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+    text-decoration: none;
+  }
+`
+
+export default { Grid, Header }

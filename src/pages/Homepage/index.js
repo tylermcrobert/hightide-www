@@ -12,7 +12,9 @@ function Homepage() {
   return (
     <>
       <Wrap>
-        <Section>{RichText.render(homepage.data.hero_text)} </Section>
+        <Section.Large>
+          {RichText.render(homepage.data.hero_text)}{' '}
+        </Section.Large>
         <Section>
           <FeaturedWork.Wrapper data={featuredProjects[0]} />
         </Section>
@@ -42,7 +44,7 @@ function Homepage() {
 function FeaturedWork({ name, img }) {
   return (
     <div>
-      <h5>Featured Work: {name}</h5>
+      <Header link={<a href="">{name}</a>}>Featured Work</Header>
       <img src={img} style={{ width: '100%' }} alt="" />
     </div>
   )
@@ -59,7 +61,6 @@ function TextSwitcher({ data }) {
     setCurrentIndex(currentIndex !== i ? i : null)
   }
 
-  console.log(data)
   return (
     <div>
       {data.map((item, i) => (
@@ -69,6 +70,15 @@ function TextSwitcher({ data }) {
         </div>
       ))}
     </div>
+  )
+}
+
+function Header({ children, link }) {
+  return (
+    <Styled.Header>
+      <h5>{children}</h5>
+      <h5>{link}</h5>
+    </Styled.Header>
   )
 }
 // Homepage.propTypes = {}
