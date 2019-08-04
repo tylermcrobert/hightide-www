@@ -6,6 +6,7 @@ function Layout({ children }) {
   return (
     <>
       <Nav />
+      <hr />
       <main>{children}</main>
       <hr />
       Footer

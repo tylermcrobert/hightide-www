@@ -1,31 +1,20 @@
-import React from 'react'
-import { RichText } from 'prismic-reactjs'
+import React, { createContext } from 'react'
 import Layout from '../Layout/index'
+import Homepage from 'pages/Homepage'
 import useApiData from './hooks/useApiData'
+
+export const AppCtx = createContext()
 
 function App() {
   const data = useApiData()
 
   if (data) {
-    const { homepage, brand, capacity } = data
-
-    const brands = brand.results.map(res => res.data.logo.url)
-
     return (
-      <Layout>
-        {RichText.render(homepage.data.hero_text)}
-
-        {capacity.results.map(({ data }, i) => (
-          <div key={i}>
-            {RichText.render(data.title)}
-            {RichText.render(data.description)}
-          </div>
-        ))}
-
-        {brands.map(item => (
-          <img src={item} />
-        ))}
-      </Layout>
+      <AppCtx.Provider value={data}>
+        <Layout>
+          <Homepage />
+        </Layout>
+      </AppCtx.Provider>
     )
   }
   return <div>loading...</div>
