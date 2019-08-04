@@ -9,7 +9,7 @@ function Homepage() {
   const featuredProjects = projects.filter(item => item.featured === 'Featured')
 
   return (
-    <div>
+    <>
       {RichText.render(homepage.data.hero_text)}
       <hr />
       <FeaturedWork.Wrapper data={featuredProjects[0]} />
@@ -26,8 +26,7 @@ function Homepage() {
       ))}
       <hr />
       <FeaturedWork.Wrapper data={featuredProjects[1]} />
-      <hr />
-    </div>
+    </>
   )
 }
 

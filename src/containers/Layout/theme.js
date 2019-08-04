@@ -17,11 +17,11 @@ export const colors = {
 }
 
 export const sizes = {
-  xl: '1440px',
-  lg: '1024px',
-  md: '768px',
-  sm: '576px',
-  xs: '0px'
+  xl: 1900,
+  lg: 1440,
+  md: 1024,
+  sm: 768,
+  xs: 576
 }
 
 const ease = {
@@ -33,7 +33,7 @@ export const lineLengths = ['30em', '35em']
 export const mq = Object.keys(sizes).reduce(
   (acc, current) => ({
     ...acc,
-    [current]: `(min-width: ${sizes[current]})`
+    [current]: `(min-width: ${sizes[current]}px)`
   }),
   {}
 )
