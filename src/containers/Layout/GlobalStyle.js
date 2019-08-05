@@ -3,6 +3,28 @@ import { reset } from 'styled-reset'
 import { mq } from './theme'
 
 const style = css`
+  @font-face {
+    font-family: 'America-Light';
+    src: url(${require('assets/fonts/GT-America-Standard-Light.eot')});
+    src: url(${require('assets/fonts/GT-America-Standard-Light.ttf')})
+        format('truetype'),
+      url(${require('assets/fonts/GT-America-Standard-Light.woff2')})
+        format('woff2'),
+      url(${require('assets/fonts/GT-America-Standard-Light.woff')})
+        format('woff');
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Lyon-Light';
+    src: url(${require('assets/fonts/LyonDisplay-Light-Web.woff2')})
+        format('woff2'),
+      url(${require('assets/fonts/LyonDisplay-Light-Web.woff')}) format('woff');
+    font-weight: 300;
+    font-style: normal;
+  }
+
   h1,
   h2 {
     font: f;
@@ -65,7 +87,7 @@ const style = css`
 
   h1 {
     font-size: ${props => props.theme.fontSizes[5]};
-
+    font-family: ${props => props.theme.fontFamilies.serif};
     @media ${mq.sm} {
       font-size: ${props => props.theme.fontSizes[6]};
     }
@@ -92,6 +114,7 @@ const style = css`
     font-size: ${props => props.theme.fontSizes[2]};
   }
 `
+
 const GlobalStyle = createGlobalStyle`
   ${reset}
   ${style}

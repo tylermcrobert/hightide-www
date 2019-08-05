@@ -5,8 +5,8 @@ export const navHeight = '4rem'
 export const fontSizes = modularScale.map(item => `${item}rem`)
 
 export const fontFamilies = {
-  serif: 'CaslonStd, georgia, serif',
-  sansSerif: '"America-Light", arial, sans-serif'
+  serif: 'Lyon-Light, georgia, serif',
+  sansSerif: '"America-Light", helvetica, arial, sans-serif'
 }
 
 export const colors = {
