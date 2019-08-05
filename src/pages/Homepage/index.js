@@ -3,6 +3,7 @@ import { RichText } from 'prismic-reactjs'
 import { AppCtx } from 'containers/App'
 import Styled from './Styled'
 import { Wrap, Section } from 'components/Styled'
+import TextSwitcher from 'components/TextSwitcher'
 import styled, { css } from 'styled-components/macro'
 
 function Homepage() {
@@ -52,33 +53,14 @@ function Homepage() {
 function FeaturedWork({ name, img }) {
   return (
     <div>
-      <Header link={<a href="">{name}</a>}>Featured Work</Header>
-      <img src={img} style={{ width: '100%' }} alt="" />
+      <Header link={<a href="">{name}</a>}>Featured Project</Header>
+      <img src={img} alt="" />
     </div>
   )
 }
 
 FeaturedWork.Wrapper = ({ data }) => {
   return <FeaturedWork name={RichText.asText(data.name)} img={data.image.url} />
-}
-
-function TextSwitcher({ data }) {
-  const [currentIndex, setCurrentIndex] = useState(null)
-
-  function handleTitle(i) {
-    setCurrentIndex(currentIndex !== i ? i : null)
-  }
-
-  return (
-    <div>
-      {data.map((item, i) => (
-        <div key={i}>
-          <h2 onClick={() => handleTitle(i)}>{item.heading}</h2>
-          <p>{i === currentIndex && item.body}</p>
-        </div>
-      ))}
-    </div>
-  )
 }
 
 function Header({ children, link }) {
@@ -103,8 +85,8 @@ const ArrowSvg = ({ className }) => (
     viewBox="0 0 60 18"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g stroke="#000" fill="none" fill-rule="evenodd" stroke-linecap="square">
-      <path d="M1.25 9H58.5M59 9l-9 9M59 9l-9-9" stroke-width="1.8" />
+    <g stroke="#000" fill="none" fillRule="evenodd" strokeLinecap="square">
+      <path d="M1.25 9H58.5M59 9l-9 9M59 9l-9-9" strokeWidth="1.4" />
     </g>
   </svg>
 )
