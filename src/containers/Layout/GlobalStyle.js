@@ -88,13 +88,11 @@ const style = css`
   h1 {
     font-size: ${props => props.theme.fontSizes[5]};
     font-family: ${props => props.theme.fontFamilies.serif};
-    @media ${mq.sm} {
+
+    @media ${mq.xs} {
       font-size: ${props => props.theme.fontSizes[6]};
     }
-    @media ${mq.md} {
-      font-size: ${props => props.theme.fontSizes[7]};
-    }
-    @media ${mq.lg} {
+    @media ${mq.sm} {
       font-size: ${props => props.theme.fontSizes[7]};
     }
   }

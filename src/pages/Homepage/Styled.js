@@ -22,8 +22,8 @@ const Header = styled.div`
 `
 
 const Intro = styled.h1`
-  @media ${mq.sm} {
-    width: 75%;
+  @media ${mq.xs} {
+    max-width: 14em;
   }
 `
 
