@@ -6,7 +6,7 @@ export const fontSizes = modularScale.map(item => `${item}rem`)
 
 export const fontFamilies = {
   serif: 'Lyon-Light, georgia, serif',
-  sansSerif: '"America-Light", helvetica, arial, sans-serif',
+  sansSerif: '"America", helvetica, arial, sans-serif',
 }
 
 export const colors = {

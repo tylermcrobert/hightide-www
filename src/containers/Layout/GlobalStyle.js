@@ -4,7 +4,7 @@ import { mq } from './theme'
 
 const style = css`
   @font-face {
-    font-family: 'America-Light';
+    font-family: 'America';
     src: url(${require('assets/fonts/GT-America-Standard-Light.eot')});
     src: url(${require('assets/fonts/GT-America-Standard-Light.ttf')})
         format('truetype'),
@@ -14,6 +14,19 @@ const style = css`
         format('woff');
     font-weight: 300;
     font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'America';
+    src: url(${require('assets/fonts/GT-America-Standard-Medium.eot')});
+    src: url(${require('assets/fonts/GT-America-Standard-Medium.ttf')})
+        format('truetype'),
+      url(${require('assets/fonts/GT-America-Standard-Medium.woff2')})
+        format('woff2'),
+      url(${require('assets/fonts/GT-America-Standard-Medium.woff')})
+        format('woff');
+    font-weight: 500;
+    font-style: bold;
   }
 
   @font-face {
@@ -51,6 +64,7 @@ const style = css`
 
   body {
     font-family: ${props => props.theme.fontFamilies.sansSerif};
+    font-weight: 300;
     line-height: 1.2;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -59,6 +73,10 @@ const style = css`
 
   a {
     color: black;
+  }
+
+  strong {
+    font-weight: 500;
   }
 
   img {
