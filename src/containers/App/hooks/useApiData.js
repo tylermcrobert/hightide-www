@@ -10,6 +10,7 @@ export const client = Prismic.client(apiEndpoint, { accessToken })
 export default function useApiData() {
   const [data, setData] = useState()
   async function getData() {
+    // console.log(rawData.data.types)
     const homepage = await client.getSingle('page_home')
     const brand = await client.query(
       Prismic.Predicates.at('document.type', 'brand')
@@ -17,12 +18,14 @@ export default function useApiData() {
     const capacity = await client.query(
       Prismic.Predicates.at('document.type', 'capacity')
     )
-
+    const journal = await client.query(
+      Prismic.Predicates.at('document.type', 'journal')
+    )
     const work = await client.query(
       Prismic.Predicates.at('document.type', 'work')
     )
 
-    setData({ homepage, brand, capacity, work })
+    setData({ homepage, brand, capacity, work, journal })
   }
   useEffect(() => {
     getData()
