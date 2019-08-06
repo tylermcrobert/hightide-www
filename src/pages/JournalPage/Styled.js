@@ -6,4 +6,18 @@ const TextWrap = styled.div`
   margin: 0 auto;
 `
 
-export default { TextWrap }
+const Gallery = styled.div`
+  display: grid;
+  grid-template-areas:
+    'left right'
+    'bottom bottom';
+  grid-gap: 1rem;
+
+  img {
+    &:nth-child(3) {
+      grid-area: bottom;
+    }
+  }
+`
+
+export default { TextWrap, Gallery }
