@@ -1,6 +1,6 @@
 import React, { createContext } from 'react'
 import Layout from '../Layout/index'
-import JournalPage from 'pages/JournalPage'
+import Homepage from 'pages/Homepage'
 import useApiData from './hooks/useApiData'
 
 export const AppCtx = createContext()
@@ -12,7 +12,9 @@ function App() {
     return (
       <AppCtx.Provider value={data}>
         <Layout>
-          <JournalPage data={data.journal.results[10]} />
+          <Homepage />
+
+          {/* <JournalPage data={data.journal.results[10]} /> */}
         </Layout>
       </AppCtx.Provider>
     )
