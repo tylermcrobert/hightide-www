@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Styled from './Styled'
-
+import { motion } from 'framer-motion'
 function divideArray(array) {
   const midpoint = Math.ceil(array.length / 2)
   var first = array.slice(0, midpoint)
@@ -23,12 +23,25 @@ function TextSwitcher({ data }) {
     <Styled.Wrapper cols={COLS}>
       {cols.map((col, colIndex) => (
         <Styled.ColWrapper key={colIndex}>
-          {col.map((item, i) => (
-            <Styled.Item key={i} onClick={() => handleTitle(`${colIndex}${i}`)}>
-              <h2>{item.heading}</h2>
-              <p>{`${colIndex}${i}` === currentIndex && item.body}</p>
-            </Styled.Item>
-          ))}
+          {col.map((item, i) => {
+            const key = `${colIndex}${i}`
+            const current = key === currentIndex
+            return (
+              <Styled.Item key={key} onClick={() => handleTitle(key)}>
+                <h2>{item.heading}</h2>
+                <motion.div
+                  initial={false}
+                  style={{ overflow: 'hidden' }}
+                  transition={{ ease: 'easeOut', duration: 0.25 }}
+                  animate={{
+                    height: current ? 'auto' : '0'
+                  }}
+                >
+                  <p>{item.body}</p>
+                </motion.div>
+              </Styled.Item>
+            )
+          })}
         </Styled.ColWrapper>
       ))}
     </Styled.Wrapper>
