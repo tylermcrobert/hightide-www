@@ -12,7 +12,7 @@ function App() {
     return (
       <AppCtx.Provider value={data}>
         <Layout>
-          <JournalPage data={data.journal.results[5]} />
+          <JournalPage data={data.journal.results[10]} />
         </Layout>
       </AppCtx.Provider>
     )

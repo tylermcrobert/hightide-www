@@ -5,15 +5,15 @@ import Styled from './Styled'
 
 function JournalPage({ data: apiData }) {
   const { data } = apiData
-  console.log()
+  console.log(data.abstract)
   return (
     <Wrap>
+      <img src={data.main_image.url} />
       <Section>
         <h2>{RichText.asText(data.title)}</h2>
-        <img src={data.main_image.url} />
-        {RichText.render(data.abstract)}
-        <SliceSwitch data={data} />
+        <Styled.TextWrap>{RichText.render(data.abstract)}</Styled.TextWrap>
       </Section>
+      <SliceSwitch data={data} />
     </Wrap>
   )
 }
@@ -29,11 +29,7 @@ function SliceSwitch({ data }) {
             </Section>
           )
         case 'hero_image':
-          return (
-            <Section>
-              <HeroImage data={sliceItem} />
-            </Section>
-          )
+          return <HeroImage data={sliceItem} />
         default:
           console.log('nothing built for ', sliceItem.slice_type)
           return null
@@ -58,12 +54,16 @@ function PostGallery({ data }) {
 
 function HeroImage({ data }) {
   return data.items.map(item => (
-    <div key={item.hero_image.url}>
-      <img src={item.hero_image.url} alt="" />
+    <React.Fragment key={item.hero_image.url}>
       <Section>
-        <Styled.TextWrap>{RichText.render(item.hero_note)}</Styled.TextWrap>
+        {item.hero_image.url && <img src={item.hero_image.url} alt="" />}
       </Section>
-    </div>
+      <Section>
+        <Styled.TextWrap center>
+          {RichText.render(item.hero_note)}
+        </Styled.TextWrap>
+      </Section>
+    </React.Fragment>
   ))
 }
 
