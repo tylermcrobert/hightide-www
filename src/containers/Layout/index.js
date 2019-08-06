@@ -1,5 +1,6 @@
 import React from 'react'
 import Nav from 'components/Nav'
+import Footer from 'components/Footer'
 import { ThemeProvider } from 'styled-components/macro'
 import GlobalStyle from './GlobalStyle'
 import theme from './theme'
@@ -11,7 +12,7 @@ function Layout({ children }) {
         <GlobalStyle />
         <Nav />
         <main>{children}</main>
-        Footer
+        <Footer />
       </>
     </ThemeProvider>
   )
