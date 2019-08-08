@@ -1,6 +1,9 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Wrap as GlobalWrap } from '../../style'
+import { mq } from '../../style/theme'
 import LogoSvg from '../Logo'
+
+const BREAKPOINT = mq.sm
 
 const Nav = styled.nav`
   position: fixed;
@@ -37,4 +40,44 @@ const NavItem = styled.a`
   }
 `
 
-export default { Logo, Nav, Wrap, NavItem }
+const Links = styled.div`
+  display: none;
+
+  @media ${BREAKPOINT} {
+    display: block;
+  }
+`
+
+const ease = props => props.theme.ease.standard
+
+const line = css`
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: ${props => props.theme.colors.primary};
+  transition: 200ms ${ease} transform;
+`
+
+const Burger = styled.div`
+  display: block;
+  position: relative;
+  width: 1.5em;
+
+  &::after {
+    ${line}
+    transform:
+      ${props => (props.enabled ? 'rotate(-45deg)' : 'translateY(4px)')};
+  }
+
+  &::before {
+    ${line}
+    transform:
+      ${props => (props.enabled ? 'rotate(45deg)' : 'translateY(-4px)')};  }
+
+  @media ${BREAKPOINT} {
+    display: none;
+  }
+`
+
+export default { Logo, Nav, Wrap, NavItem, Links, Burger }
