@@ -84,4 +84,22 @@ const Burger = styled.div`
   }
 `
 
-export default { Logo, Nav, Wrap, NavItem, Links, Burger }
+const Overlay = styled.div`
+  visibility: ${props => (props.enabled ? 'visible' : 'hidden')};
+
+  position: fixed;
+  top: ${props => props.theme.navHeight};
+  left: 0;
+  width: 100%;
+  height: calc(100% - ${props => props.theme.navHeight});
+  background: ${props => props.theme.colors.secondary};
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  text-align: center;
+`
+
+export default { Logo, Nav, Wrap, NavItem, Links, Burger, Overlay }

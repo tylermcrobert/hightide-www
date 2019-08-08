@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Styled from './Styled'
+import { Wrap } from '../../style'
+
+const NAV_ITEMS = [
+  { display: 'Work', href: '#' },
+  { display: 'Journal', href: '/journal/' },
+  { display: 'About', href: '#' },
+  { display: 'Contact', href: '#' },
+]
 
 function Nav() {
   const [mobileNavEnabled, setMobileNav] = useState()
@@ -16,14 +24,22 @@ function Nav() {
           <Styled.Burger enabled={mobileNavEnabled} />
         </Styled.NavItem>
         <Styled.Links>
-          <Styled.NavItem href="#"> Work</Styled.NavItem>
-          <Link href="/journal">
-            <Styled.NavItem href="#">Journal</Styled.NavItem>
-          </Link>
-          <Styled.NavItem href="#">About</Styled.NavItem>
-          <Styled.NavItem href="#">Contact</Styled.NavItem>
+          {NAV_ITEMS.map(item => (
+            <Link href={item.href}>
+              <Styled.NavItem href="#">{item.display}</Styled.NavItem>
+            </Link>
+          ))}
         </Styled.Links>
       </Styled.Wrap>
+      <Styled.Overlay enabled={mobileNavEnabled}>
+        <Wrap>
+          {NAV_ITEMS.map(item => (
+            <Link href={item.href}>
+              <h1>{item.display}</h1>
+            </Link>
+          ))}
+        </Wrap>
+      </Styled.Overlay>
     </Styled.Nav>
   )
 }
