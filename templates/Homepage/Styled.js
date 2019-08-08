@@ -1,5 +1,5 @@
-import styled from 'styled-components/macro'
-import { mq } from 'containers/Layout/theme'
+import styled from 'styled-components'
+import { mq } from '../../style/theme'
 
 const Grid = styled.div`
   display: grid;

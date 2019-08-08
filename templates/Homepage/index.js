@@ -1,19 +1,18 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { RichText } from 'prismic-reactjs'
-import { AppCtx } from 'containers/App'
+import styled from 'styled-components'
+import TextSwitcher from '../../components/TextSwitcher'
 import Styled from './Styled'
-import { Wrap, Section } from 'components/Styled'
-import TextSwitcher from 'components/TextSwitcher'
-import styled, { css } from 'styled-components/macro'
+import { Wrap, Section } from '../../style'
 
 function Homepage() {
-  const { homepage, capacity, brand, work } = useContext(AppCtx)
+  const { homepage, capacity, brand, work } = {}
   const brands = brand.results.map(res => res.data.logo.url)
   const projects = work.results.map(item => item.data)
   const featuredProjects = projects.filter(item => item.featured === 'Featured')
 
   return (
-    <>
+    <React.Fragment>
       <Wrap>
         <Section.Large>
           <Styled.Intro>
@@ -30,7 +29,7 @@ function Homepage() {
           <TextSwitcher
             data={capacity.results.map(item => ({
               heading: RichText.asText(item.data.title),
-              body: RichText.asText(item.data.description)
+              body: RichText.asText(item.data.description),
             }))}
           />
         </Section>
@@ -46,7 +45,7 @@ function Homepage() {
           <FeaturedWork.Wrapper data={featuredProjects[1]} />
         </Section>
       </Wrap>
-    </>
+    </React.Fragment>
   )
 }
 
@@ -77,8 +76,6 @@ function Header({ children, link }) {
   )
 }
 
-const line = css``
-
 const ArrowSvg = ({ className }) => (
   <svg
     className={className}
@@ -96,6 +93,5 @@ const Arrow = styled(ArrowSvg)`
   padding: 0 0.5em;
   transform: translateY(15%);
 `
-// Homepage.propTypes = {}
 
 export default Homepage

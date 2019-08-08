@@ -1,3 +1,8 @@
 import Layout from '../components/Layout'
+import Homepage from '../templates/Homepage'
 
-export default () => <Layout>hello world</Layout>
+export default () => (
+  <Layout>
+    <Homepage>hello world</Homepage>
+  </Layout>
+)
