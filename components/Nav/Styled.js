@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Wrap as GlobalWrap } from '../Styled'
+import { Wrap as GlobalWrap } from '../../style'
 import LogoSvg from '../Logo'
 
 const Nav = styled.nav`

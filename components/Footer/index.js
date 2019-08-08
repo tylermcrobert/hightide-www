@@ -1,6 +1,6 @@
 import React from 'react'
 import Styled from './Styled'
-import { Wrap, Section } from '../Styled'
+import { Wrap, Section } from '../../style'
 
 function Footer() {
   return (

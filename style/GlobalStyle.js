@@ -3,42 +3,6 @@ import { reset } from 'styled-reset'
 import { mq } from './theme'
 
 const style = css`
-  ${'' /* @font-face {
-    font-family: 'America';
-    src: url(${require('../../assets/fonts/GT-America-Standard-Light.eot')});
-    src: url(${require('../../assets/fonts/GT-America-Standard-Light.ttf')})
-        format('truetype'),
-      url(${require('../../assets/fonts/GT-America-Standard-Light.woff2')})
-        format('woff2'),
-      url(${require('../../assets/fonts/GT-America-Standard-Light.woff')})
-        format('woff');
-    font-weight: 300;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'America';
-    src: url(${require('../../assets/fonts/GT-America-Standard-Medium.eot')});
-    src: url(${require('../../assets/fonts/GT-America-Standard-Medium.ttf')})
-        format('truetype'),
-      url(${require('../../assets/fonts/GT-America-Standard-Medium.woff2')})
-        format('woff2'),
-      url(${require('../../assets/fonts/GT-America-Standard-Medium.woff')})
-        format('woff');
-    font-weight: 500;
-    font-style: bold;
-  }
-
-  @font-face {
-    font-family: 'Lyon-Light';
-    src: url(${require('../../assets/fonts/LyonDisplay-Light-Web.woff2')})
-        format('woff2'),
-      url(${require('../../assets/fonts/LyonDisplay-Light-Web.woff')})
-        format('woff');
-    font-weight: 300;
-    font-style: normal;
-  } */}
-
   h1,
   h2 {
     font: f;

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { mq } from '../Layout/theme'
+import { mq } from './theme'
 
 export const Img = styled.img`
   width: 100%;
