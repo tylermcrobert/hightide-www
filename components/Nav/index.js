@@ -1,14 +1,21 @@
 import React from 'react'
+import Link from 'next/link'
 import Styled from './Styled'
 
 function Nav() {
   return (
     <Styled.Nav>
       <Styled.Wrap>
-        <Styled.Logo />
+        <Link href="/">
+          <a>
+            <Styled.Logo />
+          </a>
+        </Link>
         <div>
           <Styled.NavItem href="#"> Work</Styled.NavItem>
-          <Styled.NavItem href="#">Journal</Styled.NavItem>
+          <Link href="/journal">
+            <Styled.NavItem href="#">Journal</Styled.NavItem>
+          </Link>
           <Styled.NavItem href="#">About</Styled.NavItem>
           <Styled.NavItem href="#">Contact</Styled.NavItem>
         </div>
