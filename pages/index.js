@@ -9,7 +9,7 @@ const Index = ({ data }) => (
   </Layout>
 )
 
-Index.getInitialProps = async ({ req }) => {
+Index.getInitialProps = async () => {
   const api = await Prismic.getApi(apiEndpoint, { accessToken })
 
   const homepage = await api.getSingle('page_home')

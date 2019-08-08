@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.6",
-    "eslint": "^6.1.0",
+    "": "^6.1.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-import": "^2.18.2",
@@ -31,7 +31,8 @@
   "scripts": {
     "dev": "next -- -p 5000",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint  pages/** style/** templates/** components/**"
   },
   "repository": {
     "type": "git",

@@ -3,6 +3,8 @@ import { RichText } from 'prismic-reactjs'
 import { Wrap, Section } from '../../style'
 import Styled from './Styled'
 
+/* eslint no-console: 0 */
+
 function JournalPage({ data: apiData }) {
   const { data } = apiData
 
