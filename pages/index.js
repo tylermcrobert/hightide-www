@@ -19,8 +19,10 @@ Index.getInitialProps = async ({ req }) => {
   const capacity = await api.query(
     Prismic.Predicates.at('document.type', 'capacity')
   )
+
   const work = await api.query(Prismic.Predicates.at('document.type', 'work'))
 
   return { data: { homepage, capacity, brand, work } }
 }
+
 export default Index

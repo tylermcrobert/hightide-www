@@ -1,6 +1,6 @@
 import React from 'react'
-import { Wrap, Section } from 'components/Styled'
 import { RichText } from 'prismic-reactjs'
+import { Wrap, Section } from '../../style'
 import Styled from './Styled'
 
 function JournalPage({ data: apiData }) {
@@ -8,7 +8,7 @@ function JournalPage({ data: apiData }) {
   console.log(data.abstract)
   return (
     <Wrap>
-      <img src={data.main_image.url} />
+      <img src={data.main_image.url} alt="" />
       <Section>
         <h2>{RichText.asText(data.title)}</h2>
         <Styled.TextWrap>{RichText.render(data.abstract)}</Styled.TextWrap>
