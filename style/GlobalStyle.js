@@ -12,7 +12,7 @@ const style = css`
   }
   body,
   html {
-    font-size: 20px;
+    font-size: 18px;
 
     @media ${mq.sm} {
       font-size: 22px;
