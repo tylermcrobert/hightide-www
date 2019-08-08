@@ -3,7 +3,7 @@ import { Wrap as GlobalWrap } from '../../style'
 import { mq } from '../../style/theme'
 import LogoSvg from '../Logo'
 
-const BREAKPOINT = mq.sm
+const BREAKPOINT = mq.xs
 
 const Nav = styled.nav`
   position: fixed;
@@ -16,11 +16,15 @@ const Nav = styled.nav`
 `
 
 const Wrap = styled(GlobalWrap)`
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   align-items: center;
-
   height: ${props => props.theme.navHeight};
+
+  > * {
+    &:first-child {
+      flex: 1;
+    }
+  }
 `
 
 const Logo = styled(LogoSvg)`
