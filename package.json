@@ -1,0 +1,27 @@
+{
+  "name": "hightide-www",
+  "version": "1.0.0",
+  "description": "Website for High Tide NYC",
+  "main": "index.js",
+  "dependencies": {
+    "next": "^9.0.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+     "dev": "next -- -p 5000",
+     "build": "next build",
+     "start": "next start"
+   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylermcrobert/hightide-react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tylermcrobert/hightide-react/issues"
+  },
+  "homepage": "https://github.com/tylermcrobert/hightide-react#readme"
+}
