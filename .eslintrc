@@ -1,6 +1,6 @@
 {
   "extends": ["airbnb", "prettier"],
-  "plugins": ["import", "react-hooks"],
+  "plugins": ["import", "react", "react-hooks"],
   "rules": {
     "no-underscore-dangle": 0,
     "react/jsx-filename-extension": 0,

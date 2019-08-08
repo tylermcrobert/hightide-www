@@ -4,9 +4,13 @@
   "description": "Website for High Tide NYC",
   "main": "index.js",
   "dependencies": {
+    "framer-motion": "^1.5.0",
+    "modularscale-js": "^3.0.1",
     "next": "^9.0.3",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2",
+    "styled-reset": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
