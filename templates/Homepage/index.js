@@ -5,8 +5,8 @@ import TextSwitcher from '../../components/TextSwitcher'
 import Styled from './Styled'
 import { Wrap, Section } from '../../style'
 
-function Homepage() {
-  const { homepage, capacity, brand, work } = {}
+function Homepage({ data }) {
+  const { homepage, capacity, brand, work } = data
   const brands = brand.results.map(res => res.data.logo.url)
   const projects = work.results.map(item => item.data)
   const featuredProjects = projects.filter(item => item.featured === 'Featured')
