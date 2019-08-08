@@ -4,11 +4,7 @@ import JournalPage from '../../templates/JournalPage'
 import Layout from '../../components/Layout'
 
 const Journal = ({ data }) => {
-  return (
-    <Layout>
-      <JournalPage data={data} />{' '}
-    </Layout>
-  )
+  return <Layout>{data && <JournalPage data={data} />}</Layout>
 }
 
 Journal.getInitialProps = async context => {
