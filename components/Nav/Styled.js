@@ -61,23 +61,27 @@ const line = css`
   height: 2px;
   background: ${props => props.theme.colors.primary};
   transition: 200ms ${ease} transform;
+  top: 50%;
 `
 
 const Burger = styled.div`
   display: block;
   position: relative;
   width: 1.5em;
+  height: 1.5em;
 
   &::after {
     ${line}
     transform:
-      ${props => (props.enabled ? 'rotate(-45deg)' : 'translateY(4px)')};
+      ${props =>
+        props.enabled ? 'rotate(-45deg)' : 'translateY(calc(-50% + 4px))'};
   }
 
   &::before {
     ${line}
     transform:
-      ${props => (props.enabled ? 'rotate(45deg)' : 'translateY(-4px)')};  }
+      ${props =>
+        props.enabled ? 'rotate(45deg)' : 'translateY(calc(-50% - 4px))'};  }
 
   @media ${BREAKPOINT} {
     display: none;
@@ -93,7 +97,6 @@ const Overlay = styled.div`
   width: 100%;
   height: calc(100% - ${props => props.theme.navHeight});
   background: ${props => props.theme.colors.secondary};
-  z-index: 10;
 
   display: flex;
   justify-content: center;
