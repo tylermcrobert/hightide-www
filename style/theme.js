@@ -27,6 +27,11 @@ const ease = {
   standard: 'cubic-bezier(.36,.77,.53,.98)',
 }
 
+const margins = {
+  standard: fontSizes[3],
+  slim: fontSizes[1],
+}
+
 export const lineLengths = ['30em', '35em']
 
 export const mq = Object.keys(sizes).reduce(
@@ -46,4 +51,5 @@ export default {
   sizes,
   lineLengths,
   mq,
+  margins,
 }

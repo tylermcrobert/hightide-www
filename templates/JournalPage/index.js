@@ -5,7 +5,7 @@ import Styled from './Styled'
 
 function JournalPage({ data: apiData }) {
   const { data } = apiData
-  console.log(data.abstract)
+
   return (
     <Wrap>
       <img src={data.main_image.url} alt="" />

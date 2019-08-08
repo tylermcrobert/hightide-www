@@ -29,7 +29,7 @@ function TextSwitcher({ data }) {
             const current = key === currentIndex
             return (
               <Styled.Item key={key} onClick={() => handleTitle(key)}>
-                <h2>{item.heading}</h2>
+                <Styled.Head>{item.heading}</Styled.Head>
                 <motion.div
                   initial={false}
                   style={{ overflow: 'hidden' }}

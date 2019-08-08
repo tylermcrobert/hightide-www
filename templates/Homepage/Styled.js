@@ -6,7 +6,7 @@ const Grid = styled.div`
   grid-template-columns: repeat(${props => props.cols || 2}, 1fr);
   justify-content: center;
   align-items: center;
-  grid-gap: 1rem;
+  grid-gap: ${props => props.theme.margins.standard};
 `
 
 const Header = styled.div`

@@ -11,7 +11,7 @@ const Gallery = styled.div`
   grid-template-areas:
     'left right'
     'bottom bottom';
-  grid-gap: 1rem;
+  grid-gap: ${props => props.theme.margins.standard};
 
   img {
     &:nth-child(3) {

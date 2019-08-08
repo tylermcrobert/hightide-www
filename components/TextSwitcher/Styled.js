@@ -7,12 +7,12 @@ const Wrapper = styled.div`
   @media ${BREAKPOINT} {
     display: ${props => (props.cols ? 'grid' : 'block')};
     grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
+    grid-gap: ${props => props.theme.margins.slim};
   }
 `
 const Item = styled.div`
   border-top: 1px solid ${props => props.theme.colors.primary};
-  padding-top: 1rem;
+  padding-top: ${props => props.theme.margins.slim};
   cursor: pointer;
   user-select: none;
 
@@ -23,6 +23,10 @@ const Item = styled.div`
   }
 `
 
+const Head = styled.h2`
+  margin-bottom: ${props => props.theme.margins.slim};
+`
+
 const ColWrapper = styled.div``
 
-export default { Item, ColWrapper, Wrapper }
+export default { Item, ColWrapper, Wrapper, Head }
