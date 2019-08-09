@@ -4,6 +4,10 @@ import { ThemeProvider } from 'styled-components'
 import theme from '../style/theme'
 
 export default class HighTideApp extends App {
+  componentDidMount() {
+    console.log('mounted')
+  }
+
   render() {
     const { Component, pageProps } = this.props
     return (
