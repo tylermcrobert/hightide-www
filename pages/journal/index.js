@@ -1,15 +1,10 @@
 import React from 'react'
 import Prismic from 'prismic-javascript'
-import Layout from '../../components/Layout'
 import JournalIndex from '../../templates/JournalIndex'
 import { apiEndpoint, accessToken } from '../../prismic.config'
 
 export default function Journal({ data }) {
-  return (
-    <Layout>
-      <JournalIndex data={data} />
-    </Layout>
-  )
+  return <JournalIndex data={data} />
 }
 
 Journal.getInitialProps = async () => {
