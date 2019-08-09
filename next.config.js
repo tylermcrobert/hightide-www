@@ -1,5 +1,5 @@
 const Prismic = require('prismic-javascript')
-const { apiEndpoint, accessToken } = require('./config/prismic')
+const { apiEndpoint, accessToken } = require('./prismic.config')
 
 module.exports = {
   async exportPathMap() {

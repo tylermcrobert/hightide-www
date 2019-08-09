@@ -1,5 +1,5 @@
 import Prismic from 'prismic-javascript'
-import { apiEndpoint, accessToken } from '../../config/prismic'
+import { apiEndpoint, accessToken } from '../../prismic.config'
 import JournalPage from '../../templates/JournalPage'
 import Layout from '../../components/Layout'
 

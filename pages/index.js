@@ -1,7 +1,7 @@
 import Prismic from 'prismic-javascript'
 import Layout from '../components/Layout'
 import Homepage from '../templates/Homepage'
-import { apiEndpoint, accessToken } from '../config/prismic'
+import { apiEndpoint, accessToken } from '../prismic.config'
 
 const Index = ({ data }) => (
   <Layout>
