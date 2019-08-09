@@ -41,7 +41,7 @@ function DesktopLinks() {
   return (
     <Styled.Links>
       {NAV_ITEMS.map(item => (
-        <Link href={item.href}>
+        <Link href={item.href} key={item.display}>
           <Styled.NavItem href="#">{item.display}</Styled.NavItem>
         </Link>
       ))}
@@ -66,7 +66,7 @@ function Overlay() {
     <Styled.Overlay enabled={mobileNavEnabled}>
       <Wrap>
         {NAV_ITEMS.map(item => (
-          <Link href={item.href}>
+          <Link href={item.href} key={item.display}>
             <h1>{item.display}</h1>
           </Link>
         ))}
