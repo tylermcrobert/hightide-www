@@ -1,8 +1,9 @@
 // import PropTypes from 'prop-types'
+import { Wrap, Section } from '../style'
 
 function Work() {
   return (
-    <div>
+    <Wrap>
       Work work work Tests
       <br />
       <br />
@@ -25,7 +26,7 @@ function Work() {
       <br />
       <br />
       <br />
-    </div>
+    </Wrap>
   )
 }
 
