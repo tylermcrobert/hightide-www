@@ -16,7 +16,11 @@ export default function JournalIndex({ data }) {
             item.data.main_image.phone && item.data.main_image.phone.url
 
           return (
-            <Link href={`/journal/${item.uid}/`}>
+            <Link
+              href="/journal/[uid]"
+              as={`/journal/${item.uid}/`}
+              key={item.uid}
+            >
               <a>
                 <Styled.Img
                   src={phoneImg || mainImg}
