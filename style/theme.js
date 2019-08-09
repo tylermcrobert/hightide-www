@@ -42,7 +42,7 @@ export const mq = Object.keys(sizes).reduce(
   {}
 )
 
-export const routeTransition = `400ms ease`
+export const routeTransition = `900ms ${ease.standard}`
 
 const theme = {
   colors,
