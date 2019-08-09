@@ -1,7 +1,7 @@
 import App, { Container } from 'next/app'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import theme from '../style/theme'
+import theme, { invertedTheme } from '../style/theme'
 import Layout from '../components/Layout'
 import AmericaLtWoff2 from '../assets/fonts/GT-America-Standard-Light.woff2'
 import AmericaLtWoff from '../assets/fonts/GT-America-Standard-Light.woff'
@@ -18,15 +18,6 @@ import LyonLtWoff2 from '../assets/fonts/LyonDisplay-Light-Web.woff2'
 
 const DARK_ROUTES = ['/work']
 
-const darkTheme = {
-  ...theme,
-  colors: {
-    ...theme.colors,
-    primary: theme.colors.secondary,
-    secondary: theme.colors.primary,
-  },
-}
-
 export default class HighTideApp extends App {
   componentDidMount() {
     console.log('mounted')
@@ -38,7 +29,7 @@ export default class HighTideApp extends App {
 
     return (
       <Container>
-        <ThemeProvider theme={isDark ? darkTheme : theme}>
+        <ThemeProvider theme={isDark ? invertedTheme : theme}>
           <Layout>
             <Component {...pageProps} />
           </Layout>

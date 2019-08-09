@@ -42,7 +42,7 @@ export const mq = Object.keys(sizes).reduce(
   {}
 )
 
-export default {
+const theme = {
   colors,
   fontSizes,
   fontFamilies,
@@ -53,3 +53,14 @@ export default {
   mq,
   margins,
 }
+
+export const invertedTheme = {
+  ...theme,
+  colors: {
+    ...theme.colors,
+    primary: theme.colors.secondary,
+    secondary: theme.colors.primary,
+  },
+}
+
+export default theme
