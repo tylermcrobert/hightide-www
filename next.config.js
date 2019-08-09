@@ -1,4 +1,5 @@
 const Prismic = require('prismic-javascript')
+const withFonts = require('next-fonts')
 const { apiEndpoint, accessToken } = require('./prismic.config')
 
 module.exports = {
@@ -22,3 +23,4 @@ module.exports = {
     return paths
   },
 }
+module.exports = withFonts()
