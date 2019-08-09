@@ -14,6 +14,19 @@ import AmericaMdTtf from '../assets/fonts/GT-America-Standard-Medium.ttf'
 import LyonLtWoff from '../assets/fonts/LyonDisplay-Light-Web.woff'
 import LyonLtWoff2 from '../assets/fonts/LyonDisplay-Light-Web.woff2'
 
+/* eslint import/no-named-as-default-member: 0 */
+
+const DARK_ROUTES = ['/work']
+
+const darkTheme = {
+  ...theme,
+  colors: {
+    ...theme.colors,
+    primary: theme.colors.secondary,
+    secondary: theme.colors.primary,
+  },
+}
+
 export default class HighTideApp extends App {
   componentDidMount() {
     console.log('mounted')
@@ -21,9 +34,11 @@ export default class HighTideApp extends App {
 
   render() {
     const { Component, pageProps } = this.props
+    const isDark = this.props.router.route.indexOf(DARK_ROUTES) !== -1
+
     return (
       <Container>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={isDark ? darkTheme : theme}>
           <Layout>
             <Component {...pageProps} />
           </Layout>

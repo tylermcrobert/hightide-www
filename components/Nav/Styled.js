@@ -11,7 +11,6 @@ const Nav = styled.nav`
   left: 0;
   width: 100%;
   z-index: 99;
-
   background: ${props => props.theme.colors.secondary};
 `
 
@@ -29,6 +28,9 @@ const Wrap = styled(GlobalWrap)`
 
 const Logo = styled(LogoSvg)`
   height: 1.1em;
+  * {
+    fill: ${props => props.theme.colors.primary};
+  }
 `
 
 const NavItem = styled.a`

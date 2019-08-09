@@ -28,6 +28,8 @@ const style = css`
   }
 
   body {
+    background: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.primary};
     font-family: ${props => props.theme.fontFamilies.sansSerif};
     font-weight: 300;
     line-height: 1.2;
@@ -35,7 +37,7 @@ const style = css`
   }
 
   a {
-    color: black;
+    color: ${props => props.theme.colors.primary};
   }
 
   strong {

@@ -4,7 +4,7 @@ import Styled from './Styled'
 import { Wrap } from '../../style'
 
 const NAV_ITEMS = [
-  { display: 'Work', href: '#' },
+  { display: 'Work', href: '/work' },
   { display: 'Journal', href: '/journal/' },
   { display: 'About', href: '#' },
   { display: 'Contact', href: '#' },

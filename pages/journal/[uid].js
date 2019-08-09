@@ -1,10 +1,9 @@
 import Prismic from 'prismic-javascript'
 import { apiEndpoint, accessToken } from '../../prismic.config'
 import JournalPage from '../../templates/JournalPage'
-import Layout from '../../components/Layout'
 
 const Journal = ({ data }) => {
-  return <Layout>{data && <JournalPage data={data} />}</Layout>
+  return data ? <JournalPage data={data} /> : null
 }
 
 Journal.getInitialProps = async context => {
