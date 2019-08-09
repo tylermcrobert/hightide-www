@@ -42,6 +42,8 @@ export const mq = Object.keys(sizes).reduce(
   {}
 )
 
+export const routeTransition = `400ms ease`
+
 const theme = {
   colors,
   fontSizes,
@@ -52,6 +54,7 @@ const theme = {
   lineLengths,
   mq,
   margins,
+  routeTransition,
 }
 
 export const invertedTheme = {

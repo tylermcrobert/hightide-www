@@ -1,6 +1,6 @@
 import { createGlobalStyle, css } from 'styled-components'
 import { reset } from 'styled-reset'
-import { mq } from './theme'
+import { mq, routeTransition } from './theme'
 
 const style = css`
   * {
@@ -34,10 +34,13 @@ const style = css`
     font-weight: 300;
     line-height: 1.2;
     padding-top: ${props => props.theme.navHeight};
+
+    transition: color ${routeTransition}, background ${routeTransition};
   }
 
   a {
     color: ${props => props.theme.colors.primary};
+    transition: color ${routeTransition};
   }
 
   strong {
