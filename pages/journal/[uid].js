@@ -1,10 +1,10 @@
 import Prismic from 'prismic-javascript'
 import { RichText } from 'prismic-reactjs'
 import { apiEndpoint, accessToken } from '../../prismic.config'
-import JournalPage from '../../templates/JournalPage'
+import PostTemplate from '../../templates/Post'
 import Meta from '../../components/Meta'
 
-const Journal = ({ data }) => {
+const Post = ({ data }) => {
   if (data) {
     const postImg = data.data.main_image.url
     const thumnail = data.data.thumbnail_image.url
@@ -18,14 +18,14 @@ const Journal = ({ data }) => {
           image={thumnail || postImg}
           url={`journal/${data.uid}`}
         />
-        <JournalPage data={data} />
+        <PostTemplate data={data} />
       </>
     )
   }
   return null
 }
 
-Journal.getInitialProps = async context => {
+Post.getInitialProps = async context => {
   const api = await Prismic.getApi(apiEndpoint, { accessToken })
   const journal = await api.query(
     Prismic.Predicates.at('document.type', 'journal')
@@ -39,4 +39,4 @@ Journal.getInitialProps = async context => {
   return { data, journals, uids }
 }
 
-export default Journal
+export default Post

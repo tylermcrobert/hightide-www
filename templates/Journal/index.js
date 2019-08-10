@@ -5,7 +5,7 @@ import { RichText } from 'prismic-reactjs'
 import { Wrap } from '../../style'
 import Styled from './Styled'
 
-export default function JournalIndex({ data }) {
+export default function Journal({ data }) {
   return (
     <Wrap>
       <Styled.Wrapper>

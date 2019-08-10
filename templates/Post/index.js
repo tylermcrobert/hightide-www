@@ -5,7 +5,7 @@ import Styled from './Styled'
 
 /* eslint no-console: 0 */
 
-function JournalPage({ data: apiData }) {
+function Post({ data: apiData }) {
   const { data } = apiData
 
   return (
@@ -71,4 +71,4 @@ function HeroImage({ data }) {
 
 // JournalPage.propTypes = {}
 
-export default JournalPage
+export default Post

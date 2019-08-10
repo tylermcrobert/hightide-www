@@ -1,14 +1,14 @@
 import React from 'react'
 import Prismic from 'prismic-javascript'
-import JournalIndex from '../../templates/JournalIndex'
+import JournalTemplate from '../../templates/Journal'
 import { apiEndpoint, accessToken } from '../../prismic.config'
 import Meta from '../../components/Meta'
 
 export default function Journal({ data }) {
   return (
     <>
-      <Meta title="Journal" url="journal/" />
-      <JournalIndex data={data} />
+      <Meta title="Journal" url="/journal/" />
+      <JournalTemplate data={data} />
     </>
   )
 }
