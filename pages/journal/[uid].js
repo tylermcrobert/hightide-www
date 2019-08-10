@@ -9,13 +9,15 @@ const Journal = ({ data }) => {
   if (data) {
     const postImg = data.data.main_image.url
     const title = formatTitle(RichText.asText(data.data.title))
+
     return (
       <>
         <Head>
           <title>{title}</title>
-          <meta property="og:title" content={title} />
+
           <meta name="og:image" content={postImg} />
           <meta name="twitter:image" content={postImg} />
+          <meta property="og:title" content={title} />
         </Head>
         <JournalPage data={data} />
       </>
