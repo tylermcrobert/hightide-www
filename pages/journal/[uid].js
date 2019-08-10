@@ -13,11 +13,10 @@ const Journal = ({ data }) => {
     return (
       <>
         <Head>
-          <title>{title}</title>
-
-          <meta name="og:image" content={postImg} />
+          <meta property="og:image" content={postImg} />
           <meta name="twitter:image" content={postImg} />
           <meta property="og:title" content={title} />
+          <title>{title}</title>
         </Head>
         <JournalPage data={data} />
       </>

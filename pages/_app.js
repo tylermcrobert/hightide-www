@@ -34,7 +34,6 @@ export default class HighTideApp extends App {
     return (
       <Container>
         <Head>
-          <Meta />
           <title>{config.title}</title>
         </Head>
         <ThemeProvider theme={isDark ? invertedTheme : theme}>
