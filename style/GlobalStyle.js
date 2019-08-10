@@ -2,6 +2,30 @@ import { createGlobalStyle, css } from 'styled-components'
 import { reset } from 'styled-reset'
 import { mq, routeTransition } from './theme'
 
+export const HEADING_LEVELS = [
+  css`
+    font-size: ${props => props.theme.fontSizes[5]};
+    font-family: ${props => props.theme.fontFamilies.serif};
+
+    @media ${mq.xs} {
+      font-size: ${props => props.theme.fontSizes[6]};
+    }
+    @media ${mq.sm} {
+      font-size: ${props => props.theme.fontSizes[7]};
+    }
+  `,
+  css`
+    font-size: ${props => props.theme.fontSizes[4]};
+
+    @media ${mq.md} {
+      font-size: ${props => props.theme.fontSizes[5]};
+    }
+  `,
+  css`
+    font-size: ${props => props.theme.fontSizes[2]};
+  `,
+]
+
 const style = css`
   * {
     box-sizing: border-box;
@@ -75,30 +99,18 @@ const style = css`
   }
 
   h1 {
-    font-size: ${props => props.theme.fontSizes[5]};
-    font-family: ${props => props.theme.fontFamilies.serif};
-
-    @media ${mq.xs} {
-      font-size: ${props => props.theme.fontSizes[6]};
-    }
-    @media ${mq.sm} {
-      font-size: ${props => props.theme.fontSizes[7]};
-    }
+    ${HEADING_LEVELS[0]}
   }
 
   h2,
   h3,
   h4 {
-    font-size: ${props => props.theme.fontSizes[4]};
-
-    @media ${mq.md} {
-      font-size: ${props => props.theme.fontSizes[5]};
-    }
+    ${HEADING_LEVELS[1]}
   }
 
   h5,
   h6 {
-    font-size: ${props => props.theme.fontSizes[2]};
+    ${HEADING_LEVELS[2]}
   }
 `
 
