@@ -1,9 +1,19 @@
 import Prismic from 'prismic-javascript'
+import Head from 'next/head'
+import { RichText } from 'prismic-reactjs'
 import { apiEndpoint, accessToken } from '../../prismic.config'
 import JournalPage from '../../templates/JournalPage'
+import formatTitle from '../../util/formatTitle'
 
 const Journal = ({ data }) => {
-  return data ? <JournalPage data={data} /> : null
+  return data ? (
+    <>
+      <Head>
+        <title>{formatTitle(RichText.asText(data.data.title))}</title>
+      </Head>
+      <JournalPage data={data} />
+    </>
+  ) : null
 }
 
 Journal.getInitialProps = async context => {
