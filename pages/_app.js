@@ -4,7 +4,13 @@ import { ThemeProvider } from 'styled-components'
 import Head from 'next/head'
 import theme, { invertedTheme } from '../style/theme'
 import Layout from '../components/Layout'
-import { title, siteUrl, social, description } from '../site.config'
+import {
+  title,
+  siteUrl,
+  social,
+  description,
+  previewImage,
+} from '../site.config'
 
 import AmericaLtWoff2 from '../assets/fonts/GT-America-Standard-Light.woff2'
 import AmericaLtWoff from '../assets/fonts/GT-America-Standard-Light.woff'
@@ -44,21 +50,16 @@ export default class HighTideApp extends App {
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="website" />
           <meta property="og:description" content={description} />
+          <meta name="og:image" content={previewImage} />
 
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:site" content={`@${social.twitter}`} />
           <meta name="twitter:creator" content={`@${social.twitter}`} />
+          <meta name="twitter:image" content={previewImage} />
 
           <meta name="description" content={description} />
           <link rel="canonical" href={siteUrl} />
-          <meta
-            name="twitter:image"
-            content="https://www.wearecollins.com/assets/images/collins-signature.jpg"
-          />
-          <meta
-            name="og:image"
-            content="https://www.wearecollins.com/assets/images/collins-signature.jpg"
-          />
+
           <title>High Tide</title>
         </Head>
         <ThemeProvider theme={isDark ? invertedTheme : theme}>
