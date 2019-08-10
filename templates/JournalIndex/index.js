@@ -14,31 +14,33 @@ export default function JournalIndex({ data }) {
           const formattedDate = publishDate.replace(/-/g, '.')
           const title = RichText.asText(item.data.title)
           const mainImg = item.data.main_image.url
-          const phoneImg =
-            item.data.main_image.phone && item.data.main_image.phone.url
-
-          console.log()
+          const thumbnail = item.data.thumbnail_image.url
 
           return (
-            <Link
-              href="/journal/[uid]"
-              as={`/journal/${item.uid}/`}
+            <JournalCard
               key={item.uid}
-            >
-              <a>
-                <Styled.Img
-                  src={phoneImg || mainImg}
-                  alt={`${title} - High Tide`}
-                />
-                <Styled.PostDesc>
-                  <Styled.PostTitle>{title}</Styled.PostTitle>
-                  <h5>{formattedDate}</h5>
-                </Styled.PostDesc>
-              </a>
-            </Link>
+              uid={item.uid}
+              image={thumbnail || mainImg}
+              date={formattedDate}
+              title={title}
+            />
           )
         })}
       </Styled.Wrapper>
     </Wrap>
+  )
+}
+
+function JournalCard({ uid, image, date, title }) {
+  return (
+    <Link href="/journal/[uid]" as={`/journal/${uid}/`}>
+      <a>
+        <Styled.Img src={image} alt={`${title} - High Tide`} />
+        <Styled.PostDesc>
+          <Styled.PostTitle>{title}</Styled.PostTitle>
+          <h5>{date}</h5>
+        </Styled.PostDesc>
+      </a>
+    </Link>
   )
 }

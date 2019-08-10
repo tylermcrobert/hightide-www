@@ -7,11 +7,13 @@ import Meta from '../../components/Meta'
 const Journal = ({ data }) => {
   if (data) {
     const postImg = data.data.main_image.url
+    const thumnail = data.data.thumbnail_image.url
+
     const title = RichText.asText(data.data.title)
 
     return (
       <>
-        <Meta title={title} image={postImg} />
+        <Meta title={title} image={thumnail || postImg} />
         <JournalPage data={data} />
       </>
     )
