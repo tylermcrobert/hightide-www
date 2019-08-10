@@ -7,7 +7,7 @@ import Meta from '../../components/Meta'
 export default function Journal({ data }) {
   return (
     <>
-      <Meta title="Journal" />
+      <Meta title="Journal" url="journal/" />
       <JournalIndex data={data} />
     </>
   )

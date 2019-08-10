@@ -13,7 +13,11 @@ const Journal = ({ data }) => {
 
     return (
       <>
-        <Meta title={title} image={thumnail || postImg} />
+        <Meta
+          title={title}
+          image={thumnail || postImg}
+          url={`journal/${data.uid}`}
+        />
         <JournalPage data={data} />
       </>
     )

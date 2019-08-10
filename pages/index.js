@@ -5,7 +5,7 @@ import Meta from '../components/Meta'
 
 const Index = ({ data }) => (
   <>
-    <Meta />
+    <Meta url={false} />
     <Homepage data={data} />
   </>
 )
