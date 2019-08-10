@@ -48,6 +48,7 @@ export default class HighTideApp extends App {
                 url(${AmericaLtWoff}) format('woff'),
                 url(${AmericaLtTtf}) format('ttf');
               font-weight: 300;
+              font-display: swap;
             }
 
             @font-face {
@@ -56,13 +57,15 @@ export default class HighTideApp extends App {
                 url(${AmericaMdWoff}) format('woff'),
                 url(${AmericaMdTtf}) format('ttf');
               font-weight: 500;
+              font-display: swap;
             }
 
             @font-face {
               font-family: 'Lyon';
               src: url(${LyonLtWoff2}) format('woff2'),
                 url(${LyonLtWoff}) format('woff');
-              font-weight: 500;
+              font-weight: 300;
+              font-display: fallback;
             }
           `}
         </style>
