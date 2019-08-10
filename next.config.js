@@ -2,7 +2,7 @@ const Prismic = require('prismic-javascript')
 const withFonts = require('next-fonts')
 const { apiEndpoint, accessToken } = require('./prismic.config')
 
-module.exports = {
+module.exports = withFonts({
   async exportPathMap() {
     const paths = {
       '/': { page: '/' },
@@ -22,5 +22,4 @@ module.exports = {
 
     return paths
   },
-}
-module.exports = withFonts()
+})
