@@ -10,6 +10,14 @@ function divideArray(array) {
 }
 
 const COLS = true
+/*
+
+
+SEE: https://github.com/ademilter/bricklayer
+
+
+
+*/
 
 function TextSwitcher({ data }) {
   const [currentIndex, setCurrentIndex] = useState(null)
