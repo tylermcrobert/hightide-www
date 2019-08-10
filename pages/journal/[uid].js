@@ -6,14 +6,21 @@ import JournalPage from '../../templates/JournalPage'
 import formatTitle from '../../util/formatTitle'
 
 const Journal = ({ data }) => {
-  return data ? (
-    <>
-      <Head>
-        <title>{formatTitle(RichText.asText(data.data.title))}</title>
-      </Head>
-      <JournalPage data={data} />
-    </>
-  ) : null
+  if (data) {
+    const postImg = data.data.main_image.url
+    const title = formatTitle(RichText.asText(data.data.title))
+    return (
+      <>
+        <Head>
+          <title>{title}</title>
+          <meta property="og:title" content={title} />
+          <meta property="og:image" content={postImg} />
+        </Head>
+        <JournalPage data={data} />
+      </>
+    )
+  }
+  return null
 }
 
 Journal.getInitialProps = async context => {
