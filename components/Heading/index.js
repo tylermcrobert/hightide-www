@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { HEADING_LEVELS } from '../../style/GlobalStyle'
 
-function Heading({ children, level, headingStyle }) {
+function Heading({ children, headingStyle, as, ...props }) {
   return (
-    <HeadStyle headingStyle={headingStyle} as={`h${level}`}>
+    <HeadStyle {...props} headingStyle={headingStyle} as={as}>
       {children}
     </HeadStyle>
   )
@@ -14,10 +14,11 @@ function Heading({ children, level, headingStyle }) {
 const HeadStyle = styled.h1`
   ${props => HEADING_LEVELS[props.headingStyle]}
 `
+const VALID_ELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'li', 'div']
 
 Heading.propTypes = {
   children: PropTypes.string.isRequired,
-  level: PropTypes.number.isRequired,
+  as: PropTypes.oneOf(VALID_ELS).isRequired,
   headingStyle: PropTypes.oneOf(
     Array.from({ length: HEADING_LEVELS.length }).map((_, i) => i)
   ),
