@@ -14,7 +14,8 @@ const Journal = ({ data }) => {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={postImg} />
+          <meta name="og:image" content={postImg} />
+          <meta name="twitter:image" content={postImg} />
         </Head>
         <JournalPage data={data} />
       </>
