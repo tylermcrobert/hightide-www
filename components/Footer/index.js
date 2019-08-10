@@ -2,6 +2,26 @@ import React, { useState } from 'react'
 import { validate } from 'email-validator'
 import Styled from './Styled'
 import { Wrap, Section } from '../../style'
+import config, { social } from '../../site.config'
+
+const SOCIAL_LINKS = [
+  {
+    name: 'Instagram',
+    url: `https://www.instagram.com/${social.instagram}`,
+  },
+  {
+    name: 'Facebook',
+    url: `https://www.facebook.com/${social.facebook}`,
+  },
+  {
+    name: 'Twitter',
+    url: `https://www.twitter.com/${social.twitter}`,
+  },
+  {
+    name: 'Tumblr',
+    url: `https://${social.tumblr}.tumblr.com/`,
+  },
+]
 
 function Footer() {
   const [email, setEmail] = useState('')
@@ -26,9 +46,8 @@ function Footer() {
       setError(': (')
       setSuccess(null)
     }
-
-    console.log(valid)
   }
+
   return (
     <Styled.Footer>
       <Wrap>
@@ -40,7 +59,9 @@ function Footer() {
               <br />
               Brooklyn, New York 11201
             </p>
-            <p>© 2018 High Tide Creative</p>
+            <p>
+              © {new Date().getFullYear()} {config.legalTitle}
+            </p>
           </Section>
           <Section>
             <h5>Inquiries</h5>
@@ -48,10 +69,11 @@ function Footer() {
           </Section>
           <Section>
             <h5>Follow</h5>
-            <a href="">Instagram</a>
-            <a href="">Facebook</a>
-            <a href="">Twitter</a>
-            <a href="">Tumblr</a>
+            {SOCIAL_LINKS.map(item => (
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                {item.name}
+              </a>
+            ))}
             <form onSubmit={handleSubmit}>
               <Styled.StayUpdated
                 onChange={handleChange}

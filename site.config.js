@@ -7,5 +7,7 @@ module.exports = {
   social: {
     twitter: 'hightideny',
     facebook: 'hightidenyc',
+    tumblr: 'htny',
+    instagram: 'hightideny',
   },
 }
