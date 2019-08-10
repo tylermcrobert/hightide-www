@@ -12,9 +12,9 @@ const Meta = ({ url, title: titleProp, image, description }) => (
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta property="og:image" content={image} />
-    <meta property="og:title" content={config.title} />
+    <meta property="og:title" content={titleProp || config.title} />
     <meta property="og:url" content={siteUrl} />
-    <meta property="og:site_name" content={config.title} />
+    <meta property="og:site_name" content={titleProp || config.title} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:description" content={description} />
