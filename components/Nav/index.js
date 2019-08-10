@@ -1,6 +1,7 @@
 import React, { useState, createContext, useContext } from 'react'
 import Link from 'next/link'
 import Styled from './Styled'
+import Heading from '../Heading'
 import { Wrap } from '../../style'
 
 const NAV_ITEMS = [
@@ -66,13 +67,15 @@ function Overlay() {
   return (
     <Styled.Overlay enabled={mobileNavEnabled}>
       <Wrap>
-        {NAV_ITEMS.map(item => (
-          <Link href={item.href} key={item.display}>
-            <a onClick={() => setMobileNav(false)}>
-              <h1>{item.display}</h1>
-            </a>
-          </Link>
-        ))}
+        <ul>
+          {NAV_ITEMS.map(item => (
+            <Heading as="li" headingStyle={0}>
+              <Link href={item.href} key={item.display}>
+                <a onClick={() => setMobileNav(false)}>{item.display}</a>
+              </Link>
+            </Heading>
+          ))}
+        </ul>
       </Wrap>
     </Styled.Overlay>
   )
