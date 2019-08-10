@@ -4,11 +4,17 @@ import JournalTemplate from '../../templates/Journal'
 import { apiEndpoint, accessToken } from '../../prismic.config'
 import Meta from '../../components/Meta'
 
+function byDate(a, b) {
+  return new Date(b.data.date) - new Date(a.data.date)
+}
+
 export default function Journal({ data }) {
+  const sortedData = { ...data, results: data.results.sort(byDate) }
+
   return (
     <>
       <Meta title="Journal" url="/journal/" />
-      <JournalTemplate data={data} />
+      <JournalTemplate data={sortedData} />
     </>
   )
 }
@@ -16,7 +22,10 @@ export default function Journal({ data }) {
 Journal.getInitialProps = async () => {
   const api = await Prismic.getApi(apiEndpoint, { accessToken })
   const journal = await api.query(
-    Prismic.Predicates.at('document.type', 'journal')
+    Prismic.Predicates.at('document.type', 'journal'),
+    { orderings: '[document.data.date desc]' }
   )
+
+  console.log(journal)
   return { data: journal }
 }

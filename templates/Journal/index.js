@@ -5,13 +5,23 @@ import { RichText } from 'prismic-reactjs'
 import { Wrap } from '../../style'
 import Styled from './Styled'
 
+const fmtDate = date => {
+  const m = date.getMonth() + 1
+  const d = date.getDate()
+  const y = date.getFullYear()
+
+  const pad = num => num.toString().padStart(2, 0)
+
+  return `${pad(m)}.${pad(d)}.${pad(y)}`
+}
+
 export default function Journal({ data }) {
   return (
     <Wrap>
       <Styled.Wrapper>
         {data.results.map((item, i) => {
-          const publishDate = item.data.date
-          const formattedDate = publishDate.replace(/-/g, '.')
+          const date = new Date(item.data.date)
+          const formattedDate = fmtDate(date)
           const title = RichText.asText(item.data.title)
           const mainImg = item.data.main_image.url
           const thumbnail = item.data.thumbnail_image.url
