@@ -1,39 +1,25 @@
-// import PropTypes from 'prop-types'
-import { Wrap } from '../style'
+import React from 'react'
+import Prismic from 'prismic-javascript'
+import { apiEndpoint, accessToken } from '../prismic.config'
 import Meta from '../components/Meta'
+import Template from '../templates/Work'
 
-function Work() {
+function Work({ data }) {
   return (
     <>
-      <Meta title="Work" />
-      <Wrap>
-        Work work work Tests
-        <br />a
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </Wrap>
+      <Meta title="Work" url="work/" />
+      <Template data={data} />
     </>
   )
 }
 
-// Work.propTypes = {}
+Work.getInitialProps = async () => {
+  const api = await Prismic.getApi(apiEndpoint, { accessToken })
+  const work = await api.query(Prismic.Predicates.at('document.type', 'work'), {
+    pageSize: 100,
+  })
+
+  return { data: { work } }
+}
 
 export default Work
