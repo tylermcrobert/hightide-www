@@ -41,6 +41,7 @@ const style = css`
   a {
     color: ${props => props.theme.colors.primary};
     transition: color ${routeTransition};
+    text-decoration: none;
   }
 
   strong {

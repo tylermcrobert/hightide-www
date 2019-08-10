@@ -12,7 +12,7 @@ const NAV_ITEMS = [
 
 const NavContext = createContext()
 function Nav() {
-  const [mobileNavEnabled, setMobileNav] = useState()
+  const [mobileNavEnabled, setMobileNav] = useState(false)
   return (
     <NavContext.Provider value={{ mobileNavEnabled, setMobileNav }}>
       <Styled.Nav>
@@ -61,13 +61,16 @@ function BurgerMenu() {
 }
 
 function Overlay() {
-  const { mobileNavEnabled } = useContext(NavContext)
+  const { mobileNavEnabled, setMobileNav } = useContext(NavContext)
+
   return (
     <Styled.Overlay enabled={mobileNavEnabled}>
       <Wrap>
         {NAV_ITEMS.map(item => (
           <Link href={item.href} key={item.display}>
-            <h1>{item.display}</h1>
+            <a onClick={() => setMobileNav(false)}>
+              <h1>{item.display}</h1>
+            </a>
           </Link>
         ))}
       </Wrap>
