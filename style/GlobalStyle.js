@@ -15,11 +15,11 @@ const style = css`
     font-size: 18px;
 
     @media ${mq.sm} {
-      font-size: 22px;
+      font-size: 19px;
     }
 
     @media ${mq.md} {
-      font-size: 22px;
+      font-size: 20px;
     }
 
     @media ${mq.lg} {
