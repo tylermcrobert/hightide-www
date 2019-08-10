@@ -1,8 +1,14 @@
 import Prismic from 'prismic-javascript'
 import Homepage from '../templates/Homepage'
 import { apiEndpoint, accessToken } from '../prismic.config'
+import Meta from '../components/Meta'
 
-const Index = ({ data }) => <Homepage data={data} />
+const Index = ({ data }) => (
+  <>
+    <Meta />
+    <Homepage data={data} />
+  </>
+)
 
 Index.getInitialProps = async () => {
   const api = await Prismic.getApi(apiEndpoint, { accessToken })
