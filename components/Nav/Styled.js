@@ -13,6 +13,7 @@ const Nav = styled.nav`
   z-index: 99;
   background: ${props => props.theme.colors.secondary};
   transition: background ${props => props.theme.routeTransition};
+  will-change: background;
 `
 
 const Wrap = styled(GlobalWrap)`
@@ -31,7 +32,8 @@ const Logo = styled(LogoSvg)`
   height: 1.1em;
   * {
     fill: ${props => props.theme.colors.primary};
-    transition: all ${props => props.theme.routeTransition};
+    transition: fill ${props => props.theme.routeTransition};
+    will-change: fill;
   }
 `
 
@@ -101,6 +103,8 @@ const Overlay = styled.div`
   width: 100%;
   height: calc(100% - ${props => props.theme.navHeight});
   background: ${props => props.theme.colors.secondary};
+  transition: background ${props => props.theme.routeTransition};
+  will-change: background;
 
   display: flex;
   justify-content: center;
