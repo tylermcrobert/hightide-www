@@ -1,14 +1,45 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { mq, sizes } from '../../style/theme'
 
-const STACK_SIZE = `(max-width: ${sizes.md}px)`
+const STACK_SIZE = `(min-width: ${sizes.xs}px) and (max-width: ${sizes.md}px)`
+
+const RATIO = (2 / 3) * 100
 
 const Wrapper = styled.div`
   @media ${mq.xs} {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-gap: ${props => props.theme.margins.standard};
+    grid-template-columns: repeat(2, 1fr);
   }
+`
+
+const CardWrapper = styled.a`
+  cursor: pointer;
+  ${props =>
+    props.large &&
+    css`
+      grid-row: auto / span 2;
+      display: flex;
+      flex-direction: column;
+    `}
+`
+
+const ImgContainer = styled.div`
+  flex: 1;
+  height: 0;
+  padding-top: ${RATIO}%;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: ${props => props.theme.margins.slim};
+`
+
+const Img = styled.img`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 `
 
 const PostDesc = styled.div`
@@ -29,8 +60,4 @@ const PostTitle = styled.h2`
   }
 `
 
-const Img = styled.img`
-  margin-bottom: ${props => props.theme.margins.slim};
-`
-
-export default { Wrapper, Img, PostTitle, PostDesc }
+export default { Wrapper, Img, PostTitle, PostDesc, ImgContainer, CardWrapper }
