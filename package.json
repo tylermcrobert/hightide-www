@@ -37,7 +37,8 @@
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",
-    "lint": "eslint  pages/** style/** templates/** components/**"
+    "lint": "eslint  pages/** style/** templates/** components/**",
+    "kill-port": "kill $(lsof -t -i:5000)"
   },
   "repository": {
     "type": "git",
