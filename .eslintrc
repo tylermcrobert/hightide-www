@@ -19,6 +19,10 @@
     "react/no-array-index-key": 0,
     "react/react-in-jsx-scope": 0
   },
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "settings": {
     "import/resolver": {
       "node": {

@@ -21,8 +21,15 @@ import LyonLtWoff2 from '../assets/fonts/LyonDisplay-Light-Web.woff2'
 const DARK_ROUTES = ['/work']
 
 export default class HighTideApp extends App {
-  render() {
+  componentDidMount() {
     checkMeta()
+  }
+
+  componentDidUpdate() {
+    checkMeta()
+  }
+
+  render() {
     const { Component, pageProps } = this.props
     const isDark = this.props.router.route.indexOf(DARK_ROUTES) !== -1
 
