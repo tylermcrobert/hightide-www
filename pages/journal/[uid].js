@@ -1,23 +1,17 @@
 import Prismic from 'prismic-javascript'
-import Head from 'next/head'
 import { RichText } from 'prismic-reactjs'
 import { apiEndpoint, accessToken } from '../../prismic.config'
 import JournalPage from '../../templates/JournalPage'
-import formatTitle from '../../util/formatTitle'
+import Meta from '../../components/Meta'
 
 const Journal = ({ data }) => {
   if (data) {
     const postImg = data.data.main_image.url
-    const title = formatTitle(RichText.asText(data.data.title))
+    const title = RichText.asText(data.data.title)
 
     return (
       <>
-        <Head>
-          <meta property="og:image" content={postImg} />
-          <meta name="twitter:image" content={postImg} />
-          <meta property="og:title" content={title} />
-          <title>{title}</title>
-        </Head>
+        <Meta title={title} image={postImg} />
         <JournalPage data={data} />
       </>
     )

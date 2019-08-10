@@ -2,9 +2,15 @@ import React from 'react'
 import Prismic from 'prismic-javascript'
 import JournalIndex from '../../templates/JournalIndex'
 import { apiEndpoint, accessToken } from '../../prismic.config'
+import Meta from '../../components/Meta'
 
 export default function Journal({ data }) {
-  return <JournalIndex data={data} />
+  return (
+    <>
+      <Meta title="Journal" />
+      <JournalIndex data={data} />
+    </>
+  )
 }
 
 Journal.getInitialProps = async () => {

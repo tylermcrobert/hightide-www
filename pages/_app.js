@@ -1,11 +1,8 @@
 import App, { Container } from 'next/app'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import Head from 'next/head'
 import theme, { invertedTheme } from '../style/theme'
 import Layout from '../components/Layout'
-import Meta from '../components/Meta'
-import config from '../site.config'
 
 import AmericaLtWoff2 from '../assets/fonts/GT-America-Standard-Light.woff2'
 import AmericaLtWoff from '../assets/fonts/GT-America-Standard-Light.woff'
@@ -33,9 +30,6 @@ export default class HighTideApp extends App {
 
     return (
       <Container>
-        <Head>
-          <title>{config.title}</title>
-        </Head>
         <ThemeProvider theme={isDark ? invertedTheme : theme}>
           <Layout>
             <Component {...pageProps} />
