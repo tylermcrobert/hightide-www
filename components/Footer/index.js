@@ -70,7 +70,12 @@ function Footer() {
           <Section>
             <h5>Follow</h5>
             {SOCIAL_LINKS.map(item => (
-              <a href={item.url} target="_blank" rel="noopener noreferrer">
+              <a
+                href={item.url}
+                key={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {item.name}
               </a>
             ))}
