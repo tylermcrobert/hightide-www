@@ -1,5 +1,7 @@
 import styled from 'styled-components'
-import { mq } from '../../style/theme'
+import { mq, sizes } from '../../style/theme'
+
+const STACK_SIZE = `(max-width: ${sizes.md}px)`
 
 const Wrapper = styled.div`
   @media ${mq.xs} {
@@ -12,20 +14,19 @@ const Wrapper = styled.div`
 const PostDesc = styled.div`
   display: flex;
 
-  @media ${mq.xs} {
+  @media ${STACK_SIZE} {
     display: block;
-  }
-
-  @media ${mq.md} {
-    display: flex;
   }
 `
 
 const PostTitle = styled.h2`
   font-size: ${props => props.theme.fontSizes[2]};
   margin-right: ${props => props.theme.margins.standard};
-  margin-bottom: 0.25em;
   flex: 1;
+
+  @media ${STACK_SIZE} {
+    margin-bottom: 0.25em;
+  }
 `
 
 const Img = styled.img`
