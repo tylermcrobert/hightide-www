@@ -3,6 +3,7 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import theme, { invertedTheme } from '../style/theme'
 import Layout from '../components/Layout'
+import checkMeta from '../util/checkMeta'
 
 import AmericaLtWoff2 from '../assets/fonts/GT-America-Standard-Light.woff2'
 import AmericaLtWoff from '../assets/fonts/GT-America-Standard-Light.woff'
@@ -20,11 +21,8 @@ import LyonLtWoff2 from '../assets/fonts/LyonDisplay-Light-Web.woff2'
 const DARK_ROUTES = ['/work']
 
 export default class HighTideApp extends App {
-  componentDidMount() {
-    console.log('mounted')
-  }
-
   render() {
+    checkMeta()
     const { Component, pageProps } = this.props
     const isDark = this.props.router.route.indexOf(DARK_ROUTES) !== -1
 
