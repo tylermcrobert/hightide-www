@@ -10,10 +10,14 @@ export default function JournalIndex({ data }) {
     <Wrap>
       <Styled.Wrapper>
         {data.results.map(item => {
+          const publishDate = item.data.date
+          const formattedDate = publishDate.replace(/-/g, '.')
           const title = RichText.asText(item.data.title)
           const mainImg = item.data.main_image.url
           const phoneImg =
             item.data.main_image.phone && item.data.main_image.phone.url
+
+          console.log()
 
           return (
             <Link
@@ -26,7 +30,10 @@ export default function JournalIndex({ data }) {
                   src={phoneImg || mainImg}
                   alt={`${title} - High Tide`}
                 />
-                <h5>{title}</h5>
+                <Styled.PostDesc>
+                  <Styled.PostTitle>{title}</Styled.PostTitle>
+                  <h5>{formattedDate}</h5>
+                </Styled.PostDesc>
               </a>
             </Link>
           )
