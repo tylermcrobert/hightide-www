@@ -12,7 +12,7 @@ function JournalPage({ data: apiData }) {
     <Wrap>
       <img src={data.main_image.url} alt="" />
       <Section>
-        <h2>{RichText.asText(data.title)}</h2>
+        <h1>{RichText.asText(data.title)}</h1>
         <Styled.TextWrap>{RichText.render(data.abstract)}</Styled.TextWrap>
       </Section>
       <SliceSwitch data={data} />
