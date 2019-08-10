@@ -36,11 +36,13 @@ const style = css`
     padding-top: ${props => props.theme.navHeight};
 
     transition: color ${routeTransition}, background ${routeTransition};
+    will-change: color, background;
   }
 
   a {
     color: ${props => props.theme.colors.primary};
     transition: color ${routeTransition};
+    will-change: color;
     text-decoration: none;
   }
 
