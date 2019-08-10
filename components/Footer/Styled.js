@@ -8,6 +8,10 @@ const Footer = styled.div`
   font-size: ${props => props.theme.fontSizes[1]};
   line-height: 1.5;
 
+  h5 {
+    margin-bottom: ${props => props.theme.margins.slim};
+  }
+
   p,
   a {
     color: ${props => props.theme.colors.grey};
