@@ -1,6 +1,6 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
-import styled from 'styled-components'
+import Arrow from '../../components/Arrow'
 import TextSwitcher from '../../components/TextSwitcher'
 import Styled from './Styled'
 import { Wrap, Section } from '../../style'
@@ -75,23 +75,5 @@ function Header({ children, link }) {
     </Styled.Header>
   )
 }
-
-const ArrowSvg = ({ className }) => (
-  <svg
-    className={className}
-    viewBox="0 0 60 18"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g stroke="#000" fill="none" fillRule="evenodd" strokeLinecap="square">
-      <path d="M1.25 9H58.5M59 9l-9 9M59 9l-9-9" strokeWidth="1.4" />
-    </g>
-  </svg>
-)
-
-const Arrow = styled(ArrowSvg)`
-  height: 0.8em;
-  padding: 0 0.5em;
-  transform: translateY(15%);
-`
 
 export default Homepage
