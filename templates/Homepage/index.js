@@ -2,6 +2,7 @@ import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import Arrow from '../../components/Arrow'
 import TextSwitcher from '../../components/TextSwitcher'
+import Instagram from '../../components/Instagram'
 import Styled from './Styled'
 import { Wrap, Section } from '../../style'
 
@@ -12,7 +13,7 @@ function Homepage({ data }) {
   const featuredProjects = projects.filter(item => item.featured === 'Featured')
 
   return (
-    <React.Fragment>
+    <>
       <Wrap>
         <Section.Large>
           <Styled.Intro>
@@ -44,8 +45,11 @@ function Homepage({ data }) {
         <Section>
           <FeaturedWork.Wrapper data={featuredProjects[1]} />
         </Section>
+        <Section>
+          <Instagram apiResponse={data.instagramData} />
+        </Section>
       </Wrap>
-    </React.Fragment>
+    </>
   )
 }
 
