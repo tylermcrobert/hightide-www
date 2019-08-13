@@ -5,8 +5,8 @@ const BREAKPOINT = mq.sm
 
 const Wrapper = styled.div`
   @media ${BREAKPOINT} {
-    display: ${props => (props.cols ? 'grid' : 'block')};
-    grid-template-columns: 1fr 1fr;
+    display: ${props => (props.cols > 1 ? 'grid' : 'block')};
+    grid-template-columns: repeat(${props => props.cols}, 1fr);
     grid-gap: ${props => props.theme.margins.slim};
   }
 `

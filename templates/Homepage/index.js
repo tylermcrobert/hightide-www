@@ -28,6 +28,7 @@ function Homepage({ data }) {
             What We Do
           </Header>
           <TextSwitcher
+            cols={2}
             data={capacity.results.map(item => ({
               heading: RichText.asText(item.data.title),
               body: RichText.asText(item.data.description),
