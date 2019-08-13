@@ -27,13 +27,18 @@ function Homepage({ data }) {
           <Header link={<a href="">See more capabilities</a>}>
             What We Do
           </Header>
-          <TextSwitcher
-            cols={2}
-            data={capacity.results.map(item => ({
-              heading: RichText.asText(item.data.title),
-              body: RichText.asText(item.data.description),
-            }))}
-          />
+          <TextSwitcher cols={2}>
+            {capacity.results.map((item, i) => (
+              <TextSwitcher.item i={i} key={RichText.asText(item.data.title)}>
+                <TextSwitcher.Head>
+                  {RichText.asText(item.data.title)}
+                </TextSwitcher.Head>
+                <TextSwitcher.Body>
+                  {RichText.asText(item.data.description)}
+                </TextSwitcher.Body>
+              </TextSwitcher.item>
+            ))}
+          </TextSwitcher>
         </Section>
         <Section>
           <Header>Clients</Header>

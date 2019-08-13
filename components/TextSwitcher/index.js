@@ -1,32 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, createContext } from 'react'
 import { motion } from 'framer-motion'
+import PropTypes from 'prop-types'
 import Styled from './Styled'
 import splitArr from '../../util/splitArr'
 
-function TextSwitcher({ data, cols }) {
+const TextSwitcherCtx = createContext()
+const ItemCtx = createContext()
+
+function TextSwitcher({ cols, children }) {
   const [currentIndex, setCurrentIndex] = useState(null)
 
   return (
-    <ColWrapper cols={cols}>
-      {data.map((item, i) => (
-        <Styled.Item
-          key={item.heading}
-          onClick={() => setCurrentIndex(currentIndex !== i ? i : null)}
-        >
-          <Styled.Head>{item.heading}</Styled.Head>
-          <motion.div
-            initial={false}
-            style={{ overflow: 'hidden' }}
-            transition={{ ease: 'easeOut', duration: 0.25 }}
-            animate={{
-              height: i === currentIndex ? 'auto' : '0',
-            }}
-          >
-            <p>{item.body}</p>
-          </motion.div>
-        </Styled.Item>
-      ))}
-    </ColWrapper>
+    <TextSwitcherCtx.Provider value={{ currentIndex, setCurrentIndex }}>
+      <ColWrapper cols={cols}>{children}</ColWrapper>
+    </TextSwitcherCtx.Provider>
+  )
+}
+
+const Body = ({ children }) => {
+  const { currentIndex } = useContext(TextSwitcherCtx)
+  const { i } = useContext(ItemCtx)
+  return (
+    <motion.div
+      initial={false}
+      style={{ overflow: 'hidden' }}
+      transition={{ ease: 'easeOut', duration: 0.25 }}
+      animate={{
+        height: i === currentIndex ? 'auto' : '0',
+      }}
+    >
+      <p>{children}</p>
+    </motion.div>
+  )
+}
+
+function Item({ children, i }) {
+  const { currentIndex, setCurrentIndex } = useContext(TextSwitcherCtx)
+  return (
+    <ItemCtx.Provider value={{ i }}>
+      <Styled.Item
+        onClick={() => setCurrentIndex(currentIndex !== i ? i : null)}
+      >
+        {children}
+      </Styled.Item>
+    </ItemCtx.Provider>
   )
 }
 
@@ -41,4 +58,11 @@ const ColWrapper = ({ children, cols }) => {
   )
 }
 
+TextSwitcher.Body = Body
+TextSwitcher.Head = Styled.Head
+TextSwitcher.item = Item
+Item.propTypes = {
+  i: PropTypes.number.isRequired,
+  children: PropTypes.any.isRequired,
+}
 export default TextSwitcher
