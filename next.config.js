@@ -1,8 +1,15 @@
 const Prismic = require('prismic-javascript')
 const withFonts = require('next-fonts')
 const { apiEndpoint, accessToken } = require('./prismic.config')
+require('dotenv').config()
 
 module.exports = withFonts({
+  env: {
+    INSTAGRAM_ENDPOINT: process.env.INSTAGRAM_ENDPOINT,
+    INSTAGRAM_TOKEN: process.env.INSTAGRAM_TOKEN,
+    PRISMIC_ENDPOINT: process.env.PRISMIC_ENDPOINT,
+    PRISMIC_ACCESS_TOKEN: process.env.PRISMIC_ACCESS_TOKEN,
+  },
   async exportPathMap() {
     const paths = {
       '/': { page: '/' },
