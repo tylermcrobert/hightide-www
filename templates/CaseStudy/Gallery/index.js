@@ -1,23 +1,30 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { RichText } from 'prismic-reactjs'
 import textExists from '../../../util/textExists'
+import formatTitle from '../../../util/formatTitle'
 import TextWrap from '../../../components/TextWrap'
 import { Section } from '../../../style'
 import Styled from './Styled'
+import { CaseStudyCtx } from '..'
 // import PropTypes from 'prop-types'
 
 function Gallery({ data, paragraph, mainImg }) {
+  const { title } = useContext(CaseStudyCtx)
   return (
     <>
-      <Section>{mainImg && <img src={mainImg} />}</Section>
       <Section>
-        <TextWrap center>{paragraph && RichText.render(paragraph)}</TextWrap>
+        {mainImg && <img src={mainImg} alt={formatTitle(title)} />}
       </Section>
+      {textExists(paragraph) && (
+        <Section>
+          <TextWrap center>{RichText.render(paragraph)}</TextWrap>
+        </Section>
+      )}
       <Section>
         <Styled.GalleryWrap>
           {data.map(({ imageDesc, gallery }) => (
             <div>
-              {gallery && <img src={gallery} />}
+              {gallery && <img src={gallery} alt={formatTitle(title)} />}
               {textExists(imageDesc) && RichText.render(imageDesc)}
             </div>
           ))}
