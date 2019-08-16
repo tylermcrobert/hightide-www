@@ -15,6 +15,7 @@ export const HEADING_LEVELS = [
     }
   `,
   css`
+    font-family: ${props => props.theme.fontFamilies.sansSerif};
     font-size: ${props => props.theme.fontSizes[4]};
 
     @media ${mq.md} {

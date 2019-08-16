@@ -3,6 +3,11 @@ const withFonts = require('next-fonts')
 const { apiEndpoint, accessToken } = require('./prismic.config')
 require('dotenv').config()
 
+async function getUids(type, api) {
+  const res = await api.query(Prismic.Predicates.at('document.type', type))
+  return res.results.map(result => result.uid)
+}
+
 module.exports = withFonts({
   env: {
     INSTAGRAM_ENDPOINT: process.env.INSTAGRAM_ENDPOINT,
@@ -17,14 +22,18 @@ module.exports = withFonts({
     }
 
     const api = await Prismic.getApi(apiEndpoint, { accessToken })
-    const journal = await api.query(
-      Prismic.Predicates.at('document.type', 'journal')
-    )
 
-    const journalUids = journal.results.map(result => result.uid)
+    /* Generate journal pages */
 
+    const journalUids = await getUids('journal', api)
     journalUids.forEach(uid => {
       paths[`/journal/${uid}`] = { page: '/journal/[uid]', query: { uid } }
+    })
+
+    /* Generate case studies */
+    const workUids = await getUids('work', api)
+    workUids.forEach(uid => {
+      paths[`/work/${uid}`] = { page: '/work/[uid]', query: { uid } }
     })
 
     return paths

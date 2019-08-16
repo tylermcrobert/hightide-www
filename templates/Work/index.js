@@ -1,21 +1,26 @@
 import PropTypes from 'prop-types'
 import { RichText } from 'prismic-reactjs'
+import Link from 'next/link'
 import Styled from './Styled'
 import { Wrap, Section } from '../../style'
 import formatTitle from '../../util/formatTitle'
 import Heading from '../../components/Heading'
 
-function Work({ data }) {
+function Work({ data: response }) {
   return (
     <Section>
       <Wrap>
         <Styled.Wrapper>
-          {data.work.results.map(item => (
-            <WorkItem
-              key={item.uid}
-              image={item.data.image.url}
-              title={RichText.asText(item.data.name)}
-            />
+          {response.work.results.map(({ uid, data }) => (
+            <Link href="/work/[uid]" as={`/work/${uid}/`}>
+              <a>
+                <WorkItem
+                  key={uid}
+                  image={data.image.url}
+                  title={RichText.asText(data.name)}
+                />
+              </a>
+            </Link>
           ))}
         </Styled.Wrapper>
       </Wrap>

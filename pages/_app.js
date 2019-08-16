@@ -31,7 +31,7 @@ export default class HighTideApp extends App {
 
   render() {
     const { Component, pageProps } = this.props
-    const isDark = this.props.router.route.indexOf(DARK_ROUTES) !== -1
+    const isDark = DARK_ROUTES.includes(this.props.router.route)
 
     return (
       <Container>
