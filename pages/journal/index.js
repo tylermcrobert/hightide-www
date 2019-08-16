@@ -26,6 +26,5 @@ Journal.getInitialProps = async () => {
     { orderings: '[document.data.date desc]' }
   )
 
-  console.log(journal)
   return { data: journal }
 }

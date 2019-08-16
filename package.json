@@ -21,10 +21,10 @@
     "styled-reset": "^3.0.0"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.6",
     "babel-eslint": "latest",
-    "eslint": "latest",
-    "eslint-config-airbnb": "latest",
+    "babel-plugin-styled-components": "^1.10.6",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "latest",
     "eslint-plugin-import": "latest",
     "eslint-plugin-jsx-a11y": "latest",

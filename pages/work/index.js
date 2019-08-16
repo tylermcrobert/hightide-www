@@ -1,8 +1,8 @@
 import React from 'react'
 import Prismic from 'prismic-javascript'
-import { apiEndpoint, accessToken } from '../prismic.config'
-import Meta from '../components/Meta'
-import Template from '../templates/Work'
+import { apiEndpoint, accessToken } from '../../prismic.config'
+import Meta from '../../components/Meta'
+import Template from '../../templates/Work'
 
 function Work({ data }) {
   return (
