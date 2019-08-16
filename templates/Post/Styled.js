@@ -1,10 +1,5 @@
 import styled from 'styled-components'
 
-const TextWrap = styled.div`
-  max-width: 30em;
-  margin: ${props => props.center && '0 auto'};
-`
-
 const Gallery = styled.div`
   display: grid;
   grid-template-areas:
@@ -19,4 +14,4 @@ const Gallery = styled.div`
   }
 `
 
-export default { TextWrap, Gallery }
+export default { Gallery }

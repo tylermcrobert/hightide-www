@@ -1,8 +1,9 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import { Wrap, Section } from '../../style'
+import TextWrap from '../../components/TextWrap'
+import PageIntro from '../../components/PageIntro'
 import Styled from './Styled'
-
 /* eslint no-console: 0 */
 
 function Post({ data: apiData }) {
@@ -12,8 +13,10 @@ function Post({ data: apiData }) {
     <Wrap>
       <img src={data.main_image.url} alt="" />
       <Section>
-        <h2>{RichText.asText(data.title)}</h2>
-        <Styled.TextWrap>{RichText.render(data.abstract)}</Styled.TextWrap>
+        <PageIntro>
+          <PageIntro.Heading>{RichText.asText(data.title)}</PageIntro.Heading>
+          <PageIntro.Body>{RichText.render(data.abstract)}</PageIntro.Body>
+        </PageIntro>
       </Section>
       <SliceSwitch data={data} />
     </Wrap>
@@ -61,9 +64,7 @@ function HeroImage({ data }) {
         {item.hero_image.url && <img src={item.hero_image.url} alt="" />}
       </Section>
       <Section>
-        <Styled.TextWrap center>
-          {RichText.render(item.hero_note)}
-        </Styled.TextWrap>
+        <TextWrap center>{RichText.render(item.hero_note)}</TextWrap>
       </Section>
     </React.Fragment>
   ))
