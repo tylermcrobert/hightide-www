@@ -34,6 +34,12 @@ const margins = {
 
 export const lineLengths = ['30em', '35em']
 
+export const lineHeights = {
+  tight: 1.2,
+  standard: 1.5,
+  loose: 1.75,
+}
+
 export const mq = Object.keys(sizes).reduce(
   (acc, current) => ({
     ...acc,
@@ -55,6 +61,7 @@ const theme = {
   mq,
   margins,
   routeTransition,
+  lineHeights,
 }
 
 export const invertedTheme = {

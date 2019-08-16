@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 const TextWrap = styled.div`
   max-width: 30em;
-  line-height: 1.5;
   margin: ${props => props.center && '0 auto'};
 `
 

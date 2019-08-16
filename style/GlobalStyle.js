@@ -71,6 +71,10 @@ const style = css`
     text-decoration: none;
   }
 
+  p {
+    line-height: ${props => props.theme.lineHeights.standard};
+  }
+
   strong {
     font-weight: 500;
   }
@@ -78,15 +82,6 @@ const style = css`
   img {
     display: block;
     width: 100%;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    line-height: 1.2;
   }
 
   h1,
