@@ -1,5 +1,6 @@
 import Prismic from 'prismic-javascript'
 import { RichText } from 'prismic-reactjs'
+import Error from 'next/error'
 import { apiEndpoint, accessToken } from '../../prismic.config'
 import PostTemplate from '../../templates/Post'
 import Meta from '../../components/Meta'
@@ -22,7 +23,7 @@ const Post = ({ data }) => {
       </>
     )
   }
-  return null
+  return <Error statusCode={404} />
 }
 
 Post.getInitialProps = async context => {
