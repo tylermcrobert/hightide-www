@@ -2,7 +2,7 @@ import React from 'react'
 import Prismic from 'prismic-javascript'
 import styled from 'styled-components'
 import { RichText } from 'prismic-reactjs'
-import { apiEndpoint, accessToken } from '../prismic.config'
+import * as prismicApi from '../util/prismicApi'
 import Meta from '../components/Meta'
 
 function Work({ data }) {
@@ -47,11 +47,9 @@ const Section = styled.div`
 `
 
 Work.getInitialProps = async () => {
-  const api = await Prismic.getApi(apiEndpoint, { accessToken })
+  const api = await prismicApi.getApi()
 
-  console.log()
   const types = Object.values(api.types)
-
   const req = types.map(async type =>
     api.query(Prismic.Predicates.at('document.type', type))
   )

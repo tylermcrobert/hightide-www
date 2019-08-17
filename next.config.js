@@ -1,6 +1,5 @@
 const Prismic = require('prismic-javascript')
 const withFonts = require('next-fonts')
-const { apiEndpoint, accessToken } = require('./prismic.config')
 require('dotenv').config()
 
 async function getUids(type, api) {
@@ -21,7 +20,9 @@ module.exports = withFonts({
       '/journal': { page: '/journal' },
     }
 
-    const api = await Prismic.getApi(apiEndpoint, { accessToken })
+    const api = await Prismic.getApi(process.env.PRISMIC_ENDPOINT, {
+      accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+    })
 
     /* Generate journal pages */
 
