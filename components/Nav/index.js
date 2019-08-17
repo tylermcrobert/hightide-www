@@ -7,8 +7,8 @@ import { Wrap } from '../../style'
 const NAV_ITEMS = [
   { display: 'Work', href: '/work' },
   { display: 'Journal', href: '/journal/' },
-  { display: 'About', href: '#' },
-  { display: 'Contact', href: '#' },
+  { display: 'About', href: '/about' },
+  { display: 'Contact', href: '/contact' },
 ]
 
 const NavContext = createContext()
