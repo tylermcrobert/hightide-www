@@ -1,13 +1,13 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import Arrow from '../../components/Arrow'
-import TextSwitcher from '../../components/TextSwitcher'
+import Capabilities from '../../components/Capabilities'
 import Instagram from '../../components/Instagram'
 import Styled from './Styled'
 import { Wrap, Section } from '../../style'
 
 function Homepage({ data }) {
-  const { homepage, capacity, brand, work } = data
+  const { homepage, brand, work } = data
   const brands = brand.results.map(res => res.data.logo.url)
   const projects = work.results.map(item => item.data)
   const featuredProjects = projects.filter(item => item.featured === 'Featured')
@@ -27,18 +27,7 @@ function Homepage({ data }) {
           <Header link={<a href="">See more capabilities</a>}>
             What We Do
           </Header>
-          <TextSwitcher cols={2}>
-            {capacity.results.map((item, i) => (
-              <TextSwitcher.item i={i} key={RichText.asText(item.data.title)}>
-                <TextSwitcher.Head>
-                  {RichText.asText(item.data.title)}
-                </TextSwitcher.Head>
-                <TextSwitcher.Body>
-                  {RichText.asText(item.data.description)}
-                </TextSwitcher.Body>
-              </TextSwitcher.item>
-            ))}
-          </TextSwitcher>
+          <Capabilities data={data.capacity} />
         </Section>
         <Section>
           <Header>Clients</Header>

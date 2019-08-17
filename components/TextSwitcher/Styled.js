@@ -3,6 +3,10 @@ import { mq } from '../../style/theme'
 
 const BREAKPOINT = mq.sm
 
+const Body = styled.div`
+  line-height: ${props => props.theme.lineHeights.tight};
+`
+
 const Wrapper = styled.div`
   @media ${BREAKPOINT} {
     display: ${props => (props.cols > 1 ? 'grid' : 'block')};
@@ -29,4 +33,4 @@ const Head = styled.h2`
 
 const ColWrapper = styled.div``
 
-export default { Item, ColWrapper, Wrapper, Head }
+export default { Item, ColWrapper, Wrapper, Body, Head }

@@ -29,7 +29,9 @@ const Body = ({ children }) => {
         height: i === currentIndex ? 'auto' : '0',
       }}
     >
-      <p>{children}</p>
+      <Styled.Body>
+        <p>{children}</p>
+      </Styled.Body>
     </motion.div>
   )
 }
