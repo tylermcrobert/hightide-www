@@ -1,6 +1,8 @@
 import App, { Container } from 'next/app'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
+import { PageTransition } from 'next-page-transitions'
+
 import theme, { invertedTheme } from '../style/theme'
 import Layout from '../components/Layout'
 import checkMeta from '../util/checkMeta'
@@ -37,11 +39,33 @@ export default class HighTideApp extends App {
       <Container>
         <ThemeProvider theme={isDark ? invertedTheme : theme}>
           <Layout>
-            <Component {...pageProps} />
+            <PageTransition
+              timeout={theme.routeTransition.duration}
+              classNames="page-transition"
+            >
+              <Component {...pageProps} />
+            </PageTransition>
           </Layout>
         </ThemeProvider>
-        <style jsx>
+        <style jsx global>
           {`
+            .page-transition-enter {
+              opacity: 0;
+            }
+            .page-transition-enter-active {
+              opacity: 1;
+              transition: opacity ${theme.routeTransition.duration}ms
+                ${theme.ease.standard};
+            }
+            .page-transition-exit {
+              opacity: 1;
+            }
+            .page-transition-exit-active {
+              opacity: 0;
+              transition: opacity ${theme.routeTransition.duration}ms
+                ${theme.ease.standard};
+            }
+
             @font-face {
               font-family: 'America';
               src: url(${AmericaLtWoff2}) format('woff2'),

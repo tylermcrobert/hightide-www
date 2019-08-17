@@ -48,7 +48,9 @@ export const mq = Object.keys(sizes).reduce(
   {}
 )
 
-export const routeTransition = `900ms ${ease.standard}`
+export const routeTransition = {
+  duration: 400,
+}
 
 const theme = {
   colors,
@@ -60,8 +62,8 @@ const theme = {
   lineLengths,
   mq,
   margins,
-  routeTransition,
   lineHeights,
+  routeTransition,
 }
 
 export const invertedTheme = {
