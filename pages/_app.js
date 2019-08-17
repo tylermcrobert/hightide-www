@@ -54,16 +54,14 @@ export default class HighTideApp extends App {
             }
             .page-transition-enter-active {
               opacity: 1;
-              transition: opacity ${theme.routeTransition.duration}ms
-                ${theme.ease.standard};
+              transition: opacity ${theme.routeTransition.duration}ms ease-in;
             }
             .page-transition-exit {
               opacity: 1;
             }
             .page-transition-exit-active {
               opacity: 0;
-              transition: opacity ${theme.routeTransition.duration}ms
-                ${theme.ease.standard};
+              transition: opacity ${theme.routeTransition.duration}ms ease-out;
             }
 
             @font-face {
