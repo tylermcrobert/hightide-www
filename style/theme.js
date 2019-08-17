@@ -48,8 +48,11 @@ export const mq = Object.keys(sizes).reduce(
   {}
 )
 
+const ROUTE_TRANSITION_DURATION = 600
+
 export const routeTransition = {
-  duration: 400,
+  duration: ROUTE_TRANSITION_DURATION,
+  css: `${ROUTE_TRANSITION_DURATION}ms ${ease.standard}`,
 }
 
 const theme = {
@@ -62,8 +65,8 @@ const theme = {
   lineLengths,
   mq,
   margins,
-  lineHeights,
   routeTransition,
+  lineHeights,
 }
 
 export const invertedTheme = {

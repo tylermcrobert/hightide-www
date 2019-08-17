@@ -12,7 +12,7 @@ const Nav = styled.nav`
   width: 100%;
   z-index: 99;
   background: ${props => props.theme.colors.secondary};
-  transition: background ${props => props.theme.routeTransition};
+  transition: background ${props => props.theme.routeTransition.css};
   will-change: background;
 `
 
@@ -32,7 +32,7 @@ const Logo = styled(LogoSvg)`
   height: 1.1em;
   * {
     fill: ${props => props.theme.colors.primary};
-    transition: fill ${props => props.theme.routeTransition};
+    transition: fill ${props => props.theme.routeTransition.css};
     will-change: fill;
   }
 `
@@ -103,7 +103,7 @@ const Overlay = styled.div`
   width: 100%;
   height: calc(100% - ${props => props.theme.navHeight});
   background: ${props => props.theme.colors.secondary};
-  transition: background ${props => props.theme.routeTransition};
+  transition: background ${props => props.theme.routeTransition.css};
   will-change: background;
 
   display: flex;

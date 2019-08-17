@@ -60,13 +60,13 @@ const style = css`
     line-height: 1.2;
     padding-top: ${props => props.theme.navHeight};
 
-    transition: color ${routeTransition}, background ${routeTransition};
+    transition: color ${routeTransition.css}, background ${routeTransition.css};
     will-change: color, background;
   }
 
   a {
     color: ${props => props.theme.colors.primary};
-    transition: color ${routeTransition};
+    transition: color ${routeTransition.css};
     will-change: color;
     text-decoration: none;
   }
