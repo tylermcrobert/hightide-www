@@ -1,8 +1,7 @@
-import Prismic from 'prismic-javascript'
 import Homepage from '../templates/Homepage'
-import { apiEndpoint, accessToken } from '../prismic.config'
 import Meta from '../components/Meta'
 import getInstagramData from '../util/getInstagramData'
+import * as prismicApi from '../util/prismicApi'
 
 const Index = ({ data }) => (
   <>
@@ -12,19 +11,11 @@ const Index = ({ data }) => (
 )
 
 Index.getInitialProps = async () => {
-  const api = await Prismic.getApi(apiEndpoint, { accessToken })
-
-  const homepage = await api.getSingle('page_home')
-
-  const brand = await api.query(Prismic.Predicates.at('document.type', 'brand'))
-
-  const capacity = await api.query(
-    Prismic.Predicates.at('document.type', 'capacity')
-  )
-
-  const work = await api.query(Prismic.Predicates.at('document.type', 'work'))
+  const homepage = await prismicApi.getSingle('page_home')
+  const brand = await prismicApi.getType('brand')
+  const capacity = await prismicApi.getType('capacity')
+  const work = await prismicApi.getType('work')
   const instagramData = await getInstagramData()
-
   return { data: { homepage, capacity, brand, work, instagramData } }
 }
 

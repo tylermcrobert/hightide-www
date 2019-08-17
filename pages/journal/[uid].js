@@ -1,7 +1,6 @@
-import Prismic from 'prismic-javascript'
 import { RichText } from 'prismic-reactjs'
 import Error from 'next/error'
-import { apiEndpoint, accessToken } from '../../prismic.config'
+import * as prismicApi from '../../util/prismicApi'
 import PostTemplate from '../../templates/Post'
 import Meta from '../../components/Meta'
 
@@ -27,11 +26,7 @@ const Post = ({ data }) => {
 }
 
 Post.getInitialProps = async context => {
-  const api = await Prismic.getApi(apiEndpoint, { accessToken })
-  const journal = await api.query(
-    Prismic.Predicates.at('document.type', 'journal')
-  )
-
+  const journal = await prismicApi.getType('journal')
   const journals = journal.results
   const uids = journals.map(item => item.uid)
   const { uid } = context.query

@@ -1,8 +1,7 @@
 import React from 'react'
-import Prismic from 'prismic-javascript'
 import { RichText } from 'prismic-reactjs'
 import Error from 'next/error'
-import { apiEndpoint, accessToken } from '../../prismic.config'
+import * as prismicApi from '../../util/prismicApi'
 import Meta from '../../components/Meta'
 import CaseStudy from '../../templates/CaseStudy'
 
@@ -24,8 +23,7 @@ const Work = ({ data: response }) => {
 
 Work.getInitialProps = async context => {
   const { uid } = context.query
-  const api = await Prismic.getApi(apiEndpoint, { accessToken })
-  const work = await api.query(Prismic.Predicates.at('document.type', 'work'))
+  const work = await prismicApi.getType('work')
   const caseStudies = work.results
   const data = caseStudies[caseStudies.map(item => item.uid).indexOf(uid)]
   return { data }

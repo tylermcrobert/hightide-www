@@ -1,7 +1,6 @@
 import React from 'react'
-import Prismic from 'prismic-javascript'
 import JournalTemplate from '../../templates/Journal'
-import { apiEndpoint, accessToken } from '../../prismic.config'
+import * as prismicApi from '../../util/prismicApi'
 import Meta from '../../components/Meta'
 
 function byDate(a, b) {
@@ -20,11 +19,7 @@ export default function Journal({ data }) {
 }
 
 Journal.getInitialProps = async () => {
-  const api = await Prismic.getApi(apiEndpoint, { accessToken })
-  const journal = await api.query(
-    Prismic.Predicates.at('document.type', 'journal'),
-    { orderings: '[document.data.date desc]' }
-  )
-
+  const options = { orderings: '[document.data.date desc]' }
+  const journal = await prismicApi.getType('journal', options)
   return { data: journal }
 }
