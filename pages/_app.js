@@ -22,6 +22,12 @@ import LyonLtWoff2 from '../assets/fonts/LyonDisplay-Light-Web.woff2'
 
 const DARK_ROUTES = ['/work']
 
+const rt = {
+  dur: theme.routeTransition.duration,
+  accel: theme.ease.accel,
+  decel: theme.ease.decel,
+}
+
 export default class HighTideApp extends App {
   componentDidMount() {
     checkMeta()
@@ -40,7 +46,8 @@ export default class HighTideApp extends App {
         <ThemeProvider theme={isDark ? invertedTheme : theme}>
           <Layout>
             <PageTransition
-              timeout={theme.routeTransition.duration}
+              monkeyPatchScrolling
+              timeout={theme.routeTransition.timeout}
               classNames="page-transition"
             >
               <Component {...pageProps} />
@@ -54,14 +61,14 @@ export default class HighTideApp extends App {
             }
             .page-transition-enter-active {
               opacity: 1;
-              transition: opacity ${theme.routeTransition.duration}ms ease-in;
+              transition: opacity ${rt.dur}ms ${rt.accel};
             }
             .page-transition-exit {
               opacity: 1;
             }
             .page-transition-exit-active {
               opacity: 0;
-              transition: opacity ${theme.routeTransition.duration}ms ease-out;
+              transition: opacity ${rt.dur}ms ${rt.decel};
             }
 
             @font-face {

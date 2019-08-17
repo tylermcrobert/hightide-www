@@ -25,6 +25,8 @@ export const sizes = {
 
 const ease = {
   standard: 'cubic-bezier(.36,.77,.53,.98)',
+  decel: 'cubic-bezier(0.0, 0.0, 0.2, 1);',
+  accel: 'cubic-bezier(0.4, 0.0, 1, 1);',
 }
 
 const margins = {
@@ -49,10 +51,13 @@ export const mq = Object.keys(sizes).reduce(
 )
 
 const ROUTE_TRANSITION_DURATION = 300
+// Blank time between
+const ROUTE_TRANSITION_DELAY = 250
 
 export const routeTransition = {
   duration: ROUTE_TRANSITION_DURATION,
   css: `${ROUTE_TRANSITION_DURATION}ms ${ease.standard}`,
+  timeout: ROUTE_TRANSITION_DURATION + ROUTE_TRANSITION_DELAY,
 }
 
 const theme = {
