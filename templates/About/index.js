@@ -5,7 +5,6 @@ import Capabilities from '../../components/Capabilities'
 // import PropTypes from 'prop-types'
 
 export default function About({ data }) {
-  console.log()
   return (
     <>
       <Wrap>
