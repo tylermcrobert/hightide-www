@@ -35,6 +35,7 @@ const Option = styled.h2`
   position: relative;
   transform: translate3d(${props => (props.enabled ? 2 : 0)}rem, 0, 0);
   transition: 200ms transform ${props => props.theme.ease.standard};
+  user-select: none;
 
   &:before {
     content:'•';
