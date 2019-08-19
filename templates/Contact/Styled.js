@@ -88,6 +88,13 @@ const OptionInput = styled.input`
   }
 `
 
+const TextArea = styled.textarea`
+  ${HEADING_LEVELS[1]};
+  width: 100%;
+  outline: none;
+  border: none;
+`
+
 export default {
   Title,
   TextInput,
@@ -96,4 +103,5 @@ export default {
   DetailsWrapper,
   Label,
   OptionInput,
+  TextArea,
 }

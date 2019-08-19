@@ -22,7 +22,11 @@ export default function Contact({ data }) {
           <Section>
             <ProjectDetails />
           </Section>
-          <textarea />
+          <Section>
+            <Styled.Title>Project Synopsis</Styled.Title>
+            <Styled.TextArea rows="5" placeholder="Describe your project..." />x
+            / 100 Required
+          </Section>
         </form>
       </Wrap>
     </>
