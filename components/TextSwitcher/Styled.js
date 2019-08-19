@@ -29,6 +29,15 @@ const Item = styled.div`
 
 const Head = styled.h2`
   margin-bottom: ${props => props.theme.margins.slim};
+  position: relative;
+
+  &:after {
+    content: '＋';
+    position: absolute;
+    right: 0;
+    transition: 200ms transform ease-out;
+    transform: rotate(${props => (props.theme.active ? 45 : 0)}deg);
+  }
 `
 
 const ColWrapper = styled.div``

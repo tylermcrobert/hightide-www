@@ -1,4 +1,5 @@
 import React, { useState, useContext, createContext } from 'react'
+import { ThemeProvider } from 'styled-components'
 import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 import Styled from './Styled'
@@ -39,13 +40,15 @@ const Body = ({ children }) => {
 function Item({ children, i }) {
   const { currentIndex, setCurrentIndex } = useContext(TextSwitcherCtx)
   return (
-    <ItemCtx.Provider value={{ i }}>
-      <Styled.Item
-        onClick={() => setCurrentIndex(currentIndex !== i ? i : null)}
-      >
-        {children}
-      </Styled.Item>
-    </ItemCtx.Provider>
+    <ThemeProvider theme={{ active: currentIndex === i }}>
+      <ItemCtx.Provider value={{ i }}>
+        <Styled.Item
+          onClick={() => setCurrentIndex(currentIndex !== i ? i : null)}
+        >
+          {children}
+        </Styled.Item>
+      </ItemCtx.Provider>
+    </ThemeProvider>
   )
 }
 
