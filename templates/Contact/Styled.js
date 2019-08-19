@@ -64,7 +64,7 @@ const Label = styled.label`
   user-select: none;
   cursor: pointer;
   transition: 200ms transform ${props => props.theme.ease.standard},
-    200ms opacity ${props => props.theme.ease.standard};
+    200ms color ${props => props.theme.ease.standard};
   line-height: ${props => props.theme.lineHeights.standard};
 
   &:before {
