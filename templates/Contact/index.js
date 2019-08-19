@@ -32,30 +32,41 @@ export default function Contact({ data }) {
   return (
     <>
       <Wrap>
-        <Section>{RichText.render(body[0].items[0].hero)}</Section>
-        <Section>
-          <form>
+        <Section.Large>{RichText.render(body[0].items[0].hero)}</Section.Large>
+        <form>
+          <Section>
             <Styled.Cols>
               {INPUTS.map(item => (
                 <div>
                   <Styled.TextInput
                     type="text"
-                    placeholder={item.placeholder}
+                    placeholder={`${item.placeholder}${
+                      item.required ? ' *' : ''
+                    }`}
                   />
-                  {item.required && 'required'}
                 </div>
               ))}
             </Styled.Cols>
-            <Section>
-              <h2>Type Of Project</h2>
-              <List items={PROJECT_TYPE} />
-            </Section>
-            <Section>
-              <h2>Budget</h2>
-              <List items={BUDGET} />
-            </Section>
-          </form>
-        </Section>
+          </Section>
+          <Section>
+            <Styled.DetailsWrapper>
+              <div>
+                <Styled.Title>Type Of Project</Styled.Title>
+
+                <Styled.ProjTypeWrapper>
+                  <List items={PROJECT_TYPE} />
+                </Styled.ProjTypeWrapper>
+              </div>
+              <div>
+                <Styled.Title>Budget</Styled.Title>
+                <ul>
+                  <List items={BUDGET} />
+                </ul>
+              </div>
+            </Styled.DetailsWrapper>
+          </Section>
+          <textarea />
+        </form>
       </Wrap>
     </>
   )
@@ -74,20 +85,16 @@ function List({ items }) {
       setEnabledItem([...enabledItems, num])
     }
   }
-  return (
-    <ul>
-      {items.map((item, i) => (
-        <li>
-          <Styled.Option
-            onClick={() => handleClick(i)}
-            enabled={enabledItems.includes(i)}
-          >
-            {item}
-          </Styled.Option>
-        </li>
-      ))}
-    </ul>
-  )
+  return items.map((item, i) => (
+    <li>
+      <Styled.Option
+        onClick={() => handleClick(i)}
+        enabled={enabledItems.includes(i)}
+      >
+        {item}
+      </Styled.Option>
+    </li>
+  ))
 }
 
 // About.propTypes = {}

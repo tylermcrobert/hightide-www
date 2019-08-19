@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { HEADING_LEVELS } from '../../style/GlobalStyle'
+import { mq } from '../../style/theme'
 
 const DefaultInput = styled.input`
   margin: 0;
@@ -17,14 +18,21 @@ const TextInput = styled(DefaultInput)`
   ${HEADING_LEVELS[1]};
   color: ${props => props.theme.colors.primary};
   border-bottom: 1px solid ${props => props.theme.colors.grey};
-  margin: 1rem 0;
   padding: ${props => props.theme.fontSizes[0]} 0;
+
+  &::placeholder {
+    color: ${props => props.theme.colors.grey};
+    opacity: 1; /* Firefox */
+  }
 `
 
 const Cols = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-gap: ${props => props.theme.margins.standard};
+
+  @media ${mq.sm} {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
 const Option = styled.h2`
@@ -33,14 +41,14 @@ const Option = styled.h2`
   margin: 0;
   cursor: pointer;
   position: relative;
-  transform: translate3d(${props => (props.enabled ? 2 : 0)}rem, 0, 0);
+  transform: translate3d(${props => (props.enabled ? 1 : 0)}rem, 0, 0);
   transition: 200ms transform ${props => props.theme.ease.standard};
   user-select: none;
 
   &:before {
     content:'•';
     position: absolute;
-    left: -1.25rem;
+    left: -1rem;
     opacity: 0;
 
     opacity: ${props => (props.enabled ? 1 : 0)};
@@ -57,4 +65,33 @@ const Option = styled.h2`
     `}
 `
 
-export default { TextInput, Cols, Option }
+const ProjTypeWrapper = styled.ul`
+  display: grid;
+  grid-gap: 0 ${props => props.theme.margins.standard};
+  @media ${mq.sm} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`
+
+const DetailsWrapper = styled.div`
+  display: grid;
+  grid-gap: ${props => props.theme.margins.standard};
+
+  @media ${mq.sm} {
+    grid-template-columns: 2fr 1fr;
+  }
+`
+
+const Title = styled.h2`
+  border-bottom: 1px solid ${props => props.theme.colors.grey};
+  padding-bottom: 0.75rem;
+`
+
+export default {
+  Title,
+  TextInput,
+  Cols,
+  Option,
+  ProjTypeWrapper,
+  DetailsWrapper,
+}
