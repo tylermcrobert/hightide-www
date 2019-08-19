@@ -30,39 +30,9 @@ const Cols = styled.div`
   display: grid;
 
   @media ${mq.sm} {
-    grid-gap: ${props => props.theme.margins.standard};
+    grid-gap: 0 ${props => props.theme.margins.standard};
     grid-template-columns: repeat(2, 1fr);
   }
-`
-
-const Option = styled.h2`
-  color: ${props => props.theme.colors.grey};
-  line-height: ${props => props.theme.lineHeights.standard}
-  margin: 0;
-  cursor: pointer;
-  position: relative;
-  transform: translate3d(${props => (props.enabled ? 1 : 0)}rem, 0, 0);
-  transition: 200ms transform ${props => props.theme.ease.standard};
-  user-select: none;
-
-  &:before {
-    content:'•';
-    position: absolute;
-    left: -1rem;
-    opacity: 0;
-
-    opacity: ${props => (props.enabled ? 1 : 0)};
-    transition:
-      /* prettier-ignore */
-      200ms transform ${props => props.theme.ease.standard},
-      200ms opacity ${props => props.theme.ease.standard};
-  }
-
-  ${props =>
-    props.enabled &&
-    css`
-      color: ${props.theme.colors.primary};
-    `}
 `
 
 const ProjTypeWrapper = styled.ul`
@@ -87,11 +57,43 @@ const Title = styled.h2`
   padding-bottom: 0.75rem;
 `
 
+const Label = styled.label`
+  ${HEADING_LEVELS[1]};
+  color: ${props => props.theme.colors.grey};
+  display: block;
+  user-select: none;
+  cursor: pointer;
+  transition: 200ms transform ${props => props.theme.ease.standard},
+    200ms opacity ${props => props.theme.ease.standard};
+  line-height: ${props => props.theme.lineHeights.standard};
+
+  &:before {
+    content: '•';
+    position: absolute;
+    left: -1rem;
+    opacity: 0;
+    transition: 200ms opacity ${props => props.theme.ease.standard};
+  }
+`
+
+const OptionInput = styled.input`
+  display: none;
+
+  &:checked + label {
+    &:before {
+      opacity: 1;
+    }
+    transform: translate3d(1rem, 0, 0);
+    color: ${props => props.theme.colors.primary};
+  }
+`
+
 export default {
   Title,
   TextInput,
   Cols,
-  Option,
   ProjTypeWrapper,
   DetailsWrapper,
+  Label,
+  OptionInput,
 }

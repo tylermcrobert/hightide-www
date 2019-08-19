@@ -4,6 +4,46 @@ import { Wrap, Section } from '../../style'
 import Styled from './Styled'
 // import PropTypes from 'prop-types'
 
+const BUDGET = ['Above 100k', '75–100k', '50–75k', '25-50k', 'Below 25k']
+const toKebabCase = string => {
+  return string.replace(/\s+/g, '-').toLowerCase()
+}
+
+export default function Contact({ data }) {
+  const { hero_text: hero, body } = data.contact.data
+  return (
+    <>
+      <Wrap>
+        <Section.Large>{RichText.render(body[0].items[0].hero)}</Section.Large>
+        <form>
+          <Section>
+            <Information />
+          </Section>
+          <Section>
+            <ProjectDetails />
+          </Section>
+          <textarea />
+        </form>
+      </Wrap>
+    </>
+  )
+}
+
+function Information() {
+  return (
+    <Styled.Cols>
+      {INPUTS.map(item => (
+        <div>
+          <Styled.TextInput
+            type="text"
+            placeholder={`${item.placeholder}${item.required ? '*' : ''}`}
+          />
+        </div>
+      ))}
+    </Styled.Cols>
+  )
+}
+
 const INPUTS = [
   { placeholder: 'Name', required: true },
   { placeholder: 'Email Address', required: true },
@@ -12,6 +52,20 @@ const INPUTS = [
   { placeholder: 'Company Name', required: false },
   { placeholder: 'Website', required: false },
 ]
+
+function ProjectDetails() {
+  return (
+    <Styled.DetailsWrapper>
+      <div>
+        <ProjectType />
+      </div>
+      <div>
+        <Budget />
+      </div>
+    </Styled.DetailsWrapper>
+  )
+}
+
 const PROJECT_TYPE = [
   'Branding',
   'Strategy',
@@ -25,76 +79,38 @@ const PROJECT_TYPE = [
   'Naming',
 ]
 
-const BUDGET = ['Above 100k', '75–100k', '50–75k', '25-50k', 'Below 25k']
-
-export default function Contact({ data }) {
-  const { hero_text: hero, body } = data.contact.data
+function ProjectType() {
   return (
     <>
-      <Wrap>
-        <Section.Large>{RichText.render(body[0].items[0].hero)}</Section.Large>
-        <form>
-          <Section>
-            <Styled.Cols>
-              {INPUTS.map(item => (
-                <div>
-                  <Styled.TextInput
-                    type="text"
-                    placeholder={`${item.placeholder}${
-                      item.required ? ' *' : ''
-                    }`}
-                  />
-                </div>
-              ))}
-            </Styled.Cols>
-          </Section>
-          <Section>
-            <Styled.DetailsWrapper>
-              <div>
-                <Styled.Title>Type Of Project</Styled.Title>
-
-                <Styled.ProjTypeWrapper>
-                  <List items={PROJECT_TYPE} />
-                </Styled.ProjTypeWrapper>
-              </div>
-              <div>
-                <Styled.Title>Budget</Styled.Title>
-                <ul>
-                  <List items={BUDGET} />
-                </ul>
-              </div>
-            </Styled.DetailsWrapper>
-          </Section>
-          <textarea />
-        </form>
-      </Wrap>
+      <Styled.Title>Type Of Project</Styled.Title>
+      <Styled.ProjTypeWrapper>
+        {PROJECT_TYPE.map(item => (
+          <div>
+            <Styled.OptionInput type="checkbox" id={toKebabCase(item)} />
+            <Styled.Label htmlFor={toKebabCase(item)}>{item}</Styled.Label>
+          </div>
+        ))}
+      </Styled.ProjTypeWrapper>
     </>
   )
 }
 
-function List({ items }) {
-  const [enabledItems, setEnabledItem] = useState([])
-
-  const handleClick = num => {
-    if (enabledItems.includes(num)) {
-      const newArray = [...enabledItems]
-      const index = newArray.indexOf(num)
-      newArray.splice(index, 1)
-      setEnabledItem(newArray)
-    } else {
-      setEnabledItem([...enabledItems, num])
-    }
-  }
-  return items.map((item, i) => (
-    <li>
-      <Styled.Option
-        onClick={() => handleClick(i)}
-        enabled={enabledItems.includes(i)}
-      >
-        {item}
-      </Styled.Option>
-    </li>
-  ))
+function Budget() {
+  return (
+    <>
+      <Styled.Title>Budget</Styled.Title>
+      {BUDGET.map(item => (
+        <div>
+          <Styled.OptionInput
+            type="radio"
+            name="budget"
+            id={toKebabCase(item)}
+          />
+          <Styled.Label htmlFor={toKebabCase(item)}>{item}</Styled.Label>
+        </div>
+      ))}
+    </>
+  )
 }
 
 // About.propTypes = {}
