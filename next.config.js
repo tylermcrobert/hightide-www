@@ -17,6 +17,9 @@ module.exports = withFonts({
   async exportPathMap() {
     const paths = {
       '/': { page: '/' },
+      '/work': { page: '/work' },
+      '/about': { page: '/about' },
+      '/contact': { page: '/contact' },
       '/journal': { page: '/journal' },
     }
 
