@@ -28,9 +28,9 @@ const TextInput = styled(DefaultInput)`
 
 const Cols = styled.div`
   display: grid;
-  grid-gap: ${props => props.theme.margins.standard};
 
   @media ${mq.sm} {
+    grid-gap: ${props => props.theme.margins.standard};
     grid-template-columns: repeat(2, 1fr);
   }
 `
