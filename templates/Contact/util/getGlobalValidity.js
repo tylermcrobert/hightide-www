@@ -8,5 +8,6 @@ export default function getGlobalValidity(state) {
     .map(item => state[item.id].valid)
     .includes(false)
 
-  return inputValidity
+  const synopsisValidty = state.synopsis.valid
+  return inputValidity && synopsisValidty
 }
