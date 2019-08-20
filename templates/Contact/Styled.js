@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { HEADING_LEVELS } from '../../style/GlobalStyle'
 import { mq } from '../../style/theme'
 
