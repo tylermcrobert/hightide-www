@@ -13,6 +13,9 @@ export const colors = {
   primary: '#000000',
   secondary: '#ffffff',
   grey: '#939598',
+  error: '#ff4938',
+  warn: '#F5C350',
+  success: '#83CB57',
 }
 
 export const sizes = {

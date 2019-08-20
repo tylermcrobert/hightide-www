@@ -34,6 +34,10 @@ const Cols = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 `
+const ValidationWarning = styled.div`
+  color: ${props => props.theme.colors.error};
+  margin: 0.25em 0;
+`
 
 const ProjTypeWrapper = styled.ul`
   display: grid;
@@ -104,4 +108,5 @@ export default {
   Label,
   OptionInput,
   TextArea,
+  ValidationWarning,
 }

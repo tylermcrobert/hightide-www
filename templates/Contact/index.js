@@ -1,5 +1,6 @@
 import React, { useState, createContext, useContext } from 'react'
 import { RichText } from 'prismic-reactjs'
+import { motion } from 'framer-motion'
 import { Wrap, Section } from '../../style'
 import Styled from './Styled'
 import { BUDGET, INPUTS, PROJECT_TYPE, initialState } from './constants'
@@ -8,6 +9,22 @@ import getGlobalValidity from './util/getGlobalValidity'
 import getStructuredObj from './util/getStructuredObj'
 
 const ContactCtx = createContext()
+
+function Warning({ active, children }) {
+  return (
+    <motion.div
+      initial={false}
+      transition={{ duration: 0.2 }}
+      animate={{
+        height: active ? 'auto' : '0',
+        opacity: active ? 1 : 0,
+        y: active ? '0%' : '-50%',
+      }}
+    >
+      <Styled.ValidationWarning>{children}</Styled.ValidationWarning>
+    </motion.div>
+  )
+}
 
 export default function Contact({ data }) {
   const { body } = data.contact.data
@@ -73,7 +90,7 @@ function Information() {
               placeholder={`${item.placeholder}${item.required ? '*' : ''}`}
               onBlur={() => handleBlur(item.id)}
             />
-            {isErr && item.errMsg}
+            <Warning active={isErr}>{item.errMsg}</Warning>
           </div>
         )
       })}
