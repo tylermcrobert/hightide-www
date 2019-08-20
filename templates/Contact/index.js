@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, createContext, useContext } from 'react'
 import { RichText } from 'prismic-reactjs'
 import { Wrap, Section } from '../../style'
 import Styled from './Styled'
+import { BUDGET, INPUTS, PROJECT_TYPE, initialState } from './constants'
+import toKebabCase from '../../util/toKebabCase'
 // import PropTypes from 'prop-types'
 
-const BUDGET = ['Above 100k', '75–100k', '50–75k', '25-50k', 'Below 25k']
-const toKebabCase = string => {
-  return string.replace(/\s+/g, '-').toLowerCase()
-}
+const ContactCtx = createContext()
 
 export default function Contact({ data }) {
-  const { hero_text: hero, body } = data.contact.data
+  const { body } = data.contact.data
+  const [state, setState] = useState(initialState)
+  console.log(state)
   return (
-    <>
+    <ContactCtx.Provider value={{ state, setState }}>
       <Wrap>
         <Section.Large>{RichText.render(body[0].items[0].hero)}</Section.Large>
         <form>
@@ -29,17 +30,24 @@ export default function Contact({ data }) {
           </Section>
         </form>
       </Wrap>
-    </>
+    </ContactCtx.Provider>
   )
 }
 
 function Information() {
+  const { state, setState } = useContext(ContactCtx)
+  const handleChange = (e, id) => {
+    const { value } = e.target
+    setState({ ...state, [id]: { ...state[id], value } })
+  }
   return (
     <Styled.Cols>
       {INPUTS.map(item => (
         <div>
           <Styled.TextInput
             type="text"
+            onChange={e => handleChange(e, item.id)}
+            value={state[item.id].value}
             placeholder={`${item.placeholder}${item.required ? '*' : ''}`}
           />
         </div>
@@ -47,15 +55,6 @@ function Information() {
     </Styled.Cols>
   )
 }
-
-const INPUTS = [
-  { placeholder: 'Name', required: true },
-  { placeholder: 'Email Address', required: true },
-  { placeholder: 'Location', required: false },
-  { placeholder: 'Phone Number', required: true },
-  { placeholder: 'Company Name', required: false },
-  { placeholder: 'Website', required: false },
-]
 
 function ProjectDetails() {
   return (
@@ -70,19 +69,6 @@ function ProjectDetails() {
   )
 }
 
-const PROJECT_TYPE = [
-  'Branding',
-  'Strategy',
-  'Website',
-  'Art Direction',
-  'Packaging',
-  'Editorial',
-  'Campaign',
-  'Environmental',
-  'Copywriting',
-  'Naming',
-]
-
 function ProjectType() {
   return (
     <>
@@ -90,8 +76,8 @@ function ProjectType() {
       <Styled.ProjTypeWrapper>
         {PROJECT_TYPE.map(item => (
           <div>
-            <Styled.OptionInput type="checkbox" id={toKebabCase(item)} />
-            <Styled.Label htmlFor={toKebabCase(item)}>{item}</Styled.Label>
+            <Styled.OptionInput type="checkbox" id={item.id} />
+            <Styled.Label htmlFor={item.id}>{item.display}</Styled.Label>
           </div>
         ))}
       </Styled.ProjTypeWrapper>
@@ -103,6 +89,7 @@ function Budget() {
   return (
     <>
       <Styled.Title>Budget</Styled.Title>
+
       {BUDGET.map(item => (
         <div>
           <Styled.OptionInput
