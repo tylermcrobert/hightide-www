@@ -78,6 +78,7 @@ export const initialState = {
   ...inputsInitialState,
   projectTypes: { ...projInitState },
   budget: null,
+  synopsis: null,
 }
 
 export const USER_LOCATION_CODE = 'd2fafa363a5f60d1bd48654faeab7d1413ea5db4'

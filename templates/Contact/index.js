@@ -29,12 +29,13 @@ export default function Contact({ data }) {
             <Information />
           </Section>
           <Section>
-            <ProjectDetails />
+            <Styled.DetailsWrapper>
+              <ProjectType />
+              <Budget />
+            </Styled.DetailsWrapper>
           </Section>
           <Section>
-            <Styled.Title>Project Synopsis</Styled.Title>
-            <Styled.TextArea rows="5" placeholder="Describe your project..." />x
-            / 100 Required
+            <Synopsis />
           </Section>
           {canSubmit && <input type="submit" />}
         </form>
@@ -80,29 +81,18 @@ function Information() {
   )
 }
 
-function ProjectDetails() {
-  return (
-    <Styled.DetailsWrapper>
-      <div>
-        <ProjectType />
-      </div>
-      <div>
-        <Budget />
-      </div>
-    </Styled.DetailsWrapper>
-  )
-}
-
 function ProjectType() {
   const { state, setState } = useContext(ContactCtx)
+
   const handleChange = (e, id) => {
     setState({
       ...state,
       projectTypes: { ...state.projectTypes, [id]: e.target.checked },
     })
   }
+
   return (
-    <>
+    <div>
       <Styled.Title>Type Of Project</Styled.Title>
       <Styled.ProjTypeWrapper>
         {PROJECT_TYPE.map(item => (
@@ -117,26 +107,43 @@ function ProjectType() {
           </div>
         ))}
       </Styled.ProjTypeWrapper>
-    </>
+    </div>
   )
 }
 
 function Budget() {
-  return (
-    <>
-      <Styled.Title>Budget</Styled.Title>
+  const { state, setState } = useContext(ContactCtx)
 
+  const handleChange = item => {
+    setState({ ...state, budget: item })
+  }
+
+  return (
+    <div>
+      <Styled.Title>Budget</Styled.Title>
       {BUDGET.map(item => (
         <div>
           <Styled.OptionInput
             type="radio"
             name="budget"
+            onChange={() => handleChange(item)}
             id={toKebabCase(item)}
+            checked={item === state.budget}
           />
           <Styled.Label htmlFor={toKebabCase(item)}>{item}</Styled.Label>
         </div>
       ))}
-    </>
+    </div>
+  )
+}
+
+function Synopsis() {
+  return (
+    <div>
+      <Styled.Title>Project Synopsis</Styled.Title>
+      <Styled.TextArea rows="5" placeholder="Describe your project..." />x / 100
+      Required
+    </div>
   )
 }
 

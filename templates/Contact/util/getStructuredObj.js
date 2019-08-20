@@ -25,8 +25,8 @@ const getStructuredObj = state => {
     [COMPANY_CODE]: state.company.value,
     [WEBSITE_CODE]: state.website.value,
     [PROJECT_TYPE_CODE]: getProjTypesString(state.projectTypes),
-    [BUDGET_CODE]: null,
-    [SYNOPSIS_CODE]: null,
+    [BUDGET_CODE]: state.budget,
+    [SYNOPSIS_CODE]: state.synopsis,
   }
 }
 
