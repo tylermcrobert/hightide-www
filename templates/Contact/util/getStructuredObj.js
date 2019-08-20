@@ -8,6 +8,10 @@ import {
   PROJECT_TYPE,
 } from '../constants'
 
+/*
+  turn from object to strings.
+  eg: 'Branding, Art Direction'
+*/
 const getProjTypesString = state =>
   Object.values(state)
     .reduce(
@@ -16,6 +20,9 @@ const getProjTypesString = state =>
     )
     .join(', ')
 
+/*
+  Return data to correspond with CRM.
+*/
 const getStructuredObj = state => {
   return {
     name: state.name.value,
