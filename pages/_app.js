@@ -7,16 +7,16 @@ import theme, { invertedTheme } from '../style/theme'
 import Layout from '../components/Layout'
 import checkMeta from '../util/checkMeta'
 
-import AmericaLtWoff2 from '../assets/fonts/GT-America-Standard-Light.woff2'
-import AmericaLtWoff from '../assets/fonts/GT-America-Standard-Light.woff'
-import AmericaLtTtf from '../assets/fonts/GT-America-Standard-Light.ttf'
+const AmericaLtWoff2 = '/static/fonts/GT-America-Standard-Light.woff2'
+const AmericaLtWoff = '/static/fonts/GT-America-Standard-Light.woff'
+const AmericaLtTtf = '/static/fonts/GT-America-Standard-Light.ttf'
 
-import AmericaMdWoff2 from '../assets/fonts/GT-America-Standard-Medium.woff2'
-import AmericaMdWoff from '../assets/fonts/GT-America-Standard-Medium.woff'
-import AmericaMdTtf from '../assets/fonts/GT-America-Standard-Medium.ttf'
+const AmericaMdWoff2 = '/static/fonts/GT-America-Standard-Medium.woff2'
+const AmericaMdWoff = '/static/fonts/GT-America-Standard-Medium.woff'
+const AmericaMdTtf = '/static/fonts/GT-America-Standard-Medium.ttf'
 
-import LyonLtWoff from '../assets/fonts/LyonDisplay-Light-Web.woff'
-import LyonLtWoff2 from '../assets/fonts/LyonDisplay-Light-Web.woff2'
+const LyonLtWoff = '/static/fonts/LyonDisplay-Light-Web.woff'
+const LyonLtWoff2 = '/static/fonts/LyonDisplay-Light-Web.woff2'
 
 /* eslint import/no-named-as-default-member: 0 */
 
