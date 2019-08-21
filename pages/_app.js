@@ -53,19 +53,32 @@ export default class HighTideApp extends App {
         </ThemeProvider>
         <style jsx global>
           {`
-            .page-transition-enter {
-              opacity: 0;
-            }
-            .page-transition-enter-active {
-              opacity: 1;
-              transition: opacity ${duration}ms ${accel};
-            }
             .page-transition-exit {
-              opacity: 1;
+              opacity: 0;
+              transform: translateY(1em);
+              transition: ${duration}ms transform ${accel},
+                ${duration}ms opacity ${accel};
             }
             .page-transition-exit-active {
               opacity: 0;
-              transition: opacity ${duration}ms ${decel};
+              transform: translateY(1em);
+              transition: ${duration}ms transform ${accel},
+                ${duration}ms opacity ${accel};
+            }
+            .page-transition-enter {
+              transform: translateY(1em);
+              opacity: 0;
+            }
+            .page-transition-enter-active {
+              transform: translateY(1em);
+              transition: transform ${duration}ms ${decel},
+                ${duration}ms opacity ${decel};
+            }
+
+            .page-transition-enter-done {
+              transform: translateY(0);
+              transition: ${duration}ms transform ${decel},
+                ${duration}ms opacity ${decel};
             }
 
             @font-face {

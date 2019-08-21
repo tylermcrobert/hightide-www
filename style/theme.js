@@ -28,8 +28,8 @@ export const sizes = {
 
 const ease = {
   standard: 'cubic-bezier(.36,.77,.53,.98)',
-  decel: 'cubic-bezier(0.0, 0.0, 0.2, 1);',
-  accel: 'cubic-bezier(0.4, 0.0, 1, 1);',
+  decel: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  accel: 'cubic-bezier(0.4, 0.0, 1, 1)',
 }
 
 const margins = {
