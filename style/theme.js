@@ -53,9 +53,9 @@ export const mq = Object.keys(sizes).reduce(
   {}
 )
 
-const ROUTE_TRANSITION_DURATION = 300
+const ROUTE_TRANSITION_DURATION = 250
 // Blank time between
-const ROUTE_TRANSITION_DELAY = 250
+const ROUTE_TRANSITION_DELAY = 100
 
 export const routeTransition = {
   duration: ROUTE_TRANSITION_DURATION,
