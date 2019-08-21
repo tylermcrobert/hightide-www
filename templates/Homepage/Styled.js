@@ -2,11 +2,15 @@ import styled from 'styled-components'
 import { mq } from '../../style/theme'
 
 const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(${props => props.cols || 2}, 1fr);
-  justify-content: center;
-  align-items: center;
-  grid-gap: ${props => props.theme.margins.standard};
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+
+  img {
+    width: 10%;
+    display: inline-block;
+    align-self: center;
+  }
 `
 
 const Header = styled.div`

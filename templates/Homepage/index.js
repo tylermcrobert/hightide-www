@@ -3,6 +3,7 @@ import { RichText } from 'prismic-reactjs'
 import Arrow from '../../components/Arrow'
 import Capabilities from '../../components/Capabilities'
 import Instagram from '../../components/Instagram'
+import Marquee from '../../components/Marquee'
 import Styled from './Styled'
 import { Wrap, Section } from '../../style'
 
@@ -31,11 +32,15 @@ function Homepage({ data }) {
         </Section>
         <Section>
           <Header>Clients</Header>
-          <Styled.Grid cols={4}>
-            {brands.map((item, i) => (
-              <img src={item} key={i} alt="" />
-            ))}
-          </Styled.Grid>
+          <Marquee>
+            <Styled.Grid cols={4}>
+              {brands.map((item, i) => (
+                <>
+                  <img src={item} key={i} alt="" />
+                </>
+              ))}
+            </Styled.Grid>
+          </Marquee>
         </Section>
         <Section>
           <FeaturedWork.Wrapper data={featuredProjects[1]} />
