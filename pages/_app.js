@@ -43,7 +43,6 @@ export default class HighTideApp extends App {
         <ThemeProvider theme={isDark ? invertedTheme : theme}>
           <Layout>
             <PageTransition
-              monkeyPatchScrolling
               timeout={theme.routeTransition.timeout}
               classNames="page-transition"
             >
