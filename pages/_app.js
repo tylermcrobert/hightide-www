@@ -22,7 +22,7 @@ const LyonLtWoff2 = '/static/fonts/LyonDisplay-Light-Web.woff2'
 
 const DARK_ROUTES = ['/work']
 
-const { duration } = theme.routeTransition
+const { duration, distance } = theme.routeTransition
 const { accel, decel } = theme.ease
 
 export default class HighTideApp extends App {
@@ -55,22 +55,22 @@ export default class HighTideApp extends App {
           {`
             .page-transition-exit {
               opacity: 0;
-              transform: translateY(1em);
+              transform: translateY(${distance}em);
               transition: ${duration}ms transform ${accel},
                 ${duration}ms opacity ${accel};
             }
             .page-transition-exit-active {
               opacity: 0;
-              transform: translateY(1em);
+              transform: translateY(${distance}em);
               transition: ${duration}ms transform ${accel},
                 ${duration}ms opacity ${accel};
             }
             .page-transition-enter {
-              transform: translateY(1em);
+              transform: translateY(${distance}em);
               opacity: 0;
             }
             .page-transition-enter-active {
-              transform: translateY(1em);
+              transform: translateY(${distance}em);
               transition: transform ${duration}ms ${decel},
                 ${duration}ms opacity ${decel};
             }

@@ -61,6 +61,7 @@ export const routeTransition = {
   duration: ROUTE_TRANSITION_DURATION,
   css: `${ROUTE_TRANSITION_DURATION}ms ${ease.standard}`,
   timeout: ROUTE_TRANSITION_DURATION + ROUTE_TRANSITION_DELAY,
+  distance: 0.5,
 }
 
 const theme = {
