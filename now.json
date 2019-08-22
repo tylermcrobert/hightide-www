@@ -1,3 +1,11 @@
 {
-  "name": "hightide-www"
+  "name": "hightide-www",
+  "build": {
+    "env": {
+      "INSTAGRAM_ENDPOINT": "@instagram_endpoint",
+      "INSTAGRAM_TOKEN": "@instagram_token",
+      "PRISMIC_ACCESS_TOKEN": "@prismic_access_token",
+      "PRISMIC_ENDPOINT": "@prismic_endpoint"
+    }
+  }
 }
