@@ -57,10 +57,13 @@ const ROUTE_TRANSITION_DURATION = 250
 // Blank time between
 const ROUTE_TRANSITION_DELAY = 100
 
+const ROUTE_TRANSIITON_TIMEOUT =
+  ROUTE_TRANSITION_DURATION + ROUTE_TRANSITION_DELAY
+
 export const routeTransition = {
   duration: ROUTE_TRANSITION_DURATION,
-  css: `${ROUTE_TRANSITION_DURATION}ms ${ease.standard}`,
-  timeout: ROUTE_TRANSITION_DURATION + ROUTE_TRANSITION_DELAY,
+  css: `${ROUTE_TRANSIITON_TIMEOUT}ms ${ease.decel}`,
+  timeout: ROUTE_TRANSIITON_TIMEOUT,
   distance: 0.5,
 }
 

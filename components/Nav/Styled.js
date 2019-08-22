@@ -11,9 +11,19 @@ const Nav = styled.nav`
   left: 0;
   width: 100%;
   z-index: 99;
-  background: ${props => props.theme.colors.secondary};
+  background: ${props =>
+    props.theme.isDark
+      ? props.theme.colors.primary
+      : props.theme.colors.secondary};
   transition: background ${props => props.theme.routeTransition.css};
   will-change: background;
+
+  a {
+    color: ${props =>
+      !props.theme.isDark
+        ? props.theme.colors.primary
+        : props.theme.colors.secondary};
+  }
 `
 
 const Wrap = styled(GlobalWrap)`
@@ -31,7 +41,10 @@ const Wrap = styled(GlobalWrap)`
 const Logo = styled(LogoSvg)`
   height: 1.1em;
   * {
-    fill: ${props => props.theme.colors.primary};
+    fill: ${props =>
+      props.theme.isDark
+        ? props.theme.colors.secondary
+        : props.theme.colors.primary};
     transition: fill ${props => props.theme.routeTransition.css};
     will-change: fill;
   }
@@ -65,7 +78,10 @@ const line = css`
   position: absolute;
   width: 100%;
   height: 2px;
-  background: ${props => props.theme.colors.primary};
+  background: ${props =>
+    props.theme.isDark
+      ? props.theme.colors.secondary
+      : props.theme.colors.primary};
   transition: 200ms ${ease} transform;
   top: 50%;
 `

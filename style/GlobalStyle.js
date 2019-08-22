@@ -54,7 +54,10 @@ const style = css`
   }
 
   body {
-    background: ${props => props.theme.colors.secondary};
+    background: ${props =>
+      props.theme.isDark
+        ? props.theme.colors.primary
+        : props.theme.colors.secondary};
     color: ${props => props.theme.colors.primary};
     font-family: ${props => props.theme.fontFamilies.sansSerif};
     font-weight: 300;

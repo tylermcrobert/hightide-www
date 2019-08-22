@@ -40,7 +40,7 @@ export default class HighTideApp extends App {
 
     return (
       <Container>
-        <ThemeProvider theme={isDark ? invertedTheme : theme}>
+        <ThemeProvider theme={{ ...theme, isDark }}>
           <Layout>
             <PageTransition
               timeout={theme.routeTransition.timeout}

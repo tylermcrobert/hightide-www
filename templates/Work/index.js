@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { RichText } from 'prismic-reactjs'
 import Link from 'next/link'
+
 import Styled from './Styled'
 import { Wrap, Section } from '../../style'
 import formatTitle from '../../util/formatTitle'
@@ -32,9 +33,11 @@ function WorkItem({ title, image }) {
   return (
     <div>
       <img src={image} alt={formatTitle(title)} />
-      <Heading as="h2" headingStyle={2}>
-        {title}
-      </Heading>
+      <Styled.Link>
+        <Heading as="h2" headingStyle={2}>
+          {title}
+        </Heading>
+      </Styled.Link>
     </div>
   )
 }
