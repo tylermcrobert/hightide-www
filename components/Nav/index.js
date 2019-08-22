@@ -31,7 +31,7 @@ function Nav() {
 function Logo() {
   return (
     <Link href="/">
-      <a>
+      <a aria-label="Home">
         <Styled.Logo />
       </a>
     </Link>
