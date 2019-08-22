@@ -81,6 +81,7 @@ function Footer() {
             ))}
             <form onSubmit={handleSubmit}>
               <Styled.StayUpdated
+                aria-label="Stay Updated"
                 onChange={handleChange}
                 placeholder="Stay Updated"
               />
