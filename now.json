@@ -7,5 +7,8 @@
       "PRISMIC_ACCESS_TOKEN": "@prismic_access_token",
       "PRISMIC_ENDPOINT": "@prismic_endpoint"
     }
+  },
+  "github": {
+    "silent": true
   }
 }
