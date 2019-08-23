@@ -118,7 +118,10 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: calc(100% - ${props => props.theme.navHeight});
-  background: ${props => props.theme.colors.secondary};
+  background: ${props =>
+    props.theme.isDark
+      ? props.theme.colors.primary
+      : props.theme.colors.secondary};
   transition: background ${props => props.theme.routeTransition.css};
   will-change: background;
 
