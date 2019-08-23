@@ -12,7 +12,7 @@ function Work({ data }) {
 }
 
 Work.getInitialProps = async ({ prismicApi }) => {
-  const work = await prismicApi.getType('work', { pageSize: 100 })
+  const work = await prismicApi.getType('work', { pageSize: 10 })
   return { data: { work } }
 }
 
