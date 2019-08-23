@@ -1,6 +1,8 @@
 import Prismic from 'prismic-javascript'
 
 export async function getApi() {
+  console.log('getApi() called')
+
   const api = await Prismic.getApi(process.env.PRISMIC_ENDPOINT, {
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
   })

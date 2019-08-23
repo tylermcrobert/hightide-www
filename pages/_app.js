@@ -23,6 +23,8 @@ const LyonLtWoff2 = '/static/fonts/LyonDisplay-Light-Web.woff2'
 
 const DARK_ROUTES = ['/work']
 
+let api
+
 const { duration, distance } = theme.routeTransition
 const { accel, decel } = theme.ease
 
@@ -37,8 +39,10 @@ export default class HighTideApp extends App {
 
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {}
-    const api = await getApi()
 
+    if (!api) {
+      api = await getApi()
+    }
     ctx.prismicApi = api
 
     if (Component.getInitialProps) {

@@ -41,7 +41,8 @@
     "start": "next start",
     "export": "next build && next export",
     "lint": "eslint  pages/** style/** templates/** components/**",
-    "kill-port": "kill $(lsof -t -i:5000)"
+    "kill-port": "kill $(lsof -t -i:5000)",
+    "tryout": "npm run export && http-server out"
   },
   "repository": {
     "type": "git",
