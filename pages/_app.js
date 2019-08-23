@@ -29,7 +29,9 @@ const { duration, distance } = theme.routeTransition
 const { accel, decel } = theme.ease
 
 export default class HighTideApp extends App {
-  componentDidMount() {
+  async componentDidMount() {
+    api = await getApi()
+    window.__API_DATA__ = api
     checkMeta()
   }
 
