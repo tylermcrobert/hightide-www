@@ -45,7 +45,12 @@ export default class HighTideApp extends App {
     if (!api) {
       api = await getApi()
     }
-    ctx.prismicApi = api
+
+    if (typeof window !== 'undefined') {
+      ctx.prismicApi = window.__API_DATA__
+    } else {
+      ctx.prismicApi = api
+    }
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
