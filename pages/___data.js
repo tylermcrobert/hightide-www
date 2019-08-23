@@ -2,7 +2,6 @@ import React from 'react'
 import Prismic from 'prismic-javascript'
 import styled from 'styled-components'
 import { RichText } from 'prismic-reactjs'
-import * as prismicApi from '../util/prismicApi'
 import Meta from '../components/Meta'
 
 function Work({ data }) {
@@ -46,12 +45,10 @@ const Section = styled.div`
   box-sizing: border-box;
 `
 
-Work.getInitialProps = async () => {
-  const api = await prismicApi.getApi()
-
-  const types = Object.values(api.types)
+Work.getInitialProps = async ({ prismicApi }) => {
+  const types = Object.values(prismicApi.types)
   const req = types.map(async type =>
-    api.query(Prismic.Predicates.at('document.type', type))
+    prismicApi.query(Prismic.Predicates.at('document.type', type))
   )
   const dataItems = await Promise.all(req)
   const data = dataItems.reduce((acc, item, c) => {

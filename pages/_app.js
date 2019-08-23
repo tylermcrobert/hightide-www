@@ -2,8 +2,9 @@ import App, { Container } from 'next/app'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { PageTransition } from 'next-page-transitions'
+import { getApi } from '../util/prismicApi'
 
-import theme, { invertedTheme } from '../style/theme'
+import theme from '../style/theme'
 import Layout from '../components/Layout'
 import checkMeta from '../util/checkMeta'
 
@@ -32,6 +33,19 @@ export default class HighTideApp extends App {
 
   componentDidUpdate() {
     checkMeta()
+  }
+
+  static async getInitialProps({ Component, ctx }) {
+    let pageProps = {}
+    const api = await getApi()
+
+    ctx.prismicApi = api
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
+    }
+
+    return { pageProps }
   }
 
   render() {

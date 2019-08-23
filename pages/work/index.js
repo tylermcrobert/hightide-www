@@ -1,7 +1,6 @@
 import React from 'react'
 import Meta from '../../components/Meta'
 import Template from '../../templates/Work'
-import * as prismicApi from '../../util/prismicApi'
 
 function Work({ data }) {
   return (
@@ -12,7 +11,7 @@ function Work({ data }) {
   )
 }
 
-Work.getInitialProps = async () => {
+Work.getInitialProps = async ({ prismicApi }) => {
   const work = await prismicApi.getType('work', { pageSize: 100 })
   return { data: { work } }
 }

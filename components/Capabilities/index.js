@@ -1,7 +1,6 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import TextSwitcher from '../TextSwitcher'
-import { getType } from '../../util/prismicApi'
 
 export default function Capabilities({ data }) {
   return (
@@ -20,4 +19,5 @@ export default function Capabilities({ data }) {
   )
 }
 
-export const getCapabilityData = async () => getType('capacity')
+export const getCapabilityData = async prismicApi =>
+  prismicApi.getType('capacity')

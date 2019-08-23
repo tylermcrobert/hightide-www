@@ -2,7 +2,6 @@ import React from 'react'
 import Meta from '../components/Meta'
 import { getCapabilityData } from '../components/Capabilities'
 import Template from '../templates/About'
-import * as prismicApi from '../util/prismicApi'
 
 export default function About({ data }) {
   return (
@@ -13,8 +12,8 @@ export default function About({ data }) {
   )
 }
 
-About.getInitialProps = async () => {
+About.getInitialProps = async ({ prismicApi }) => {
   const about = await prismicApi.getSingle('page_about')
-  const capabilites = await getCapabilityData()
+  const capabilites = await getCapabilityData(prismicApi)
   return { data: { ...about.data, capabilites } }
 }

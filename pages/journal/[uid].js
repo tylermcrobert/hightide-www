@@ -1,6 +1,5 @@
 import { RichText } from 'prismic-reactjs'
 import Error from 'next/error'
-import * as prismicApi from '../../util/prismicApi'
 import PostTemplate from '../../templates/Post'
 import Meta from '../../components/Meta'
 
@@ -25,11 +24,11 @@ const Post = ({ data }) => {
   return <Error statusCode={404} />
 }
 
-Post.getInitialProps = async context => {
+Post.getInitialProps = async ({ query, prismicApi }) => {
   const journal = await prismicApi.getType('journal')
   const journals = journal.results
   const uids = journals.map(item => item.uid)
-  const { uid } = context.query
+  const { uid } = query
   const data = journals[uids.indexOf(uid)]
 
   return { data, journals, uids }

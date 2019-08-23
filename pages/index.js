@@ -1,7 +1,6 @@
 import Homepage from '../templates/Homepage'
 import Meta from '../components/Meta'
 import getInstagramData from '../util/getInstagramData'
-import * as prismicApi from '../util/prismicApi'
 
 const Index = ({ data }) => (
   <>
@@ -10,7 +9,7 @@ const Index = ({ data }) => (
   </>
 )
 
-Index.getInitialProps = async () => {
+Index.getInitialProps = async ({ prismicApi }) => {
   const homepage = await prismicApi.getSingle('page_home')
   const brand = await prismicApi.getType('brand')
   const capacity = await prismicApi.getType('capacity')
