@@ -4,6 +4,7 @@
   "description": "Website for High Tide NYC",
   "main": "index.js",
   "dependencies": {
+    "@tylermcrobert/react-lazyimg": "^0.0.5",
     "dotenv": "^8.0.0",
     "email-validator": "^2.0.4",
     "framer-motion": "^1.5.0",
@@ -25,7 +26,7 @@
   "devDependencies": {
     "babel-eslint": "latest",
     "babel-plugin-styled-components": "^1.10.6",
-    "eslint": "^6.1.0",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "latest",
     "eslint-plugin-import": "latest",

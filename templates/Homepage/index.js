@@ -1,5 +1,6 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
+import LazyImg from '@tylermcrobert/react-lazyimg'
 import Arrow from '../../components/Arrow'
 import Capabilities from '../../components/Capabilities'
 import Instagram from '../../components/Instagram'
@@ -53,17 +54,25 @@ function Homepage({ data }) {
   )
 }
 
-function FeaturedWork({ name, img }) {
+function FeaturedWork({ name, img, imgRatio }) {
   return (
     <div>
       <Header link={<a href="">{name}</a>}>Featured Project</Header>
-      <img src={img} alt="" />
+      <LazyImg src={img} ratio={imgRatio} alt="" />
     </div>
   )
 }
 
 FeaturedWork.Wrapper = ({ data }) => {
-  return <FeaturedWork name={RichText.asText(data.name)} img={data.image.url} />
+  const { width, height } = data.image.dimensions
+
+  return (
+    <FeaturedWork
+      imgRatio={height / width}
+      name={RichText.asText(data.name)}
+      img={data.image.url}
+    />
+  )
 }
 
 function Header({ children, link }) {

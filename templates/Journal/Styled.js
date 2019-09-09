@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import LazyImg from '@tylermcrobert/react-lazyimg'
 import { mq, sizes } from '../../style/theme'
 
 const STACK_SIZE = `(min-width: ${sizes.xs}px) and (max-width: ${sizes.md}px)`
@@ -33,7 +34,7 @@ const ImgContainer = styled.div`
   margin-bottom: ${props => props.theme.margins.slim};
 `
 
-const Img = styled.img`
+const Img = styled(LazyImg)`
   position: absolute;
   top: 0;
   width: 100%;

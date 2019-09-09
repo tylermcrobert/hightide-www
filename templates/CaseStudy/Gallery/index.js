@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { RichText } from 'prismic-reactjs'
+import LazyImg from '@tylermcrobert/react-lazyimg'
 import textExists from '../../../util/textExists'
 import formatTitle from '../../../util/formatTitle'
 import TextWrap from '../../../components/TextWrap'
@@ -13,7 +14,7 @@ function Gallery({ data, paragraph, mainImg }) {
   return (
     <>
       <Section>
-        {mainImg && <img src={mainImg} alt={formatTitle(title)} />}
+        {mainImg && <LazyImg src={mainImg} alt={formatTitle(title)} />}
       </Section>
       {textExists(paragraph) && (
         <Section>
@@ -24,7 +25,7 @@ function Gallery({ data, paragraph, mainImg }) {
         <Styled.GalleryWrap>
           {data.map(({ imageDesc, gallery }) => (
             <div>
-              {gallery && <img src={gallery} alt={formatTitle(title)} />}
+              {gallery && <LazyImg src={gallery} alt={formatTitle(title)} />}
               {textExists(imageDesc) && RichText.render(imageDesc)}
             </div>
           ))}

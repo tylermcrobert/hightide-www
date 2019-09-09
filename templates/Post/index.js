@@ -1,5 +1,6 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
+import LazyImg from '@tylermcrobert/react-lazyimg'
 import { Wrap, Section } from '../../style'
 import TextWrap from '../../components/TextWrap'
 import PageIntro from '../../components/PageIntro'
@@ -11,7 +12,7 @@ function Post({ data: apiData }) {
 
   return (
     <Wrap>
-      <img src={data.main_image.url} alt="" />
+      <LazyImg src={data.main_image.url} alt="" />
       <Section>
         <PageIntro>
           <PageIntro.Heading>{RichText.asText(data.title)}</PageIntro.Heading>
@@ -47,7 +48,7 @@ function PostGallery({ data }) {
   return (
     <Styled.Gallery>
       {data.items.map(galleryItem => (
-        <img
+        <LazyImg
           key={galleryItem.gallery_image.url}
           src={galleryItem.gallery_image.url}
           alt=""
@@ -61,7 +62,7 @@ function HeroImage({ data }) {
   return data.items.map(item => (
     <React.Fragment key={item.hero_image.url}>
       <Section>
-        {item.hero_image.url && <img src={item.hero_image.url} alt="" />}
+        {item.hero_image.url && <LazyImg src={item.hero_image.url} alt="" />}
       </Section>
       <Section>
         <TextWrap center>{RichText.render(item.hero_note)}</TextWrap>
