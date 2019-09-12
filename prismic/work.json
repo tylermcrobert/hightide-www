@@ -20,7 +20,7 @@
       "type": "StructuredText",
       "config": {
         "single": "heading4",
-        "label": "name",
+        "label": "Name",
         "placeholder": "Name"
       }
     },
@@ -29,7 +29,7 @@
       "config": {
         "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
         "allowTargetBlank": true,
-        "label": "description",
+        "label": "Description",
         "placeholder": "Description"
       }
     },
@@ -46,7 +46,7 @@
             "height": null
           }
         ],
-        "label": "image"
+        "label": "Main Image"
       }
     },
     "hover_image": {
@@ -167,6 +167,25 @@
                 }
               }
             }
+          },
+          "text_block": {
+            "type": "Slice",
+            "fieldset": "Text Block",
+            "description": "Add a block of text",
+            "icon": "format_color_text",
+            "display": "list",
+            "non-repeat": {
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "Text",
+                  "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }
