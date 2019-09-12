@@ -1,9 +1,10 @@
 import { createContext } from 'react'
 import { RichText } from 'prismic-reactjs'
-import { Wrap, Section } from '../../style'
+import { Wrap } from '../../style'
 import formatTitle from '../../util/formatTitle'
 import textExists from '../../util/textExists'
 import PageIntro from '../../components/PageIntro'
+import Section from '../../components/Section'
 import Gallery from './Gallery'
 
 export const CaseStudyCtx = createContext()

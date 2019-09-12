@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { validate } from 'email-validator'
 import Styled from './Styled'
-import { Wrap, Section } from '../../style'
+import { Wrap } from '../../style'
+import Section from "../Section"
 import config, { social } from '../../site.config'
 
 const SOCIAL_LINKS = [

@@ -3,9 +3,10 @@ import { RichText } from 'prismic-reactjs'
 import Link from 'next/link'
 
 import Styled from './Styled'
-import { Wrap, Section } from '../../style'
+import { Wrap } from '../../style'
 import formatTitle from '../../util/formatTitle'
 import Heading from '../../components/Heading'
+import Section from '../../components/Section'
 
 function Work({ data: response }) {
   return (

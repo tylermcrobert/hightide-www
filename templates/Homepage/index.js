@@ -6,7 +6,8 @@ import Capabilities from '../../components/Capabilities'
 import Instagram from '../../components/Instagram'
 import Marquee from '../../components/Marquee'
 import Styled from './Styled'
-import { Wrap, Section } from '../../style'
+import Section from '../../components/Section'
+import { Wrap } from '../../style'
 
 function Homepage({ data }) {
   const { homepage, brand, work } = data
