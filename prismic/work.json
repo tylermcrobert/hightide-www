@@ -33,21 +33,19 @@
         "placeholder": "Description"
       }
     },
-    "lazy_image": {
-      "type": "Image",
-      "config": {
-        "constraint": {},
-        "thumbnails": [],
-        "label": "Lazy Image"
-      }
-    },
     "image": {
       "type": "Image",
       "config": {
         "constraint": {
           "width": 1200
         },
-        "thumbnails": [],
+        "thumbnails": [
+          {
+            "name": "small",
+            "width": 800,
+            "height": null
+          }
+        ],
         "label": "image"
       }
     },
