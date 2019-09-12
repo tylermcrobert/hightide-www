@@ -17,14 +17,16 @@ function Homepage({ data }) {
   return (
     <>
       <Wrap>
-        <Section.Large>
+        <Section>
           <Styled.Intro>
             {RichText.asText(homepage.data.hero_text)}
           </Styled.Intro>
-        </Section.Large>
+        </Section>
+        {/* </Wrap> */}
         <Section>
           <FeaturedWork.Wrapper data={featuredProjects[0]} />
         </Section>
+        {/* <Wrap> */}
         <Section>
           <Header link={<a href="">See more capabilities</a>}>
             What We Do

@@ -33,7 +33,7 @@ const ease = {
 }
 
 const margins = {
-  standard: fontSizes[3],
+  standard: fontSizes[4],
   slim: fontSizes[1],
 }
 

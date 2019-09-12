@@ -14,13 +14,19 @@ export const Wrap = styled.div`
 `
 
 export const Section = styled.div`
-  margin: 3rem 0;
+  margin: 4rem 0;
 
+  @media ${mq.sm} {
+    margin: 5rem 0;
+  }
   @media ${mq.md} {
-    margin: 4rem 0;
+    margin: 6rem 0;
   }
   @media ${mq.lg} {
-    margin: 5rem 0;
+    margin: 6rem 0;
+  }
+  @media ${mq.xl} {
+    margin: 8rem 0;
   }
   ${props =>
     props.noTop &&
