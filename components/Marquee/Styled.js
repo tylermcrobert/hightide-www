@@ -2,6 +2,7 @@ import styled, { keyframes } from 'styled-components'
 
 const Wrapper = styled.div`
   min-width: 100%;
+  overflow: hidden;
 `
 
 const slide = keyframes`
