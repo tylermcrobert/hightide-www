@@ -1,7 +1,22 @@
 import styled, { css } from 'styled-components'
+import { useInView } from 'react-intersection-observer'
 import { mq } from '../../style/theme'
 
-const Section = styled.div`
+const FadeInNode = styled.div`
+  opacity: ${props => (props.isInView ? 1 : 0)};
+  transition: opacity 800ms ${props => props.theme.ease.easeIn};
+  will-change: opacity;
+`
+
+const FadeIn = ({ ...props }) => {
+  const [ref, inView] = useInView({
+    threshold: [0, 0, 0.25, 0],
+    triggerOnce: true,
+  })
+  return <FadeInNode ref={ref} isInView={inView} {...props} />
+}
+
+const Section = styled(FadeIn)`
   margin: 4rem 0;
 
   @media ${mq.sm} {
