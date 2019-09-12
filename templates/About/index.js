@@ -1,7 +1,8 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
-import { Wrap, Section } from '../../style'
+import { Wrap } from '../../style'
 import Capabilities from '../../components/Capabilities'
+import Section from '../../components/Section'
 // import PropTypes from 'prop-types'
 
 export default function About({ data }) {
