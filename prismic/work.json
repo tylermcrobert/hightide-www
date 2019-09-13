@@ -7,12 +7,21 @@
         "placeholder": "Slug"
       }
     },
+    "featured": {
+      "type": "Select",
+      "config": {
+        "options": ["Normal", "Featured"],
+        "default_value": "Normal",
+        "label": "featured",
+        "placeholder": "Featured"
+      }
+    },
     "name": {
       "type": "StructuredText",
       "config": {
-        "single": "heading1",
-        "label": "Title",
-        "placeholder": "Title"
+        "single": "heading4",
+        "label": "Name",
+        "placeholder": "Name"
       }
     },
     "description": {
@@ -22,15 +31,6 @@
         "allowTargetBlank": true,
         "label": "Description",
         "placeholder": "Description"
-      }
-    },
-    "featured": {
-      "type": "Select",
-      "config": {
-        "options": ["Normal", "Featured"],
-        "default_value": "Normal",
-        "label": "featured",
-        "placeholder": "Featured"
       }
     },
     "image": {
@@ -125,6 +125,52 @@
               }
             },
             "repeat": {}
+          },
+          "image_block": {
+            "type": "Slice",
+            "fieldset": "Image Block",
+            "description": "Add one or more images",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "img": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1200
+                  },
+                  "thumbnails": [
+                    {
+                      "name": "md",
+                      "width": 1200,
+                      "height": null
+                    },
+                    {
+                      "name": "lg",
+                      "width": 2400,
+                      "height": null
+                    }
+                  ],
+                  "label": "Image"
+                }
+              },
+              "layout": {
+                "type": "Select",
+                "config": {
+                  "options": ["Full-Width", "Half-Width"],
+                  "default_value": "Full-Width",
+                  "label": "Layout"
+                }
+              },
+              "desc": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph, em",
+                  "label": "Description"
+                }
+              }
+            }
           }
         }
       }
