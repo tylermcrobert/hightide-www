@@ -7,21 +7,12 @@
         "placeholder": "Slug"
       }
     },
-    "featured": {
-      "type": "Select",
-      "config": {
-        "options": ["Normal", "Featured"],
-        "default_value": "Normal",
-        "label": "featured",
-        "placeholder": "Featured"
-      }
-    },
     "name": {
       "type": "StructuredText",
       "config": {
-        "single": "heading4",
-        "label": "Name",
-        "placeholder": "Name"
+        "single": "heading1",
+        "label": "Title",
+        "placeholder": "Title"
       }
     },
     "description": {
@@ -31,6 +22,15 @@
         "allowTargetBlank": true,
         "label": "Description",
         "placeholder": "Description"
+      }
+    },
+    "featured": {
+      "type": "Select",
+      "config": {
+        "options": ["Normal", "Featured"],
+        "default_value": "Normal",
+        "label": "featured",
+        "placeholder": "Featured"
       }
     },
     "image": {
