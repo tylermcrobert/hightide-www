@@ -1,13 +1,14 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
-import LazyImg from '@tylermcrobert/react-lazyimg'
-import Arrow from '../../components/Arrow'
+
 import Capabilities from '../../components/Capabilities'
 import Instagram from '../../components/Instagram'
 import Marquee from '../../components/Marquee'
 import Styled from './Styled'
 import Section from '../../components/Section'
 import { Wrap } from '../../style'
+import FeaturedWork from '../../components/FeaturedWork'
+import SectionHead from '../../components/SectionHead'
 
 function Homepage({ data }) {
   const { homepage, brand, work } = data
@@ -29,13 +30,13 @@ function Homepage({ data }) {
         </Section>
         {/* <Wrap> */}
         <Section>
-          <Header link={<a href="">See more capabilities</a>}>
+          <SectionHead link={<a href="">See more capabilities</a>}>
             What We Do
-          </Header>
+          </SectionHead>
           <Capabilities data={data.capacity} />
         </Section>
         <Section>
-          <Header>Clients</Header>
+          <SectionHead>Clients</SectionHead>
           <Marquee>
             <Styled.Grid cols={4}>
               {brands.map((item, i) => (
@@ -54,41 +55,6 @@ function Homepage({ data }) {
         </Section>
       </Wrap>
     </>
-  )
-}
-
-function FeaturedWork({ name, img, imgRatio }) {
-  return (
-    <div>
-      <Header link={<a href="">{name}</a>}>Featured Project</Header>
-      <LazyImg src={img} ratio={imgRatio} alt="" />
-    </div>
-  )
-}
-
-FeaturedWork.Wrapper = ({ data }) => {
-  const { width, height } = data.image.dimensions
-
-  return (
-    <FeaturedWork
-      imgRatio={height / width}
-      name={RichText.asText(data.name)}
-      img={data.image.url}
-    />
-  )
-}
-
-function Header({ children, link }) {
-  return (
-    <Styled.Header>
-      <h5>{children}</h5>
-      {link && (
-        <h5>
-          {link}
-          <Arrow />
-        </h5>
-      )}
-    </Styled.Header>
   )
 }
 

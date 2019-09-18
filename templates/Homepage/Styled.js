@@ -13,22 +13,10 @@ const Grid = styled.div`
   }
 `
 
-const Header = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-
-  a {
-    &:hover {
-      text-decoration: underline;
-    }
-    text-decoration: none;
-  }
-`
-
 const Intro = styled.h1`
   @media ${mq.xs} {
     max-width: 14em;
   }
 `
 
-export default { Grid, Header, Intro }
+export default { Grid, Intro }
