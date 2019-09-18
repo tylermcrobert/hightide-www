@@ -1,11 +1,15 @@
 import { createContext, memo } from 'react'
 import { RichText } from 'prismic-reactjs'
-import { Wrap } from '../../style'
+
 import formatTitle from '../../util/formatTitle'
 import textExists from '../../util/textExists'
+
+import { Wrap } from '../../style'
 import PageIntro from '../../components/PageIntro'
 import Section from '../../components/Section'
+
 import Gallery from './Gallery'
+import Text from './Text'
 import ImageBlock from './ImageBlock'
 
 export const CaseStudyCtx = createContext()
@@ -43,6 +47,8 @@ function Slices({ data }) {
         return <Gallery.Wrapper data={slice} />
       case 'image_block':
         return <ImageBlock data={slice} />
+      case 'text_block':
+        return <Text data={slice} />
       default:
         console.log(`nothing built for ${slice.slice_type}`)
         return null
