@@ -1,22 +1,28 @@
-import { createContext } from 'react'
+import { createContext, memo } from 'react'
 import { RichText } from 'prismic-reactjs'
-import { Wrap } from '../../style'
+
 import formatTitle from '../../util/formatTitle'
 import textExists from '../../util/textExists'
+
+import { Wrap } from '../../style'
 import PageIntro from '../../components/PageIntro'
 import Section from '../../components/Section'
+
 import Gallery from './Gallery'
+import Text from './Text'
+import ImageBlock from './ImageBlock'
 
 export const CaseStudyCtx = createContext()
 
-export default function CaseStudy({ data }) {
+const CaseStudy = memo(({ data }) => {
   const title = RichText.asText(data.name)
+  const alt = formatTitle(title)
 
   return (
-    <CaseStudyCtx.Provider value={{ title }}>
+    <CaseStudyCtx.Provider value={{ title, alt }}>
       <Wrap>
         <Section noTop>
-          <img src={data.image.url} alt={formatTitle(title)} />
+          <img src={data.image.url} alt={alt} />
         </Section>
         <Section>
           <PageIntro>
@@ -32,16 +38,22 @@ export default function CaseStudy({ data }) {
       </Wrap>
     </CaseStudyCtx.Provider>
   )
-}
+})
 
 function Slices({ data }) {
   return data.body.map(slice => {
     switch (slice.slice_type) {
       case 'gallery':
         return <Gallery.Wrapper data={slice} />
+      case 'image_block':
+        return <ImageBlock data={slice} />
+      case 'text_block':
+        return <Text data={slice} />
       default:
         console.log(`nothing built for ${slice.slice_type}`)
         return null
     }
   })
 }
+
+export default CaseStudy

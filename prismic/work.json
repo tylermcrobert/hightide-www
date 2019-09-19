@@ -79,67 +79,6 @@
       "fieldset": "Slice zone",
       "config": {
         "choices": {
-          "gallery": {
-            "type": "Slice",
-            "fieldset": "gallery",
-            "description": "gallery",
-            "icon": "add_a_photo",
-            "display": "list",
-            "non-repeat": {
-              "gallery_main_image": {
-                "type": "Image",
-                "config": {
-                  "constraint": {},
-                  "thumbnails": [],
-                  "label": "Gallery Main Image"
-                }
-              },
-              "work_gallery": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-                  "label": "work_gallery",
-                  "placeholder": "Work Gallery"
-                }
-              },
-              "gallery_text": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
-                  "allowTargetBlank": true,
-                  "label": "Gallery Text",
-                  "placeholder": "Gallery Text"
-                }
-              }
-            },
-            "repeat": {
-              "image_gallery": {
-                "type": "Image",
-                "config": {
-                  "constraint": {},
-                  "thumbnails": [],
-                  "label": "image_gallery"
-                }
-              },
-              "image_description": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
-                  "allowTargetBlank": true,
-                  "label": "image_description",
-                  "placeholder": "Image Description"
-                }
-              },
-              "image_title": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-                  "label": "image_title",
-                  "placeholder": "Image Title"
-                }
-              }
-            }
-          },
           "related_work": {
             "type": "Slice",
             "fieldset": "related_work",
@@ -186,6 +125,52 @@
               }
             },
             "repeat": {}
+          },
+          "image_block": {
+            "type": "Slice",
+            "fieldset": "Image Block",
+            "description": "Add one or more images",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "img": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1200
+                  },
+                  "thumbnails": [
+                    {
+                      "name": "md",
+                      "width": 1200,
+                      "height": null
+                    },
+                    {
+                      "name": "lg",
+                      "width": 2400,
+                      "height": null
+                    }
+                  ],
+                  "label": "Image"
+                }
+              },
+              "layout": {
+                "type": "Select",
+                "config": {
+                  "options": ["Full-Width", "Half-Width"],
+                  "default_value": "Full-Width",
+                  "label": "Layout"
+                }
+              },
+              "desc": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph, em",
+                  "label": "Description"
+                }
+              }
+            }
           }
         }
       }
