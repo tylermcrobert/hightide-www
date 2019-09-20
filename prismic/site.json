@@ -1,0 +1,132 @@
+{
+  "Main": {
+    "site_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Site Title",
+        "placeholder": "High Tide"
+      }
+    },
+    "featured_work_1": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["work"],
+        "label": "Featured Work 01"
+      }
+    },
+    "featured_work_2": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["work"],
+        "label": "Featured Work 02"
+      }
+    },
+    "cs": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["work"],
+        "label": "Cs",
+        "placeholder": "Select a Case Study"
+      }
+    }
+  },
+  "Homepage": {
+    "introduction": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Introduction"
+      }
+    }
+  },
+  "Clients": {
+    "clients": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "logo": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": 400
+              },
+              "thumbnails": [
+                {
+                  "name": "Md",
+                  "width": 700,
+                  "height": null
+                },
+                {
+                  "name": "lg",
+                  "width": 1200,
+                  "height": null
+                }
+              ],
+              "label": "Logo"
+            }
+          },
+          "client_name": {
+            "type": "Text",
+            "config": {
+              "label": "Client Name",
+              "placeholder": "Nike"
+            }
+          }
+        },
+        "label": "Clients"
+      }
+    }
+  },
+  "Capacities": {
+    "capacities": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "capacity": {
+            "type": "StructuredText",
+            "config": {
+              "single": "heading2",
+              "label": "Capacity"
+            }
+          },
+          "description": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "paragraph",
+              "label": "Description"
+            }
+          }
+        },
+        "label": "Capacities"
+      }
+    }
+  },
+  "Careers": {
+    "careers": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "title": {
+            "type": "StructuredText",
+            "config": {
+              "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+              "label": "Title"
+            }
+          },
+          "description": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "paragraph",
+              "label": "Description"
+            }
+          }
+        },
+        "label": "Careers"
+      }
+    }
+  }
+}
