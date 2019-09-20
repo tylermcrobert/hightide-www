@@ -23,15 +23,6 @@
         "customtypes": ["work"],
         "label": "Featured Work 02"
       }
-    },
-    "cs": {
-      "type": "Link",
-      "config": {
-        "select": "document",
-        "customtypes": ["work"],
-        "label": "Cs",
-        "placeholder": "Select a Case Study"
-      }
     }
   },
   "Homepage": {
