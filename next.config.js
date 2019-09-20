@@ -1,3 +1,6 @@
+/* eslint-disable no-param-reassign */
+
+const path = require('path')
 const Prismic = require('prismic-javascript')
 const withFonts = require('next-fonts')
 require('dotenv').config()
@@ -8,6 +11,18 @@ async function getUids(type, api) {
 }
 
 module.exports = withFonts({
+  webpack(config) {
+    config.resolve = config.resolve || {}
+
+    config.resolve.modules = [
+      path.join('src'),
+      path.join(__dirname, 'node_modules'),
+      './',
+    ]
+
+    return config
+  },
+
   env: {
     INSTAGRAM_ENDPOINT: process.env.INSTAGRAM_ENDPOINT,
     INSTAGRAM_TOKEN: process.env.INSTAGRAM_TOKEN,
