@@ -1,5 +1,12 @@
 {
-  "Main": {
+  "Homepage": {
+    "introduction": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Introduction"
+      }
+    },
     "site_title": {
       "type": "StructuredText",
       "config": {
@@ -22,15 +29,6 @@
         "select": "document",
         "customtypes": ["work"],
         "label": "Featured Work 02"
-      }
-    }
-  },
-  "Homepage": {
-    "introduction": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading2",
-        "label": "Introduction"
       }
     }
   },
