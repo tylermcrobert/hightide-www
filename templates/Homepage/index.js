@@ -1,13 +1,14 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
 
-import Capabilities from 'components/Capabilities'
+import Capabilities from 'components/prismic/Capabilities'
 import Instagram from 'components/Instagram'
 import Marquee from 'components/Marquee'
 import Section from 'components/Section'
 import FeaturedWork from 'components/FeaturedWork'
 import SectionHead from 'components/SectionHead'
 import { Wrap } from 'style'
+import Careers from 'components/prismic/Careers'
 import Styled from './Styled'
 
 const Homepage = React.memo(({ data }) => {
@@ -23,12 +24,7 @@ const Homepage = React.memo(({ data }) => {
           <Styled.Intro>{RichText.asText(heroText)}</Styled.Intro>
         </Section>
         <HomeFeatureBlock data={featuredProjects[0]} />
-        <Section>
-          <SectionHead link={<a href="">See more capabilities</a>}>
-            What We Do
-          </SectionHead>
-          <Capabilities data={siteData.capacities} />
-        </Section>
+        <Capabilities data={siteData.capacities} />
         <Section>
           <SectionHead>Clients</SectionHead>
           <Marquee>
@@ -42,6 +38,7 @@ const Homepage = React.memo(({ data }) => {
           </Marquee>
         </Section>
         <HomeFeatureBlock data={featuredProjects[1]} />
+        <Careers data={siteData.careers} />
         <Section>
           <Instagram apiResponse={data.instagramData} />
         </Section>

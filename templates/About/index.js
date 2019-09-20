@@ -1,7 +1,7 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import { Wrap } from 'style'
-import Capabilities from 'components/Capabilities'
+import Capabilities from 'components/prismic/Capabilities'
 import Section from 'components/Section'
 // import PropTypes from 'prop-types'
 
@@ -10,7 +10,7 @@ export default function About({ data }) {
     <>
       <Wrap>
         <Section>{RichText.render(data.hero_text)}</Section>
-        <Capabilities data={data.capabilites} />
+        <Capabilities data={data.site.capacities} />
         {data.body.map(item => {
           switch (item.slice_type) {
             case 'hero_video':
@@ -21,14 +21,6 @@ export default function About({ data }) {
                   </video>
                 </Section>
               )
-            // case 'heroes_texts':
-            //   return <Section>heroes_texts</Section>
-            // case 'gif_hero':
-            //   return (
-            //     <Section>
-            //       <img src={item.items[0].gif_hero_image.url} />
-            //     </Section>
-            //   )
             default:
               console.log(`nothing built for ${item.slice_type}`)
               return null
