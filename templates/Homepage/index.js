@@ -27,7 +27,7 @@ const Homepage = React.memo(({ data }) => {
           <SectionHead link={<a href="">See more capabilities</a>}>
             What We Do
           </SectionHead>
-          <Capabilities data={data.capacity} />
+          <Capabilities data={siteData.capacities} />
         </Section>
         <Section>
           <SectionHead>Clients</SectionHead>
