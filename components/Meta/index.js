@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import Head from 'next/head'
-import config, { siteUrl, social, previewImage } from '../../site.config'
-import formatTitle from '../../util/formatTitle'
+import config, { siteUrl, social, previewImage } from 'site.config'
+import formatTitle from 'util/formatTitle'
 
 const removeLeadingSlash = str => str.replace(/^\/+/, '')
 

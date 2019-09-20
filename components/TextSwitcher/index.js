@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components'
 import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 import Styled from './Styled'
-import splitArr from '../../util/splitArr'
+import splitArr from 'util/splitArr'
 
 const TextSwitcherCtx = createContext()
 const ItemCtx = createContext()

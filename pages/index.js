@@ -1,6 +1,6 @@
-import Homepage from '../templates/Homepage'
-import Meta from '../components/Meta'
-import getInstagramData from '../util/getInstagramData'
+import Meta from 'components/Meta'
+import Homepage from 'templates/Homepage'
+import getInstagramData from 'util/getInstagramData'
 
 const Index = ({ data }) => (
   <>

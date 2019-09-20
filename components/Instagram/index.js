@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Styled from './Styled'
-import config from '../../site.config'
+import config from 'site.config'
 
 function Instagram({ apiResponse }) {
   if (apiResponse && apiResponse.data) {

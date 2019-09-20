@@ -1,10 +1,10 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import LazyImg from '@tylermcrobert/react-lazyimg'
-import { Wrap } from '../../style'
-import TextWrap from '../../components/TextWrap'
-import Section from '../../components/Section'
-import PageIntro from '../../components/PageIntro'
+import { Wrap } from 'style'
+import TextWrap from 'components/TextWrap'
+import Section from 'components/Section'
+import PageIntro from 'components/PageIntro'
 import Styled from './Styled'
 /* eslint no-console: 0 */
 

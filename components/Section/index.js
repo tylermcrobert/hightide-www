@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { useInView } from 'react-intersection-observer'
-import { mq } from '../../style/theme'
+import { mq } from 'style/theme'
 
 const FadeInNode = styled.div`
   opacity: ${props => (props.isInView ? 1 : 0)};

@@ -1,8 +1,8 @@
 import React, { useState, createContext, useContext } from 'react'
 import Link from 'next/link'
+import { Wrap } from 'style'
 import Styled from './Styled'
 import Heading from '../Heading'
-import { Wrap } from '../../style'
 
 const NAV_ITEMS = [
   { display: 'Work', href: '/work' },

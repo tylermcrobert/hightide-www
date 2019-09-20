@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { HEADING_LEVELS } from '../../style/GlobalStyle'
-import { mq } from '../../style/theme'
+import { HEADING_LEVELS } from 'style/GlobalStyle'
+import { mq } from 'style/theme'
 
 const DefaultInput = styled.input`
   margin: 0;

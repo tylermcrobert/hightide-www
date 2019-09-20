@@ -2,7 +2,7 @@ import React from 'react'
 import Prismic from 'prismic-javascript'
 import styled from 'styled-components'
 import { RichText } from 'prismic-reactjs'
-import Meta from '../components/Meta'
+import Meta from 'components/Meta'
 
 function Work({ data }) {
   console.log(data)

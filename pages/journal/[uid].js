@@ -1,7 +1,7 @@
 import { RichText } from 'prismic-reactjs'
 import Error from 'next/error'
-import PostTemplate from '../../templates/Post'
-import Meta from '../../components/Meta'
+import PostTemplate from 'templates/Post'
+import Meta from 'components/Meta'
 
 const Post = ({ data }) => {
   if (data) {

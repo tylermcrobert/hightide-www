@@ -1,6 +1,6 @@
 import React from 'react'
-import Meta from '../components/Meta'
-import Template from '../templates/Contact'
+import Meta from 'components/Meta'
+import Template from 'templates/Contact'
 
 export default function Contact({ data }) {
   return (

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { RichText } from 'prismic-reactjs'
-import Section from '../../../components/Section'
-import * as Gallery from '../../../components/Gallery'
-import textExists from '../../../util/textExists'
+import Section from 'components/Section'
+import * as Gallery from 'components/Gallery'
+import textExists from 'util/textExists'
 import { CaseStudyCtx } from '..'
 
 /*

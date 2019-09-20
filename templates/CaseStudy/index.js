@@ -1,12 +1,11 @@
 import { createContext, memo } from 'react'
 import { RichText } from 'prismic-reactjs'
 
-import formatTitle from '../../util/formatTitle'
-import textExists from '../../util/textExists'
-
-import { Wrap } from '../../style'
-import PageIntro from '../../components/PageIntro'
-import Section from '../../components/Section'
+import { Wrap } from 'style'
+import PageIntro from 'components/PageIntro'
+import Section from 'components/Section'
+import textExists from 'util/textExists'
+import formatTitle from 'util/formatTitle'
 
 import Gallery from './Gallery'
 import Text from './Text'

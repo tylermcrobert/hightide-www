@@ -2,7 +2,7 @@ import React from 'react'
 // import { RichText } from 'prismic-reactjs'
 import Link from 'next/link'
 import { RichText } from 'prismic-reactjs'
-import { Wrap } from '../../style'
+import { Wrap } from 'style'
 import Styled from './Styled'
 
 const fmtDate = date => {

@@ -1,6 +1,6 @@
 import React from 'react'
-import JournalTemplate from '../../templates/Journal'
-import Meta from '../../components/Meta'
+import JournalTemplate from 'templates/Journal'
+import Meta from 'components/Meta'
 
 export default function Journal({ data }) {
   return (

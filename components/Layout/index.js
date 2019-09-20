@@ -1,9 +1,9 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
+import GlobalStyle from 'style/GlobalStyle'
+import theme from 'style/theme'
 import Nav from '../Nav'
 import Footer from '../Footer'
-import GlobalStyle from '../../style/GlobalStyle'
-import theme from '../../style/theme'
 
 function Layout({ children }) {
   return (

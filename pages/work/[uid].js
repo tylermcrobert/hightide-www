@@ -2,8 +2,8 @@ import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import Error from 'next/error'
 
-import Meta from '../../components/Meta'
-import CaseStudy from '../../templates/CaseStudy'
+import Meta from 'components/Meta'
+import CaseStudy from 'templates/CaseStudy'
 
 const Work = ({ data: response }) => {
   if (response) {

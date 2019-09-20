@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
-import { Wrap as GlobalWrap } from '../../style'
-import { mq } from '../../style/theme'
+import { Wrap as GlobalWrap } from 'style'
+import { mq } from 'style/theme'
 import LogoSvg from '../Logo'
 
 const BREAKPOINT = mq.xs

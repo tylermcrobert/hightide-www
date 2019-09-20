@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { mq } from '../../style/theme'
+import { mq } from 'style/theme'
 
 const Grid = styled.div`
   display: flex;

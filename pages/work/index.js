@@ -1,6 +1,6 @@
 import React from 'react'
-import Meta from '../../components/Meta'
-import Template from '../../templates/Work'
+import Meta from 'components/Meta'
+import Template from 'templates/Work'
 
 function Work({ data }) {
   return (

@@ -1,14 +1,14 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
 
-import Capabilities from '../../components/Capabilities'
-import Instagram from '../../components/Instagram'
-import Marquee from '../../components/Marquee'
+import Capabilities from 'components/Capabilities'
+import Instagram from 'components/Instagram'
+import Marquee from 'components/Marquee'
+import Section from 'components/Section'
+import FeaturedWork from 'components/FeaturedWork'
+import SectionHead from 'components/SectionHead'
+import { Wrap } from 'style'
 import Styled from './Styled'
-import Section from '../../components/Section'
-import { Wrap } from '../../style'
-import FeaturedWork from '../../components/FeaturedWork'
-import SectionHead from '../../components/SectionHead'
 
 const Homepage = React.memo(({ data }) => {
   const siteData = data.site.data

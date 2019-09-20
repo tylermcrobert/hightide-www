@@ -1,8 +1,8 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
-import TextWrap from '../../../components/TextWrap'
-import textExists from '../../../util/textExists'
-import Section from '../../../components/Section'
+import TextWrap from 'components/TextWrap'
+import Section from 'components/Section'
+import textExists from 'util/textExists'
 
 // import PropTypes from 'prop-types'
 

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import LazyImg from '@tylermcrobert/react-lazyimg'
-import { mq, sizes } from '../../style/theme'
+import { mq, sizes } from 'style/theme'
 
 const STACK_SIZE = `(min-width: ${sizes.xs}px) and (max-width: ${sizes.md}px)`
 

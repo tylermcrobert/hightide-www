@@ -2,11 +2,11 @@ import PropTypes from 'prop-types'
 import { RichText } from 'prismic-reactjs'
 import Link from 'next/link'
 
+import { Wrap } from 'style'
+import Heading from 'components/Heading'
+import Section from 'components/Section'
+import formatTitle from 'util/formatTitle'
 import Styled from './Styled'
-import { Wrap } from '../../style'
-import formatTitle from '../../util/formatTitle'
-import Heading from '../../components/Heading'
-import Section from '../../components/Section'
 
 function Work({ data: response }) {
   return (
