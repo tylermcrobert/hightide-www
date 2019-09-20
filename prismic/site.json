@@ -1,18 +1,18 @@
 {
   "Homepage": {
-    "introduction": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading2",
-        "label": "Introduction"
-      }
-    },
     "site_title": {
       "type": "StructuredText",
       "config": {
         "single": "heading1",
         "label": "Site Title",
         "placeholder": "High Tide"
+      }
+    },
+    "introduction": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Introduction"
       }
     },
     "featured_work_1": {
