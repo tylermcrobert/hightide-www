@@ -7,15 +7,6 @@
         "placeholder": "Slug"
       }
     },
-    "featured": {
-      "type": "Select",
-      "config": {
-        "options": ["Normal", "Featured"],
-        "default_value": "Normal",
-        "label": "featured",
-        "placeholder": "Featured"
-      }
-    },
     "name": {
       "type": "StructuredText",
       "config": {
