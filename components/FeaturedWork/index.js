@@ -13,13 +13,14 @@ function FeaturedWork({ name, img, imgRatio }) {
 }
 
 FeaturedWork.Wrapper = ({ data }) => {
-  const { width, height } = data.image.dimensions
+  const { image, name } = data.data
+  const { width, height } = image.dimensions
 
   return (
     <FeaturedWork
       imgRatio={height / width}
-      name={RichText.asText(data.name)}
-      img={data.image.url}
+      name={RichText.asText(name)}
+      img={image.url}
     />
   )
 }

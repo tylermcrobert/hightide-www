@@ -11,11 +11,14 @@ const Index = ({ data }) => (
 
 Index.getInitialProps = async ({ prismicApi }) => {
   const homepage = await prismicApi.getSingle('page_home')
+  const site = await prismicApi.getSingle('site', {
+    fetchLinks: ['work.name', 'work.image'],
+  })
   const brand = await prismicApi.getType('brand')
   const capacity = await prismicApi.getType('capacity')
   const work = await prismicApi.getType('work')
   const instagramData = await getInstagramData()
-  return { data: { homepage, capacity, brand, work, instagramData } }
+  return { data: { homepage, capacity, brand, work, instagramData, site } }
 }
 
 export default Index

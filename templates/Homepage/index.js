@@ -10,25 +10,19 @@ import { Wrap } from '../../style'
 import FeaturedWork from '../../components/FeaturedWork'
 import SectionHead from '../../components/SectionHead'
 
-function Homepage({ data }) {
-  const { homepage, brand, work } = data
-  const brands = brand.results.map(res => res.data.logo.url)
-  const projects = work.results.map(item => item.data)
-  const featuredProjects = projects.filter(item => item.featured === 'Featured')
+const Homepage = React.memo(({ data }) => {
+  const siteData = data.site.data
+  const brands = data.brand.results.map(res => res.data.logo.url)
+  const featuredProjects = [siteData.featured_work_1, siteData.featured_work_2]
+  const heroText = siteData.introduction
 
   return (
     <>
       <Wrap>
         <Section>
-          <Styled.Intro>
-            {RichText.asText(homepage.data.hero_text)}
-          </Styled.Intro>
+          <Styled.Intro>{RichText.asText(heroText)}</Styled.Intro>
         </Section>
-        {/* </Wrap> */}
-        <Section>
-          <FeaturedWork.Wrapper data={featuredProjects[0]} />
-        </Section>
-        {/* <Wrap> */}
+        <HomeFeatureBlock data={featuredProjects[0]} />
         <Section>
           <SectionHead link={<a href="">See more capabilities</a>}>
             What We Do
@@ -47,15 +41,23 @@ function Homepage({ data }) {
             </Styled.Grid>
           </Marquee>
         </Section>
-        <Section>
-          <FeaturedWork.Wrapper data={featuredProjects[1]} />
-        </Section>
+        <HomeFeatureBlock data={featuredProjects[1]} />
         <Section>
           <Instagram apiResponse={data.instagramData} />
         </Section>
       </Wrap>
     </>
   )
-}
+})
 
+function HomeFeatureBlock({ data }) {
+  if (data.isBroken === false) {
+    return (
+      <Section>
+        <FeaturedWork.Wrapper data={data} />
+      </Section>
+    )
+  }
+  return null
+}
 export default Homepage
