@@ -117,5 +117,53 @@
         "label": "Careers"
       }
     }
+  },
+  "About": {
+    "about_hero": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "About Hero",
+        "placeholder": "High Tide is a full-service creative studio that distills, defines, and grows innovative brands."
+      }
+    },
+    "intro_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1500
+        },
+        "thumbnails": [
+          {
+            "name": "Mobile",
+            "width": 800,
+            "height": null
+          }
+        ],
+        "label": "Intro Image"
+      }
+    },
+    "our_difference": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "title": {
+            "type": "StructuredText",
+            "config": {
+              "single": "heading2",
+              "label": "Title"
+            }
+          },
+          "description": {
+            "type": "StructuredText",
+            "config": {
+              "single": "paragraph",
+              "label": "Description"
+            }
+          }
+        },
+        "label": "Our Difference"
+      }
+    }
   }
 }
