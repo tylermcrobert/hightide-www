@@ -95,7 +95,7 @@ const style = css`
   h5,
   h6,
   p {
-    margin-bottom: ${props => props.theme.margins.standard};
+    margin-bottom: 0.8rem;
   }
 
   h1 {
