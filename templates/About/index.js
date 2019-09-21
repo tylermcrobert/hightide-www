@@ -1,15 +1,16 @@
 import React from 'react'
-import { RichText } from 'prismic-reactjs'
+
 import { Wrap } from 'style'
 import Capabilities from 'components/prismic/Capabilities'
+import PageHero from 'components/prismic/PageHero'
 import Section from 'components/Section'
-// import PropTypes from 'prop-types'
 
-export default function About({ data }) {
+const About = React.memo(({ data }) => {
+  const { about_hero: heroText } = data.site
   return (
     <>
       <Wrap>
-        <Section>{RichText.render(data.hero_text)}</Section>
+        <PageHero text={heroText} />
         <Capabilities data={data.site.capacities} />
         {data.body.map(item => {
           switch (item.slice_type) {
@@ -22,13 +23,14 @@ export default function About({ data }) {
                 </Section>
               )
             default:
-              console.log(`nothing built for ${item.slice_type}`)
+              // console.log(`nothing built for ${item.slice_type}`)
               return null
           }
         })}
       </Wrap>
     </>
   )
-}
+})
 
+export default About
 // About.propTypes = {}
