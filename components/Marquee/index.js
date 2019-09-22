@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import Styled from './Styled'
 
 function Marquee({ children }) {
-  const [width, setWidth] = useState()
+  const [width, setWidth] = useState(0)
   const [paused, setPaused] = useState(false)
   const ref = useRef()
 

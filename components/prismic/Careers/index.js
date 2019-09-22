@@ -6,7 +6,7 @@ import Section from 'components/Section'
 import SectionHead from 'components/SectionHead'
 import TextSwitcher from 'components/TextSwitcher'
 
-export default function Capabilities({ data }) {
+export default function Careers({ data }) {
   if (data && data.length) {
     return (
       <Section>
@@ -18,10 +18,10 @@ export default function Capabilities({ data }) {
   return null
 }
 
-Capabilities.propTypes = {
+Careers.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      capacity: PropTypes.any.isRequired,
+      title: PropTypes.any.isRequired,
       description: PropTypes.any.isRequired,
     })
   ).isRequired,
@@ -36,9 +36,11 @@ export function CareerSwitcher({ data }) {
         title.length ? (
           <TextSwitcher.item i={i} key={RichText.asText(title)}>
             <TextSwitcher.Head>{RichText.asText(title)}</TextSwitcher.Head>
-            <TextSwitcher.Body>
-              <TextWrap>{RichText.asText(description)}</TextWrap>
-            </TextSwitcher.Body>
+            <TextWrap>
+              <TextSwitcher.Body>
+                {RichText.asText(description)}
+              </TextSwitcher.Body>
+            </TextWrap>
           </TextSwitcher.item>
         ) : null
       )}

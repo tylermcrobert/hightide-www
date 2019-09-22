@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import LazyImg from '@tylermcrobert/react-lazyimg'
 import Styled from './Styled'
 
@@ -6,8 +7,12 @@ function Diptych({ items }) {
   if (items && items.length) {
     return (
       <Styled.DiptychWrapper>
-        {items.map(({ url, dimensions }) => (
-          <LazyImg src={url} ratio={dimensions.height / dimensions.width} />
+        {items.map(({ url, dimensions }, i) => (
+          <LazyImg
+            key={`${url}${i}`}
+            src={url}
+            ratio={dimensions.height / dimensions.width}
+          />
         ))}
       </Styled.DiptychWrapper>
     )
@@ -15,6 +20,8 @@ function Diptych({ items }) {
   return null
 }
 
-// Diptych.propTypes = {}
+Diptych.propTypes = {
+  items: PropTypes.array.isRequired,
+}
 
 export default Diptych

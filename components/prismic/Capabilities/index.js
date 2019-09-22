@@ -33,8 +33,10 @@ export function CapabilitiesNode({ data }) {
 }
 
 Capabilities.propTypes = {
-  data: PropTypes.arrayOf({
-    capacity: PropTypes.any.isRequired,
-    description: PropTypes.any.isRequired,
-  }).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      capacity: PropTypes.any,
+      description: PropTypes.any,
+    })
+  ).isRequired,
 }

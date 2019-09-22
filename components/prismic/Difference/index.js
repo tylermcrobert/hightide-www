@@ -10,8 +10,8 @@ function Difference({ items }) {
     return (
       <Section>
         <Styled.ItemWrapper>
-          {items.map(({ title, description }) => (
-            <Styled.Item>
+          {items.map(({ title, description }, i) => (
+            <Styled.Item key={`${RichText.asText(title)}${i}`}>
               {RichText.render(title)}
               <TextWrap>{RichText.render(description)}</TextWrap>
             </Styled.Item>

@@ -48,21 +48,6 @@ const About = React.memo(({ data }) => {
         <Diptych items={diptychItems} />
         <Clients items={clients} />
         <Capabilities data={data.site.capacities} />
-        {data.body.map(item => {
-          switch (item.slice_type) {
-            case 'hero_video':
-              return (
-                <Section>
-                  <video autoPlay muted css={{ width: '100%' }}>
-                    <source src={item.items[0].hero_video.url} />
-                  </video>
-                </Section>
-              )
-            default:
-              // console.log(`nothing built for ${item.slice_type}`)
-              return null
-          }
-        })}
         <Careers data={careers} />
       </Wrap>
     </>

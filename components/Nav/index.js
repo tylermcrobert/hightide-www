@@ -69,11 +69,13 @@ function Overlay() {
       <Wrap>
         <ul>
           {NAV_ITEMS.map(item => (
-            <Heading as="li" headingStyle={0}>
-              <Link href={item.href} key={item.display}>
-                <a onClick={() => setMobileNav(false)}>{item.display}</a>
-              </Link>
-            </Heading>
+            <Link href={item.href} key={item.display}>
+              <a onClick={() => setMobileNav(false)}>
+                <Heading as="li" headingStyle={0}>
+                  {item.display}
+                </Heading>
+              </a>
+            </Link>
           ))}
         </ul>
       </Wrap>
