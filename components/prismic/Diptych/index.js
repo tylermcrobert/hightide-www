@@ -4,8 +4,6 @@ import Styled from './Styled'
 
 function Diptych({ items }) {
   if (items && items.length) {
-    console.log(items)
-
     return (
       <Styled.DiptychWrapper>
         {items.map(({ url, dimensions }) => (
