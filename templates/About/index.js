@@ -5,6 +5,7 @@ import Capabilities from 'components/prismic/Capabilities'
 import PageHero from 'components/prismic/PageHero'
 import Careers from 'components/prismic/Careers'
 import Difference from 'components/prismic/Difference'
+import Clients from 'components/prismic/Clients'
 import Diptych from 'components/prismic/Diptych'
 import Section from 'components/Section'
 import LazyImg from '@tylermcrobert/react-lazyimg'
@@ -13,9 +14,9 @@ import LazyImg from '@tylermcrobert/react-lazyimg'
  * * * Hero
  * * * Image
  * * * Difference
- * Diptych
+ * * * Diptych
  * Brand Message
- * Logos
+ * * * Logos
  * Image 3
  * * * What We do
  * video
@@ -30,14 +31,13 @@ const About = React.memo(({ data }) => {
     about_intro_image: heroImg,
     careers,
     our_difference: difference,
+    clients,
   } = data.site
 
   const diptychItems = [
     data.site.about_diptych_item_1,
     data.site.about_diptych_item_2,
   ]
-
-  console.log(diptychItems)
 
   return (
     <>
@@ -46,6 +46,7 @@ const About = React.memo(({ data }) => {
         <LazyImg src={heroImg.url} />
         <Difference items={difference} />
         <Diptych items={diptychItems} />
+        <Clients items={clients} />
         <Capabilities data={data.site.capacities} />
         {data.body.map(item => {
           switch (item.slice_type) {
