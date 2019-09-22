@@ -10,7 +10,7 @@ function Clients({ items }) {
     return (
       <Section>
         <>
-          <SectionHead>Clients</SectionHead>
+          <SectionHead line>Clients</SectionHead>
           <Marquee>
             <Styled.Grid>
               {items.map(
