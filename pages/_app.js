@@ -61,17 +61,18 @@ export default class HighTideApp extends App {
 
   render() {
     const { Component, pageProps } = this.props
-    const isDark = DARK_ROUTES.includes(this.props.router.route)
+    const { route } = this.props.router
+    const isDark = DARK_ROUTES.includes(route)
 
     return (
-      <Container>
+      <>
         <ThemeProvider theme={{ ...theme, isDark }}>
           <Layout>
             <PageTransition
               timeout={theme.routeTransition.timeout}
               classNames="page-transition"
             >
-              <Component {...pageProps} />
+              <Component {...pageProps} key={route} />
             </PageTransition>
           </Layout>
         </ThemeProvider>
@@ -132,7 +133,7 @@ export default class HighTideApp extends App {
             }
           `}
         </style>
-      </Container>
+      </>
     )
   }
 }
