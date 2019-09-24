@@ -1,4 +1,5 @@
-import App, { Container } from 'next/app'
+// https://github.com/zeit/next.js/issues/3313#issuecomment-475337811
+import App from 'next/app'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { PageTransition } from 'next-page-transitions'
