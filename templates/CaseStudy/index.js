@@ -2,7 +2,7 @@ import { createContext, memo } from 'react'
 import { RichText } from 'prismic-reactjs'
 
 import { Wrap } from 'style'
-import PageIntro from 'components/PageIntro'
+import PostIntro from 'components/PostIntro'
 import Section from 'components/Section'
 import textExists from 'util/textExists'
 import formatTitle from 'util/formatTitle'
@@ -24,14 +24,14 @@ const CaseStudy = memo(({ data }) => {
           <img src={data.image.url} alt={alt} />
         </Section>
         <Section>
-          <PageIntro>
-            <PageIntro.Heading>{title}</PageIntro.Heading>
+          <PostIntro>
+            <PostIntro.Heading>{title}</PostIntro.Heading>
             {textExists(data.description) && (
-              <PageIntro.Body>
+              <PostIntro.Body>
                 {RichText.render(data.description)}
-              </PageIntro.Body>
+              </PostIntro.Body>
             )}
-          </PageIntro>
+          </PostIntro>
         </Section>
         <Slices data={data} />
       </Wrap>

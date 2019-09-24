@@ -1,13 +1,12 @@
 import React from 'react'
-
+import { RichText } from 'prismic-reactjs'
 import { Wrap } from 'style'
 import Capabilities from 'components/prismic/Capabilities'
-import PageHero from 'components/prismic/PageHero'
+import PageIntro from 'components/PageIntro'
 import Careers from 'components/prismic/Careers'
 import Difference from 'components/prismic/Difference'
 import Clients from 'components/prismic/Clients'
 import Diptych from 'components/prismic/Diptych'
-import Section from 'components/Section'
 import LazyImg from '@tylermcrobert/react-lazyimg'
 
 /**
@@ -42,7 +41,7 @@ const About = React.memo(({ data }) => {
   return (
     <>
       <Wrap>
-        <PageHero text={heroText} />
+        <PageIntro>{RichText.render(heroText)}</PageIntro>
         <LazyImg src={heroImg.url} />
         <Difference items={difference} />
         <Diptych items={diptychItems} />

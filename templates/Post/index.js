@@ -4,7 +4,7 @@ import LazyImg from '@tylermcrobert/react-lazyimg'
 import { Wrap } from 'style'
 import TextWrap from 'components/TextWrap'
 import Section from 'components/Section'
-import PageIntro from 'components/PageIntro'
+import PostIntro from 'components/PostIntro'
 import Styled from './Styled'
 /* eslint no-console: 0 */
 
@@ -15,10 +15,10 @@ function Post({ data: apiData }) {
     <Wrap>
       <LazyImg src={data.main_image.url} alt="" />
       <Section>
-        <PageIntro>
-          <PageIntro.Heading>{RichText.asText(data.title)}</PageIntro.Heading>
-          <PageIntro.Body>{RichText.render(data.abstract)}</PageIntro.Body>
-        </PageIntro>
+        <PostIntro>
+          <PostIntro.Heading>{RichText.asText(data.title)}</PostIntro.Heading>
+          <PostIntro.Body>{RichText.render(data.abstract)}</PostIntro.Body>
+        </PostIntro>
       </Section>
       <SliceSwitch data={data} />
     </Wrap>

@@ -3,9 +3,10 @@ import { RichText } from 'prismic-reactjs'
 import { motion } from 'framer-motion'
 import { Wrap } from 'style'
 import Section from 'components/Section'
+import PageIntro from 'components/PageIntro'
+import toKebabCase from 'util/toKebabCase'
 import Styled from './Styled'
 import { BUDGET, INPUTS, PROJECT_TYPE, initialState } from './constants'
-import toKebabCase from 'util/toKebabCase'
 import getGlobalValidity from './util/getGlobalValidity'
 import getStructuredObj from './util/getStructuredObj'
 
@@ -41,7 +42,7 @@ export default function Contact({ data }) {
   return (
     <ContactCtx.Provider value={{ state, setState }}>
       <Wrap>
-        <Section.Large>{RichText.render(body[0].items[0].hero)}</Section.Large>
+        <PageIntro>{RichText.render(body[0].items[0].hero)}</PageIntro>
         <form onSubmit={handleSubmit}>
           <Section>
             <Information />
