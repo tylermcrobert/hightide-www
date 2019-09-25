@@ -1,13 +1,21 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import LazyImg from '@tylermcrobert/react-lazyimg'
+import NextLink from 'next/link'
 import SectionHead from '../SectionHead'
 
-function FeaturedWork({ name, img, imgRatio }) {
+function FeaturedWork({ name, img, imgRatio, uid }) {
+  const Link = ({ children }) => (
+    <NextLink href={`work/${uid}`}>
+      <a>{children}</a>
+    </NextLink>
+  )
   return (
     <div>
-      <SectionHead link={<a href="">{name}</a>}>Featured Project</SectionHead>
-      <LazyImg src={img} ratio={imgRatio} alt="" />
+      <SectionHead link={<Link>{name}</Link>}>Featured Project</SectionHead>
+      <Link>
+        <LazyImg src={img} ratio={imgRatio} alt="" />
+      </Link>
     </div>
   )
 }
@@ -21,6 +29,7 @@ FeaturedWork.Wrapper = ({ data }) => {
       imgRatio={height / width}
       name={RichText.asText(name)}
       img={image.url}
+      uid={data.uid}
     />
   )
 }
