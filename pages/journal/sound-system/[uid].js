@@ -1,11 +1,11 @@
-import fetch from 'isomorphic-unfetch'
 import { Client } from 'util/prismic'
 import Heading from 'components/Heading'
 import Section from 'components/Section'
 import { Wrap } from 'style'
+import { RichText } from 'prismic-reactjs'
 
-export default function Journal({ res, spotifyData, playlistData }) {
-  console.log({ playlistData })
+export default function Journal({ res, spotifyData }) {
+  const items = res.data.playlist_items
   return (
     <Wrap>
       <a href={spotifyData.url} target="_blank" rel="noopener noreferrer">
@@ -13,6 +13,18 @@ export default function Journal({ res, spotifyData, playlistData }) {
           <Heading as="h1">{spotifyData.title}</Heading>
         </Section>
       </a>
+      <Section>
+        <ul>
+          {items.map(({ song_title: title, artist }) => {
+            return (
+              <li>
+                <strong>{RichText.asText(title)}</strong> -{' '}
+                {RichText.asText(artist)}
+              </li>
+            )
+          })}
+        </ul>
+      </Section>
     </Wrap>
   )
 }
@@ -21,26 +33,8 @@ Journal.getInitialProps = async ({ req, query }) => {
   const { uid } = query
   const soundSystem = await Client(req).getByUID('sound_system', uid)
   const spotifyData = Journal.parsePrismicSpotifyData(soundSystem)
-  const playlistData = await Journal.fetchPlaylistData(spotifyData.id)
-  return { res: soundSystem, spotifyData, playlistData }
+  return { res: soundSystem, spotifyData }
 }
-
-/**
- * Fetch songs from Spotify API
- */
-
-const API_ENDPOINT = 'https://api.spotify.com/v1/playlists'
-
-Journal.fetchPlaylistData = id => {
-  fetch(`${API_ENDPOINT}/${id}`).then(res => {
-    console.log(res)
-    return res
-  })
-}
-
-/**
- * Returns Playlist name, url, id from OEMBED
- */
 
 Journal.parsePrismicSpotifyData = res => {
   if (res && res.data) {
