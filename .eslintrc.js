@@ -18,6 +18,7 @@ module.exports = {
     'react/no-danger': 0,
     'react/no-array-index-key': 0,
     'react/react-in-jsx-scope': 0,
+    'import/prefer-default-export': 0,
   },
   env: {
     browser: true,
