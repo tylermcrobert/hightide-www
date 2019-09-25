@@ -9,6 +9,7 @@ function Difference({ items }) {
   if (items && items.length) {
     return (
       <Section>
+        <h5>Our Difference</h5>
         <Styled.ItemWrapper>
           {items.map(({ title, description }, i) => (
             <Styled.Item key={`${RichText.asText(title)}${i}`}>
