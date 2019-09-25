@@ -31,13 +31,28 @@ Site for High Tide NYC. This site is built with Next.js. [See Next's docs to lea
 
   - **`/prismic`** - utility functions for Prismic.
 
-## Page Templating
+## Page Building
+
+### Templating 
 
 The `pages` directory is used only to fetch data. This data is then routed to it's accompanying template in `/template/`. This is because we can't house other files (like `./Styled` in the `/pages` directory)
 
-## Prismic fetch
+### Prismic fetch
 
-Use `Client()` utility function in `/util/prismic` for fetching data to avoid reinitializing API.
+Use `Client` utility function in `/util/prismic` for fetching data to avoid reinitializing API. Be sure to pass it the `req` object.
+
+```jsx
+import { Client } from 'util/prismic`
+
+function ExamplePage() {
+  ...
+}
+
+ExamplePage.getInitialProps = async ({ req }) => {
+  const homepage = await Client(req).getSingle('homepage')
+  return { contact }
+}
+```
 
 ## Styling
 
