@@ -97,6 +97,12 @@ const TextArea = styled.textarea`
   width: 100%;
   outline: none;
   border: none;
+
+  font-size: ${props => props.theme.fontSizes[2]};
+
+  @media ${mq.sm} {
+    font-size: ${props => props.theme.fontSizes[3]};
+  }
 `
 
 export default {
