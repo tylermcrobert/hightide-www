@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import { validate } from 'email-validator'
+import React from 'react'
 import { Wrap } from 'style'
-import Styled from './Styled'
-import Section from "../Section"
 import config, { social } from 'site.config'
+import Styled from './Styled'
+import Section from '../Section'
 
 const SOCIAL_LINKS = [
   {
@@ -25,30 +24,6 @@ const SOCIAL_LINKS = [
 ]
 
 function Footer() {
-  const [email, setEmail] = useState('')
-  const [valid, setValid] = useState(false)
-  const [error, setError] = useState(null)
-  const [success, setSuccess] = useState(null)
-
-  function handleChange(e) {
-    const { value } = e.target
-    setEmail(value)
-    setValid(validate(value))
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault()
-
-    if (valid) {
-      setError(null)
-      setSuccess(': )')
-      console.log(`${email} is valid`)
-    } else {
-      setError(': (')
-      setSuccess(null)
-    }
-  }
-
   return (
     <Styled.Footer>
       <Wrap>
@@ -80,15 +55,6 @@ function Footer() {
                 {item.name}
               </a>
             ))}
-            <form onSubmit={handleSubmit}>
-              <Styled.StayUpdated
-                aria-label="Stay Updated"
-                onChange={handleChange}
-                placeholder="Stay Updated"
-              />
-            </form>
-            {error && error}
-            {success && success}
           </Section>
         </Styled.Grid>
       </Wrap>
