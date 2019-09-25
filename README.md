@@ -33,6 +33,25 @@ Site for High Tide NYC. This site is built with Next.js. [See Next's docs to lea
 
 ## Page Building
 
+```jsx
+import { Client } from 'util/prismic`
+import ContactTemplate from 'templates/contact'
+
+function ExamplePage() {
+  return(
+    <>
+      <Meta title='Contact' />
+      <ContactTemplate contact={contact} />
+    </>
+  )
+}
+
+ExamplePage.getInitialProps = async ({ req }) => {
+  const contact = await Client(req).getSingle('contact')
+  return { contact }
+}
+```
+
 ### Templating 
 
 The `pages` directory is used only to fetch data. This data is then routed to it's accompanying template in `/template/`. This is because we can't house other files (like `./Styled` in the `/pages` directory)
@@ -41,22 +60,6 @@ The `pages` directory is used only to fetch data. This data is then routed to it
 
 Use `Client` utility function in `/util/prismic` for fetching data to avoid reinitializing API. Be sure to pass it the `req` object.
 
-```jsx
-import { Client } from 'util/prismic`
-import ContactTemplate from 'templates/contact'
-
-function ExamplePage() {
-  <>
-    <Meta title='Contact' />
-    <ContactTemplate contact={contact} />
-  </>
-}
-
-ExamplePage.getInitialProps = async ({ req }) => {
-  const contact = await Client(req).getSingle('contact')
-  return { contact }
-}
-```
 
 ## Styling
 
