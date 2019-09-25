@@ -2,7 +2,7 @@
 
 Site for High Tide NYC. This site is built with Next.js. [See Next's docs to learn more](https://nextjs.org/docs).
 
-## Page Structure
+## File Structure
 
 ```
 /components
@@ -43,13 +43,17 @@ Use `Client` utility function in `/util/prismic` for fetching data to avoid rein
 
 ```jsx
 import { Client } from 'util/prismic`
+import ContactTemplate from 'templates/contact'
 
 function ExamplePage() {
-  ...
+  <>
+    <Meta title='Contact' />
+    <ContactTemplate contact={contact} />
+  </>
 }
 
 ExamplePage.getInitialProps = async ({ req }) => {
-  const homepage = await Client(req).getSingle('homepage')
+  const contact = await Client(req).getSingle('contact')
   return { contact }
 }
 ```
