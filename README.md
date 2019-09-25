@@ -38,9 +38,9 @@ import { Client } from 'util/prismic'
 import ContactTemplate from 'templates/contact'
 
 function ExamplePage() {
-  return(
+  return (
     <>
-      <Meta title='Contact' />
+      <Meta title="Contact" />
       <ContactTemplate contact={contact} />
     </>
   )
@@ -52,14 +52,13 @@ ExamplePage.getInitialProps = async ({ req }) => {
 }
 ```
 
-### Templating 
+### Templating
 
 The `pages` directory is used only to fetch data. This data is then routed to it's accompanying template in `/template/`. This is because we can't house other files (like `./Styled` in the `/pages` directory)
 
 ### Prismic fetch
 
 Use `Client` utility function in `/util/prismic` for fetching data to avoid reinitializing API. Be sure to pass it the `req` object.
-
 
 ## Styling
 
