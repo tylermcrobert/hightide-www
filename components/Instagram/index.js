@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Styled from './Styled'
 import config from 'site.config'
+import LazyImg from '@tylermcrobert/react-lazyimg'
+import Styled from './Styled'
 
 function Instagram({ apiResponse }) {
   if (apiResponse && apiResponse.data) {
@@ -11,10 +12,11 @@ function Instagram({ apiResponse }) {
       <div>
         <Styled.Wrapper>
           {apiResponse.data.map(item => (
-            <img
+            <LazyImg
               key={item.images.standard_resolution.url}
               src={item.images.standard_resolution.url}
               alt={item.caption.text}
+              ratio={0.5}
             />
           ))}
         </Styled.Wrapper>
