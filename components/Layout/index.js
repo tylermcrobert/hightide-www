@@ -9,6 +9,19 @@ function Layout({ children }) {
   return (
     <React.Fragment>
       <GlobalStyle />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+        window.prismic = {
+          endpoint: 'https://hightidesite.cdn.prismic.io/api/v2'
+        };
+      `,
+        }}
+      />
+      <script
+        type="text/javascript"
+        src="https://static.cdn.prismic.io/prismic.min.js"
+      />
       <Nav />
       <main>{children}</main>
       {/* Maintain black footer regardless of theme change */}
