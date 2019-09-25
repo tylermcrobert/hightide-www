@@ -9,5 +9,11 @@ export const linkResolver = ({ uid, type }) => {
   if (type === 'work') {
     return `/work/${uid}`
   }
+  if (type === 'journal') {
+    return `/journal/${uid}`
+  }
+  if (type === 'sound_system') {
+    return `/journal/sound-system/${uid}`
+  }
   return uid
 }
