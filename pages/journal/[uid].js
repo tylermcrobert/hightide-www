@@ -2,6 +2,7 @@ import { RichText } from 'prismic-reactjs'
 import Error from 'next/error'
 import PostTemplate from 'templates/Post'
 import Meta from 'components/Meta'
+import { Client } from 'util/prismic'
 
 const Post = ({ data }) => {
   if (data) {
@@ -24,14 +25,10 @@ const Post = ({ data }) => {
   return <Error statusCode={404} />
 }
 
-Post.getInitialProps = async ({ query, prismicApi }) => {
-  const journal = await prismicApi.getType('journal')
-  const journals = journal.results
-  const uids = journals.map(item => item.uid)
+Post.getInitialProps = async ({ query, req }) => {
   const { uid } = query
-  const data = journals[uids.indexOf(uid)]
-
-  return { data, journals, uids }
+  const data = await Client(req).getByUID('journal', uid)
+  return { data }
 }
 
 export default Post

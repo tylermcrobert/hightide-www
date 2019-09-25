@@ -3,11 +3,9 @@ import App from 'next/app'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { PageTransition } from 'next-page-transitions'
-import { getApi } from 'util/prismicApi'
 
 import theme from 'style/theme'
 import Layout from 'components/Layout'
-import checkMeta from 'util/checkMeta'
 
 const AmericaLtWoff2 = '/static/fonts/GT-America-Standard-Light.woff2'
 const AmericaLtWoff = '/static/fonts/GT-America-Standard-Light.woff'
@@ -24,42 +22,10 @@ const LyonLtWoff2 = '/static/fonts/LyonDisplay-Light-Web.woff2'
 
 const DARK_ROUTES = ['/work']
 
-let api
-
 const { duration, distance } = theme.routeTransition
 const { accel, decel } = theme.ease
 
 export default class HighTideApp extends App {
-  async componentDidMount() {
-    api = await getApi()
-    window.__API_DATA__ = api
-    checkMeta()
-  }
-
-  componentDidUpdate() {
-    checkMeta()
-  }
-
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {}
-
-    if (!api) {
-      api = await getApi()
-    }
-
-    if (typeof window !== 'undefined') {
-      ctx.prismicApi = window.__API_DATA__
-    } else {
-      ctx.prismicApi = api
-    }
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
-
-    return { pageProps }
-  }
-
   render() {
     const { Component, pageProps } = this.props
     const { route } = this.props.router

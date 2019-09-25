@@ -1,6 +1,7 @@
 import React from 'react'
 import Meta from 'components/Meta'
 import Template from 'templates/About'
+import { Client } from 'util/prismic'
 
 export default function About({ data }) {
   return (
@@ -11,13 +12,13 @@ export default function About({ data }) {
   )
 }
 
-About.getInitialProps = async ({ prismicApi }) => {
-  const site = await prismicApi
+About.getInitialProps = async ({ req }) => {
+  const site = await Client(req)
     .getSingle('site', {
       fetchLinks: ['work.name', 'work.image'],
     })
     .then(item => item.data)
 
-  const about = await prismicApi.getSingle('page_about')
+  const about = await Client(req).getSingle('page_about')
   return { data: { ...about.data, site } }
 }

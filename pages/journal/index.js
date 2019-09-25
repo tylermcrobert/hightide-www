@@ -1,6 +1,7 @@
 import React from 'react'
 import JournalTemplate from 'templates/Journal'
 import Meta from 'components/Meta'
+import { getType } from 'util/prismic'
 
 export default function Journal({ data }) {
   return (
@@ -11,10 +12,11 @@ export default function Journal({ data }) {
   )
 }
 
-Journal.getInitialProps = async ({ prismicApi }) => {
-  const journal = await prismicApi.getType('journal', {
+Journal.getInitialProps = async ({ req }) => {
+  const journal = await getType(req, 'journal', {
     orderings: '[my.journal.date desc]',
-    // pageSize: 6,
+    // pageSize: 10,
   })
+
   return { data: journal }
 }

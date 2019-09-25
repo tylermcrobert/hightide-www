@@ -2,10 +2,12 @@ import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import Error from 'next/error'
 
-import Meta from 'components/Meta'
-import CaseStudy from 'templates/CaseStudy'
+import { Client } from 'util/prismic'
 
-const Work = ({ data: response }) => {
+import Meta from 'components/Meta'
+import CaseStudyTemplate from 'templates/CaseStudy'
+
+const CaseStudy = ({ data: response }) => {
   if (response) {
     return (
       <>
@@ -14,19 +16,17 @@ const Work = ({ data: response }) => {
           image={response.data.image.url}
           url={`work/${response.uid}`}
         />
-        <CaseStudy data={response.data} />
+        <CaseStudyTemplate data={response.data} />
       </>
     )
   }
   return <Error statusCode={404} />
 }
 
-Work.getInitialProps = async ({ query, prismicApi }) => {
+CaseStudy.getInitialProps = async ({ req, query }) => {
   const { uid } = query
-  const work = await prismicApi.getType('work')
-  const caseStudies = work.results
-  const data = caseStudies[caseStudies.map(item => item.uid).indexOf(uid)]
+  const data = await Client(req).getByUID('work', uid)
   return { data }
 }
 
-export default Work
+export default CaseStudy

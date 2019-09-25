@@ -1,6 +1,6 @@
 import React from 'react'
 import Router from 'next/router'
-import { Client, linkResolver } from 'prismic.config'
+import { Client, linkResolver } from 'util/prismic'
 
 const Preview = () => <div>Preview</div>
 

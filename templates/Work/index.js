@@ -13,7 +13,7 @@ function Work({ data: response }) {
     <Section>
       <Wrap>
         <Styled.Wrapper>
-          {response.work.results.map(({ uid, data }) => (
+          {response.results.map(({ uid, data }) => (
             <Link href="/work/[uid]" as={`/work/${uid}/`}>
               <a>
                 <WorkItem

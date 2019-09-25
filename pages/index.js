@@ -1,6 +1,7 @@
 import Meta from 'components/Meta'
 import Homepage from 'templates/Homepage'
 import getInstagramData from 'util/getInstagramData'
+import { Client } from 'util/prismic'
 
 const Index = ({ data }) => (
   <>
@@ -9,15 +10,16 @@ const Index = ({ data }) => (
   </>
 )
 
-Index.getInitialProps = async ({ prismicApi }) => {
-  const site = await prismicApi.getSingle('site', {
+Index.getInitialProps = async ({ req }) => {
+  const ClientReq = Client(req)
+
+  const site = await ClientReq.getSingle('site', {
     fetchLinks: ['work.name', 'work.image'],
   })
-  const brand = await prismicApi.getType('brand')
-  const work = await prismicApi.getType('work')
+
   const instagramData = await getInstagramData()
 
-  return { data: { brand, work, instagramData, site } }
+  return { data: { instagramData, site } }
 }
 
 export default Index
