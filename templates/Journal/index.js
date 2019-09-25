@@ -3,17 +3,8 @@ import React from 'react'
 import Link from 'next/link'
 import { RichText } from 'prismic-reactjs'
 import { Wrap } from 'style'
+import fmtDate from 'util/fmtDate'
 import Styled from './Styled'
-
-const fmtDate = date => {
-  const m = date.getMonth() + 1
-  const d = date.getDate()
-  const y = date.getFullYear()
-
-  const pad = num => num.toString().padStart(2, 0)
-
-  return `${pad(m)}.${pad(d)}.${pad(y)}`
-}
 
 export default function Journal({ data }) {
   return (
