@@ -3,6 +3,7 @@ import Section from 'components/Section'
 import PropTypes from 'prop-types'
 import Marquee from 'components/Marquee'
 import SectionHead from 'components/SectionHead'
+import LazyImg from '@tylermcrobert/react-lazyimg'
 import Styled from './Styled'
 
 function Clients({ items }) {
@@ -17,7 +18,11 @@ function Clients({ items }) {
                 ({ client_name: clientName, logo }, i) =>
                   clientName &&
                   logo && (
-                    <img key={`${logo}${i}`} src={logo.url} alt={clientName} />
+                    <LazyImg
+                      key={`${logo}${i}`}
+                      src={logo.url}
+                      alt={clientName}
+                    />
                   )
               )}
             </Styled.Grid>
