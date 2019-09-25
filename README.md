@@ -34,7 +34,7 @@ Site for High Tide NYC. This site is built with Next.js. [See Next's docs to lea
 ## Page Building
 
 ```jsx
-import { Client } from 'util/prismic`
+import { Client } from 'util/prismic'
 import ContactTemplate from 'templates/contact'
 
 function ExamplePage() {
