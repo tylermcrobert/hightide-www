@@ -11,7 +11,7 @@
     "introduction": {
       "type": "StructuredText",
       "config": {
-        "single": "heading2",
+        "single": "heading1",
         "label": "Introduction"
       }
     },
@@ -127,7 +127,7 @@
         "placeholder": "High Tide is a full-service creative studio that distills, defines, and grows innovative brands."
       }
     },
-    "intro_image": {
+    "about_intro_image": {
       "type": "Image",
       "config": {
         "constraint": {
@@ -163,6 +163,36 @@
           }
         },
         "label": "Our Difference"
+      }
+    },
+    "about_diptych_item_1": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 900
+        },
+        "thumbnails": [],
+        "label": "Diptych Item 1"
+      }
+    },
+    "about_diptych_item_2": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 900
+        },
+        "thumbnails": [],
+        "label": "Diptych Item 2"
+      }
+    },
+    "about_image_3": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200
+        },
+        "thumbnails": [],
+        "label": "About Image 3"
       }
     }
   }
