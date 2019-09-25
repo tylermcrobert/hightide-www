@@ -2,7 +2,7 @@
 
 Site for High Tide NYC. This site is built with Next.js. [See Next's docs to learn more](https://nextjs.org/docs).
 
-## 🏗Page Structure
+## Page Structure
 
 ```
 /components
