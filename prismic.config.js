@@ -10,20 +10,20 @@ export const linkResolver = ({ uid, type }) => {
   return uid
 }
 
-// -- Client method to query Prismic
-// Avoids reinitializing an API connection for every query, handling instead with a Client object
+/**
+ * Client method for querying prismic
+ * Avoids reinitializing an API connection for every query, handling
+ * instead with a Client object
+ *
+ * https://github.com/prismicio/nextjs-blog/blob/c595e3ecc694b227864b5297be25b9c302620e34/prismic-configuration.js
+ *
+ */
+
 let frontClient
 
 export const Client = (req = null) => {
   if (!req && frontClient) return frontClient
-  // Prevents generating new instances for client side since we don't need the refreshed request object.
 
-  // Reinitializes Client only if there's a req object present, which is used for Previews
-  const options = Object.assign(
-    {},
-    req ? { req } : {},
-    accessToken ? { accessToken } : {}
-  )
-  // Connects to the given repository to facilitate data queries
+  const options = { ...(req ? { req } : {}), accessToken }
   return Prismic.client(apiEndpoint, options)
 }
