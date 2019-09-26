@@ -3,6 +3,7 @@ import { RichText } from 'prismic-reactjs'
 
 import { Wrap } from 'style'
 import PostIntro from 'components/PostIntro'
+import { RelatedWrapper, RelatedItem } from 'components/Related'
 import Section from 'components/Section'
 import textExists from 'util/textExists'
 import formatTitle from 'util/formatTitle'
@@ -35,9 +36,31 @@ const CaseStudy = memo(({ data }) => {
         </Section>
         <Slices data={data} />
       </Wrap>
+      <Related items={data.related_work} />
     </CaseStudyCtx.Provider>
   )
 })
+
+function Related({ items }) {
+  if (items && items.length) {
+    return (
+      <RelatedWrapper>
+        {items.map(({ item }) => {
+          const name = RichText.asText(item.data.name)
+          return (
+            <RelatedItem
+              key={item.id}
+              title={name}
+              src={item.data.image.small.url}
+              link={`/work/${item.uid}`}
+            />
+          )
+        })}
+      </RelatedWrapper>
+    )
+  }
+  return null
+}
 
 function Slices({ data }) {
   return data.body.map(slice => {

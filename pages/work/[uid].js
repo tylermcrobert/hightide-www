@@ -25,7 +25,9 @@ const CaseStudy = ({ data: response }) => {
 
 CaseStudy.getInitialProps = async ({ req, query }) => {
   const { uid } = query
-  const data = await Client(req).getByUID('work', uid)
+  const data = await Client(req).getByUID('work', uid, {
+    fetchLinks: ['work.name', 'work.image'],
+  })
   return { data }
 }
 
