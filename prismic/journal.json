@@ -68,12 +68,21 @@
         "label": "main_image"
       }
     },
-    "thumbnail_image": {
-      "type": "Image",
+    "related_journal": {
+      "type": "Group",
       "config": {
-        "constraint": {},
-        "thumbnails": [],
-        "label": "thumbnail_image"
+        "fields": {
+          "item": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["journal"],
+              "label": "Journal Entry",
+              "placeholder": "Journal Entry"
+            }
+          }
+        },
+        "label": "Related Journal Entries"
       }
     },
     "body": {
