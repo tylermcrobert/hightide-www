@@ -15,7 +15,8 @@ export default function Journal({ data }) {
           const formattedDate = fmtDate(date)
           const title = RichText.asText(item.data.title)
           const mainImg = item.data.main_image.url
-          const thumbnail = item.data.thumbnail_image.url
+          const thumbnail =
+            item.data.thumbnail_image && item.data.thumbnail_image.url
 
           return (
             <JournalCard
