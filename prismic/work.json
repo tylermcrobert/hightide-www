@@ -40,22 +40,6 @@
         "label": "Main Image"
       }
     },
-    "hover_image": {
-      "type": "Image",
-      "config": {
-        "constraint": {},
-        "thumbnails": [],
-        "label": "hover_image"
-      }
-    },
-    "link": {
-      "type": "Link",
-      "config": {
-        "allowTargetBlank": true,
-        "label": "Link",
-        "placeholder": "Link"
-      }
-    },
     "related_work": {
       "type": "Group",
       "config": {
