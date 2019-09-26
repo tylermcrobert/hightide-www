@@ -6,7 +6,7 @@ const Grid = styled.div`
   width: 100%;
 
   img {
-    width: 5vw;
+    width: 10vw;
     display: inline-block;
     align-self: center;
   }
