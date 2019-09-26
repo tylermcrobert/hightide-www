@@ -57,12 +57,20 @@
       }
     },
     "related_work": {
-      "type": "Link",
+      "type": "Group",
       "config": {
-        "select": "document",
-        "customtypes": ["work"],
-        "label": "related_work",
-        "placeholder": "Related Work"
+        "fields": {
+          "item": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["work"],
+              "label": "Case Study",
+              "placeholder": "Case Study"
+            }
+          }
+        },
+        "label": "Related Work"
       }
     },
     "body": {
