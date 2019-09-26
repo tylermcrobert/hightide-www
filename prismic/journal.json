@@ -1,0 +1,167 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "uid",
+        "placeholder": "UID"
+      }
+    },
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "title",
+        "placeholder": "Title"
+      }
+    },
+    "thumbnail_text": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Thumbnail Text",
+        "placeholder": "Thumbnail Text"
+      }
+    },
+    "date": {
+      "type": "Date",
+      "config": {
+        "label": "date",
+        "placeholder": "Date"
+      }
+    },
+    "abstract": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "allowTargetBlank": true,
+        "label": "abstract",
+        "placeholder": "Abstract"
+      }
+    },
+    "lazy_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Lazy Image"
+      }
+    },
+    "main_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1400
+        },
+        "thumbnails": [
+          {
+            "name": "tablet",
+            "width": 900,
+            "height": 300
+          },
+          {
+            "name": "mobile",
+            "width": 400,
+            "height": 300
+          }
+        ],
+        "label": "main_image"
+      }
+    },
+    "thumbnail_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "thumbnail_image"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "choices": {
+          "hero_image": {
+            "type": "Slice",
+            "fieldset": "Hero Image",
+            "description": "Hero image with note",
+            "icon": "format_shapes",
+            "display": "list",
+            "non-repeat": {
+              "title1": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "label": "title",
+                  "placeholder": "Title"
+                }
+              }
+            },
+            "repeat": {
+              "hero_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "hero_image"
+                }
+              },
+              "hero_description": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "label": "hero_description",
+                  "placeholder": "Hero Description"
+                }
+              },
+              "hero_note": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "hero_note",
+                  "placeholder": "Hero Note"
+                }
+              }
+            }
+          },
+          "post_gallery": {
+            "type": "Slice",
+            "fieldset": "Post Gallery",
+            "description": "Collection of images for this post",
+            "icon": "linked_camera",
+            "display": "list",
+            "non-repeat": {
+              "gallery_name": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "label": "gallery_name",
+                  "placeholder": "Gallery Name"
+                }
+              }
+            },
+            "repeat": {
+              "gallery_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "gallery_image"
+                }
+              },
+              "gallery_image_description": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "label": "gallery_image_description",
+                  "placeholder": "Image Description"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
