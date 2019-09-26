@@ -30,16 +30,16 @@ const Item = styled.div`
 const Head = styled.h2`
   margin-bottom: ${props => props.theme.margins.slim};
   position: relative;
+  display: flex;
+  justify-content: space-between;
+`
 
-  &:after {
-    content: '＋';
-    position: absolute;
-    right: 0;
-    transition: 200ms transform ease-out;
-    transform: rotate(${props => (props.theme.active ? 45 : 0)}deg);
-  }
+const CloseMarker = styled.div`
+  transition: 200ms transform ease-out;
+  transform: rotate(${props => (props.theme.active ? 45 : 0)}deg); */}
+  display: inline-block;
 `
 
 const ColWrapper = styled.div``
 
-export default { Item, ColWrapper, Wrapper, Body, Head }
+export default { Item, ColWrapper, Wrapper, Body, Head, CloseMarker }

@@ -2,8 +2,8 @@ import React, { useState, useContext, createContext } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
-import Styled from './Styled'
 import splitArr from 'util/splitArr'
+import Styled from './Styled'
 
 const TextSwitcherCtx = createContext()
 const ItemCtx = createContext()
@@ -52,6 +52,15 @@ function Item({ children, i }) {
   )
 }
 
+function Head({ children }) {
+  return (
+    <Styled.Head>
+      {children}
+      <Styled.CloseMarker>&#65291;</Styled.CloseMarker>
+    </Styled.Head>
+  )
+}
+
 const ColWrapper = ({ children, cols }) => {
   const split = splitArr(children, cols)
   return (
@@ -64,7 +73,7 @@ const ColWrapper = ({ children, cols }) => {
 }
 
 TextSwitcher.Body = Body
-TextSwitcher.Head = Styled.Head
+TextSwitcher.Head = Head
 TextSwitcher.item = Item
 Item.propTypes = {
   i: PropTypes.number.isRequired,
