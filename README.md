@@ -39,10 +39,10 @@ import ContactTemplate from 'templates/contact'
 
 function ExamplePage() {
   return (
-    <>
+    <React.Fragment>
       <Meta title="Contact" />
       <ContactTemplate contact={contact} />
-    </>
+    </React.Fragment>
   )
 }
 
