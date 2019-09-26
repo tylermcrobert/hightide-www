@@ -39,14 +39,6 @@
         "placeholder": "Abstract"
       }
     },
-    "lazy_image": {
-      "type": "Image",
-      "config": {
-        "constraint": {},
-        "thumbnails": [],
-        "label": "Lazy Image"
-      }
-    },
     "main_image": {
       "type": "Image",
       "config": {
@@ -66,6 +58,14 @@
           }
         ],
         "label": "main_image"
+      }
+    },
+    "thumbnail_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "thumbnail_image"
       }
     },
     "related_journal": {
