@@ -1,40 +1,24 @@
 import { Client } from 'util/prismic'
-import Heading from 'components/Heading'
-import Section from 'components/Section'
-import { Wrap } from 'style'
-import { RichText } from 'prismic-reactjs'
 
-export default function Journal({ res, spotifyData }) {
-  const items = res.data.playlist_items
+import SoundSystemTemplate from 'templates/SoundSystem'
 
-  return (
-    <Wrap>
-      <a href={spotifyData.url} target="_blank" rel="noopener noreferrer">
-        <Section>
-          <Heading as="h1">{spotifyData.title}</Heading>
-        </Section>
-      </a>
-      <Section>
-        <ul>
-          {items.map(({ song_title: title, artist }) => {
-            return (
-              <li>
-                <strong>{RichText.asText(title)}</strong> -{' '}
-                {RichText.asText(artist)}
-              </li>
-            )
-          })}
-        </ul>
-      </Section>
-    </Wrap>
-  )
+export default function Journal({ spotifyData, tracks }) {
+  return <SoundSystemTemplate tracks={tracks} spotifyData={spotifyData} />
 }
 
 Journal.getInitialProps = async ({ req, query }) => {
   const { uid } = query
   const soundSystem = await Client(req).getByUID('sound_system', uid)
   const spotifyData = Journal.parsePrismicSpotifyData(soundSystem)
-  return { res: soundSystem, spotifyData }
+
+  const API_ROUTE =
+    'https://tm-hightide.netlify.com/.netlify/functions/getSpotifyAuth'
+
+  const tracks = await fetch(`${API_ROUTE}?id=${spotifyData.id}`)
+    .then(res => res.json())
+    .then(data => data.body.tracks.items)
+
+  return { res: soundSystem, spotifyData, tracks }
 }
 
 Journal.parsePrismicSpotifyData = res => {
