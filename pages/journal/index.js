@@ -7,7 +7,7 @@ export default function Journal({ data }) {
   return (
     <>
       <Meta title="Journal" url="/journal/" />
-      <JournalTemplate data={data} />
+      <JournalTemplate results={data.results} />
     </>
   )
 }

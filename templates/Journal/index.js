@@ -6,26 +6,24 @@ import { Wrap } from 'style'
 import fmtDate from 'util/fmtDate'
 import Styled from './Styled'
 
-export default function Journal({ data }) {
+export default function Journal({ results }) {
   return (
     <Wrap>
       <Styled.Wrapper>
-        {data.results.map((item, i) => {
-          const date = new Date(item.data.date)
+        {results.map(({ data, uid }) => {
+          const date = new Date(data.date)
           const formattedDate = fmtDate(date)
-          const title = RichText.asText(item.data.title)
-          const mainImg = item.data.main_image.url
-          const thumbnail =
-            item.data.thumbnail_image && item.data.thumbnail_image.url
+          const title = RichText.asText(data.title)
+          const mainImg = data.main_image.url
+          const thumbnail = data.thumbnail_image && data.thumbnail_image.url
 
           return (
             <JournalCard
-              key={item.uid}
-              uid={item.uid}
+              key={uid}
+              uid={uid}
               image={thumbnail || mainImg}
               date={formattedDate}
               title={title}
-              large={i % 4 === 0}
             />
           )
         })}
