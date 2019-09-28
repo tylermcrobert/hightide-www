@@ -6,6 +6,7 @@ import { RichText } from 'prismic-reactjs'
 
 export default function Journal({ res, spotifyData }) {
   const items = res.data.playlist_items
+
   return (
     <Wrap>
       <a href={spotifyData.url} target="_blank" rel="noopener noreferrer">

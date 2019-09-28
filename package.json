@@ -5,6 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@tylermcrobert/react-lazyimg": "^0.0.5",
+    "aws-sdk": "^2.538.0",
+    "axios": "^0.19.0",
     "dotenv": "^8.0.0",
     "email-validator": "^2.0.4",
     "framer-motion": "^1.5.0",
@@ -22,9 +24,11 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-intersection-observer": "^8.24.2",
+    "spotify-web-api-node": "^4.0.0",
     "styled-components": "^5.0.0-beta.8",
     "styled-reset": "^3.0.0",
-    "validator": "^11.1.0"
+    "validator": "^11.1.0",
+    "webpack": "^4.41.0"
   },
   "devDependencies": {
     "babel-eslint": "latest",
@@ -47,7 +51,7 @@
     "lint": "eslint  pages/** style/** templates/** components/**",
     "kill-port": "kill $(lsof -t -i:5000)",
     "tryout": "npm run export && http-server out",
-    "lambda-serve": "netlify-lambda serve functions",
+    "lambda-serve": "netlify-lambda -c functions/webpack.config.js serve functions",
     "lambda-build": "netlify-lambda build functions"
   },
   "repository": {
