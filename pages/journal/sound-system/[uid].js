@@ -2,7 +2,7 @@ import { Client } from 'util/prismic'
 
 import SoundSystemTemplate from 'templates/SoundSystem'
 
-export default function Journal({ spotifyData, tracks, res }) {
+export default function SoundSystem({ spotifyData, tracks, res }) {
   return (
     <SoundSystemTemplate
       tracks={tracks}
@@ -12,10 +12,10 @@ export default function Journal({ spotifyData, tracks, res }) {
   )
 }
 
-Journal.getInitialProps = async ({ req, query }) => {
+SoundSystem.getInitialProps = async ({ req, query }) => {
   const { uid } = query
   const soundSystem = await Client(req).getByUID('sound_system', uid)
-  const spotifyData = Journal.parsePrismicSpotifyData(soundSystem)
+  const spotifyData = SoundSystem.parsePrismicSpotifyData(soundSystem)
 
   const API_ROUTE =
     'https://tm-hightide.netlify.com/.netlify/functions/getSpotifyAuth'
@@ -27,13 +27,15 @@ Journal.getInitialProps = async ({ req, query }) => {
   return { res: soundSystem, spotifyData, tracks }
 }
 
-Journal.parsePrismicSpotifyData = res => {
-  if (res && res.data) {
+SoundSystem.parsePrismicSpotifyData = res => {
+  try {
     const playlistData = res.data.playlist_link
     const playlistUrl = playlistData.embed_url
     const { title } = playlistData
     const id = playlistUrl.split('/playlist/')[1].split('?')[0]
     return { url: playlistUrl, title, id }
+  } catch (err) {
+    console.error(err)
+    return null
   }
-  return null
 }
