@@ -22,6 +22,15 @@
         "placeholder": "Date"
       }
     },
+    "abstract": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "allowTargetBlank": true,
+        "label": "Abstract Description",
+        "placeholder": "We interviewed Chris Black, a writer and owner of Done to Death Projects based in New York, about starting his own media company, Public Announcement, writing books, and the wonderful hell that is New York City."
+      }
+    },
     "main_image": {
       "type": "Image",
       "config": {
