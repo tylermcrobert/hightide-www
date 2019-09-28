@@ -10,6 +10,7 @@
     "framer-motion": "^1.5.0",
     "isomorphic-unfetch": "^3.0.0",
     "modularscale-js": "^3.0.1",
+    "netlify-lambda": "^1.6.3",
     "next": "^9.0.3",
     "next-fonts": "^0.17.0",
     "next-ga": "^2.3.4",
@@ -45,7 +46,9 @@
     "export": "next build && next export",
     "lint": "eslint  pages/** style/** templates/** components/**",
     "kill-port": "kill $(lsof -t -i:5000)",
-    "tryout": "npm run export && http-server out"
+    "tryout": "npm run export && http-server out",
+    "lambda-serve": "netlify-lambda serve functions",
+    "lambda-build": "netlify-lambda build functions"
   },
   "repository": {
     "type": "git",
