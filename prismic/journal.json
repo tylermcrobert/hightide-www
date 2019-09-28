@@ -15,28 +15,11 @@
         "placeholder": "Title"
       }
     },
-    "thumbnail_text": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-        "label": "Thumbnail Text",
-        "placeholder": "Thumbnail Text"
-      }
-    },
     "date": {
       "type": "Date",
       "config": {
         "label": "date",
         "placeholder": "Date"
-      }
-    },
-    "abstract": {
-      "type": "StructuredText",
-      "config": {
-        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
-        "allowTargetBlank": true,
-        "label": "abstract",
-        "placeholder": "Abstract"
       }
     },
     "main_image": {
@@ -47,42 +30,32 @@
         },
         "thumbnails": [
           {
-            "name": "tablet",
+            "name": "900",
             "width": 900,
-            "height": 300
+            "height": null
           },
           {
-            "name": "mobile",
+            "name": "400",
             "width": 400,
-            "height": 300
+            "height": null
+          },
+          {
+            "name": "2400",
+            "width": 2400,
+            "height": null
           }
         ],
-        "label": "main_image"
+        "label": "Main Image"
       }
     },
     "thumbnail_image": {
       "type": "Image",
       "config": {
-        "constraint": {},
-        "thumbnails": [],
-        "label": "thumbnail_image"
-      }
-    },
-    "related_journal": {
-      "type": "Group",
-      "config": {
-        "fields": {
-          "item": {
-            "type": "Link",
-            "config": {
-              "select": "document",
-              "customtypes": ["journal"],
-              "label": "Journal Entry",
-              "placeholder": "Journal Entry"
-            }
-          }
+        "constraint": {
+          "width": 960
         },
-        "label": "Related Journal Entries"
+        "thumbnails": [],
+        "label": "Thumbnail (Optional)"
       }
     },
     "body": {
@@ -90,10 +63,75 @@
       "fieldset": "Slice zone",
       "config": {
         "choices": {
+          "image_block": {
+            "type": "Slice",
+            "fieldset": "Image Block",
+            "description": "Add one or more images",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "img": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1200
+                  },
+                  "thumbnails": [
+                    {
+                      "name": "md",
+                      "width": 1200,
+                      "height": null
+                    },
+                    {
+                      "name": "lg",
+                      "width": 2400,
+                      "height": null
+                    }
+                  ],
+                  "label": "Image"
+                }
+              },
+              "layout": {
+                "type": "Select",
+                "config": {
+                  "options": ["Full-Width", "Half-Width"],
+                  "default_value": "Full-Width",
+                  "label": "Layout"
+                }
+              },
+              "desc": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph, em",
+                  "label": "Description"
+                }
+              }
+            }
+          },
+          "text_block": {
+            "type": "Slice",
+            "fieldset": "Text Block",
+            "description": "Add a block of text",
+            "icon": "format_color_text",
+            "display": "list",
+            "non-repeat": {
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "Text",
+                  "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                }
+              }
+            },
+            "repeat": {}
+          },
           "hero_image": {
             "type": "Slice",
-            "fieldset": "Hero Image",
-            "description": "Hero image with note",
+            "fieldset": "(Deprecated ) Hero Image",
+            "description": "Do not use",
             "icon": "format_shapes",
             "display": "list",
             "non-repeat": {
@@ -136,8 +174,8 @@
           },
           "post_gallery": {
             "type": "Slice",
-            "fieldset": "Post Gallery",
-            "description": "Collection of images for this post",
+            "fieldset": "(Deprecated) Post Gallery",
+            "description": "Do not use",
             "icon": "linked_camera",
             "display": "list",
             "non-repeat": {
@@ -170,6 +208,22 @@
             }
           }
         }
+      }
+    }
+  },
+  "Sound System": {
+    "version": {
+      "type": "Number",
+      "config": {
+        "label": "Version",
+        "placeholder": "12"
+      }
+    },
+    "spotify_link": {
+      "type": "Embed",
+      "config": {
+        "label": "Spotify Link (Required)",
+        "placeholder": "https://open.spotify.com/playlist/..."
       }
     }
   }
