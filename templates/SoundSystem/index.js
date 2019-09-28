@@ -7,42 +7,52 @@ import TextWrap from 'components/TextWrap'
 import msToTime from 'util/msToTime'
 import Styled from './Styled'
 
-const SoundSystem = memo(({ tracks, spotifyData, data, image }) => {
-  return (
-    <Wrap>
-      <Styled.Columns>
-        <Section>
-          <Styled.PlaylistCover src={image} alt="" width="50px" />
-          <Heading as="h1">{spotifyData.title}</Heading>
-          <TextWrap>{RichText.render(data.description)}</TextWrap>
-          <a href={spotifyData.url} target="_blank" rel="noopener noreferrer">
-            <strong>Follow Playlist</strong>
-          </a>
-        </Section>
-        <Section>
-          <ul>
-            {tracks.map(({ track }) => {
-              const albumCover = track.album.images[0].url
-              const artists = track.artists
-                .map(artist => artist.name)
-                .join(', ')
-              const duration = msToTime(track.duration_ms)
-              return (
-                <Track
-                  key={track.name}
-                  name={track.name}
-                  albumCover={albumCover}
-                  artists={artists}
-                  duration={duration}
-                />
-              )
-            })}
-          </ul>
-        </Section>
-      </Styled.Columns>
-    </Wrap>
-  )
-})
+const SoundSystem = memo(
+  ({
+    tracks,
+    playlistLink,
+    spotifyDesc,
+    spotifyImage,
+    spotifyName,
+    prismicData,
+  }) => {
+    console.log(prismicData)
+    return (
+      <Wrap>
+        <Styled.Columns>
+          <Section>
+            <Styled.PlaylistCover src={spotifyImage} alt="" width="50px" />
+            <Heading as="h1">{RichText.asText(prismicData.title)}</Heading>
+            <TextWrap>{RichText.render(spotifyDesc)}</TextWrap>
+            <a href={playlistLink} target="_blank" rel="noopener noreferrer">
+              <strong>Follow Playlist</strong>
+            </a>
+          </Section>
+          <Section>
+            <ul>
+              {tracks.map(({ track }) => {
+                const albumCover = track.album.images[0].url
+                const artists = track.artists
+                  .map(artist => artist.name)
+                  .join(', ')
+                const duration = msToTime(track.duration_ms)
+                return (
+                  <Track
+                    key={track.name}
+                    name={track.name}
+                    albumCover={albumCover}
+                    artists={artists}
+                    duration={duration}
+                  />
+                )
+              })}
+            </ul>
+          </Section>
+        </Styled.Columns>
+      </Wrap>
+    )
+  }
+)
 
 const Track = ({ albumCover, artists, name, duration }) => {
   return (

@@ -1,10 +1,12 @@
 import { RichText } from 'prismic-reactjs'
 import Error from 'next/error'
 import PostTemplate from 'templates/Post'
+import SoundSystemTemplate from 'templates/SoundSystem'
 import Meta from 'components/Meta'
 import { Client } from 'util/prismic'
+import SoundSystemReq from 'class/SoundSystemReq'
 
-const Post = ({ journal }) => {
+const Post = ({ journal, soundSystem }) => {
   if (journal) {
     const postImg = journal.data.main_image.url
     const thumnail =
@@ -12,6 +14,7 @@ const Post = ({ journal }) => {
 
     const title = RichText.asText(journal.data.title)
 
+    console.log(soundSystem)
     return (
       <>
         <Meta
@@ -19,7 +22,11 @@ const Post = ({ journal }) => {
           image={thumnail || postImg}
           url={`journal/${journal.uid}`}
         />
-        <PostTemplate data={journal} />
+        {soundSystem.tracks ? (
+          <SoundSystemTemplate {...soundSystem} prismicData={journal.data} />
+        ) : (
+          <PostTemplate data={journal} />
+        )}
       </>
     )
   }
@@ -27,9 +34,20 @@ const Post = ({ journal }) => {
 }
 
 Post.getInitialProps = async ({ query, req }) => {
-  const { uid } = query
-  const journal = await Client(req).getByUID('journal', uid)
-  return { journal }
+  try {
+    const { uid } = query
+    const journal = await Client(req).getByUID('journal', uid)
+
+    const soundSystem = new SoundSystemReq(journal)
+    if (soundSystem.playlistId) {
+      await soundSystem.fetch()
+    }
+
+    return { journal, soundSystem }
+  } catch (err) {
+    console.error(err)
+    return {}
+  }
 }
 
 export default Post
