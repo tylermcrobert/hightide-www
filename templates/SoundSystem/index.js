@@ -8,22 +8,14 @@ import msToTime from 'util/msToTime'
 import Styled from './Styled'
 
 const SoundSystem = memo(
-  ({
-    tracks,
-    playlistLink,
-    spotifyDesc,
-    spotifyImage,
-    spotifyName,
-    prismicData,
-  }) => {
-    console.log(prismicData)
+  ({ tracks, playlistLink, spotifyImage, prismicData }) => {
     return (
       <Wrap>
         <Styled.Columns>
           <Section>
             <Styled.PlaylistCover src={spotifyImage} alt="" width="50px" />
             <Heading as="h1">{RichText.asText(prismicData.title)}</Heading>
-            <TextWrap>{RichText.render(spotifyDesc)}</TextWrap>
+            <TextWrap>{RichText.render(prismicData.abstract)}</TextWrap>
             <a href={playlistLink} target="_blank" rel="noopener noreferrer">
               <strong>Follow Playlist</strong>
             </a>
@@ -36,6 +28,7 @@ const SoundSystem = memo(
                   .map(artist => artist.name)
                   .join(', ')
                 const duration = msToTime(track.duration_ms)
+
                 return (
                   <Track
                     key={track.name}

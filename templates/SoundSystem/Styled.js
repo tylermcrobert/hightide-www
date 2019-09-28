@@ -16,6 +16,9 @@ const Track = styled.li`
   align-items: center;
   margin: 1rem 0;
 
+  &:nth-child(1) {
+    margin-top: 0;
+  }
   font-size: ${props => props.theme.fontSizes[1]};
 `
 
