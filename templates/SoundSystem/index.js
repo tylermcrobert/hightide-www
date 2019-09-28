@@ -4,35 +4,39 @@ import Section from 'components/Section'
 import { Wrap } from 'style'
 import Styled from './Styled'
 
-function SoundSystem({ tracks, spotifyData }) {
+function SoundSystem({ tracks, spotifyData, data }) {
+  console.log(tracks)
   return (
     <Wrap>
-      <a href={spotifyData.url} target="_blank" rel="noopener noreferrer">
+      <Styled.Columns>
+        <a href={spotifyData.url} target="_blank" rel="noopener noreferrer">
+          <Section>
+            <Heading as="h1">{spotifyData.title}</Heading>
+          </Section>
+        </a>
         <Section>
-          <Heading as="h1">{spotifyData.title}</Heading>
+          <ul>
+            {tracks.map(({ track }) => {
+              const albumCover = track.album.images[0].url
+              const artists = track.artists
+                .map(artist => artist.name)
+                .join(', ')
+              return (
+                <Track
+                  name={track.name}
+                  albumCover={albumCover}
+                  artists={artists}
+                />
+              )
+            })}
+          </ul>
         </Section>
-      </a>
-      <Section>
-        <ul>
-          {tracks.map(({ track }, index) => {
-            const albumCover = track.album.images[0].url
-            const artists = track.artists.map(artist => artist.name).join(', ')
-            return (
-              <Track
-                number={index + 1}
-                name={track.name}
-                albumCover={albumCover}
-                artists={artists}
-              />
-            )
-          })}
-        </ul>
-      </Section>
+      </Styled.Columns>
     </Wrap>
   )
 }
 
-const Track = ({ albumCover, number, artists, name }) => {
+const Track = ({ albumCover, artists, name }) => {
   return (
     <Styled.Track>
       <Styled.AlbumCoverWrapper>

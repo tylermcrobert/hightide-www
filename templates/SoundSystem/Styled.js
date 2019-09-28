@@ -1,11 +1,17 @@
 import styled from 'styled-components'
 
+const Columns = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`
 const Track = styled.li`
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: ${props => props.theme.margins.slim};
   align-items: center;
   margin: 0.25rem 0;
+
+  font-size: ${props => props.theme.fontSizes[1]};
 `
 
 const AlbumCoverWrapper = styled.div`
@@ -13,9 +19,9 @@ const AlbumCoverWrapper = styled.div`
   padding-top: 50%; */}
 
   img {
-    height: 5rem;
+    height: 3rem;
     width: auto;
   }
 `
 
-export default { Track, AlbumCoverWrapper }
+export default { Track, AlbumCoverWrapper, Columns }

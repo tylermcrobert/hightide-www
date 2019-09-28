@@ -2,8 +2,14 @@ import { Client } from 'util/prismic'
 
 import SoundSystemTemplate from 'templates/SoundSystem'
 
-export default function Journal({ spotifyData, tracks }) {
-  return <SoundSystemTemplate tracks={tracks} spotifyData={spotifyData} />
+export default function Journal({ spotifyData, tracks, res }) {
+  return (
+    <SoundSystemTemplate
+      tracks={tracks}
+      data={res.data}
+      spotifyData={spotifyData}
+    />
+  )
 }
 
 Journal.getInitialProps = async ({ req, query }) => {
