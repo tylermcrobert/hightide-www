@@ -51,8 +51,8 @@
     "lint": "eslint  pages/** style/** templates/** components/**",
     "kill-port": "kill $(lsof -t -i:5000)",
     "tryout": "npm run export && http-server out",
-    "lambda-serve": "netlify-lambda -c functions/webpack.config.js serve functions",
-    "lambda-build": "netlify-lambda build functions"
+    "lambda-serve": "netlify-lambda -c webpack.functions.config.js serve functions",
+    "lambda-build": "netlify-lambda -c webpack.functions.config.js build functions"
   },
   "repository": {
     "type": "git",
