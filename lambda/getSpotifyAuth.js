@@ -12882,97 +12882,79 @@ var spotifyApi = new SpotifyWebApi({
   redirectUri: 'http://localhost:9000/getSpotifyAuth'
 });
 
-exports.handler =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  _regeneratorRuntime.mark(function _callee2(event, context, callback) {
-    var id, getAccessToken, _getAccessToken, token;
+exports.handler = function (event, context, callback) {
+  var id = event.queryStringParameters.id; //
+  // if (!id) {
+  //   callback(null, {
+  //     statusCode: 400,
+  //     body: 'Missing parameter id',
+  //   })
+  // }
 
-    return _regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _getAccessToken = function _ref3() {
-              _getAccessToken = _asyncToGenerator(
-              /*#__PURE__*/
-              _regeneratorRuntime.mark(function _callee() {
-                var res;
-                return _regeneratorRuntime.wrap(function _callee$(_context) {
-                  while (1) {
-                    switch (_context.prev = _context.next) {
-                      case 0:
-                        _context.prev = 0;
-                        _context.next = 3;
-                        return spotifyApi.clientCredentialsGrant();
+  function getAccessToken() {
+    return _getAccessToken.apply(this, arguments);
+  }
 
-                      case 3:
-                        res = _context.sent;
-                        return _context.abrupt("return", res.body.access_token);
+  function _getAccessToken() {
+    _getAccessToken = _asyncToGenerator(
+    /*#__PURE__*/
+    _regeneratorRuntime.mark(function _callee() {
+      var res;
+      return _regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return spotifyApi.clientCredentialsGrant();
 
-                      case 7:
-                        _context.prev = 7;
-                        _context.t0 = _context["catch"](0);
-                        callback(null, {
-                          statusCode: _context.t0.statusCode,
-                          body: _context.t0.message
-                        });
-                        return _context.abrupt("return", null);
+            case 3:
+              res = _context.sent;
+              return _context.abrupt("return", res.body.access_token);
 
-                      case 11:
-                      case "end":
-                        return _context.stop();
-                    }
-                  }
-                }, _callee, null, [[0, 7]]);
-              }));
-              return _getAccessToken.apply(this, arguments);
-            };
-
-            getAccessToken = function _ref2() {
-              return _getAccessToken.apply(this, arguments);
-            };
-
-            id = event.queryStringParameters.id;
-
-            if (!id) {
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
               callback(null, {
-                statusCode: 400,
-                body: 'Missing parameter id'
+                statusCode: _context.t0.statusCode,
+                body: _context.t0.message
               });
-            }
+              return _context.abrupt("return", null);
 
-            _context2.next = 6;
-            return getAccessToken();
-
-          case 6:
-            token = _context2.sent;
-            spotifyApi.setAccessToken(token);
-            spotifyApi.getPlaylist(id).then(function (data) {
-              callback(null, {
-                statusCode: 200,
-                body: _JSON$stringify(data)
-              });
-            })["catch"](function (err) {
-              callback(null, {
-                statusCode: err.statusCode,
-                body: err.message
-              });
-            });
-
-          case 9:
-          case "end":
-            return _context2.stop();
+            case 11:
+            case "end":
+              return _context.stop();
+          }
         }
-      }
-    }, _callee2);
-  }));
+      }, _callee, null, [[0, 7]]);
+    }));
+    return _getAccessToken.apply(this, arguments);
+  }
 
-  return function (_x, _x2, _x3) {
-    return _ref.apply(this, arguments);
-  };
-}();
+  getAccessToken().then(function (token) {
+    spotifyApi.setAccessToken(token);
+
+    if (!id) {
+      callback(null, {
+        statusCode: 200,
+        body: token
+      });
+    }
+
+    spotifyApi.getPlaylist(id).then(function (data) {
+      console.log(data);
+      callback(null, {
+        statusCode: 200,
+        body: _JSON$stringify(data)
+      });
+    })["catch"](function (err) {
+      callback(null, {
+        statusCode: err.statusCode,
+        body: err.message
+      });
+    });
+  });
+};
 
 /***/ }),
 
