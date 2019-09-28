@@ -4,6 +4,7 @@ import Section from 'components/Section'
 import { Wrap } from 'style'
 import { RichText } from 'prismic-reactjs'
 import TextWrap from 'components/TextWrap'
+import msToTime from 'util/msToTime'
 import Styled from './Styled'
 
 const SoundSystem = memo(({ tracks, spotifyData, data, image }) => {
@@ -11,28 +12,28 @@ const SoundSystem = memo(({ tracks, spotifyData, data, image }) => {
     <Wrap>
       <Styled.Columns>
         <Section>
-          <img src={image} alt="" width="50px" />
+          <Styled.PlaylistCover src={image} alt="" width="50px" />
+          <Heading as="h1">{spotifyData.title}</Heading>
+          <TextWrap>{RichText.render(data.description)}</TextWrap>
+          <a href={spotifyData.url} target="_blank" rel="noopener noreferrer">
+            <strong>Follow Playlist</strong>
+          </a>
         </Section>
         <Section>
-          <Section noTop>
-            <Heading as="h1">{spotifyData.title}</Heading>
-            <TextWrap>{RichText.render(data.description)}</TextWrap>
-            <a href={spotifyData.url} target="_blank" rel="noopener noreferrer">
-              <strong>Follow Playlist</strong>
-            </a>
-          </Section>
           <ul>
             {tracks.map(({ track }) => {
               const albumCover = track.album.images[0].url
               const artists = track.artists
                 .map(artist => artist.name)
                 .join(', ')
+              const duration = msToTime(track.duration_ms)
               return (
                 <Track
                   key={track.name}
                   name={track.name}
                   albumCover={albumCover}
                   artists={artists}
+                  duration={duration}
                 />
               )
             })}
@@ -43,7 +44,7 @@ const SoundSystem = memo(({ tracks, spotifyData, data, image }) => {
   )
 })
 
-const Track = ({ albumCover, artists, name }) => {
+const Track = ({ albumCover, artists, name, duration }) => {
   return (
     <Styled.Track>
       <Styled.AlbumCoverWrapper>
@@ -55,6 +56,7 @@ const Track = ({ albumCover, artists, name }) => {
         </div>
         <div>{artists}</div>
       </div>
+      <div>{duration}</div>
     </Styled.Track>
   )
 }
