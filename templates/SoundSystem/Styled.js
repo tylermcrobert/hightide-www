@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 const Columns = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 4rem;
 `
 const Track = styled.li`
   display: grid;

@@ -1,14 +1,26 @@
 import { Client } from 'util/prismic'
-
+import Meta from 'components/Meta'
+import { RichText } from 'prismic-reactjs'
 import SoundSystemTemplate from 'templates/SoundSystem'
 
-export default function SoundSystem({ spotifyData, tracks, res }) {
+export default function SoundSystem({ spotifyData, spotifyRes, prismicRes }) {
+  const tracks = spotifyRes.tracks.items
+  const image = prismicRes.data.image.url || spotifyRes.images[0].url
+
   return (
-    <SoundSystemTemplate
-      tracks={tracks}
-      data={res.data}
-      spotifyData={spotifyData}
-    />
+    <>
+      <Meta
+        title={RichText.asText(prismicRes.data.title)}
+        image={image}
+        url={`journal/sound-system/${prismicRes.uid}`}
+      />
+      <SoundSystemTemplate
+        tracks={tracks}
+        data={prismicRes.data}
+        image={image}
+        spotifyData={spotifyData}
+      />
+    </>
   )
 }
 
@@ -20,11 +32,11 @@ SoundSystem.getInitialProps = async ({ req, query }) => {
   const API_ROUTE =
     'https://tm-hightide.netlify.com/.netlify/functions/getSpotifyAuth'
 
-  const tracks = await fetch(`${API_ROUTE}?id=${spotifyData.id}`)
+  const spotifyRes = await fetch(`${API_ROUTE}?id=${spotifyData.id}`)
     .then(res => res.json())
-    .then(data => data.body.tracks.items)
+    .then(data => data.body)
 
-  return { res: soundSystem, spotifyData, tracks }
+  return { prismicRes: soundSystem, spotifyData, spotifyRes }
 }
 
 SoundSystem.parsePrismicSpotifyData = res => {

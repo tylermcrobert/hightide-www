@@ -1,20 +1,26 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Heading from 'components/Heading'
 import Section from 'components/Section'
 import { Wrap } from 'style'
+import { RichText } from 'prismic-reactjs'
+import TextWrap from 'components/TextWrap'
 import Styled from './Styled'
 
-function SoundSystem({ tracks, spotifyData, data }) {
-  console.log(tracks)
+const SoundSystem = memo(({ tracks, spotifyData, data, image }) => {
   return (
     <Wrap>
       <Styled.Columns>
-        <a href={spotifyData.url} target="_blank" rel="noopener noreferrer">
-          <Section>
-            <Heading as="h1">{spotifyData.title}</Heading>
-          </Section>
-        </a>
         <Section>
+          <img src={image} alt="" width="50px" />
+        </Section>
+        <Section>
+          <Section noTop>
+            <Heading as="h1">{spotifyData.title}</Heading>
+            <TextWrap>{RichText.render(data.description)}</TextWrap>
+            <a href={spotifyData.url} target="_blank" rel="noopener noreferrer">
+              <strong>Follow Playlist</strong>
+            </a>
+          </Section>
           <ul>
             {tracks.map(({ track }) => {
               const albumCover = track.album.images[0].url
@@ -23,6 +29,7 @@ function SoundSystem({ tracks, spotifyData, data }) {
                 .join(', ')
               return (
                 <Track
+                  key={track.name}
                   name={track.name}
                   albumCover={albumCover}
                   artists={artists}
@@ -34,7 +41,7 @@ function SoundSystem({ tracks, spotifyData, data }) {
       </Styled.Columns>
     </Wrap>
   )
-}
+})
 
 const Track = ({ albumCover, artists, name }) => {
   return (
