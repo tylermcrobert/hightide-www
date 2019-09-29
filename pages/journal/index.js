@@ -1,7 +1,7 @@
 import React from 'react'
 import JournalTemplate from 'templates/Journal'
 import Meta from 'components/Meta'
-import { getType } from 'util/prismic'
+import { getType } from 'middleware/prismic'
 
 export default function Journal({ data }) {
   return (

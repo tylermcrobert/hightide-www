@@ -29,12 +29,14 @@ Site for High Tide NYC. This site is built with Next.js. [See Next's docs to lea
 
 - **`/util`** - utility functions
 
+- **`/middleware`** - Middleware, mostly for pages to use in `getInitialProps`
+
   - **`/prismic`** - utility functions for Prismic.
 
 ## Page Building
 
 ```jsx
-import { Client } from 'util/prismic'
+import { Client } from 'middleware/prismic'
 import ContactTemplate from 'templates/contact'
 
 function ExamplePage() {
@@ -58,7 +60,7 @@ The `pages` directory is used only to fetch data. This data is then routed to it
 
 ### Prismic fetch
 
-Use `Client` utility function in `/util/prismic` for fetching data to avoid reinitializing API. Be sure to pass it the `req` object.
+Use `Client` utility function in `/middleware/prismic` for fetching data to avoid reinitializing API. Be sure to pass it the `req` object.
 
 ## Styling
 

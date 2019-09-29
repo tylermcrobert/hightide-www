@@ -1,7 +1,7 @@
 import React from 'react'
 import Meta from 'components/Meta'
 import Template from 'templates/Work'
-import { getType } from 'util/prismic'
+import { getType } from 'middleware/prismic'
 
 function Work({ data }) {
   return (

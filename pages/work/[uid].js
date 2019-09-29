@@ -2,7 +2,7 @@ import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import Error from 'next/error'
 
-import { Client } from 'util/prismic'
+import { Client } from 'middleware/prismic'
 
 import Meta from 'components/Meta'
 import CaseStudyTemplate from 'templates/CaseStudy'

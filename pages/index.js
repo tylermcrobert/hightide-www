@@ -1,7 +1,7 @@
 import Meta from 'components/Meta'
 import Homepage from 'templates/Homepage'
-import getInstagramData from 'util/getInstagramData'
-import { Client } from 'util/prismic'
+import getInstagramData from 'middleware/getInstagramData'
+import { Client } from 'middleware/prismic'
 
 const Index = ({ data }) => (
   <>

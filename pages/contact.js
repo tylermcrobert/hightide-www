@@ -1,7 +1,7 @@
 import React from 'react'
 import Meta from 'components/Meta'
 import Template from 'templates/Contact'
-import { Client } from 'util/prismic'
+import { Client } from 'middleware/prismic'
 
 export default function Contact({ site }) {
   return (

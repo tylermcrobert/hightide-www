@@ -3,8 +3,8 @@ import Error from 'next/error'
 import PostTemplate from 'templates/Post'
 import SoundSystemTemplate from 'templates/SoundSystem'
 import Meta from 'components/Meta'
-import { Client } from 'util/prismic'
-import SoundSystemReq from 'class/SoundSystemReq'
+import { Client } from 'middleware/prismic'
+import SoundSystemReq from 'middleware/SoundSystemReq'
 
 const Post = ({ journal, soundSystem }) => {
   if (journal) {
