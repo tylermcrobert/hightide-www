@@ -9,6 +9,12 @@ const spotifyApi = new SpotifyWebApi({
   redirectUri: 'http://localhost:9000/getSpotifyAuth',
 })
 
+const CORS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers':
+    'Origin, X-Requested-Width, Content-Type, Accept',
+}
+
 exports.handler = (event, context, callback) => {
   const { id } = event.queryStringParameters
 
@@ -28,6 +34,9 @@ exports.handler = (event, context, callback) => {
     }
   }
 
+  /**
+   * code to run after token has been recieved
+   */
   getAccessToken()
     .then(token => {
       spotifyApi.setAccessToken(token)
@@ -38,6 +47,7 @@ exports.handler = (event, context, callback) => {
       if (!id) {
         callback(null, {
           statusCode: 200,
+          headers: { ...CORS },
           body: JSON.stringify({ token }),
         })
         return null
@@ -51,6 +61,7 @@ exports.handler = (event, context, callback) => {
         .then(data => {
           callback(null, {
             statusCode: 200,
+            headers: { ...CORS },
             body: JSON.stringify(data),
           })
         })
@@ -61,6 +72,7 @@ exports.handler = (event, context, callback) => {
         .catch(err => {
           callback(null, {
             statusCode: err.statusCode,
+            headers: { ...CORS },
             body: err.message,
           })
         })
