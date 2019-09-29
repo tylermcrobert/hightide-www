@@ -38,7 +38,7 @@ exports.handler = (event, context, callback) => {
     if (!id) {
       callback(null, {
         statusCode: 200,
-        body: token,
+        body: JSON.stringify({ token }),
       })
     }
 
