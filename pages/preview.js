@@ -1,8 +1,14 @@
 import React from 'react'
 import Router from 'next/router'
 import { Client, linkResolver } from 'middleware/prismic'
+import { Wrap } from 'style'
+import Section from 'components/Section'
 
-const Preview = () => <div>Preview</div>
+const Preview = () => (
+  <Wrap>
+    <Section>Loading Preview...</Section>
+  </Wrap>
+)
 
 Preview.getInitialProps = async context => {
   try {

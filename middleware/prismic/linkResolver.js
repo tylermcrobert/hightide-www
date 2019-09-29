@@ -15,5 +15,5 @@ export const linkResolver = ({ uid, type }) => {
   if (type === 'sound_system') {
     return `/journal/sound-system/${uid}`
   }
-  return uid
+  return '/'
 }
