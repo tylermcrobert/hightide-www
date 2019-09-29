@@ -11,13 +11,6 @@ const spotifyApi = new SpotifyWebApi({
 
 exports.handler = (event, context, callback) => {
   const { id } = event.queryStringParameters
-  //
-  // if (!id) {
-  //   callback(null, {
-  //     statusCode: 400,
-  //     body: 'Missing parameter id',
-  //   })
-  // }
 
   async function getAccessToken() {
     try {
@@ -32,30 +25,35 @@ exports.handler = (event, context, callback) => {
     }
   }
 
-  getAccessToken().then(token => {
-    spotifyApi.setAccessToken(token)
+  getAccessToken()
+    .then(token => {
+      spotifyApi.setAccessToken(token)
 
-    if (!id) {
-      callback(null, {
-        statusCode: 200,
-        body: JSON.stringify({ token }),
-      })
-    }
-
-    spotifyApi
-      .getPlaylist(id)
-      .then(data => {
-        console.log(data)
+      if (!id) {
         callback(null, {
           statusCode: 200,
-          body: JSON.stringify(data),
+          body: JSON.stringify({ token }),
         })
-      })
-      .catch(err => {
-        callback(null, {
-          statusCode: err.statusCode,
-          body: err.message,
+        return null
+      }
+
+      spotifyApi
+        .getPlaylist(id)
+        .then(data => {
+          callback(null, {
+            statusCode: 200,
+            body: JSON.stringify(data),
+          })
         })
-      })
-  })
+        .catch(err => {
+          callback(null, {
+            statusCode: err.statusCode,
+            body: err.message,
+          })
+        })
+      return null
+    })
+    .catch(err => {
+      console.error(err)
+    })
 }
