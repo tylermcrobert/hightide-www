@@ -1,12 +1,17 @@
 # 🌴 High Tide NYC 🌴
 
-Site for High Tide NYC. This site is built with Next.js. [See Next's docs to learn more](https://nextjs.org/docs).
+## Overview
+
+The site is built on React/Next.js with Prismic CMS using Next’s static export function. Static export allows the site to be hosted without running a server.
+
+The site uses serverless functions to request data from Spotify’s API because it requires a server-side OAuth connection. Note: Netlify offers serverless functions to run for free up until a point so we'll have to keep an eye on that.
 
 ## File Structure
 
 ```
 /components
   /prismic
+  /slices
 /pages
 /prismic
 /static
@@ -18,6 +23,7 @@ Site for High Tide NYC. This site is built with Next.js. [See Next's docs to lea
 - **`/components`** - Houses all reusable components.
 
   - **`/prismic`** -Reusable site blocks powered by prismic data.
+  - **`/slices`** - Code for reusable slices such as `Text Block` and `Image Block`.
 
 - **`/pages`** - Pages of the application, each file will automatically match a route. [See Next.js docs for more info](https://nextjs.org/docs#dynamic-routing).
 
@@ -28,6 +34,8 @@ Site for High Tide NYC. This site is built with Next.js. [See Next's docs to lea
 - **`/templates`** - UI for pages. Use data props to parse format and style page components within this directory. [see more](#page-templating)
 
 - **`/util`** - utility functions
+
+- **`/prismic`** - Version control for Prismic custom type JSON
 
 - **`/middleware`** - Middleware, mostly for pages to use in `getInitialProps`
 
