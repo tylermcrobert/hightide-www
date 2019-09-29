@@ -52,7 +52,8 @@ function Related({ items }) {
               key={item.id}
               title={name}
               src={item.data.image.small.url}
-              link={`/work/${item.uid}`}
+              link="/work/[uid]"
+              as={`/work/${item.uid}`}
             />
           )
         })}

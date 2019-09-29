@@ -1,15 +1,15 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import LazyImg from '@tylermcrobert/react-lazyimg'
-import NextLink from 'next/link'
+import Link from 'next/link'
 import { sizes } from 'style/theme'
 import SectionHead from '../SectionHead'
 
 function FeaturedWork({ name, imgSet, img, imgRatio, uid }) {
   return (
-    <div>
-      <NextLink href={`work/${uid}`}>
-        <a aria-label="Featured work">
+    <Link as={`/work/${uid}`} href="/work/">
+      <a aria-label="Featured work">
+        <div>
           <SectionHead link={name}>Featured Project</SectionHead>
           <picture>
             <source
@@ -18,9 +18,9 @@ function FeaturedWork({ name, imgSet, img, imgRatio, uid }) {
             />
             <LazyImg src={img} ratio={imgRatio} alt="" />
           </picture>
-        </a>
-      </NextLink>
-    </div>
+        </div>
+      </a>
+    </Link>
   )
 }
 

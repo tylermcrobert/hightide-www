@@ -46,7 +46,8 @@ function Related({ items }) {
               key={entry.id}
               title={title}
               src={image}
-              link={`/journal/${entry.uid}`}
+              link="/journal/[uid]"
+              as={`/journal/${entry.uid}`}
             />
           )
         })}

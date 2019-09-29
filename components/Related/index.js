@@ -34,9 +34,9 @@ RelatedWrapper.propTypes = {
  * Item that goes inside related wrapper
  */
 
-function RelatedItem({ src, title, link }) {
+function RelatedItem({ src, title, link, as }) {
   return (
-    <Link href={link}>
+    <Link href={link} as={as}>
       <a>
         <Styled.Item src={src}></Styled.Item>
         {title && <Styled.Title>{title}</Styled.Title>}
@@ -52,6 +52,7 @@ RelatedItem.propTypes = {
   link: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   title: PropTypes.string,
+  as: PropTypes.string.isRequired,
 }
 
 export { RelatedWrapper, RelatedItem }
