@@ -72,7 +72,7 @@ function Slices({ data }) {
       case 'text_block':
         return <TextBlock data={slice} />
       default:
-        console.log(`nothing built for ${slice.slice_type}`)
+        console.warn(`nothing built for ${slice.slice_type}`)
         return null
     }
   })
