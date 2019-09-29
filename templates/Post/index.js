@@ -33,7 +33,6 @@ const Post = React.memo(({ data }) => {
 
 function Related({ items }) {
   if (items && items.length) {
-    console.log({ items })
     return (
       <RelatedWrapper contents="Entries">
         {items.map(({ entry }) => {
@@ -80,7 +79,7 @@ function SliceSwitch({ data }) {
         case 'text_block':
           return <TextBlock data={sliceItem} />
         default:
-          console.log('nothing built for ', sliceItem.slice_type)
+          console.warn('nothing built for ', sliceItem.slice_type)
           return null
       }
     })

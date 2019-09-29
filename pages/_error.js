@@ -1,8 +1,7 @@
 import React from 'react'
 import ErrorTemplate from 'templates/Error'
 
-function Error({ statusCode, err }) {
-  console.log(err)
+function Error({ statusCode }) {
   return (
     <>
       <ErrorTemplate statusCode={statusCode} />
