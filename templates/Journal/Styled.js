@@ -14,21 +14,16 @@ const Wrapper = styled.div`
   }
 `
 
-const large = css`
-  grid-row: auto / span 2;
-  display: flex;
-  flex-direction: column;
-`
-
 const CardWrapper = styled.a`
   cursor: pointer;
 
-  &:nth-child(6n + 1) {
-    ${large}
-  }
-  &:nth-child(6n + 5) {
-    ${large}
-  }
+  ${props =>
+    props.large &&
+    css`
+      grid-row: auto / span 2;
+      display: flex;
+      flex-direction: column;
+    `}
 `
 
 const ImgContainer = styled.div`
