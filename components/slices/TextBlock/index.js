@@ -3,10 +3,9 @@ import { RichText } from 'prismic-reactjs'
 import TextWrap from 'components/TextWrap'
 import Section from 'components/Section'
 import textExists from 'util/textExists'
+import PropTypes from 'prop-types'
 
-// import PropTypes from 'prop-types'
-
-function Text({ data }) {
+function TextBlock({ data }) {
   const { text } = data.primary
 
   if (textExists(text)) {
@@ -19,6 +18,8 @@ function Text({ data }) {
   return null
 }
 
-// Text.propTypes = {}
+TextBlock.propTypes = {
+  data: PropTypes.object.isRequired,
+}
 
-export default Text
+export default TextBlock

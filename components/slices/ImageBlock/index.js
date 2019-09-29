@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import Section from 'components/Section'
 import * as Gallery from 'components/Gallery'
 import textExists from 'util/textExists'
-import { CaseStudyCtx } from '..'
 
 /*
   Take a string like 'Two-Col'
@@ -46,11 +45,10 @@ const ImageBlock = ({ data }) => {
  */
 
 function GalleryItem({ imgSrc, caption, layout }) {
-  const { alt } = useContext(CaseStudyCtx)
-
+  // const { alt } = useContext(CaseStudyCtx)
   return (
     <Gallery.ImageWrap span={getSpanFromLayoutText(layout)}>
-      <img src={imgSrc} alt={alt} />
+      <img src={imgSrc} alt="" />
       {textExists(caption) && (
         <Gallery.TextWrap>{RichText.render(caption)}</Gallery.TextWrap>
       )}

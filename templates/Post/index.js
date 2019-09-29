@@ -5,6 +5,10 @@ import { Wrap } from 'style'
 import TextWrap from 'components/TextWrap'
 import Section from 'components/Section'
 import PostIntro from 'components/PostIntro'
+
+import TextBlock from 'components/slices/TextBlock'
+import ImageBlock from 'components/slices/ImageBlock'
+
 import Styled from './Styled'
 /* eslint no-console: 0 */
 
@@ -29,6 +33,9 @@ function SliceSwitch({ data }) {
   return data.body
     .map(sliceItem => {
       switch (sliceItem.slice_type) {
+        /**
+         * HalfHelix shitshow
+         */
         case 'post_gallery':
           return (
             <Section>
@@ -37,6 +44,13 @@ function SliceSwitch({ data }) {
           )
         case 'hero_image':
           return <HeroImage data={sliceItem} />
+        /**
+         * Tyler McRobert shitshow
+         */
+        case 'image_block':
+          return <ImageBlock data={sliceItem} />
+        case 'text_block':
+          return <TextBlock data={sliceItem} />
         default:
           console.log('nothing built for ', sliceItem.slice_type)
           return null

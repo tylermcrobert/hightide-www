@@ -8,9 +8,9 @@ import Section from 'components/Section'
 import textExists from 'util/textExists'
 import formatTitle from 'util/formatTitle'
 
+import TextBlock from 'components/slices/TextBlock'
+import ImageBlock from 'components/slices/ImageBlock'
 import Gallery from './Gallery'
-import Text from './Text'
-import ImageBlock from './ImageBlock'
 
 export const CaseStudyCtx = createContext()
 
@@ -70,7 +70,7 @@ function Slices({ data }) {
       case 'image_block':
         return <ImageBlock data={slice} />
       case 'text_block':
-        return <Text data={slice} />
+        return <TextBlock data={slice} />
       default:
         console.log(`nothing built for ${slice.slice_type}`)
         return null
