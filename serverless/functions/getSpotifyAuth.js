@@ -12,6 +12,9 @@ const spotifyApi = new SpotifyWebApi({
 exports.handler = (event, context, callback) => {
   const { id } = event.queryStringParameters
 
+  /**
+   * Get access token from Spotify
+   */
   async function getAccessToken() {
     try {
       const res = await spotifyApi.clientCredentialsGrant()
@@ -29,6 +32,9 @@ exports.handler = (event, context, callback) => {
     .then(token => {
       spotifyApi.setAccessToken(token)
 
+      /**
+       * If no id is provided, provide user with access token
+       */
       if (!id) {
         callback(null, {
           statusCode: 200,
@@ -37,6 +43,9 @@ exports.handler = (event, context, callback) => {
         return null
       }
 
+      /**
+       * If ID is provided, return track details
+       */
       spotifyApi
         .getPlaylist(id)
         .then(data => {
@@ -45,6 +54,10 @@ exports.handler = (event, context, callback) => {
             body: JSON.stringify(data),
           })
         })
+
+        /**
+         * If ID request has an error, return it
+         */
         .catch(err => {
           callback(null, {
             statusCode: err.statusCode,
