@@ -1,7 +1,8 @@
 import React from 'react'
 import ErrorTemplate from 'templates/Error'
 
-function Error({ statusCode }) {
+function Error({ statusCode, err }) {
+  console.log(err)
   return (
     <>
       <ErrorTemplate statusCode={statusCode} />
@@ -12,7 +13,7 @@ function Error({ statusCode }) {
 Error.getInitialProps = ({ res, err }) => {
   const renderErr = err ? err.statusCode : null
   const statusCode = res ? res.statusCode : renderErr
-  return { statusCode }
+  return { statusCode, err }
 }
 
 export default Error
