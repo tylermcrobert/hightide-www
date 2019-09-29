@@ -3,16 +3,16 @@ import Meta from 'components/Meta'
 import Template from 'templates/Contact'
 import { Client } from 'util/prismic'
 
-export default function Contact({ data }) {
+export default function Contact({ site }) {
   return (
     <>
       <Meta title="Contact" url="contact" />
-      <Template data={data} />
+      <Template hero={site.data.contact_hero} />
     </>
   )
 }
 
 Contact.getInitialProps = async ({ req }) => {
-  const contact = await Client(req).getSingle('page_contact')
-  return { data: { contact } }
+  const site = await Client(req).getSingle('site')
+  return { site }
 }

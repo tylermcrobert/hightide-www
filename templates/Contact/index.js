@@ -28,8 +28,7 @@ function Warning({ active, children }) {
   )
 }
 
-export default function Contact({ data }) {
-  const { body } = data.contact.data
+export default function Contact({ hero }) {
   const [state, setState] = useState(initialState)
 
   const canSubmit = getGlobalValidity(state)
@@ -42,7 +41,7 @@ export default function Contact({ data }) {
   return (
     <ContactCtx.Provider value={{ state, setState }}>
       <Wrap>
-        <PageIntro>{RichText.render(body[0].items[0].hero)}</PageIntro>
+        <PageIntro>{RichText.render(hero)}</PageIntro>
         <form onSubmit={handleSubmit}>
           <Section>
             <Information />
