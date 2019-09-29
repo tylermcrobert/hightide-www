@@ -135,6 +135,28 @@
         "label": "Impact Message"
       }
     },
+    "about_switcher": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "title": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "heading3",
+              "label": "Title"
+            }
+          },
+          "description": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "paragraph, strong, em, hyperlink, list-item, o-list-item",
+              "label": "Description"
+            }
+          }
+        },
+        "label": "About Switcher"
+      }
+    },
     "about_image_4": {
       "type": "Image",
       "config": {
@@ -258,6 +280,16 @@
           }
         },
         "label": "Capacities"
+      }
+    }
+  },
+  "Contact": {
+    "contact_hero": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "heading1",
+        "allowTargetBlank": true,
+        "label": "Contact Hero"
       }
     }
   }
