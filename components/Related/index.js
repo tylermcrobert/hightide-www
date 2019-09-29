@@ -4,13 +4,15 @@ import { Wrap } from 'style'
 import Link from 'next/link'
 import Styled from './Styled'
 
-function RelatedWrapper({ children }) {
+function RelatedWrapper({ children, contents }) {
   if (children && children.length) {
     return (
       <Styled.Wrapper>
         <Section>
           <Wrap>
-            <Styled.RelatedHeader>Related</Styled.RelatedHeader>
+            <Styled.RelatedHeader>
+              Related {contents && contents}
+            </Styled.RelatedHeader>
           </Wrap>
           <Styled.ItemWrapper>{children.map(item => item)}</Styled.ItemWrapper>
         </Section>
@@ -20,8 +22,12 @@ function RelatedWrapper({ children }) {
   return null
 }
 
+RelatedWrapper.defaultProps = {
+  contents: null,
+}
 RelatedWrapper.propTypes = {
   children: PropTypes.array.isRequired,
+  contents: PropTypes.string,
 }
 
 /**

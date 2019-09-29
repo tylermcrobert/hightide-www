@@ -27,7 +27,7 @@ const Post = ({ journal, soundSystem }) => {
         {soundSystem.tracks ? (
           <SoundSystemTemplate {...soundSystem} prismicData={journal.data} />
         ) : (
-          <PostTemplate data={journal} />
+          <PostTemplate data={journal.data} />
         )}
       </>
     )
@@ -41,7 +41,13 @@ Post.getInitialProps = async ({ query, req }) => {
      * Get journal page from prismic
      */
     const { uid } = query
-    const journal = await Client(req).getByUID('journal', uid)
+    const journal = await Client(req).getByUID('journal', uid, {
+      fetchLinks: [
+        'journal.title',
+        'journal.thumbnail_image',
+        'journal.main_image',
+      ],
+    })
 
     /**
      * Get get spotify data
