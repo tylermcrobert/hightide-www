@@ -18,6 +18,17 @@ const AmericaMdTtf = '/static/fonts/GT-America-Standard-Medium.ttf'
 const LyonLtWoff = '/static/fonts/LyonDisplay-Light-Web.woff'
 const LyonLtWoff2 = '/static/fonts/LyonDisplay-Light-Web.woff2'
 
+async function loadPolyfills() {
+  if (
+    typeof window !== 'undefined' &&
+    typeof window.IntersectionObserver === 'undefined'
+  ) {
+    await import('intersection-observer')
+  }
+}
+
+loadPolyfills()
+
 /* eslint import/no-named-as-default-member: 0 */
 
 const DARK_ROUTES = ['/work']
