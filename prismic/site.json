@@ -32,92 +32,6 @@
       }
     }
   },
-  "Clients": {
-    "clients": {
-      "type": "Group",
-      "config": {
-        "fields": {
-          "logo": {
-            "type": "Image",
-            "config": {
-              "constraint": {
-                "width": 400
-              },
-              "thumbnails": [
-                {
-                  "name": "Md",
-                  "width": 700,
-                  "height": null
-                },
-                {
-                  "name": "lg",
-                  "width": 1200,
-                  "height": null
-                }
-              ],
-              "label": "Logo"
-            }
-          },
-          "client_name": {
-            "type": "Text",
-            "config": {
-              "label": "Client Name",
-              "placeholder": "Nike"
-            }
-          }
-        },
-        "label": "Clients"
-      }
-    }
-  },
-  "Capacities": {
-    "capacities": {
-      "type": "Group",
-      "config": {
-        "fields": {
-          "capacity": {
-            "type": "StructuredText",
-            "config": {
-              "single": "heading2",
-              "label": "Capacity"
-            }
-          },
-          "description": {
-            "type": "StructuredText",
-            "config": {
-              "multi": "paragraph",
-              "label": "Description"
-            }
-          }
-        },
-        "label": "Capacities"
-      }
-    }
-  },
-  "Careers": {
-    "careers": {
-      "type": "Group",
-      "config": {
-        "fields": {
-          "title": {
-            "type": "StructuredText",
-            "config": {
-              "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-              "label": "Title"
-            }
-          },
-          "description": {
-            "type": "StructuredText",
-            "config": {
-              "multi": "paragraph",
-              "label": "Description"
-            }
-          }
-        },
-        "label": "Careers"
-      }
-    }
-  },
   "About": {
     "about_hero": {
       "type": "StructuredText",
@@ -185,6 +99,24 @@
         "label": "Diptych Item 2"
       }
     },
+    "client_message": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "heading1",
+        "allowTargetBlank": true,
+        "label": "Client Message"
+      }
+    },
+    "about_image_2": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200
+        },
+        "thumbnails": [],
+        "label": "About Image 2"
+      }
+    },
     "about_image_3": {
       "type": "Image",
       "config": {
@@ -193,6 +125,139 @@
         },
         "thumbnails": [],
         "label": "About Image 3"
+      }
+    },
+    "impact_message": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "heading1",
+        "allowTargetBlank": true,
+        "label": "Impact Message"
+      }
+    },
+    "about_image_4": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200
+        },
+        "thumbnails": [],
+        "label": "About Image 4"
+      }
+    },
+    "about_image_5": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200
+        },
+        "thumbnails": [],
+        "label": "About Image 5"
+      }
+    },
+    "recognition": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "link": {
+            "type": "Link",
+            "config": {
+              "label": "Link",
+              "allowTargetBlank": true
+            }
+          },
+          "title": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "heading3, hyperlink",
+              "allowTargetBlank": true,
+              "label": "Title"
+            }
+          }
+        },
+        "label": "Recognition"
+      }
+    }
+  },
+  "Global Elements": {
+    "careers": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "title": {
+            "type": "StructuredText",
+            "config": {
+              "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+              "label": "Title"
+            }
+          },
+          "description": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "paragraph",
+              "label": "Description"
+            }
+          }
+        },
+        "label": "Careers"
+      }
+    },
+    "clients": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "logo": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": 400
+              },
+              "thumbnails": [
+                {
+                  "name": "Md",
+                  "width": 700,
+                  "height": null
+                },
+                {
+                  "name": "lg",
+                  "width": 1200,
+                  "height": null
+                }
+              ],
+              "label": "Logo"
+            }
+          },
+          "client_name": {
+            "type": "Text",
+            "config": {
+              "label": "Client Name",
+              "placeholder": "Nike"
+            }
+          }
+        },
+        "label": "Clients"
+      }
+    },
+    "capacities": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "capacity": {
+            "type": "StructuredText",
+            "config": {
+              "single": "heading2",
+              "label": "Capacity"
+            }
+          },
+          "description": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "paragraph",
+              "label": "Description"
+            }
+          }
+        },
+        "label": "Capacities"
       }
     }
   }

@@ -3,11 +3,11 @@ import Meta from 'components/Meta'
 import Template from 'templates/About'
 import { Client } from 'util/prismic'
 
-export default function About({ data }) {
+export default function About({ site }) {
   return (
     <>
-      <Template data={data} />
       <Meta title="About" url="about/" />
+      <Template site={site} />
     </>
   )
 }
@@ -19,6 +19,5 @@ About.getInitialProps = async ({ req }) => {
     })
     .then(item => item.data)
 
-  const about = await Client(req).getSingle('page_about')
-  return { data: { ...about.data, site } }
+  return { site }
 }

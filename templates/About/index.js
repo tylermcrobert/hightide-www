@@ -7,8 +7,9 @@ import Careers from 'components/prismic/Careers'
 import Difference from 'components/prismic/Difference'
 import Clients from 'components/prismic/Clients'
 import Diptych from 'components/prismic/Diptych'
+import Recognition from 'components/prismic/Recognition'
 import LazyImg from '@tylermcrobert/react-lazyimg'
-
+import Section from 'components/Section'
 /**
  * * * Hero
  * * * Image
@@ -24,34 +25,55 @@ import LazyImg from '@tylermcrobert/react-lazyimg'
  * * * Careers
  */
 
-const About = React.memo(({ data }) => {
+const About = React.memo(({ site }) => {
   const {
     about_hero: heroText,
     about_intro_image: heroImg,
     careers,
     our_difference: difference,
     clients,
-  } = data.site
+    client_message: clientMessage,
+    about_image_2: image2,
+    about_image_3: image3,
+    about_image_4: image4,
+    about_image_5: image5,
+    impact_message: impactMessage,
+    recognition,
+  } = site
 
-  const diptychItems = [
-    data.site.about_diptych_item_1,
-    data.site.about_diptych_item_2,
-  ]
+  const diptychItems = [site.about_diptych_item_1, site.about_diptych_item_2]
 
   return (
     <>
       <Wrap>
         <PageIntro>{RichText.render(heroText)}</PageIntro>
-        <LazyImg src={heroImg.url} />
+        <Section>
+          <LazyImg src={heroImg.url} />
+        </Section>
         <Difference items={difference} />
         <Diptych items={diptychItems} />
+        <Section>{RichText.render(clientMessage)}</Section>
         <Clients items={clients} />
-        <Capabilities data={data.site.capacities} />
+        <Image src={image2.url} />
+        <Capabilities data={site.capacities} />
+        <Image src={image3.url} />
+        <Section>{RichText.render(impactMessage)}</Section>
+        <Section>Story, team, studio</Section>
+        <Image src={image4.url} />
         <Careers data={careers} />
+        <Image src={image5.url} />
+        <Recognition items={recognition} />
       </Wrap>
     </>
   )
 })
+
+const Image = ({ src }) =>
+  src && (
+    <Section>
+      <LazyImg src={src} />
+    </Section>
+  )
 
 export default About
 // About.propTypes = {}
