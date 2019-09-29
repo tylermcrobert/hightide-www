@@ -7,7 +7,7 @@ import SectionHead from '../SectionHead'
 
 function FeaturedWork({ name, imgSet, img, imgRatio, uid }) {
   return (
-    <Link as={`/work/${uid}`} href="/work/">
+    <Link as={`/work/${uid}`} href="/work/[uid]">
       <a aria-label="Featured work">
         <div>
           <SectionHead link={name}>Featured Project</SectionHead>
