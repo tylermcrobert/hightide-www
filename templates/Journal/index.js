@@ -17,6 +17,8 @@ export default function Journal({ results }) {
           const title = RichText.asText(data.title)
           const mainImg = data.main_image.url
           const thumbnail = data.thumbnail_image
+          // every 6th image OR every 6th image starting at 3rd item
+          const large = i % 6 === 0 || (i + 2) % 6 === 0
 
           return (
             <JournalCard
@@ -26,7 +28,7 @@ export default function Journal({ results }) {
               thumbnail={thumbnail}
               date={formattedDate}
               title={title}
-              large={!(i % 6) || !((i + 2) % 6)}
+              large={large}
             />
           )
         })}
