@@ -29,8 +29,6 @@ const About = React.memo(({ site }) => {
     about_switcher: aboutSwitcher,
   } = site
 
-  console.log(site.about_switcher)
-
   const diptychItems = [site.about_diptych_item_1, site.about_diptych_item_2]
 
   return (

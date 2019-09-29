@@ -12,7 +12,7 @@ slices.map(slice => {
     case 'text':
       return <Text data={slice} />
     default:
-      console.log(`nothing built for ${slice.slice_type}`)
+      console.error(`nothing built for ${slice.slice_type}`)
       return null
   }
 }
