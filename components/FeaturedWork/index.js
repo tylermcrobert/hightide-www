@@ -6,24 +6,20 @@ import { sizes } from 'style/theme'
 import SectionHead from '../SectionHead'
 
 function FeaturedWork({ name, imgSet, img, imgRatio, uid }) {
-  const Link = ({ children }) => (
-    <NextLink href={`work/${uid}`}>
-      <a>{children}</a>
-    </NextLink>
-  )
-
   return (
     <div>
-      <SectionHead link={<Link>{name}</Link>}>Featured Project</SectionHead>
-      <Link>
-        <picture>
-          <source
-            media={`(max-width: ${sizes.sm}px)`}
-            srcSet={imgSet.small.url}
-          />
-          <LazyImg src={img} ratio={imgRatio} alt="" />
-        </picture>
-      </Link>
+      <NextLink href={`work/${uid}`}>
+        <a aria-label="Featured work">
+          <SectionHead link={name}>Featured Project</SectionHead>
+          <picture>
+            <source
+              media={`(max-width: ${sizes.sm}px)`}
+              srcSet={imgSet.small.url}
+            />
+            <LazyImg src={img} ratio={imgRatio} alt="" />
+          </picture>
+        </a>
+      </NextLink>
     </div>
   )
 }
