@@ -14,7 +14,6 @@ const Post = ({ journal, soundSystem }) => {
 
     const title = RichText.asText(journal.data.title)
 
-    console.log(soundSystem)
     return (
       <>
         <Meta
@@ -22,6 +21,9 @@ const Post = ({ journal, soundSystem }) => {
           image={thumnail || postImg}
           url={`journal/${journal.uid}`}
         />
+        {/*
+          If spotify data exists, use SoundSystem template
+         */}
         {soundSystem.tracks ? (
           <SoundSystemTemplate {...soundSystem} prismicData={journal.data} />
         ) : (
@@ -35,9 +37,15 @@ const Post = ({ journal, soundSystem }) => {
 
 Post.getInitialProps = async ({ query, req }) => {
   try {
+    /**
+     * Get journal page from prismic
+     */
     const { uid } = query
     const journal = await Client(req).getByUID('journal', uid)
 
+    /**
+     * Get get spotify data
+     */
     const soundSystem = new SoundSystemReq(journal)
     if (soundSystem.playlistId) {
       await soundSystem.fetch()
