@@ -39,7 +39,7 @@ const { accel, decel } = theme.ease
 export default class HighTideApp extends App {
   render() {
     const { Component, pageProps } = this.props
-    const { route } = this.props.router
+    const { route, asPath } = this.props.router
     const isDark = DARK_ROUTES.includes(route)
 
     return (
@@ -50,7 +50,7 @@ export default class HighTideApp extends App {
               timeout={theme.routeTransition.timeout}
               classNames="page-transition"
             >
-              <Component {...pageProps} key={route} />
+              <Component {...pageProps} key={asPath} />
             </PageTransition>
           </Layout>
         </ThemeProvider>
