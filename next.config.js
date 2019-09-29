@@ -36,6 +36,7 @@ module.exports = withFonts({
       '/about': { page: '/about' },
       '/contact': { page: '/contact' },
       '/journal': { page: '/journal' },
+      '/preview': { page: '/preview' },
     }
 
     const api = await Prismic.getApi(process.env.PRISMIC_ENDPOINT, {
