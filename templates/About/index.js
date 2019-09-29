@@ -8,22 +8,9 @@ import Difference from 'components/prismic/Difference'
 import Clients from 'components/prismic/Clients'
 import Diptych from 'components/prismic/Diptych'
 import Recognition from 'components/prismic/Recognition'
+import AboutSwitcher from 'components/prismic/AboutSwitcher'
 import LazyImg from '@tylermcrobert/react-lazyimg'
 import Section from 'components/Section'
-/**
- * * * Hero
- * * * Image
- * * * Difference
- * * * Diptych
- * Brand Message
- * * * Logos
- * Image 3
- * * * What We do
- * video
- * Recognition
- * Image 4
- * * * Careers
- */
 
 const About = React.memo(({ site }) => {
   const {
@@ -39,7 +26,10 @@ const About = React.memo(({ site }) => {
     about_image_5: image5,
     impact_message: impactMessage,
     recognition,
+    about_switcher: aboutSwitcher,
   } = site
+
+  console.log(site.about_switcher)
 
   const diptychItems = [site.about_diptych_item_1, site.about_diptych_item_2]
 
@@ -58,7 +48,7 @@ const About = React.memo(({ site }) => {
         <Capabilities data={site.capacities} />
         <Image src={image3.url} />
         <Section>{RichText.render(impactMessage)}</Section>
-        <Section>Story, team, studio</Section>
+        <AboutSwitcher items={aboutSwitcher} />
         <Image src={image4.url} />
         <Careers data={careers} />
         <Image src={image5.url} />
