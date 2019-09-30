@@ -1,9 +1,12 @@
 import styled from 'styled-components'
+import { mq } from 'style/theme'
 
 const Columns = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr;
   grid-gap: 2rem;
+  @media ${mq.sm} {
+    grid-template-columns: 1fr 2fr;
+  }
 
   h1 {
     width: 80%;
