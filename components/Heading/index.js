@@ -18,7 +18,8 @@ const HeadStyle = styled.h1`
 const VALID_ELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'li', 'div']
 
 Heading.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    .isRequired,
   as: PropTypes.oneOf(VALID_ELS).isRequired,
   headingStyle: PropTypes.oneOf(
     Array.from({ length: HEADING_LEVELS.length }).map((_, i) => i)
