@@ -1,65 +1,59 @@
-import styled, { css } from 'styled-components'
-import LazyImg from '@tylermcrobert/react-lazyimg'
-import { mq, sizes } from 'style/theme'
-
-const STACK_SIZE = `(min-width: ${sizes.xs}px) and (max-width: ${sizes.md}px)`
+import styled from 'styled-components'
+import { mq } from 'style/theme'
 
 const RATIO = (2 / 3) * 100
 
 const Wrapper = styled.div`
+  display: grid;
+  grid-gap: ${props => props.theme.margins.standard};
+
   @media ${mq.xs} {
-    display: grid;
-    grid-gap: ${props => props.theme.margins.standard};
     grid-template-columns: repeat(2, 1fr);
   }
 `
 
-const CardWrapper = styled.a`
+/**
+ * Journal Card Items
+ */
+
+const JournalCard = styled.a`
   cursor: pointer;
-
-  ${props =>
-    props.large &&
-    css`
-      grid-row: auto / span 2;
-      display: flex;
-      flex-direction: column;
-    `}
+  grid-row: ${props => props.theme.large && 'auto / span 2'};
 `
 
-const ImgContainer = styled.div`
-  flex: 1;
-  height: 0;
-  padding-top: ${RATIO}%;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: ${props => props.theme.margins.slim};
-`
-
-const Img = styled(LazyImg)`
-  position: absolute;
-  top: 0;
-  width: 100%;
+const CardLayout = styled.div`
   height: 100%;
-  object-fit: cover;
-  object-position: center center;
+  display: grid;
+  grid-gap: ${props => props.theme.margins.slim};
+  grid-template-rows: 1fr min-content;
 `
 
-const PostDesc = styled.div`
-  display: flex;
+const PostImage = styled.div`
+  padding-top: ${RATIO}%;
+  background: url(${props => props.src});
+  background-size: cover;
+  background-position: center center;
 
-  @media ${STACK_SIZE} {
-    display: block;
+  @media ${mq.xs} {
+    height: ${props => (!props.theme.large ? 0 : '100%')};
+    padding-top: ${props => !props.theme.large && `${RATIO}%`};
   }
 `
 
-const PostTitle = styled.h2`
-  font-size: ${props => props.theme.fontSizes[2]};
-  margin-right: ${props => props.theme.margins.standard};
-  flex: 1;
+/**
+ * Description Area
+ */
 
-  @media ${STACK_SIZE} {
-    margin-bottom: 0.25em;
-  }
+const DescWrapper = styled.div`
+  display: grid;
+  grid-gap: ${props => props.theme.margins.standard};
+  grid-template-columns: 1fr auto;
 `
 
-export default { Wrapper, Img, PostTitle, PostDesc, ImgContainer, CardWrapper }
+export default {
+  Wrapper,
+  JournalCard,
+  PostImage,
+  CardLayout,
+  DescWrapper,
+}

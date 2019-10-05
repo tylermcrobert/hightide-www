@@ -34,7 +34,7 @@ const Post = React.memo(({ data }) => {
 function Related({ items }) {
   if (items && items.length) {
     return (
-      <RelatedWrapper contents="Entries">
+      <RelatedWrapper heading="Related Entries">
         {items.map(({ entry }) => {
           const title = RichText.asText(entry.data.title)
           const thumbnail =

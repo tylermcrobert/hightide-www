@@ -26,6 +26,7 @@ const About = React.memo(({ site }) => {
     impact_message: impactMessage,
     recognition,
     about_switcher: aboutSwitcher,
+    about_video_1: aboutVideo1,
   } = site
 
   const diptychItems = [site.about_diptych_item_1, site.about_diptych_item_2]
@@ -48,12 +49,19 @@ const About = React.memo(({ site }) => {
         <AboutSwitcher items={aboutSwitcher} />
         <Image src={image4 && image4.url} />
         <Careers data={careers} />
-        video here
+        <Video url={aboutVideo1 && aboutVideo1.url} />
         <Recognition items={recognition} />
       </Wrap>
     </>
   )
 })
+
+const Video = ({ url }) =>
+  url && (
+    <video autoPlay muted loop>
+      <source src={url} />
+    </video>
+  )
 
 const Image = ({ src }) =>
   src && (

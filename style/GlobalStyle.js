@@ -83,7 +83,8 @@ const style = css`
     font-weight: 500;
   }
 
-  img {
+  img,
+  video {
     display: block;
     width: 100%;
   }

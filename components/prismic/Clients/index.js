@@ -16,8 +16,8 @@ function Clients({ items }) {
             <Styled.Grid>
               {items.map(
                 ({ client_name: clientName, logo }, i) =>
-                  clientName &&
-                  logo && (
+                  logo &&
+                  logo.url && (
                     <img key={`${logo}${i}`} src={logo.url} alt={clientName} />
                   )
               )}

@@ -17,7 +17,7 @@ export default function Recognition({ items }) {
               <a rel="noopener noreferrer" target="_blank">
                 <Styled.Item>
                   {RichText.render(title)}
-                  <Arrow />
+                  {link.url && <Arrow />}
                 </Styled.Item>
               </a>
             </Link>

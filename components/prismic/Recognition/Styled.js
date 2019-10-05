@@ -1,8 +1,11 @@
 import styled from 'styled-components'
+import { mq } from 'style/theme'
 
 const Wrapper = styled.ul`
-  column-count: 2;
   column-gap: ${props => props.theme.margins.standard};
+  @media ${mq.sm} {
+    column-count: 2;
+  }
 `
 
 const Item = styled.li`

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Wrap } from 'style'
 import config, { social } from 'site.config'
+import { Underline } from 'components/LinkEffect'
 import Styled from './Styled'
 import Section from '../Section'
 
@@ -41,7 +42,9 @@ function Footer() {
           </Section>
           <Section>
             <h5>Inquiries</h5>
-            <a href="mailto:info@hightidenyc.com">info@hightidenyc.com</a>
+            <Underline invert>
+              <a href="mailto:info@hightidenyc.com">info@hightidenyc.com</a>
+            </Underline>
           </Section>
           <Section>
             <h5>Follow</h5>
@@ -52,7 +55,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {item.name}
+                <Underline invert>{item.name}</Underline>
               </a>
             ))}
           </Section>
