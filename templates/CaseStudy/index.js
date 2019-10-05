@@ -44,7 +44,7 @@ const CaseStudy = memo(({ data }) => {
 function Related({ items }) {
   if (items && items.length) {
     return (
-      <RelatedWrapper>
+      <RelatedWrapper heading="Other Projects">
         {items.map(({ item }) => {
           const name = RichText.asText(item.data.name)
           return (
