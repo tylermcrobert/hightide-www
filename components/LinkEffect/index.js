@@ -11,12 +11,13 @@ export const Underline = styled.div`
   &:after {
     content: '';
     position: absolute;
-    bottom: 0em;
+    bottom: -0.2em;
     left: 0;
 
     border-bottom: 1px solid
       ${({ theme, invert }) =>
         invert ? theme.colors.primary : theme.colors.secondary};
+
     width: 100%;
     opacity: 0;
     transition: opacity 300ms ${props => props.theme.ease.standard},
