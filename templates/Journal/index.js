@@ -3,6 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { RichText } from 'prismic-reactjs'
 import { Wrap } from 'style'
+import Section from 'components/Section'
 import fmtDate from 'util/fmtDate'
 import {
   Underline,
@@ -15,31 +16,33 @@ import getImage from './getImage'
 
 export default function Journal({ results }) {
   return (
-    <Wrap>
-      <Styled.Wrapper>
-        {results.map(({ data, uid }, i) => {
-          const date = new Date(data.date)
-          const formattedDate = fmtDate(date)
-          const title = RichText.asText(data.title)
-          const mainImg = data.main_image.url
-          const thumbnail = data.thumbnail_image
-          // every 6th image OR every 6th image starting at 3rd item
-          const large = i % 6 === 0 || (i + 2) % 6 === 0
+    <Section noTop>
+      <Wrap>
+        <Styled.Wrapper>
+          {results.map(({ data, uid }, i) => {
+            const date = new Date(data.date)
+            const formattedDate = fmtDate(date)
+            const title = RichText.asText(data.title)
+            const mainImg = data.main_image.url
+            const thumbnail = data.thumbnail_image
+            // every 6th image OR every 6th image starting at 3rd item
+            const large = i % 6 === 0 || (i + 2) % 6 === 0
 
-          return (
-            <JournalCard
-              key={uid}
-              uid={uid}
-              mainImg={mainImg}
-              thumbnail={thumbnail}
-              date={formattedDate}
-              title={title}
-              large={large}
-            />
-          )
-        })}
-      </Styled.Wrapper>
-    </Wrap>
+            return (
+              <JournalCard
+                key={uid}
+                uid={uid}
+                mainImg={mainImg}
+                thumbnail={thumbnail}
+                date={formattedDate}
+                title={title}
+                large={large}
+              />
+            )
+          })}
+        </Styled.Wrapper>
+      </Wrap>
+    </Section>
   )
 }
 
