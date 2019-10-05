@@ -42,7 +42,9 @@ function Footer() {
           </Section>
           <Section>
             <h5>Inquiries</h5>
-            <a href="mailto:info@hightidenyc.com">info@hightidenyc.com</a>
+            <Underline>
+              <a href="mailto:info@hightidenyc.com">info@hightidenyc.com</a>
+            </Underline>
           </Section>
           <Section>
             <h5>Follow</h5>
