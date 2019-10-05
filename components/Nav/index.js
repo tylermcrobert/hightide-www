@@ -1,4 +1,5 @@
 import React, { useState, createContext, useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 import Link from 'next/link'
 import { Wrap } from 'style'
 import { Underline } from 'components/LinkEffect'
@@ -40,12 +41,14 @@ function Logo() {
 }
 
 function DesktopLinks() {
+  const { isDark } = useContext(ThemeContext)
+
   return (
     <Styled.Links>
       {NAV_ITEMS.map(item => (
         <Link href={item.href} key={item.display}>
           <Styled.NavItem href="#">
-            <Underline>{item.display}</Underline>
+            <Underline invert={isDark}>{item.display}</Underline>
           </Styled.NavItem>
         </Link>
       ))}
