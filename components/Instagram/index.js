@@ -2,14 +2,28 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import config from 'site.config'
 import LazyImg from '@tylermcrobert/react-lazyimg'
+import Section from 'components/Section'
+import SectionHead from 'components/SectionHead'
+
 import Styled from './Styled'
+
+const handle = config.social.instagram
+
+const InstagramLink = () => (
+  <a
+    href={`https://instagram.com/${handle}/`}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Follow us
+  </a>
+)
 
 function Instagram({ apiResponse }) {
   if (apiResponse && apiResponse.data) {
-    const handle = config.social.instagram
-
     return (
-      <div>
+      <Section>
+        <SectionHead link={<InstagramLink />}>Instagram</SectionHead>
         <Styled.Wrapper>
           {apiResponse.data.map(item => (
             <LazyImg
@@ -20,14 +34,7 @@ function Instagram({ apiResponse }) {
             />
           ))}
         </Styled.Wrapper>
-        <Styled.Link
-          href={`https://instagram.com/${handle}/`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Follow Us
-        </Styled.Link>
-      </div>
+      </Section>
     )
   }
   console.error('No Instagram API response found.')

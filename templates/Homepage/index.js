@@ -26,9 +26,7 @@ const Homepage = React.memo(({ data }) => {
         <Clients items={clients} />
         <HomeFeatureBlock data={featuredProjects[1]} />
         <Careers data={careers} />
-        <Section>
-          <Instagram apiResponse={data.instagramData} />
-        </Section>
+        <Instagram apiResponse={data.instagramData} />
       </Wrap>
     </>
   )
