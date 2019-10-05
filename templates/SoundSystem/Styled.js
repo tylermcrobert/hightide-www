@@ -5,11 +5,7 @@ const Columns = styled.div`
   display: grid;
   grid-gap: 2rem;
   @media ${mq.sm} {
-    grid-template-columns: 1fr 2fr;
-  }
-
-  h1 {
-    width: 80%;
+    grid-template-columns: 1fr 1fr;
   }
 `
 const Track = styled.li`

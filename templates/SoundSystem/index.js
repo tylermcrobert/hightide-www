@@ -9,16 +9,23 @@ import Styled from './Styled'
 
 const SoundSystem = memo(
   ({ tracks, playlistLink, spotifyImage, prismicData }) => {
+    const PlaylistLink = memo(({ children }) => (
+      <a href={playlistLink} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    ))
     return (
       <Wrap>
         <Styled.Columns>
           <Section>
-            <Styled.PlaylistCover src={spotifyImage} alt="" width="50px" />
+            <PlaylistLink>
+              <Styled.PlaylistCover src={spotifyImage} alt="" />
+            </PlaylistLink>
             <Heading as="h1">{RichText.asText(prismicData.title)}</Heading>
             <TextWrap>{RichText.render(prismicData.abstract)}</TextWrap>
-            <a href={playlistLink} target="_blank" rel="noopener noreferrer">
+            <PlaylistLink>
               <strong>Follow Playlist</strong>
-            </a>
+            </PlaylistLink>
           </Section>
           <Section>
             <ul>
