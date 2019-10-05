@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import Heading from 'components/Heading'
 import Section from 'components/Section'
 import { Wrap } from 'style'
@@ -17,6 +17,7 @@ const SoundSystem = memo(
     return (
       <Wrap>
         <Styled.Columns>
+          {/* Info */}
           <Section>
             <PlaylistLink>
               <Styled.PlaylistCover src={spotifyImage} alt="" />
@@ -27,32 +28,37 @@ const SoundSystem = memo(
               <strong>Follow Playlist</strong>
             </PlaylistLink>
           </Section>
+          {/* Tracks */}
           <Section>
-            <ul>
-              {tracks.map(({ track }) => {
-                const albumCover = track.album.images[0].url
-                const artists = track.artists
-                  .map(artist => artist.name)
-                  .join(', ')
-                const duration = msToTime(track.duration_ms)
-
-                return (
-                  <Track
-                    key={track.name}
-                    name={track.name}
-                    albumCover={albumCover}
-                    artists={artists}
-                    duration={duration}
-                  />
-                )
-              })}
-            </ul>
+            <Tracks items={tracks} />
           </Section>
         </Styled.Columns>
       </Wrap>
     )
   }
 )
+
+const Tracks = ({ items }) => {
+  return (
+    <ul>
+      {items.map(({ track }) => {
+        const albumCover = track.album.images[0].url
+        const artists = track.artists.map(artist => artist.name).join(', ')
+        const duration = msToTime(track.duration_ms)
+
+        return (
+          <Track
+            key={track.name}
+            name={track.name}
+            albumCover={albumCover}
+            artists={artists}
+            duration={duration}
+          />
+        )
+      })}
+    </ul>
+  )
+}
 
 const Track = ({ albumCover, artists, name, duration }) => {
   return (

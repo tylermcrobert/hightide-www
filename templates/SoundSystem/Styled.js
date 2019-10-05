@@ -2,9 +2,9 @@ import styled from 'styled-components'
 import { mq } from 'style/theme'
 
 const Columns = styled.div`
-  display: grid;
-  grid-gap: 2rem;
   @media ${mq.sm} {
+    display: grid;
+    grid-gap: 2rem;
     grid-template-columns: 1fr 1fr;
   }
 `
