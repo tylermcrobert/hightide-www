@@ -23,7 +23,6 @@ const About = React.memo(({ site }) => {
     about_image_2: image2,
     about_image_3: image3,
     about_image_4: image4,
-    about_image_5: image5,
     impact_message: impactMessage,
     recognition,
     about_switcher: aboutSwitcher,
@@ -42,14 +41,14 @@ const About = React.memo(({ site }) => {
         <Diptych items={diptychItems} />
         <Section>{RichText.render(clientMessage)}</Section>
         <Clients items={clients} />
-        <Image src={image2.url} />
+        <Image src={image2 && image2.url} />
         <Capabilities data={site.capacities} />
-        <Image src={image3.url} />
+        <Image src={image3 && image3.url} />
         <Section>{RichText.render(impactMessage)}</Section>
         <AboutSwitcher items={aboutSwitcher} />
-        <Image src={image4.url} />
+        <Image src={image4 && image4.url} />
         <Careers data={careers} />
-        <Image src={image5.url} />
+        video here
         <Recognition items={recognition} />
       </Wrap>
     </>
