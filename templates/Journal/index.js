@@ -4,6 +4,12 @@ import Link from 'next/link'
 import { RichText } from 'prismic-reactjs'
 import { Wrap } from 'style'
 import fmtDate from 'util/fmtDate'
+import {
+  Underline,
+  Trigger,
+  ZoomWrapper,
+  ZoomNode,
+} from 'components/LinkEffect'
 import Styled from './Styled'
 import getImage from './getImage'
 
@@ -40,16 +46,24 @@ export default function Journal({ results }) {
 function JournalCard({ uid, mainImg, date, title, large, thumbnail }) {
   const image = getImage({ mainImg, thumbnail, large })
   return (
-    <Link href="/journal/[uid]" as={`/journal/${uid}/`}>
-      <Styled.CardWrapper large={large}>
-        <Styled.ImgContainer large={large}>
-          <Styled.Img src={image} alt={`${title} - High Tide`} />
-        </Styled.ImgContainer>
-        <Styled.PostDesc>
-          <Styled.PostTitle>{title}</Styled.PostTitle>
-          <h5>{date}</h5>
-        </Styled.PostDesc>
-      </Styled.CardWrapper>
-    </Link>
+    <Trigger>
+      <Link href="/journal/[uid]" as={`/journal/${uid}/`}>
+        <Styled.CardWrapper large={large}>
+          <ZoomWrapper>
+            <ZoomNode>
+              <Styled.ImgContainer large={large}>
+                <Styled.Img src={image} alt={`${title} - High Tide`} />
+              </Styled.ImgContainer>
+            </ZoomNode>
+          </ZoomWrapper>
+          <Styled.PostDesc>
+            <Styled.PostTitle>
+              <Underline>{title}</Underline>
+            </Styled.PostTitle>
+            <h5>{date}</h5>
+          </Styled.PostDesc>
+        </Styled.CardWrapper>
+      </Link>
+    </Trigger>
   )
 }

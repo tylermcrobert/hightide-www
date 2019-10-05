@@ -42,7 +42,7 @@ function Footer() {
           </Section>
           <Section>
             <h5>Inquiries</h5>
-            <Underline>
+            <Underline invert>
               <a href="mailto:info@hightidenyc.com">info@hightidenyc.com</a>
             </Underline>
           </Section>
@@ -55,7 +55,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Underline>{item.name}</Underline>
+                <Underline invert>{item.name}</Underline>
               </a>
             ))}
           </Section>

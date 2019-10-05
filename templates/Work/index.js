@@ -47,7 +47,7 @@ function WorkItem({ title, image }) {
       </ZoomWrapper>
       <Styled.Link>
         <Heading as="h2" headingStyle={2}>
-          <Underline>{title}</Underline>
+          <Underline invert>{title}</Underline>
         </Heading>
       </Styled.Link>
     </div>

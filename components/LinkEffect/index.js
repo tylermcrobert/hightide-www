@@ -16,7 +16,7 @@ export const Underline = styled.div`
 
     border-bottom: 1px solid
       ${({ theme, invert }) =>
-        invert ? theme.colors.primary : theme.colors.secondary};
+        !invert ? theme.colors.primary : theme.colors.secondary};
 
     width: 100%;
     opacity: 0;

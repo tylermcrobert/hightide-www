@@ -32,7 +32,6 @@ const ImgContainer = styled.div`
   padding-top: ${RATIO}%;
   position: relative;
   overflow: hidden;
-  margin-bottom: ${props => props.theme.margins.slim};
 `
 
 const Img = styled(LazyImg)`
@@ -45,6 +44,7 @@ const Img = styled(LazyImg)`
 `
 
 const PostDesc = styled.div`
+  margin-top: ${({ theme }) => theme.margins.slim};
   display: flex;
 
   @media ${STACK_SIZE} {

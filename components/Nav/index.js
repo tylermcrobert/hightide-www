@@ -45,7 +45,7 @@ function DesktopLinks() {
       {NAV_ITEMS.map(item => (
         <Link href={item.href} key={item.display}>
           <Styled.NavItem href="#">
-            <Underline invert>{item.display}</Underline>
+            <Underline>{item.display}</Underline>
           </Styled.NavItem>
         </Link>
       ))}
