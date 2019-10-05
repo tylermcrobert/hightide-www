@@ -10,9 +10,9 @@ const Wrapper = styled.div`
   }
 `
 
-const Link = styled.a`
+const Title = styled.div`
   color: ${props => props.theme.colors.secondary};
-  margin: 0 ${props => props.theme.margins.standard};
+  margin: ${props => props.theme.margins.slim} 0;
 `
 
 const Image = styled.div`
@@ -32,4 +32,4 @@ const Image = styled.div`
   }
 `
 
-export default { Wrapper, Link, Image }
+export default { Wrapper, Title, Image }

@@ -19,7 +19,7 @@ function Work({ data: response }) {
       <Wrap>
         <Styled.Wrapper>
           {response.results.map(({ uid, data }) => (
-            <Link href="/work/[uid]" as={`/work/${uid}/`}>
+            <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
               <Trigger>
                 <a>
                   <WorkItem
@@ -45,11 +45,11 @@ function WorkItem({ title, image }) {
           <Styled.Image src={image} />
         </ZoomNode>
       </ZoomWrapper>
-      <Styled.Link>
+      <Styled.Title>
         <Heading as="h2" headingStyle={2}>
           <Underline invert>{title}</Underline>
         </Heading>
-      </Styled.Link>
+      </Styled.Title>
     </div>
   )
 }
