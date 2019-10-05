@@ -1,6 +1,7 @@
 import React from 'react'
 import { Wrap } from 'style'
 import config, { social } from 'site.config'
+import { Underline } from 'components/LinkEffect'
 import Styled from './Styled'
 import Section from '../Section'
 
@@ -52,7 +53,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {item.name}
+                <Underline>{item.name}</Underline>
               </a>
             ))}
           </Section>

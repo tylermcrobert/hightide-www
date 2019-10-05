@@ -11,7 +11,7 @@ export const Underline = styled.div`
   &:after {
     content: '';
     position: absolute;
-    bottom: -0.2em;
+    bottom: -0.1em;
     left: 0;
 
     border-bottom: 1px solid
@@ -22,7 +22,14 @@ export const Underline = styled.div`
     opacity: 0;
     transition: opacity 300ms ${props => props.theme.ease.standard},
       transform 300ms ${props => props.theme.ease.standard};
-    transform: translateY(-3px);
+    transform: translateY(-0.2em);
+  }
+
+  &:hover {
+    &::after {
+      opacity: 0.5;
+      transform: translateY(0px);
+    }
   }
 
   ${Trigger}:hover & {
