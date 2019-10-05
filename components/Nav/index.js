@@ -1,6 +1,7 @@
 import React, { useState, createContext, useContext } from 'react'
 import Link from 'next/link'
 import { Wrap } from 'style'
+import { Underline } from 'components/LinkEffect'
 import Styled from './Styled'
 import Heading from '../Heading'
 
@@ -22,7 +23,7 @@ function Nav() {
           <BurgerMenu />
           <DesktopLinks />
         </Styled.Wrap>
-        <Overlay />
+        <MobileOverlay />
       </Styled.Nav>
     </NavContext.Provider>
   )
@@ -43,7 +44,9 @@ function DesktopLinks() {
     <Styled.Links>
       {NAV_ITEMS.map(item => (
         <Link href={item.href} key={item.display}>
-          <Styled.NavItem href="#">{item.display}</Styled.NavItem>
+          <Styled.NavItem href="#">
+            <Underline invert>{item.display}</Underline>
+          </Styled.NavItem>
         </Link>
       ))}
     </Styled.Links>
@@ -61,7 +64,7 @@ function BurgerMenu() {
   )
 }
 
-function Overlay() {
+function MobileOverlay() {
   const { mobileNavEnabled, setMobileNav } = useContext(NavContext)
 
   return (
