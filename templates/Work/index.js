@@ -5,7 +5,12 @@ import Link from 'next/link'
 import { Wrap } from 'style'
 import Heading from 'components/Heading'
 import Section from 'components/Section'
-import formatTitle from 'util/formatTitle'
+import {
+  Underline,
+  Trigger,
+  ZoomWrapper,
+  ZoomNode,
+} from 'components/LinkEffect'
 import Styled from './Styled'
 
 function Work({ data: response }) {
@@ -15,13 +20,15 @@ function Work({ data: response }) {
         <Styled.Wrapper>
           {response.results.map(({ uid, data }) => (
             <Link href="/work/[uid]" as={`/work/${uid}/`}>
-              <a>
-                <WorkItem
-                  key={uid}
-                  image={data.image.url}
-                  title={RichText.asText(data.name)}
-                />
-              </a>
+              <Trigger>
+                <a>
+                  <WorkItem
+                    key={uid}
+                    image={data.image.url}
+                    title={RichText.asText(data.name)}
+                  />
+                </a>
+              </Trigger>
             </Link>
           ))}
         </Styled.Wrapper>
@@ -33,10 +40,14 @@ function Work({ data: response }) {
 function WorkItem({ title, image }) {
   return (
     <div>
-      <img src={image} alt={formatTitle(title)} />
+      <ZoomWrapper>
+        <ZoomNode>
+          <Styled.Image src={image} />
+        </ZoomNode>
+      </ZoomWrapper>
       <Styled.Link>
         <Heading as="h2" headingStyle={2}>
-          {title}
+          <Underline>{title}</Underline>
         </Heading>
       </Styled.Link>
     </div>

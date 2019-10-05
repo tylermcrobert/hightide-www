@@ -15,4 +15,21 @@ const Link = styled.a`
   margin: 0 ${props => props.theme.margins.standard};
 `
 
-export default { Wrapper, Link }
+const Image = styled.div`
+  height: 0;
+  padding-top: ${(2 / 3) * 100}%;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(${props => props.src});
+    background-size: cover;
+  }
+`
+
+export default { Wrapper, Link, Image }
