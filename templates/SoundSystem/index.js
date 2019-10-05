@@ -1,10 +1,11 @@
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import Heading from 'components/Heading'
 import Section from 'components/Section'
 import { Wrap } from 'style'
 import { RichText } from 'prismic-reactjs'
 import TextWrap from 'components/TextWrap'
 import msToTime from 'util/msToTime'
+import { RelatedWrapper, RelatedItem } from 'components/Related'
 import Styled from './Styled'
 
 const SoundSystem = memo(
@@ -14,29 +15,59 @@ const SoundSystem = memo(
         {children}
       </a>
     ))
+
     return (
-      <Wrap>
-        <Styled.Columns>
-          {/* Info */}
-          <Section>
-            <PlaylistLink>
-              <Styled.PlaylistCover src={spotifyImage} alt="" />
-            </PlaylistLink>
-            <Heading as="h1">{RichText.asText(prismicData.title)}</Heading>
-            <TextWrap>{RichText.render(prismicData.abstract)}</TextWrap>
-            <PlaylistLink>
-              <strong>Follow Playlist</strong>
-            </PlaylistLink>
-          </Section>
-          {/* Tracks */}
-          <Section>
-            <Tracks items={tracks} />
-          </Section>
-        </Styled.Columns>
-      </Wrap>
+      <>
+        <Wrap>
+          <Styled.Columns>
+            {/* Info */}
+            <Section>
+              <PlaylistLink>
+                <Styled.PlaylistCover src={spotifyImage} alt="" />
+              </PlaylistLink>
+              <Heading as="h1">{RichText.asText(prismicData.title)}</Heading>
+              <TextWrap>{RichText.render(prismicData.abstract)}</TextWrap>
+              <PlaylistLink>
+                <strong>Follow Playlist</strong>
+              </PlaylistLink>
+            </Section>
+            {/* Tracks */}
+            <Section>
+              <Tracks items={tracks} />
+            </Section>
+          </Styled.Columns>
+        </Wrap>
+        <RelatedItems items={prismicData.related_journals} />
+      </>
     )
   }
 )
+
+const RelatedItems = ({ items }) => {
+  if (items && items.length > 1) {
+    return (
+      <RelatedWrapper heading="Related Playlists">
+        {items.map(({ entry }) => {
+          if (entry.data) {
+            const title = RichText.asText(entry.data.title)
+            const image = entry.data.main_image.url
+            return (
+              <RelatedItem
+                title={title}
+                key={entry.id}
+                src={image}
+                link="/journal/[uid]"
+                as={`/journal/${entry.uid}`}
+              />
+            )
+          }
+          return null
+        })}
+      </RelatedWrapper>
+    )
+  }
+  return null
+}
 
 const Tracks = ({ items }) => {
   return (
