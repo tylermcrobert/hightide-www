@@ -9,6 +9,8 @@ const Grid = styled.div`
     width: 10vw;
     display: inline-block;
     align-self: center;
+    margin-left: 3vw;
+    margin-right: 3vw;
   }
 `
 
