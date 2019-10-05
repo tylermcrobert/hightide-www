@@ -5,6 +5,8 @@ import { RichText } from 'prismic-reactjs'
 import { Wrap } from 'style'
 import Section from 'components/Section'
 import fmtDate from 'util/fmtDate'
+import Heading from 'components/Heading'
+import { ThemeProvider } from 'styled-components'
 import {
   Underline,
   Trigger,
@@ -48,25 +50,28 @@ export default function Journal({ results }) {
 
 function JournalCard({ uid, mainImg, date, title, large, thumbnail }) {
   const image = getImage({ mainImg, thumbnail, large })
+
   return (
-    <Trigger>
-      <Link href="/journal/[uid]" as={`/journal/${uid}/`}>
-        <Styled.CardWrapper large={large}>
-          <ZoomWrapper>
-            <ZoomNode>
-              <Styled.ImgContainer large={large}>
-                <Styled.Img src={image} alt={`${title} - High Tide`} />
-              </Styled.ImgContainer>
-            </ZoomNode>
-          </ZoomWrapper>
-          <Styled.PostDesc>
-            <Styled.PostTitle>
-              <Underline>{title}</Underline>
-            </Styled.PostTitle>
-            <h5>{date}</h5>
-          </Styled.PostDesc>
-        </Styled.CardWrapper>
-      </Link>
-    </Trigger>
+    <ThemeProvider theme={{ large }}>
+      <Styled.JournalCard as={Trigger}>
+        <Link href="/journal/[uid]" as={`/journal/${uid}/`}>
+          <a>
+            <Styled.CardLayout>
+              <ZoomWrapper>
+                <Styled.PostImage src={image} as={ZoomNode} />
+              </ZoomWrapper>
+              <Styled.DescWrapper>
+                <Heading as="h2" headingStyle={2} noMargin>
+                  <Underline>{title}</Underline>
+                </Heading>
+                <Heading as="h3" headingStyle={2} noMargin>
+                  {fmtDate(new Date(date))}
+                </Heading>
+              </Styled.DescWrapper>
+            </Styled.CardLayout>
+          </a>
+        </Link>
+      </Styled.JournalCard>
+    </ThemeProvider>
   )
 }
