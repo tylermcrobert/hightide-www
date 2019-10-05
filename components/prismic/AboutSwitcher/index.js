@@ -12,10 +12,7 @@ function AboutSwitcher({ items }) {
         <TextSwitcher cols={1}>
           {items.map(({ title, description }, i) =>
             title.length ? (
-              <TextSwitcher.item
-                i={`${i} ${title.text}`}
-                key={RichText.asText(title)}
-              >
+              <TextSwitcher.item i={i} key={RichText.asText(title)}>
                 <TextSwitcher.Head>{RichText.asText(title)}</TextSwitcher.Head>
                 <TextWrap>
                   <TextSwitcher.Body>
