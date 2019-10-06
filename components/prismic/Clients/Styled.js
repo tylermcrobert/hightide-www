@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { mq } from 'style/theme'
 
 const Grid = styled.div`
   display: flex;
@@ -6,11 +7,25 @@ const Grid = styled.div`
   width: 100%;
 
   img {
-    width: 10vw;
+    width: 5rem;
+    margin: 0 0.75rem;
     display: inline-block;
     align-self: center;
-    margin-left: 3vw;
-    margin-right: 3vw;
+
+    @media ${mq.sm} {
+      width: 6rem;
+      margin: 0 1.5rem;
+    }
+
+    @media ${mq.md} {
+      width: 7rem;
+      margin: 0 1.5rem;
+    }
+
+    @media ${mq.lg} {
+      width: 7rem;
+      margin: 0 2rem;
+    }
   }
 `
 
