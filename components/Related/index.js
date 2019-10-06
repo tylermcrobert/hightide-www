@@ -2,6 +2,12 @@ import PropTypes from 'prop-types'
 import Section from 'components/Section'
 import { Wrap } from 'style'
 import Link from 'next/link'
+import {
+  Trigger,
+  Underline,
+  ZoomWrapper,
+  ZoomNode,
+} from 'components/LinkEffect'
 import Styled from './Styled'
 
 function RelatedWrapper({ children, heading }) {
@@ -33,12 +39,22 @@ RelatedWrapper.propTypes = {
 
 function RelatedItem({ src, title, link, as }) {
   return (
-    <Link href={link} as={as}>
-      <a>
-        <Styled.Item src={src}></Styled.Item>
-        {title && <Styled.Title>{title}</Styled.Title>}
-      </a>
-    </Link>
+    <Trigger>
+      <Link href={link} as={as}>
+        <a>
+          <ZoomWrapper>
+            <ZoomNode>
+              <Styled.Item src={src}></Styled.Item>
+            </ZoomNode>
+          </ZoomWrapper>
+          {title && (
+            <Styled.Title>
+              <Underline invert>{title}</Underline>
+            </Styled.Title>
+          )}
+        </a>
+      </Link>
+    </Trigger>
   )
 }
 
