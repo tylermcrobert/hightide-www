@@ -2,6 +2,7 @@ import React, { useContext, useState, createContext } from 'react'
 import Section from 'components/Section'
 import PropTypes from 'prop-types'
 import Fpo from 'components/Fpo'
+import Styled from './Styled'
 
 const CarouselCtx = createContext()
 function Carousel({ data }) {
@@ -33,12 +34,16 @@ const Layout = ({ urls, smallestAspect }) => {
   const getPrev = () => setCurrentIndex(prevIndex)
 
   return (
-    <CarouselCtx.Provider
-      value={{ smallestAspect, length, index, getNext, getPrev }}
-    >
+    <CarouselCtx.Provider value={{ length, index, getNext, getPrev }}>
       {urls.map((url, i) => (
-        <Image url={url} key={url} active={i === index} />
+        <Styled.Image
+          src={url}
+          key={url}
+          active={i === index}
+          aspect={smallestAspect}
+        />
       ))}
+
       <Navigation />
     </CarouselCtx.Provider>
   )
@@ -49,19 +54,19 @@ Layout.propTypes = {
   smallestAspect: PropTypes.number.isRequired,
 }
 
+/**
+ * Navigation
+ */
+
 const Navigation = () => {
   const { getNext, getPrev, length, index } = useContext(CarouselCtx)
   return (
-    <div>
-      {index + 1} of {length}
+    <Styled.FpoNav>
+      0{index + 1} of 0{length}
       <div onClick={getPrev}>Prev</div>
       <div onClick={getNext}>Next</div>
-    </div>
+    </Styled.FpoNav>
   )
-}
-
-const Image = ({ url, active }) => {
-  return active ? <img src={url} alt="" /> : null
 }
 
 // Carousel.propTypes = {}
