@@ -1,4 +1,4 @@
-import { createContext, memo } from 'react'
+import React, { createContext, memo } from 'react'
 import { RichText } from 'prismic-reactjs'
 
 import { Wrap } from 'style'
@@ -10,6 +10,7 @@ import formatTitle from 'util/formatTitle'
 
 import TextBlock from 'components/slices/TextBlock'
 import ImageBlock from 'components/slices/ImageBlock'
+import Carousel from 'components/slices/Carousel'
 import Gallery from './Gallery'
 
 export const CaseStudyCtx = createContext()
@@ -64,19 +65,23 @@ function Related({ items }) {
 }
 
 function Slices({ data }) {
-  return data.body.map(slice => {
-    switch (slice.slice_type) {
-      case 'gallery':
-        return <Gallery.Wrapper data={slice} />
-      case 'image_block':
-        return <ImageBlock data={slice} />
-      case 'text_block':
-        return <TextBlock data={slice} />
-      default:
-        console.warn(`nothing built for ${slice.slice_type}`)
-        return null
-    }
-  })
+  return data.body
+    .map(slice => {
+      switch (slice.slice_type) {
+        case 'gallery':
+          return <Gallery.Wrapper data={slice} />
+        case 'image_carousel':
+          return <Carousel data={slice} />
+        case 'image_block':
+          return <ImageBlock data={slice} />
+        case 'text_block':
+          return <TextBlock data={slice} />
+        default:
+          console.warn(`nothing built for ${slice.slice_type}`)
+          return null
+      }
+    })
+    .map((slice, i) => <React.Fragment key={i}>{slice}</React.Fragment>)
 }
 
 export default CaseStudy
