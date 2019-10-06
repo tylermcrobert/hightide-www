@@ -7,31 +7,15 @@ import PageIntro from 'components/PageIntro'
 import toKebabCase from 'util/toKebabCase'
 import Styled from './Styled'
 import { BUDGET, INPUTS, PROJECT_TYPE, initialState } from './constants'
-import getGlobalValidity from './util/getGlobalValidity'
+import getFormValidity from './util/getFormValidity'
 import getStructuredObj from './util/getStructuredObj'
 
 const ContactCtx = createContext()
 
-function Warning({ active, children }) {
-  return (
-    <motion.div
-      initial={false}
-      transition={{ duration: 0.2 }}
-      animate={{
-        height: active ? 'auto' : '0',
-        opacity: active ? 1 : 0,
-        y: active ? '0%' : '-50%',
-      }}
-    >
-      <Styled.ValidationWarning>{children}</Styled.ValidationWarning>
-    </motion.div>
-  )
-}
-
 export default function Contact({ hero }) {
   const [state, setState] = useState(initialState)
 
-  const canSubmit = getGlobalValidity(state)
+  const canSubmit = getFormValidity(state)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -55,10 +39,30 @@ export default function Contact({ hero }) {
           <Section>
             <Synopsis />
           </Section>
-          {canSubmit && <input type="submit" />}
+          <Section>
+            <Styled.SubmitWrapper>
+              <Styled.Submit type="submit" value="Send It" active={canSubmit} />
+            </Styled.SubmitWrapper>
+          </Section>
         </form>
       </Wrap>
     </ContactCtx.Provider>
+  )
+}
+
+function Warning({ active, children }) {
+  return (
+    <motion.div
+      initial={false}
+      transition={{ duration: 0.2 }}
+      animate={{
+        height: active ? 'auto' : '0',
+        opacity: active ? 1 : 0,
+        y: active ? '0%' : '-50%',
+      }}
+    >
+      <Styled.ValidationWarning>{children}</Styled.ValidationWarning>
+    </motion.div>
   )
 }
 

@@ -105,6 +105,27 @@ const TextArea = styled.textarea`
   }
 `
 
+const SubmitWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
+
+const Submit = styled.input`
+  display: inline-block;
+  border: none;
+  margin: 0;
+  padding: ${({ theme }) => `${theme.margins.slim} ${theme.margins.standard}`};
+  outline: none;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: 1rem;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  opacity: ${({ active }) => (active ? 1 : 0.1)};
+  transition: 400ms opacity ${({ theme }) => theme.ease.standard};
+`
+
 export default {
   Title,
   TextInput,
@@ -115,4 +136,6 @@ export default {
   OptionInput,
   TextArea,
   ValidationWarning,
+  Submit,
+  SubmitWrapper,
 }

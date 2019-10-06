@@ -3,7 +3,7 @@ import { INPUTS } from '../constants'
 /*
   Get validity of entire form.
 */
-export default function getGlobalValidity(state) {
+export default function getFormValidity(state) {
   /*
     Get all valid `constants` inputs,
     check state for the validity of
