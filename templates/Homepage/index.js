@@ -8,7 +8,7 @@ import Careers from 'components/prismic/Careers'
 import PageIntro from 'components/PageIntro'
 import Instagram from 'components/Instagram'
 import Section from 'components/Section'
-import FeaturedWork from 'components/FeaturedWork'
+import FeaturedWork from 'components/prismic/FeaturedWork'
 import { Wrap } from 'style'
 
 const Homepage = React.memo(({ data }) => {
@@ -24,10 +24,12 @@ const Homepage = React.memo(({ data }) => {
     <>
       <Wrap>
         <PageIntro>{RichText.render(heroText)}</PageIntro>
-        <HomeFeatureBlock data={featuredCaseStudies[0]} />
+        <HomeFeatureBlock
+          heading={siteData.featured_text_header}
+          caseStudies={featuredCaseStudies}
+        />
         <Capabilities data={capacities} />
         <Clients items={clients} />
-        <HomeFeatureBlock data={featuredCaseStudies[1]} />
         <Careers data={careers} />
         <Instagram apiResponse={data.instagramData} />
       </Wrap>
@@ -35,14 +37,15 @@ const Homepage = React.memo(({ data }) => {
   )
 })
 
-function HomeFeatureBlock({ data }) {
-  if (data.isBroken === false) {
+function HomeFeatureBlock({ caseStudies, heading }) {
+  if (caseStudies && caseStudies.length) {
     return (
       <Section>
-        <FeaturedWork.Wrapper data={data} />
+        <FeaturedWork heading={heading} caseStudies={caseStudies} />
       </Section>
     )
   }
   return null
 }
+
 export default Homepage
