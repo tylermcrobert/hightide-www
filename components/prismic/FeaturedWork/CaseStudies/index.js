@@ -16,8 +16,9 @@ const CaseStudies = () => {
   return (
     <div>
       <Item data={caseStudies[index]} />
-      <span onClick={getNext}>Next</span> &nbsp;/&nbsp; &nbsp;
       <span onClick={getPrev}>Prev</span>
+      &nbsp;/&nbsp; &nbsp;
+      <span onClick={getNext}>Next</span>
     </div>
   )
 }
