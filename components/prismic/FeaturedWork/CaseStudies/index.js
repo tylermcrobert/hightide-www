@@ -5,9 +5,19 @@ import { FeaturedWorkCtx } from '..'
 const CaseStudies = () => {
   const { caseStudies } = useContext(FeaturedWorkCtx)
   const [index, setIndex] = useState(0)
+
+  const { length } = caseStudies
+  const nextIndex = (index + 1) % length
+  const prevIndex = (index + length - 1) % length
+
+  const getNext = () => setIndex(nextIndex)
+  const getPrev = () => setIndex(prevIndex)
+
   return (
     <div>
       <Item data={caseStudies[index]} />
+      <span onClick={getNext}>Next</span> &nbsp;/&nbsp; &nbsp;
+      <span onClick={getPrev}>Prev</span>
     </div>
   )
 }
