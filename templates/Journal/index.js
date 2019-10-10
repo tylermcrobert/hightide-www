@@ -13,15 +13,22 @@ import {
   ZoomWrapper,
   ZoomNode,
 } from 'components/LinkEffect'
+
 import Styled from './Styled'
 import getImage from './getImage'
+import useNextPage from './hooks/useNextPage'
 
-export default function Journal({ results }) {
+const Journal = React.memo(({ results: initialResults, totalPages }) => {
+  const { getNextPage, isEnd, additionalPages, loading } = useNextPage(
+    totalPages
+  )
+  const allResults = [...initialResults, ...additionalPages]
+
   return (
     <Section noTop>
       <Wrap>
         <Styled.Wrapper>
-          {results.map(({ data, uid }, i) => {
+          {allResults.map(({ data, uid }, i) => {
             const date = new Date(data.date)
             const formattedDate = fmtDate(date)
             const title = RichText.asText(data.title)
@@ -43,10 +50,15 @@ export default function Journal({ results }) {
             )
           })}
         </Styled.Wrapper>
+        {(!isEnd || loading) && (
+          <Section>
+            <Styled.LoadMore onClick={getNextPage}>Load More</Styled.LoadMore>
+          </Section>
+        )}
       </Wrap>
     </Section>
   )
-}
+})
 
 function JournalCard({ uid, mainImg, date, title, large, thumbnail }) {
   const image = getImage({ mainImg, thumbnail, large })
@@ -75,3 +87,5 @@ function JournalCard({ uid, mainImg, date, title, large, thumbnail }) {
     </ThemeProvider>
   )
 }
+
+export default Journal

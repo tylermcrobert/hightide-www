@@ -50,10 +50,18 @@ const DescWrapper = styled.div`
   grid-template-columns: 1fr auto;
 `
 
+const LoadMore = styled.div`
+  cursor: pointer;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 500;
+`
+
 export default {
   Wrapper,
   JournalCard,
   PostImage,
   CardLayout,
   DescWrapper,
+  LoadMore,
 }
