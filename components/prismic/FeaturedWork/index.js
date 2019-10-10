@@ -1,4 +1,5 @@
 import React, { createContext } from 'react'
+import Fpo from 'components/Fpo'
 import Header from './Header'
 import CaseStudies from './CaseStudies'
 
@@ -7,10 +8,12 @@ export const FeaturedWorkCtx = createContext()
 const FeaturedWork = ({ caseStudies, heading }) => {
   if (caseStudies && caseStudies.length) {
     return (
-      <FeaturedWorkCtx.Provider value={{ caseStudies, heading }}>
-        <Header />
-        <CaseStudies />
-      </FeaturedWorkCtx.Provider>
+      <Fpo>
+        <FeaturedWorkCtx.Provider value={{ caseStudies, heading }}>
+          <Header />
+          <CaseStudies />
+        </FeaturedWorkCtx.Provider>
+      </Fpo>
     )
   }
   return null

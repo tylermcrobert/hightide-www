@@ -1,10 +1,15 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import LazyImg from '@tylermcrobert/react-lazyimg'
 import { FeaturedWorkCtx } from '..'
 
 const CaseStudies = () => {
   const { caseStudies } = useContext(FeaturedWorkCtx)
-  return caseStudies.map(item => <Item data={item} key={item.id} />)
+  const [index, setIndex] = useState(0)
+  return (
+    <div>
+      <Item data={caseStudies[index]} />
+    </div>
+  )
 }
 
 const Item = ({ data }) => {
