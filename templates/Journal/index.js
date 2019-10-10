@@ -65,7 +65,7 @@ function JournalCard({ uid, mainImg, date, title, large, thumbnail }) {
                   <Underline>{title}</Underline>
                 </Heading>
                 <Heading as="h3" headingStyle={2} noMargin>
-                  {fmtDate(new Date(date))}
+                  {date}
                 </Heading>
               </Styled.DescWrapper>
             </Styled.CardLayout>
