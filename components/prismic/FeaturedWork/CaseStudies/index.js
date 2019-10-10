@@ -17,7 +17,7 @@ const CaseStudies = () => {
     <div>
       <Item data={caseStudies[index]} />
       <span onClick={getPrev}>Prev</span>
-      &nbsp;/&nbsp; &nbsp;
+      &nbsp;/&nbsp;
       <span onClick={getNext}>Next</span>
     </div>
   )
