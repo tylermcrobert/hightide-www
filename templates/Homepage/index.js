@@ -13,18 +13,21 @@ import { Wrap } from 'style'
 
 const Homepage = React.memo(({ data }) => {
   const siteData = data.site.data
-  const featuredProjects = [siteData.featured_work_1, siteData.featured_work_2]
   const heroText = siteData.introduction
   const { careers, clients, capacities } = siteData
+
+  const featuredCaseStudies = siteData.featured_case_studies.map(
+    item => item.case_study
+  )
 
   return (
     <>
       <Wrap>
         <PageIntro>{RichText.render(heroText)}</PageIntro>
-        <HomeFeatureBlock data={featuredProjects[0]} />
+        <HomeFeatureBlock data={featuredCaseStudies[0]} />
         <Capabilities data={capacities} />
         <Clients items={clients} />
-        <HomeFeatureBlock data={featuredProjects[1]} />
+        <HomeFeatureBlock data={featuredCaseStudies[1]} />
         <Careers data={careers} />
         <Instagram apiResponse={data.instagramData} />
       </Wrap>
