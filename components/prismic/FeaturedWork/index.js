@@ -1,30 +1,21 @@
-import React from 'react'
-import { RichText } from 'prismic-reactjs'
-import LazyImg from '@tylermcrobert/react-lazyimg'
-import Link from 'next/link'
-import { sizes } from 'style/theme'
-import SectionHead from 'components/SectionHead'
+import React, { createContext } from 'react'
+import Header from './Header'
+import CaseStudies from './CaseStudies'
+
+export const FeaturedWorkCtx = createContext()
 
 const FeaturedWork = ({ caseStudies, heading }) => {
-  console.log(caseStudies)
   if (caseStudies && caseStudies.length) {
     return (
-      <>
-        <SectionHead line link="See All">
-          {heading}
-        </SectionHead>
-        {caseStudies.map(item => (
-          <CaseStudy data={item} />
-        ))}
-      </>
+      <FeaturedWorkCtx.Provider value={{ caseStudies, heading }}>
+        <Header />
+        <CaseStudies />
+      </FeaturedWorkCtx.Provider>
     )
   }
   return null
 }
 
-const CaseStudy = ({ data }) => {
-  return <div>{data.slug}</div>
-}
 export default FeaturedWork
 
 /*
