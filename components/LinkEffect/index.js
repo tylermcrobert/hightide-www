@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Trigger = styled.div`
   cursor: pointer;
@@ -37,6 +37,23 @@ export const Underline = styled.div`
       opacity: 0.5;
       transform: translateY(0px);
     }
+  }
+`
+
+const OPACITY_HOVER = css`
+  opacity: 0.4;
+`
+
+export const Opacity = styled.div`
+  display: inline-block;
+  transition: opacity 500ms ${props => props.theme.ease.standard};
+
+  &:hover {
+    ${OPACITY_HOVER}
+  }
+
+  ${Trigger}:hover & {
+    ${OPACITY_HOVER}
   }
 `
 
