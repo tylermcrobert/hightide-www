@@ -3,7 +3,7 @@ import Section from 'components/Section'
 import PropTypes from 'prop-types'
 import Marquee from 'components/Marquee'
 import SectionHead from 'components/SectionHead'
-
+import Link from 'next/link'
 import Styled from './Styled'
 
 function Clients({ items }) {
@@ -14,13 +14,13 @@ function Clients({ items }) {
           <SectionHead line>Clients</SectionHead>
           <Marquee>
             <Styled.Grid>
-              {items.map(
-                ({ client_name: clientName, logo }, i) =>
-                  logo &&
-                  logo.url && (
-                    <img key={`${logo}${i}`} src={logo.url} alt={clientName} />
-                  )
-              )}
+              {items.map((item, i) => (
+                <Image
+                  logo={item.logo.url}
+                  uid={item.link_to_project.uid}
+                  key={i}
+                />
+              ))}
             </Styled.Grid>
           </Marquee>
         </>
@@ -34,4 +34,27 @@ Clients.propTypes = {
   items: PropTypes.array.isRequired,
 }
 
+const Image = ({ logo, uid }) => {
+  if (logo) {
+    const image = <img src={logo} alt="" />
+
+    return uid ? (
+      <Link href="/work/[uid]" as={`/work/${uid}/`}>
+        <a>{image}</a>
+      </Link>
+    ) : (
+      image
+    )
+  }
+  return null
+}
+
+Image.defaultProps = {
+  uid: null,
+}
+
+Image.propTypes = {
+  logo: PropTypes.string.isRequired,
+  uid: PropTypes.string,
+}
 export default Clients
