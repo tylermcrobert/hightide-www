@@ -15,21 +15,4 @@ const Title = styled.div`
   margin: ${props => props.theme.margins.slim} 0;
 `
 
-const Image = styled.div`
-  height: 0;
-  padding-top: ${(2 / 3) * 100}%;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(${props => props.src});
-    background-size: cover;
-  }
-`
-
-export default { Wrapper, Title, Image }
+export default { Wrapper, Title }

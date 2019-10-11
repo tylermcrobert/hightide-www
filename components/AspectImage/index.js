@@ -24,8 +24,12 @@ const AspectImage = ({ src, aspect }) => (
   </Wrapper>
 )
 
+AspectImage.defaultProps = {
+  aspect: 2 / 3,
+}
+
 AspectImage.propTypes = {
-  aspect: PropTypes.number.isRequired,
+  aspect: PropTypes.number,
   src: PropTypes.string.isRequired,
 }
 

@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import { Wrap } from 'style'
 import Heading from 'components/Heading'
+import AspectImage from 'components/AspectImage'
 import Section from 'components/Section'
 import {
   Underline,
@@ -42,7 +43,7 @@ function WorkItem({ title, image }) {
     <div>
       <ZoomWrapper>
         <ZoomNode>
-          <Styled.Image src={image} />
+          <AspectImage src={image} />
         </ZoomNode>
       </ZoomWrapper>
       <Styled.Title>
