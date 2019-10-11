@@ -3,7 +3,7 @@ import * as Carousel from 'components/Carousel'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import AspectImage from 'components/AspectImage'
-import Header from './Header'
+import SectionHead from 'components/SectionHead'
 
 export const FeaturedWorkCtx = createContext()
 
@@ -19,7 +19,7 @@ const FeaturedWork = ({ caseStudies, heading }) => {
 
     return (
       <FeaturedWorkCtx.Provider value={{ caseStudies, heading }}>
-        <Header />
+        <SectionHead>{heading}</SectionHead>
         <Carousel.Wrapper items={images}>
           <Carousel.ImageWrapper />
           <Carousel.Nav />
