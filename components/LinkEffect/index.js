@@ -41,12 +41,12 @@ export const Underline = styled.div`
 `
 
 const OPACITY_HOVER = css`
-  opacity: 0.4;
+  opacity: ${props => (props.invert ? 0.5 : 0.3)};
 `
 
 export const Opacity = styled.div`
   display: inline-block;
-  transition: opacity 500ms ${props => props.theme.ease.standard};
+  transition: opacity 400ms ${props => props.theme.ease.standard};
 
   &:hover {
     ${OPACITY_HOVER}
@@ -65,6 +65,6 @@ export const ZoomNode = styled.div`
   transition: transform 600ms ${props => props.theme.ease.easeOut};
 
   ${Trigger}:hover & {
-    transform: scale(1.03);
+    transform: scale(1.0125);
   }
 `

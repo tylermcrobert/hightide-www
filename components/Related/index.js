@@ -2,12 +2,7 @@ import PropTypes from 'prop-types'
 import Section from 'components/Section'
 import { Wrap } from 'style'
 import Link from 'next/link'
-import {
-  Trigger,
-  Underline,
-  ZoomWrapper,
-  ZoomNode,
-} from 'components/LinkEffect'
+import { Trigger, Opacity, ZoomWrapper, ZoomNode } from 'components/LinkEffect'
 import Styled from './Styled'
 
 function RelatedWrapper({ children, heading }) {
@@ -49,7 +44,7 @@ function RelatedItem({ src, title, link, as }) {
           </ZoomWrapper>
           {title && (
             <Styled.Title>
-              <Underline invert>{title}</Underline>
+              <Opacity invert>{title}</Opacity>
             </Styled.Title>
           )}
         </a>

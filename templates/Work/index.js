@@ -6,12 +6,7 @@ import { Wrap } from 'style'
 import Heading from 'components/Heading'
 import AspectImage from 'components/AspectImage'
 import Section from 'components/Section'
-import {
-  Underline,
-  Trigger,
-  ZoomWrapper,
-  ZoomNode,
-} from 'components/LinkEffect'
+import { Opacity, Trigger, ZoomWrapper, ZoomNode } from 'components/LinkEffect'
 import Styled from './Styled'
 
 function Work({ data: response }) {
@@ -48,7 +43,7 @@ function WorkItem({ title, image }) {
       </ZoomWrapper>
       <Styled.Title>
         <Heading as="h2" headingStyle={2}>
-          <Underline invert>{title}</Underline>
+          <Opacity invert>{title}</Opacity>
         </Heading>
       </Styled.Title>
     </div>

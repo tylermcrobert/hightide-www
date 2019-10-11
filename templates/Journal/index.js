@@ -7,12 +7,7 @@ import Section from 'components/Section'
 import fmtDate from 'util/fmtDate'
 import Heading from 'components/Heading'
 import { ThemeProvider } from 'styled-components'
-import {
-  Underline,
-  Trigger,
-  ZoomWrapper,
-  ZoomNode,
-} from 'components/LinkEffect'
+import { Opacity, Trigger, ZoomWrapper, ZoomNode } from 'components/LinkEffect'
 
 import Styled from './Styled'
 import getImage from './getImage'
@@ -74,7 +69,7 @@ function JournalCard({ uid, mainImg, date, title, large, thumbnail }) {
               </ZoomWrapper>
               <Styled.DescWrapper>
                 <Heading as="h2" headingStyle={2} noMargin>
-                  <Underline>{title}</Underline>
+                  <Opacity>{title}</Opacity>
                 </Heading>
                 <Heading as="h3" headingStyle={2} noMargin>
                   {date}

@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext } from 'react'
 import { ThemeContext } from 'styled-components'
 import Link from 'next/link'
 import { Wrap } from 'style'
-import { Underline } from 'components/LinkEffect'
+import { Opacity } from 'components/LinkEffect'
 import Styled from './Styled'
 import Heading from '../Heading'
 
@@ -48,7 +48,7 @@ function DesktopLinks() {
       {NAV_ITEMS.map(item => (
         <Link href={item.href} key={item.display}>
           <Styled.NavItem href="#">
-            <Underline invert={isDark}>{item.display}</Underline>
+            <Opacity invert={isDark}>{item.display}</Opacity>
           </Styled.NavItem>
         </Link>
       ))}
