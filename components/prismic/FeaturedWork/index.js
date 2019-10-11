@@ -2,6 +2,7 @@ import React, { createContext } from 'react'
 import * as Carousel from 'components/Carousel'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
+import AspectImage from 'components/AspectImage'
 import Header from './Header'
 
 export const FeaturedWorkCtx = createContext()
@@ -11,7 +12,7 @@ const FeaturedWork = ({ caseStudies, heading }) => {
     const images = caseStudies.map(({ uid, data }) => (
       <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
         <a>
-          <img src={data.image.url} alt="" />
+          <AspectImage src={data.image.url} alt="" />
         </a>
       </Link>
     ))
