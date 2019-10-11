@@ -4,13 +4,19 @@ import Styled from './Styled'
 import Arrow from '../Arrow'
 
 function Header({ children, link, line }) {
+  console.log(link)
+
   return (
     <Styled.Header line={line}>
       <h5>{children}</h5>
       {link && (
         <h5>
-          {link}
-          <Arrow />
+          <Styled.HoverTransform>
+            {link}
+            <Styled.HoverTarget>
+              <Arrow />
+            </Styled.HoverTarget>
+          </Styled.HoverTransform>
         </h5>
       )}
     </Styled.Header>
