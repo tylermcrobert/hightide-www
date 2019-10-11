@@ -19,7 +19,7 @@ const Track = styled.div`
   min-width: 200%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  animation: ${slide} 10s infinite linear;
+  animation: ${slide} ${props => props.speed || 10}s infinite linear;
   animation-play-state: ${props => (props.paused ? 'paused' : 'running')};
 `
 export default { Wrapper, Track }

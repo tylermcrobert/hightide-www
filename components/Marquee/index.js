@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import Styled from './Styled'
 
-function Marquee({ children }) {
+function Marquee({ children, speed }) {
   const [width, setWidth] = useState(0)
   const [paused, setPaused] = useState(false)
   const ref = useRef()
@@ -15,7 +16,7 @@ function Marquee({ children }) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <Styled.Track width={width * 2} paused={paused}>
+      <Styled.Track width={width * 2} speed={speed} paused={paused}>
         <div ref={ref}>{children}</div>
         <div>{children}</div>
       </Styled.Track>
@@ -23,6 +24,13 @@ function Marquee({ children }) {
   )
 }
 
-// .propTypes = {}
+Marquee.defaultProps = {
+  speed: 10,
+}
+
+Marquee.propTypes = {
+  children: PropTypes.any.isRequired,
+  speed: PropTypes.number,
+}
 
 export default Marquee

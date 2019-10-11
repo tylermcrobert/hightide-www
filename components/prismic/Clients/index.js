@@ -6,13 +6,14 @@ import SectionHead from 'components/SectionHead'
 import Link from 'next/link'
 import Styled from './Styled'
 
+const SPEED = 1.2
 function Clients({ items }) {
   if (items && items.length) {
     return (
       <Section>
         <>
           <SectionHead line>Clients</SectionHead>
-          <Marquee>
+          <Marquee speed={items.length * SPEED}>
             <Styled.Grid>
               {items.map((item, i) => (
                 <Image
