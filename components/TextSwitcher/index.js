@@ -54,10 +54,10 @@ function Item({ children, i }) {
 
 function Head({ children }) {
   return (
-    <Styled.Head>
-      {children}
+    <Styled.HeadWrapper>
+      <Styled.Head>{children}</Styled.Head>
       <Styled.CloseMarker>&#65291;</Styled.CloseMarker>
-    </Styled.Head>
+    </Styled.HeadWrapper>
   )
 }
 
