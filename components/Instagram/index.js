@@ -26,12 +26,18 @@ function Instagram({ apiResponse }) {
         <SectionHead link={<InstagramLink />}>Instagram</SectionHead>
         <Styled.Wrapper>
           {apiResponse.data.map(item => (
-            <LazyImg
+            <a
+              href={item.link}
+              rel="noopener noreferrer"
+              target="_blank"
               key={item.images.standard_resolution.url}
-              src={item.images.standard_resolution.url}
-              alt={item.caption.text}
-              ratio={0.5}
-            />
+            >
+              <LazyImg
+                src={item.images.standard_resolution.url}
+                alt={item.caption.text}
+                ratio={0.5}
+              />
+            </a>
           ))}
         </Styled.Wrapper>
       </Section>
