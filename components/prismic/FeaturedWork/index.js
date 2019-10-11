@@ -1,34 +1,45 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import * as Carousel from 'components/Carousel'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import AspectImage from 'components/AspectImage'
 import SectionHead from 'components/SectionHead'
 
-export const FeaturedWorkCtx = createContext()
-
 const FeaturedWork = ({ caseStudies, heading }) => {
   if (caseStudies && caseStudies.length) {
     const images = caseStudies.map(({ uid, data }) => (
-      <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
-        <a>
-          <AspectImage src={data.image.url} alt="" />
-        </a>
-      </Link>
+      <WorkLink uid={uid} key={uid}>
+        <AspectImage src={data.image.url} alt="" />
+      </WorkLink>
     ))
 
     return (
-      <FeaturedWorkCtx.Provider value={{ caseStudies, heading }}>
-        <SectionHead>{heading}</SectionHead>
-        <Carousel.Wrapper items={images}>
-          <Carousel.ImageWrapper />
-          <Carousel.Nav />
-        </Carousel.Wrapper>
-      </FeaturedWorkCtx.Provider>
+      <Carousel.Wrapper items={images}>
+        <Carousel.CarouselCtx.Consumer>
+          {({ index }) => (
+            <>
+              <SectionHead link={<HeaderLink data={caseStudies[index]} />}>
+                {heading}
+              </SectionHead>
+              <Carousel.ImageWrapper />
+              <Carousel.Nav />
+            </>
+          )}
+        </Carousel.CarouselCtx.Consumer>
+      </Carousel.Wrapper>
     )
   }
   return null
 }
+
+const HeaderLink = ({ data }) =>
+  data ? <WorkLink uid={data.uid}>{data.data.name[0].text}</WorkLink> : null
+
+const WorkLink = ({ uid, children, ...props }) => (
+  <Link href="/work/[uid]" as={`/work/${uid}/`} {...props}>
+    <a>{children}</a>
+  </Link>
+)
 
 FeaturedWork.propTypes = {
   caseStudies: PropTypes.array.isRequired,
