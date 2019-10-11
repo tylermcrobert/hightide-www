@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import pad from 'util/pad'
 import { CarouselCtx } from '..'
 import Styled from './Styled'
 
@@ -8,7 +9,7 @@ const Nav = () => {
   return (
     <Styled.NavWrapper>
       <Styled.NavItem>
-        {index + 1} / {items.length}
+        {pad(index + 1)} / {pad(items.length)}
       </Styled.NavItem>
       <Styled.NavItem onClick={getPrev}>Prev</Styled.NavItem>
       <Styled.NavItem onClick={getNext}>Next</Styled.NavItem>
