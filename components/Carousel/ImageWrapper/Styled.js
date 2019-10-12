@@ -6,7 +6,7 @@ const GalleryWrapper = styled.div`
 
 const SlideWrapper = styled.ul`
   display: flex;
-  width: ${({ theme }) => (theme.count + 1) * 100}%;
+  width: ${({ theme }) => theme.count * 100}%;
 `
 
 const Slide = styled.div`

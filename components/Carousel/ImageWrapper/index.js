@@ -23,9 +23,8 @@ const ImageWrapper = () => {
 const Slides = () => {
   const { items, index: currentIndex } = useContext(CarouselCtx)
   /* add first item to end */
-  const infiniteItems = [...items, items[0]]
 
-  return infiniteItems.map((item, i) => {
+  return items.map((item, i) => {
     const isCurrent = i === currentIndex
     const key = (item && `${item.key} ${i}`) || i
 
