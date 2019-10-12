@@ -7,6 +7,7 @@ export default class Swiper {
   register(el) {
     this.el = el
     this.setWidth()
+    this.addListners()
   }
 
   swipe = delta => {
