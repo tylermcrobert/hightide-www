@@ -73,7 +73,7 @@ const OptionInput = styled.input`
   display: none;
 
   &:hover + label {
-    transform: translate3d(0.25rem, 0, 0);
+    transform: translate3d(0.5rem, 0, 0);
   }
   &:checked + label {
     &:before {
