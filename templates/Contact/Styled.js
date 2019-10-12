@@ -72,10 +72,14 @@ const Submit = styled.input`
 const OptionInput = styled.input`
   display: none;
 
+  &:hover + label {
+    transform: translate3d(0.25rem, 0, 0);
+  }
   &:checked + label {
     &:before {
       opacity: 1;
     }
+
     transform: translate3d(1rem, 0, 0);
     color: ${props => props.theme.colors.primary};
   }
