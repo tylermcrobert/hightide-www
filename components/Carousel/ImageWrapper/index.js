@@ -1,20 +1,17 @@
 import React, { useContext, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { CarouselCtx } from '..'
-import usePrevious from './hooks/usePrevious'
+import useSwipe from './hooks/useSwipe'
 import Styled from './Styled'
 
 const ImageWrapper = () => {
-  const { items, index: currentIndex } = useContext(CarouselCtx)
-  const slideWrapperRef = useRef()
-
-  const prevIndex = usePrevious(currentIndex)
-  const isRestarting = !!(prevIndex && currentIndex === 0)
+  const { items } = useContext(CarouselCtx)
+  const { handlers, slideWrapperRef } = useSwipe()
 
   if (items && items.length) {
     return (
       <Styled.GalleryWrapper>
-        <Styled.SlideWrapper ref={slideWrapperRef}>
+        <Styled.SlideWrapper {...handlers} ref={slideWrapperRef}>
           <Slides />
         </Styled.SlideWrapper>
       </Styled.GalleryWrapper>
