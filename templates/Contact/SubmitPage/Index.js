@@ -13,6 +13,4 @@ function SubmitPage() {
   )
 }
 
-// SubmitPage.propTypes = {}
-
 export default SubmitPage
