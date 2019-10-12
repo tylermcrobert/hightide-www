@@ -37,7 +37,11 @@ const Slides = () => {
 }
 
 const Slide = ({ children, current }) => {
-  return <Styled.Slide current={current}>{children}</Styled.Slide>
+  return (
+    <Styled.Slide className="slide" current={current}>
+      {children}
+    </Styled.Slide>
+  )
 }
 
 Slide.propTypes = {

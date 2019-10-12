@@ -50,6 +50,7 @@ export default function useSwipe() {
     trackMouse: true,
     trackTouch: true,
     onSwiped: onSwipeEnd,
+    preventDefaultTouchmoveEvent: true,
   })
 
   return { handlers, slideWrapperRef }

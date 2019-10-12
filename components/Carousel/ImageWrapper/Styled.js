@@ -10,7 +10,7 @@ const SlideWrapper = styled.ul`
   transition: transform 400ms ${props => props.theme.ease.standard};
 `
 
-const Slide = styled.div`
+const Slide = styled.li`
   width: 100%;
   flex: 1;
   cursor: move;
