@@ -4,6 +4,7 @@ export default class Swiper {
   constructor() {
     this.width = 0
     this.distance = 0
+    this.count = 0
     this.swiping = false
   }
 
@@ -27,6 +28,7 @@ export default class Swiper {
 
   _handleResize = () => {
     this._setWidth()
+    this.setSlide()
   }
 
   /* sets pointer-events to slides */
@@ -38,14 +40,22 @@ export default class Swiper {
     })
   }
 
+  _transformWrapper(dist) {
+    this._setX(dist)
+    this._setPointerEvents('inherit')
+    this._setTranslateVal()
+  }
+
   /*
    *  Public Methods
    */
 
-  register(el) {
+  register(el, count) {
     this.el = el
+    this.count = count
     this._setWidth()
     this._addListners()
+    this._setX(0)
   }
 
   swipe = delta => {
@@ -55,10 +65,12 @@ export default class Swiper {
     this._setPointerEvents('none')
   }
 
-  setSlide(dist) {
-    this._setX(dist)
-    this._setPointerEvents('inherit')
-    this._setTranslateVal()
+  setSlide() {
+    this._transformWrapper(-(this.index * (this.width / this.count)))
+  }
+
+  setIndex(index) {
+    this.index = index
   }
 
   removeListeners = () => {

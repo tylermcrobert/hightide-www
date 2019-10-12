@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect, useCallback } from 'react'
+import { useContext, useRef, useEffect } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { CarouselCtx } from '../..'
 import Swiper from '../class/Swiper'
@@ -9,20 +9,15 @@ export default function useSwipe() {
   const { getNext, getPrev, index, items } = useContext(CarouselCtx)
   const wrapperRef = useRef()
 
-  const setSlide = useCallback(
-    () => swiper.setSlide(-(index * (swiper.width / items.length))),
-    [index, items.length]
-  )
-
   // Register Element
   useEffect(() => {
     const el = wrapperRef.current.querySelector('.js-swipe')
-    swiper.register(el)
+    swiper.register(el, items.length)
 
     return () => {
       swiper.removeListeners()
     }
-  }, [])
+  }, [items])
 
   // handle swipe end
   const onSwipeEnd = e => {
@@ -31,7 +26,7 @@ export default function useSwipe() {
     if (direction === 'Left' && index !== items.length - 1) getNext()
     else if (direction === 'Right' && index !== 0) getPrev()
     else {
-      setSlide()
+      swiper.setSlide()
     }
   }
 
@@ -43,8 +38,9 @@ export default function useSwipe() {
 
   // handle index change
   useEffect(() => {
-    setSlide()
-  }, [index, items.length, setSlide])
+    swiper.setIndex(index)
+    swiper.setSlide()
+  }, [index, items.length])
 
   const handlers = useSwipeable({
     onSwiping: onSwipe,
