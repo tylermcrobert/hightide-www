@@ -28,6 +28,8 @@ module.exports = withFonts({
     INSTAGRAM_TOKEN: process.env.INSTAGRAM_TOKEN,
     PRISMIC_ENDPOINT: process.env.PRISMIC_ENDPOINT,
     PRISMIC_ACCESS_TOKEN: process.env.PRISMIC_ACCESS_TOKEN,
+    PIPEDRIVE_ENDPOINT: process.env.PIPEDRIVE_ENDPOINT,
+    PIPEDRIVE_TOKEN: process.env.PIPEDRIVE_TOKEN,
   },
   async exportPathMap() {
     const paths = {

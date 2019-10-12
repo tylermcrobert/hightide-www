@@ -3,8 +3,10 @@ import { RichText } from 'prismic-reactjs'
 import { motion } from 'framer-motion'
 import { Wrap } from 'style'
 import Section from 'components/Section'
+import Error from 'next/error'
 import PageIntro from 'components/PageIntro'
 import toKebabCase from 'util/toKebabCase'
+import axios from 'axios'
 import Styled from './Styled'
 import { BUDGET, INPUTS, PROJECT_TYPE, initialState } from './constants'
 import getFormValidity from './util/getFormValidity'
@@ -12,42 +14,58 @@ import getStructuredObj from './util/getStructuredObj'
 
 const ContactCtx = createContext()
 
+const pipediveUrl = `${process.env.PIPEDRIVE_ENDPOINT}?api_token=${process.env.PIPEDRIVE_TOKEN}`
+
 export default function Contact({ hero }) {
   const [state, setState] = useState(initialState)
-
+  const [error, setError] = useState(null)
   const canSubmit = getFormValidity(state)
 
   const handleSubmit = e => {
-    e.preventDefault()
-    console.log(getStructuredObj(state))
+    if (canSubmit) {
+      e.preventDefault()
+      const formData = getStructuredObj(state)
+
+      axios.post(pipediveUrl, formData).catch(err => {
+        console.error(err)
+        setError(err)
+      })
+    }
   }
 
-  return (
-    <ContactCtx.Provider value={{ state, setState }}>
-      <Wrap>
-        <PageIntro>{RichText.render(hero)}</PageIntro>
-        <form onSubmit={handleSubmit}>
-          <Section>
-            <Information />
-          </Section>
-          <Section>
-            <Styled.DetailsWrapper>
-              <ProjectType />
-              <Budget />
-            </Styled.DetailsWrapper>
-          </Section>
-          <Section>
-            <Synopsis />
-          </Section>
-          <Section>
-            <Styled.SubmitWrapper>
-              <Styled.Submit type="submit" value="Send It" active={canSubmit} />
-            </Styled.SubmitWrapper>
-          </Section>
-        </form>
-      </Wrap>
-    </ContactCtx.Provider>
-  )
+  if (!error) {
+    return (
+      <ContactCtx.Provider value={{ state, setState }}>
+        <Wrap>
+          <PageIntro>{RichText.render(hero)}</PageIntro>
+          <form onSubmit={handleSubmit}>
+            <Section>
+              <Information />
+            </Section>
+            <Section>
+              <Styled.DetailsWrapper>
+                <ProjectType />
+                <Budget />
+              </Styled.DetailsWrapper>
+            </Section>
+            <Section>
+              <Synopsis />
+            </Section>
+            <Section>
+              <Styled.SubmitWrapper>
+                <Styled.Submit
+                  type="submit"
+                  value="Send It"
+                  active={canSubmit}
+                />
+              </Styled.SubmitWrapper>
+            </Section>
+          </form>
+        </Wrap>
+      </ContactCtx.Provider>
+    )
+  }
+  return <Error />
 }
 
 function Warning({ active, children }) {
@@ -117,15 +135,17 @@ function ProjectType() {
     <div>
       <Styled.Title>Type Of Project</Styled.Title>
       <Styled.ProjTypeWrapper>
-        {PROJECT_TYPE.map(item => (
-          <div>
+        {PROJECT_TYPE.map(projType => (
+          <div key={projType.id}>
             <Styled.OptionInput
-              onChange={e => handleChange(e, item.id)}
+              onChange={e => handleChange(e, projType.id)}
               type="checkbox"
-              id={item.id}
-              checked={state.projectTypes[item.id]}
+              id={projType.id}
+              checked={state.projectTypes[projType.id]}
             />
-            <Styled.Label htmlFor={item.id}>{item.display}</Styled.Label>
+            <Styled.Label htmlFor={projType.id}>
+              {projType.display}
+            </Styled.Label>
           </div>
         ))}
       </Styled.ProjTypeWrapper>
@@ -143,16 +163,18 @@ function Budget() {
   return (
     <div>
       <Styled.Title>Budget</Styled.Title>
-      {BUDGET.map(item => (
-        <div>
+      {BUDGET.map(budgetVal => (
+        <div key={budgetVal}>
           <Styled.OptionInput
             type="radio"
             name="budget"
-            onChange={() => handleChange(item)}
-            id={toKebabCase(item)}
-            checked={item === state.budget}
+            onChange={() => handleChange(budgetVal)}
+            id={toKebabCase(budgetVal)}
+            checked={budgetVal === state.budget}
           />
-          <Styled.Label htmlFor={toKebabCase(item)}>{item}</Styled.Label>
+          <Styled.Label htmlFor={toKebabCase(budgetVal)}>
+            {budgetVal}
+          </Styled.Label>
         </div>
       ))}
     </div>
