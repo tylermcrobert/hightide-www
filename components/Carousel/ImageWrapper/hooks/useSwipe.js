@@ -18,6 +18,7 @@ export default function useSwipe() {
     }
   }, [])
 
+  // handle swipe end
   const onSwipeEnd = e => {
     swiper.recordDist(-e.deltaX)
     const direction = e.dir
@@ -26,11 +27,13 @@ export default function useSwipe() {
     else if (direction === 'Right') getPrev()
   }
 
+  // handle swipe
   const onSwipe = e => {
     const delta = -e.deltaX
     swiper.swipe(delta)
   }
 
+  // handle index change
   useEffect(() => {
     swiper.setY(-(index * (swiper.width / items.length)))
   }, [index, items.length])
