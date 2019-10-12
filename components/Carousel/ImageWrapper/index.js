@@ -6,12 +6,12 @@ import Styled from './Styled'
 
 const ImageWrapper = () => {
   const { items } = useContext(CarouselCtx)
-  const { handlers, slideWrapperRef } = useSwipe()
+  const { handlers, slideWrapperRef, wrapperRef } = useSwipe()
 
   if (items && items.length) {
     return (
-      <Styled.GalleryWrapper>
-        <Styled.SlideWrapper {...handlers} ref={slideWrapperRef}>
+      <Styled.GalleryWrapper ref={wrapperRef}>
+        <Styled.SlideWrapper {...handlers} className="js-swipe">
           <Slides />
         </Styled.SlideWrapper>
       </Styled.GalleryWrapper>

@@ -7,7 +7,7 @@ const swiper = new Swiper()
 
 export default function useSwipe() {
   const { getNext, getPrev, index, items } = useContext(CarouselCtx)
-  const slideWrapperRef = useRef()
+  const wrapperRef = useRef()
 
   const setSlide = useCallback(
     () => swiper.setSlide(-(index * (swiper.width / items.length))),
@@ -16,7 +16,8 @@ export default function useSwipe() {
 
   // Register Element
   useEffect(() => {
-    swiper.register(slideWrapperRef.current)
+    const el = wrapperRef.current.querySelector('.js-swipe')
+    swiper.register(el)
 
     return () => {
       swiper.removeListeners()
@@ -53,5 +54,5 @@ export default function useSwipe() {
     preventDefaultTouchmoveEvent: true,
   })
 
-  return { handlers, slideWrapperRef }
+  return { handlers, wrapperRef }
 }
