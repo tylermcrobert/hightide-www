@@ -5,39 +5,78 @@ import { CarouselCtx } from '../..'
 class Swiper {
   constructor() {
     this.dist = 0
+    this.width = 0
   }
 
   register(el) {
     this.el = el
+    this.setWidth()
   }
 
-  translateY(dist) {
-    this.el.style.transform = `translate3d(${this.dist + dist}px, 0, 0)`
+  swipe = delta => {
+    const adv = this.dist + delta
+    this.setY(adv)
   }
 
-  recordDist(dist) {
+  setY = dist => {
+    this.el.style.transform = `translate3d(${dist}px, 0, 0)`
+  }
+
+  recordDist = dist => {
     this.dist = this.dist + dist
+  }
+
+  addListners = () => {
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  removeListeners = () => {
+    window.removeEventListener('resize', this.handleResize)
+  }
+
+  setWidth = () => {
+    this.width = this.el.offsetWidth
+  }
+
+  handleResize = () => {
+    this.setWidth()
   }
 }
 
 const swiper = new Swiper()
 
-function useAdvance() {
-  const { index } = useContext(CarouselCtx)
-  useEffect(() => {}, [index])
-}
+/**
+  Main Hook
+ */
 
 export default function useSwipe() {
-  const { getNext, getPrev } = useContext(CarouselCtx)
+  const { getNext, getPrev, index, items } = useContext(CarouselCtx)
   const slideWrapperRef = useRef()
 
+  /**
+   * Handle El
+   */
   useEffect(() => {
     swiper.register(slideWrapperRef.current)
+    swiper.addListners()
+    return () => {
+      swiper.removeListeners()
+    }
   }, [])
 
-  useAdvance()
+  /**
+   * Handle advancement of 'index'
+   */
 
-  function handleSwiped(e) {
+  useEffect(() => {
+    console.log(swiper.width / items.length)
+    swiper.setY(-(index * (swiper.width / items.length)))
+  }, [index, items.length])
+
+  /**
+   * Handle end of swipe
+   */
+  const handleSwipeEnd = e => {
     const direction = e.dir
     swiper.recordDist(-e.deltaX)
 
@@ -46,16 +85,19 @@ export default function useSwipe() {
     else if (direction === 'Right') getPrev()
   }
 
-  function handleSwiping(e) {
-    const distance = -e.deltaX
-    swiper.translateY(distance)
+  /**
+   * Handle Swipe
+   */
+  const handleSwiping = e => {
+    const delta = -e.deltaX
+    swiper.swipe(delta)
   }
 
   const handlers = useSwipeable({
     onSwiping: handleSwiping,
     trackMouse: true,
     trackTouch: true,
-    onSwiped: handleSwiped,
+    onSwiped: handleSwipeEnd,
   })
 
   return { handlers, slideWrapperRef }
