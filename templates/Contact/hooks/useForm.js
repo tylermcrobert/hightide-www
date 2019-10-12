@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
-
+import Router from 'next/router'
 import { initialState } from '../constants'
 import getFormValidity from '../util/getFormValidity'
 import getStructuredObj from '../util/getStructuredObj'
@@ -19,7 +19,11 @@ export default function useForm() {
 
       axios
         .post(pipediveUrl, formData)
-        .then(res => console.log(res))
+        .then(() => {
+          Router.push({
+            pathname: '/submit',
+          })
+        })
         .catch(err => {
           console.error(err)
           setError(err)
