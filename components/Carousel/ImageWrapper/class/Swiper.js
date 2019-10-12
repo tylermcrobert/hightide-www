@@ -1,7 +1,7 @@
 export default class Swiper {
   constructor() {
-    this.dist = 0
     this.width = 0
+    this.distance = 0
   }
 
   register(el) {
@@ -10,17 +10,24 @@ export default class Swiper {
     this.addListners()
   }
 
+  setTranslateVal() {
+    const dist = this.el.style.transform.split('(')[1].split('px')[0]
+    const parsedDist = parseInt(dist, 0)
+    this.distance = parsedDist
+  }
+
   swipe = delta => {
-    const adv = this.dist + delta
-    this.setY(adv)
+    const adv = this.distance + delta
+    this.setX(adv)
   }
 
-  setY = dist => {
-    this.el.style.transform = `translate3d(${dist}px, 0, 0)`
+  setSlide(dist) {
+    this.setX(dist)
+    this.setTranslateVal()
   }
 
-  recordDist = dist => {
-    this.dist = this.dist + dist
+  setX = dist => {
+    this.el.style.transform = `translateX(${dist}px)`
   }
 
   addListners = () => {

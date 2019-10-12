@@ -13,6 +13,10 @@ const SlideWrapper = styled.ul`
 const Slide = styled.div`
   width: 100%;
   flex: 1;
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
 `
 
 export default { Slide, SlideWrapper, GalleryWrapper }

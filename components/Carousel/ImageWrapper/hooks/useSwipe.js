@@ -20,7 +20,6 @@ export default function useSwipe() {
 
   // handle swipe end
   const onSwipeEnd = e => {
-    swiper.recordDist(-e.deltaX)
     const direction = e.dir
 
     if (direction === 'Left') getNext()
@@ -35,7 +34,7 @@ export default function useSwipe() {
 
   // handle index change
   useEffect(() => {
-    swiper.setY(-(index * (swiper.width / items.length)))
+    swiper.setSlide(-(index * (swiper.width / items.length)))
   }, [index, items.length])
 
   const handlers = useSwipeable({
