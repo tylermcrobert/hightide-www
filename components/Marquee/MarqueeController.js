@@ -30,6 +30,7 @@ export default class MarqueeController {
   }
 
   _setWrapperWidth = () => {
+    this.wrapper.style.width = ''
     this.containerWidth = this.inner.offsetWidth * 2
     this.wrapper.style.width = `${this.containerWidth}px`
   }
