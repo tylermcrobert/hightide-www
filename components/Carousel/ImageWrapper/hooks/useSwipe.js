@@ -6,20 +6,20 @@ import { CarouselCtx } from '../..'
 export default function useSwipe() {
   const { getNext, getPrev, index, items } = useContext(CarouselCtx)
   const wrapperRef = useRef()
-  const el = useRef()
+  const slideWrapper = useRef()
   const xOffset = useRef(0)
 
   const setTransition = (isTransition = true) => {
     if (!isTransition) {
-      el.current.style.transitionDuration = '0ms'
+      slideWrapper.current.style.transitionDuration = '0ms'
     } else {
-      el.current.style.transitionDuration = '400ms'
+      slideWrapper.current.style.transitionDuration = '400ms'
     }
   }
 
   // block/unblock pointer events
   const setPointerEvents = (val = 'none') => {
-    const slides = el.current.querySelectorAll('.slide')
+    const slides = slideWrapper.current.querySelectorAll('.slide')
 
     Array.prototype.forEach.call(slides, slide => {
       slide.style.pointerEvents = val
@@ -28,14 +28,14 @@ export default function useSwipe() {
 
   // Move slide
   const setTransformX = useCallback(dist => {
-    el.current.style.transform = `translateX(${dist}px)`
+    slideWrapper.current.style.transform = `translateX(${dist}px)`
   }, [])
 
   // Move slide based on index
   const moveSlideByIndex = useCallback(() => {
     const recordXVal = () => {
       // get 'transform' style
-      const transformVal = el.current.style.transform
+      const transformVal = slideWrapper.current.style.transform
 
       if (transformVal) {
         // Parse as number
@@ -44,8 +44,10 @@ export default function useSwipe() {
       }
     }
 
-    const distOfIndex = -(index * (el.current.offsetWidth / items.length))
-    setTransformX(distOfIndex)
+    const wrapWidth = slideWrapper.current.offsetWidth
+    const indexDist = -(index * (wrapWidth / items.length))
+
+    setTransformX(indexDist)
     setPointerEvents('inherit')
     recordXVal()
   }, [index, items.length, setTransformX])
@@ -54,7 +56,7 @@ export default function useSwipe() {
    * On mount
    */
   useEffect(() => {
-    el.current = wrapperRef.current.querySelector('.js-swipe')
+    slideWrapper.current = wrapperRef.current.querySelector('.js-swipe')
     window.addEventListener('resize', moveSlideByIndex)
 
     return () => {
@@ -66,12 +68,29 @@ export default function useSwipe() {
    * On Swipe
    */
   const onSwipe = e => {
-    // Get swipe delta
-    const delta = -e.deltaX
+    const getSwipeDistance = () => {
+      const BOUNDS = 200
+
+      const wrapperWidth = slideWrapper.current.offsetWidth
+      const containerWidth = wrapperRef.current.offsetWidth
+
+      const delta = -e.deltaX
+      const swipeDistance = delta + xOffset.current
+
+      const maxDist = -(wrapperWidth - containerWidth + BOUNDS)
+      const minDist = BOUNDS
+
+      if (swipeDistance > minDist) return minDist
+      if (swipeDistance < maxDist) return maxDist
+
+      return swipeDistance
+    }
+
+    const swipeDist = getSwipeDistance()
 
     setPointerEvents('none')
     setTransition(false)
-    setTransformX(delta + xOffset.current)
+    setTransformX(swipeDist)
   }
 
   /**
