@@ -3,6 +3,9 @@ import { useSwipeable } from 'react-swipeable'
 import { CarouselCtx } from '../..'
 /* eslint-disable no-param-reassign */
 
+const PARALLAX_VAL = 1.5
+const BOUNDS = 200
+
 export default function useSwipe() {
   const { getNext, getPrev, index, items } = useContext(CarouselCtx)
   const wrapperRef = useRef()
@@ -69,13 +72,11 @@ export default function useSwipe() {
    */
   const onSwipe = e => {
     const getSwipeDistance = () => {
-      const BOUNDS = 200
-
       const wrapperWidth = slideWrapper.current.offsetWidth
       const containerWidth = wrapperRef.current.offsetWidth
 
       const delta = -e.deltaX
-      const swipeDistance = delta + xOffset.current
+      const swipeDistance = delta * PARALLAX_VAL + xOffset.current
 
       const maxDist = -(wrapperWidth - containerWidth + BOUNDS)
       const minDist = BOUNDS
