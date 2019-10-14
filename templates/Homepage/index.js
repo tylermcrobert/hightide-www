@@ -29,7 +29,7 @@ const Homepage = React.memo(({ data }) => {
           caseStudies={featuredCaseStudies}
         />
         <Capabilities data={capacities} />
-        <Clients items={clients} />
+        <Clients items={clients} speed={siteData.clients_speed} />
         <Careers data={careers} />
         <Instagram apiResponse={data.instagramData} />
       </Wrap>

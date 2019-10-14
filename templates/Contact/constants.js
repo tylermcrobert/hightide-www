@@ -81,7 +81,7 @@ const toObj = (keys, defaultVal) =>
 export const initialState = {
   /* get valid and value for INPUTS  */
   ...toObj(INPUTS.map(item => item.id), {
-    value: null,
+    value: '',
     valid: false,
   }),
   /* Set {projectTypes: {...}} */

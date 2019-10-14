@@ -7,6 +7,10 @@ import { PageTransition } from 'next-page-transitions'
 import theme from 'style/theme'
 import Layout from 'components/Layout'
 
+import LogRocket from 'logrocket'
+
+LogRocket.init('mto3as/high-tide')
+
 const AmericaLtWoff2 = '/static/fonts/GT-America-Standard-Light.woff2'
 const AmericaLtWoff = '/static/fonts/GT-America-Standard-Light.woff'
 const AmericaLtTtf = '/static/fonts/GT-America-Standard-Light.ttf'
@@ -40,7 +44,7 @@ export default class HighTideApp extends App {
   render() {
     const { Component, pageProps } = this.props
     const { route, asPath } = this.props.router
-    const isDark = DARK_ROUTES.includes(route)
+    const isDark = DARK_ROUTES.indexOf(route) > -1
 
     return (
       <>

@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
 import PropTypes from 'prop-types'
+import { ThemeProvider } from 'styled-components'
 import Nav from './Nav'
 import ImageWrapper from './ImageWrapper'
 
@@ -17,9 +18,11 @@ export const Wrapper = ({ children, items }) => {
 
   if (items && items.length) {
     return (
-      <CarouselCtx.Provider value={{ items, index, getNext, getPrev }}>
-        {children}
-      </CarouselCtx.Provider>
+      <ThemeProvider theme={{ count: items.length, index }}>
+        <CarouselCtx.Provider value={{ items, index, getNext, getPrev }}>
+          {children}
+        </CarouselCtx.Provider>
+      </ThemeProvider>
     )
   }
   console.error('items must be an array')

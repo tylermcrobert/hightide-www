@@ -41,7 +41,7 @@ const About = React.memo(({ site }) => {
         <Difference items={difference} />
         <Diptych items={diptychItems} />
         <Section>{RichText.render(clientMessage)}</Section>
-        <Clients items={clients} />
+        <Clients items={clients} speed={site.clients_speed} />
         <Image src={image2 && image2.url} />
         <Capabilities data={site.capacities} />
         <Image src={image3 && image3.url} />

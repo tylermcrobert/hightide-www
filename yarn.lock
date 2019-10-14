@@ -3619,6 +3619,10 @@ log-symbols@^2.2.0:
   dependencies:
     chalk "^2.0.1"
 
+logrocket@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/logrocket/-/logrocket-1.0.3.tgz#43354e29099c123d5608fcc18799ce53a87931b4"
+
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
@@ -3954,7 +3958,6 @@ next-page-transitions@^1.0.0-beta.2:
 next@^9.1.1:
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/next/-/next-9.1.1.tgz#bede2e834548020bc4d3be0c46e3ed7edaac6d14"
-  integrity sha512-++jiUA1GN/dOqe6+oLT78rdrRnPmf5yHUbug1tdZBYeQ6HE+ypDIeVelmCmyGx+JDNB3TcxNx5R2+D/Cbrwnng==
   dependencies:
     "@ampproject/toolbox-optimizer" "1.0.1"
     "@babel/core" "7.4.5"
@@ -5122,6 +5125,12 @@ react-is@^16.8.1:
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
+react-swipeable@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-5.4.0.tgz#3c2421296a993b8fc6cb05051b9bf025cb6af9e4"
+  dependencies:
+    prop-types "^15.6.2"
 
 react-transition-group@^2.3.1:
   version "2.9.0"

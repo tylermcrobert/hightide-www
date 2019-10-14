@@ -6,14 +6,13 @@ import SectionHead from 'components/SectionHead'
 import Link from 'next/link'
 import Styled from './Styled'
 
-const SPEED = 1.2
-function Clients({ items }) {
+function Clients({ items, speed }) {
   if (items && items.length) {
     return (
       <Section>
         <>
           <SectionHead line>Clients</SectionHead>
-          <Marquee speed={items.length * SPEED}>
+          <Marquee speed={speed}>
             <Styled.Grid>
               {items.map((item, i) => (
                 <Image
@@ -33,6 +32,7 @@ function Clients({ items }) {
 
 Clients.propTypes = {
   items: PropTypes.array.isRequired,
+  speed: PropTypes.number.isRequired,
 }
 
 const Image = ({ logo, uid }) => {

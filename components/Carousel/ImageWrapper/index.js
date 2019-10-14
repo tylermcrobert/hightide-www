@@ -1,26 +1,47 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { CarouselCtx } from '..'
+import useSwipe from './hooks/useSwipe'
+import Styled from './Styled'
 
 const ImageWrapper = () => {
-  const { items, index: currentIndex } = useContext(CarouselCtx)
+  const { items } = useContext(CarouselCtx)
+  const { handlers, wrapperRef } = useSwipe()
 
   if (items && items.length) {
     return (
-      <ul>
-        {items.map((item, i) => (
-          <li key={(item && item.key) || i}>
-            <Slide current={i === currentIndex}>{item}</Slide>
-          </li>
-        ))}
-      </ul>
+      <Styled.GalleryWrapper ref={wrapperRef}>
+        <Styled.SlideWrapper {...handlers} className="js-swipe">
+          <Slides />
+        </Styled.SlideWrapper>
+      </Styled.GalleryWrapper>
     )
   }
   return null
 }
 
+const Slides = () => {
+  const { items, index: currentIndex } = useContext(CarouselCtx)
+  /* add first item to end */
+
+  return items.map((item, i) => {
+    const isCurrent = i === currentIndex
+    const key = (item && `${item.key} ${i}`) || i
+
+    return (
+      <Slide current={isCurrent} key={key}>
+        {item}
+      </Slide>
+    )
+  })
+}
+
 const Slide = ({ children, current }) => {
-  return current ? <div>{children}</div> : null
+  return (
+    <Styled.Slide className="slide" current={current}>
+      {children}
+    </Styled.Slide>
+  )
 }
 
 Slide.propTypes = {
