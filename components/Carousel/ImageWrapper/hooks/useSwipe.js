@@ -1,53 +1,109 @@
-import { useContext, useRef, useEffect } from 'react'
+import { useContext, useRef, useEffect, useCallback } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { CarouselCtx } from '../..'
-import Swiper from '../class/Swiper'
-
-const swiper = new Swiper()
+/* eslint-disable no-param-reassign */
 
 export default function useSwipe() {
   const { getNext, getPrev, index, items } = useContext(CarouselCtx)
   const wrapperRef = useRef()
+  const el = useRef()
+  const xOffset = useRef(0)
 
-  // Register Element
+  const setTransition = (isTransition = true) => {
+    if (!isTransition) {
+      el.current.style.transitionDuration = '0ms'
+    } else {
+      el.current.style.transitionDuration = '400ms'
+    }
+  }
+
+  // block/unblock pointer events
+  const setPointerEvents = (val = 'none') => {
+    const slides = el.current.querySelectorAll('.slide')
+
+    Array.prototype.forEach.call(slides, slide => {
+      slide.style.pointerEvents = val
+    })
+  }
+
+  // Move slide
+  const setTransformX = useCallback(dist => {
+    el.current.style.transform = `translateX(${dist}px)`
+  }, [])
+
+  // Move slide based on index
+  const moveSlideByIndex = useCallback(() => {
+    const recordXVal = () => {
+      // get 'transform' style
+      const transformVal = el.current.style.transform
+
+      if (transformVal) {
+        // Parse as number
+        const parsedX = parseInt(transformVal.split('(')[1].split('px')[0], 0)
+        xOffset.current = parsedX
+      }
+    }
+
+    const distOfIndex = -(index * (el.current.offsetWidth / items.length))
+    setTransformX(distOfIndex)
+    setPointerEvents('inherit')
+    recordXVal()
+  }, [index, items.length, setTransformX])
+
+  /**
+   * On mount
+   */
   useEffect(() => {
-    const el = wrapperRef.current.querySelector('.js-swipe')
-    swiper.register(el, items.length)
+    el.current = wrapperRef.current.querySelector('.js-swipe')
+    window.addEventListener('resize', moveSlideByIndex)
 
     return () => {
-      swiper.removeListeners()
+      window.removeEventListener('resize', moveSlideByIndex)
     }
-  }, [items])
+  }, [items, moveSlideByIndex])
 
-  // handle swipe end
+  /**
+   * On Swipe
+   */
+  const onSwipe = e => {
+    // Get swipe delta
+    const delta = -e.deltaX
+
+    setPointerEvents('none')
+    setTransition(false)
+    setTransformX(delta + xOffset.current)
+  }
+
+  /**
+   * On End
+   */
   const onSwipeEnd = e => {
+    setTransition(true)
+
     const direction = e.dir
 
+    // Change carousel index on swipe
     if (direction === 'Left' && index !== items.length - 1) getNext()
     else if (direction === 'Right' && index !== 0) getPrev()
+    // snap back to first or last
     else {
-      swiper.setSlide()
+      moveSlideByIndex()
     }
   }
 
-  // handle swipe
-  const onSwipe = e => {
-    const delta = -e.deltaX
-    swiper.swipe(delta)
-  }
-
-  // handle index change
+  /**
+   * On Index Change
+   */
   useEffect(() => {
-    swiper.setIndex(index)
-    swiper.setSlide()
-  }, [index, items.length])
+    setTransition(true)
+    moveSlideByIndex()
+  }, [index, moveSlideByIndex])
 
   const handlers = useSwipeable({
     onSwiping: onSwipe,
     trackMouse: true,
     trackTouch: true,
     onSwiped: onSwipeEnd,
-    preventDefaultTouchmoveEvent: true,
   })
 
   return { handlers, wrapperRef }
