@@ -28,7 +28,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        paths: ['/', __dirname],
+        paths: ['/', 'src', __dirname],
         moduleDirectory: ['node_modules'],
       },
     },
