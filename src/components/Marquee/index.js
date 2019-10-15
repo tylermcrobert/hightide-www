@@ -1,29 +1,14 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Styled from './Styled'
-import MarqueeController from './MarqueeController'
-
-const marquee = new MarqueeController()
+import useMarquee from './hooks/useMarquee'
 
 function Marquee({ children, speed }) {
-  const [paused, setPaused] = useState(false)
-  const wrapperRef = useRef()
-
-  useEffect(() => {
-    marquee.init(wrapperRef.current, speed)
-
-    return () => {
-      marquee.destroy()
-    }
-  }, [speed])
+  const { ref } = useMarquee(speed)
 
   return (
-    <Styled.Wrapper
-      ref={wrapperRef}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <Styled.Track className="mq-wrapper" paused={paused}>
+    <Styled.Wrapper ref={ref}>
+      <Styled.Track className="mq-wrapper">
         <div className="mq-inner">{children}</div>
         <div className="mq-inner">{children}</div>
       </Styled.Track>
