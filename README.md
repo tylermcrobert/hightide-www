@@ -9,17 +9,19 @@ The site uses serverless functions to request data from Spotify’s API because 
 ## File Structure
 
 ```
-/components
+/src
+  /components
+    /prismic
+    /slices
+  /pages
   /prismic
-  /slices
-/pages
-/prismic
-/static
-/style
-/templates
-/util
+  /static
+  /style
+  /templates
+  /util
 ```
 
+In `src`:
 - **`/components`** - Houses all reusable components.
 
   - **`/prismic`** -Reusable site blocks powered by prismic data.
