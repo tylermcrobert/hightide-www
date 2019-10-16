@@ -32,7 +32,7 @@ const Post = React.memo(({ data }) => {
 })
 
 function Related({ items }) {
-  if (items && items.length) {
+  if (items && items.length && items[0].data) {
     return (
       <RelatedWrapper heading="Related Entries">
         {items.map(({ entry }) => {
