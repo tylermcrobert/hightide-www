@@ -29,18 +29,23 @@ const Item = styled.div`
 
 const HeadWrapper = styled.div`
   display: flex;
+  position: relative;
 `
 const Head = styled.h2`
   margin-bottom: ${props => props.theme.margins.slim};
   position: relative;
   flex: 1;
-  margin-right: ${props => props.theme.margins.slim};
+  margin-right: 1.25em;
 `
 
 const CloseMarker = styled.h2`
   transition: 200ms transform ease-out;
-  transform: rotate(${props => (props.theme.active ? 45 : 0)}deg); */}
+  transform: rotate(${props => (props.theme.active ? 45 : 0)}deg);
   display: inline-block;
+  transform-origin: center;
+
+  position: absolute;
+  right: 0;
 `
 
 const ColWrapper = styled.div``
