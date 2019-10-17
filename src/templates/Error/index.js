@@ -21,7 +21,10 @@ function Error({ statusCode }) {
               Who am I?
             </h2>
           ) : (
-            <h1>Woah, this sucks</h1>
+            <div>
+              <h1>Well, this sucks</h1>
+              <p>Something went wrong.</p>
+            </div>
           )}
         </Section>
       </Wrap>
