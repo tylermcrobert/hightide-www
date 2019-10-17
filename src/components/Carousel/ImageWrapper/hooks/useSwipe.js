@@ -1,16 +1,28 @@
-import { useContext, useRef, useEffect, useCallback } from 'react'
+import { useContext, useRef, createRef, useEffect, useCallback } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { CarouselCtx } from '../..'
 /* eslint-disable no-param-reassign */
 
 const PARALLAX_VAL = 1.5
 const BOUNDS = 200
+const wrapperRef = createRef()
+
+function useDragDisable() {
+  useEffect(() => {
+    const images = [...wrapperRef.current.querySelectorAll('div')]
+    images.forEach(item => {
+      item.onmousedown = e => e.preventDefault()
+    })
+  }, [])
+}
 
 export default function useSwipe() {
   const { getNext, getPrev, index, items } = useContext(CarouselCtx)
-  const wrapperRef = useRef()
   const slideWrapper = useRef()
   const xOffset = useRef(0)
+
+  // disables drag problem in FireFox :/
+  useDragDisable()
 
   const setTransition = (isTransition = true) => {
     if (!isTransition) {
