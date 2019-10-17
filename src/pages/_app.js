@@ -11,16 +11,16 @@ import LogRocket from 'logrocket'
 
 LogRocket.init('mto3as/high-tide')
 
-const AmericaLtWoff2 = '/static/fonts/GT-America-Standard-Light.woff2'
-const AmericaLtWoff = '/static/fonts/GT-America-Standard-Light.woff'
-const AmericaLtTtf = '/static/fonts/GT-America-Standard-Light.ttf'
+const AmericaLtWoff2 = '/fonts/GT-America-Standard-Light.woff2'
+const AmericaLtWoff = '/fonts/GT-America-Standard-Light.woff'
+const AmericaLtTtf = '/fonts/GT-America-Standard-Light.ttf'
 
-const AmericaMdWoff2 = '/static/fonts/GT-America-Standard-Medium.woff2'
-const AmericaMdWoff = '/static/fonts/GT-America-Standard-Medium.woff'
-const AmericaMdTtf = '/static/fonts/GT-America-Standard-Medium.ttf'
+const AmericaMdWoff2 = '/fonts/GT-America-Standard-Medium.woff2'
+const AmericaMdWoff = '/fonts/GT-America-Standard-Medium.woff'
+const AmericaMdTtf = '/fonts/GT-America-Standard-Medium.ttf'
 
-const LyonLtWoff = '/static/fonts/LyonDisplay-Light-Web.woff'
-const LyonLtWoff2 = '/static/fonts/LyonDisplay-Light-Web.woff2'
+const LyonLtWoff = '/fonts/LyonDisplay-Light-Web.woff'
+const LyonLtWoff2 = '/fonts/LyonDisplay-Light-Web.woff2'
 
 async function loadPolyfills() {
   if (

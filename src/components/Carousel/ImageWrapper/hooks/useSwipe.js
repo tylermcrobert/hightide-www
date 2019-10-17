@@ -1,16 +1,22 @@
-import { useContext, useRef, useEffect, useCallback } from 'react'
+import { useContext, createRef, useEffect, useCallback } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { CarouselCtx } from '../..'
 /* eslint-disable no-param-reassign */
 
 const PARALLAX_VAL = 1.5
 const BOUNDS = 200
+const wrapperRef = createRef()
+const slideWrapper = createRef()
+const xOffset = createRef(0)
 
-export default function useSwipe() {
-  const { getNext, getPrev, index, items } = useContext(CarouselCtx)
-  const wrapperRef = useRef()
-  const slideWrapper = useRef()
-  const xOffset = useRef(0)
+/**
+ *
+ * Use Handlers
+ *
+ */
+
+const useDOMMutation = () => {
+  const { index, items } = useContext(CarouselCtx)
 
   const setTransition = (isTransition = true) => {
     if (!isTransition) {
@@ -35,7 +41,7 @@ export default function useSwipe() {
   }, [])
 
   // Move slide based on index
-  const moveSlideByIndex = useCallback(() => {
+  const moveSlideByIndex = () => {
     const recordXVal = () => {
       // get 'transform' style
       const transformVal = slideWrapper.current.style.transform
@@ -53,23 +59,31 @@ export default function useSwipe() {
     setTransformX(indexDist)
     setPointerEvents('inherit')
     recordXVal()
-  }, [index, items.length, setTransformX])
+  }
 
-  /**
-   * On mount
-   */
-  useEffect(() => {
-    slideWrapper.current = wrapperRef.current.querySelector('.js-swipe')
-    window.addEventListener('resize', moveSlideByIndex)
+  return {
+    moveSlideByIndex,
+    setTransition,
+    setTransformX,
+    setPointerEvents,
+  }
+}
 
-    return () => {
-      window.removeEventListener('resize', moveSlideByIndex)
-    }
-  }, [items, moveSlideByIndex])
+/**
+ *
+ * Use Handlers
+ *
+ */
 
-  /**
-   * On Swipe
-   */
+const useHandlers = () => {
+  const { getNext, getPrev, index, items } = useContext(CarouselCtx)
+  const {
+    setTransition,
+    setPointerEvents,
+    moveSlideByIndex,
+    setTransformX,
+  } = useDOMMutation()
+
   const onSwipe = e => {
     const getSwipeDistance = () => {
       const wrapperWidth = slideWrapper.current.offsetWidth
@@ -94,9 +108,6 @@ export default function useSwipe() {
     setTransformX(swipeDist)
   }
 
-  /**
-   * On End
-   */
   const onSwipeEnd = e => {
     setTransition(true)
 
@@ -111,20 +122,87 @@ export default function useSwipe() {
     }
   }
 
-  /**
-   * On Index Change
-   */
-  useEffect(() => {
-    setTransition(true)
-    moveSlideByIndex()
-  }, [index, moveSlideByIndex])
-
   const handlers = useSwipeable({
     onSwiping: onSwipe,
     trackMouse: true,
     trackTouch: true,
     onSwiped: onSwipeEnd,
   })
+
+  return handlers
+}
+
+/**
+ *
+ * useResize
+ *
+ * Listens to window resize
+ * and appropriately moves X
+ *
+ */
+
+const useResize = () => {
+  const { moveSlideByIndex } = useDOMMutation()
+
+  useEffect(() => {
+    slideWrapper.current = wrapperRef.current.querySelector('.js-swipe')
+    window.addEventListener('resize', moveSlideByIndex)
+
+    return () => {
+      window.removeEventListener('resize', moveSlideByIndex)
+    }
+  }, [moveSlideByIndex])
+}
+
+/**
+ *
+ * useDragDisable
+ *
+ * Disables drag issue in firefox
+ *
+ */
+
+function useDragDisable() {
+  useEffect(() => {
+    const images = [...wrapperRef.current.querySelectorAll('div')]
+    images.forEach(item => {
+      item.onmousedown = e => e.preventDefault()
+    })
+  }, [])
+}
+
+/**
+ *
+ * useIndexChange
+ *
+ * listens for index change in context
+ *
+ */
+
+const useIndexChange = () => {
+  const { index } = useContext(CarouselCtx)
+  const { setTransition, moveSlideByIndex } = useDOMMutation()
+
+  // on index change
+  useEffect(() => {
+    setTransition(true)
+    moveSlideByIndex()
+  }, [index, moveSlideByIndex, setTransition])
+}
+
+/**
+ *
+ * useSwipe
+ *
+ * listens for index change in context
+ *
+ */
+
+export default function useSwipe() {
+  const handlers = useHandlers()
+  useResize()
+  useDragDisable()
+  useIndexChange()
 
   return { handlers, wrapperRef }
 }

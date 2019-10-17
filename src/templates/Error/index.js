@@ -10,7 +10,7 @@ function Error({ statusCode }) {
       <Wrap>
         <Section>
           <Section>
-            <Styled.FreakedOutPalm src="/static/errorPalm.svg" />
+            <Styled.FreakedOutPalm src="/errorPalm.svg" />
           </Section>
 
           {statusCode && <h1>Error {statusCode}.</h1>}

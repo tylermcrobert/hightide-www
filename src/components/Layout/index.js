@@ -20,7 +20,7 @@ function Layout({ children }) {
       />
       <script
         type="text/javascript"
-        src="https://static.cdn.prismic.io/prismic.min.js"
+        src="https:/static.cdn.prismic.io/prismic.min.js"
       />
       <Nav />
       <main>{children}</main>
