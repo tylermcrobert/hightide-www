@@ -31,8 +31,11 @@ const Post = React.memo(({ data }) => {
   )
 })
 
+export const getValidRelatedJournals = items =>
+  items.filter(item => item.entry && item.entry.uid && item)
+
 function Related({ items }) {
-  const validItems = items.filter(item => item.entry && item.entry.uid && item)
+  const validItems = getValidRelatedJournals(items)
 
   if (validItems) {
     return (

@@ -7,6 +7,7 @@ import TextWrap from 'components/TextWrap'
 import msToTime from 'util/msToTime'
 import { RelatedWrapper, RelatedItem } from 'components/Related'
 import Styled from './Styled'
+import { getValidRelatedJournals } from '../Post'
 
 const SoundSystem = memo(
   ({ tracks, playlistLink, spotifyImage, prismicData }) => {
@@ -47,10 +48,12 @@ const SoundSystem = memo(
 )
 
 const RelatedItems = ({ items }) => {
-  if (items && items.length > 1) {
+  const validItems = getValidRelatedJournals(items)
+
+  if (validItems && validItems.length) {
     return (
       <RelatedWrapper heading="Related Playlists">
-        {items.map(({ entry }) => {
+        {validItems.map(({ entry }) => {
           if (entry.data) {
             const title = RichText.asText(entry.data.title)
             const image = entry.data.main_image.url
