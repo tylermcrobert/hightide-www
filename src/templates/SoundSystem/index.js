@@ -23,7 +23,10 @@ const SoundSystem = memo(
             {/* Info */}
             <Section>
               <PlaylistLink>
-                <Styled.PlaylistCover src={spotifyImage} alt="" />
+                <Styled.PlaylistCover
+                  src={prismicData.main_image.url || spotifyImage}
+                  alt=""
+                />
               </PlaylistLink>
               <Heading as="h1">{RichText.asText(prismicData.title)}</Heading>
               <TextWrap>{RichText.render(prismicData.abstract)}</TextWrap>
