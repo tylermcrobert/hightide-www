@@ -43,7 +43,11 @@ const CaseStudy = memo(({ data }) => {
 })
 
 function Related({ items }) {
-  if (items && items.length) {
+  const validItems = items.filter(
+    ({ item }) => item.uid && !item.isBroken && item
+  )
+
+  if (validItems && validItems.length) {
     return (
       <RelatedWrapper heading="Other Projects">
         {items.map(({ item }) => {
