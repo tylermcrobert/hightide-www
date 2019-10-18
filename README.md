@@ -19,29 +19,33 @@ The site uses serverless functions to request data from Spotify’s API because 
   /style
   /templates
   /util
+/serverless
+/public
 ```
 
-In `src`:
-- **`/components`** - Houses all reusable components.
+- **`src`** - Source of project
+  - **`/components`** - Houses all reusable components.
 
-  - **`/prismic`** -Reusable site blocks powered by prismic data.
-  - **`/slices`** - Code for reusable slices such as `Text Block` and `Image Block`.
+    - **`/prismic`** -Reusable site blocks powered by prismic data.
+    - **`/slices`** - Code for reusable slices such as `Text Block` and `Image Block`.
 
-- **`/pages`** - Pages of the application, each file will automatically match a route. [See Next.js docs for more info](https://nextjs.org/docs#dynamic-routing).
+  - **`/pages`** - Pages of the application, each file will automatically match a route. [See Next.js docs for more info](https://nextjs.org/docs#dynamic-routing).
 
-- **`/static`** - Houses all static files like fonts and favicon
+  - **`/static`** - Houses all static files like fonts and favicon.
 
-- **`/style`** - Contains Styled components theme, global style, and utility functions for modularscale.
+  - **`/style`** - Contains Styled components theme, global style, and utility functions for modularscale.
 
-- **`/templates`** - UI for pages. Use data props to parse format and style page components within this directory. [see more](#page-templating)
+  - **`/templates`** - UI for pages. Use data props to parse format and style page components within this directory. [see more](#page-templating).
 
-- **`/util`** - utility functions
+  - **`/util`** - utility functions.
 
-- **`/prismic`** - Version control for Prismic custom type JSON
+  - **`/prismic`** - Version control for Prismic custom type JSON.
 
-- **`/middleware`** - Middleware, mostly for pages to use in `getInitialProps`
+  - **`/middleware`** - Middleware, mostly for pages to use in `getInitialProps`.
 
-  - **`/prismic`** - utility functions for Prismic.
+    - **`/prismic`** - utility functions for Prismic.
+- **`serverless`**: - Lambda functions for spotify integration.
+- **`public`**: - Public files like fonts and favicon.
 
 ## Page Building
 
