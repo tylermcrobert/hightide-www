@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { ThemeProvider } from 'styled-components'
-import Nav from './Nav'
+import Nav, { FractionIndicator } from './Nav'
 import ImageWrapper from './ImageWrapper'
 
 export const CarouselCtx = createContext()
@@ -34,4 +34,4 @@ Wrapper.propTypes = {
   items: PropTypes.arrayOf(PropTypes.element).isRequired,
 }
 
-export { Nav, ImageWrapper }
+export { Nav, FractionIndicator, ImageWrapper }
