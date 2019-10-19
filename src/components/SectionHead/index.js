@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Styled from './Styled'
 import Arrow from '../Arrow'
 
-function Header({ children, link, line }) {
+function Header({ children, link, line, noArrow }) {
   return (
     <Styled.Header line={line}>
       <h5>{children}</h5>
@@ -11,9 +11,7 @@ function Header({ children, link, line }) {
         <h5>
           <Styled.HoverTransform>
             {link}
-            <Styled.HoverTarget>
-              <Arrow />
-            </Styled.HoverTarget>
+            <Styled.HoverTarget>{!noArrow && <Arrow />}</Styled.HoverTarget>
           </Styled.HoverTransform>
         </h5>
       )}
@@ -24,11 +22,13 @@ function Header({ children, link, line }) {
 Header.defaultProps = {
   line: false,
   link: null,
+  noArrow: false,
 }
 
 Header.propTypes = {
   line: PropTypes.bool,
   link: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   children: PropTypes.string.isRequired,
+  noArrow: PropTypes.bool,
 }
 export default Header

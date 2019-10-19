@@ -11,6 +11,7 @@ import formatTitle from 'util/formatTitle'
 import TextBlock from 'components/slices/TextBlock'
 import ImageBlock from 'components/slices/ImageBlock'
 import Carousel from 'components/slices/Carousel'
+import Video from 'components/slices/Video'
 import Gallery from './Gallery'
 
 export const CaseStudyCtx = createContext()
@@ -80,6 +81,9 @@ function Slices({ data }) {
           return <ImageBlock data={slice} />
         case 'text_block':
           return <TextBlock data={slice} />
+        case 'video_block':
+          return <Video data={slice} />
+
         default:
           console.warn(`nothing built for ${slice.slice_type}`)
           return null

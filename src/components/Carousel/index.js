@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { ThemeProvider } from 'styled-components'
-import Nav from './Nav'
+import Nav, { FractionIndicator } from './Nav'
 import ImageWrapper from './ImageWrapper'
 
 export const CarouselCtx = createContext()
@@ -25,7 +25,7 @@ export const Wrapper = ({ children, items }) => {
       </ThemeProvider>
     )
   }
-  console.error('items must be an array')
+  console.error('CAROUSEL: items must be an array')
   return null
 }
 
@@ -34,4 +34,4 @@ Wrapper.propTypes = {
   items: PropTypes.arrayOf(PropTypes.element).isRequired,
 }
 
-export { Nav, ImageWrapper }
+export { Nav, FractionIndicator, ImageWrapper }

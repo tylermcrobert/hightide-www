@@ -5,26 +5,37 @@ import Link from 'next/link'
 import AspectImage from 'components/AspectImage'
 import SectionHead from 'components/SectionHead'
 
-export const FeaturedWorkCtx = createContext()
+const CarouselConsumer = Carousel.CarouselCtx.Consumer
 
-const FeaturedWork = ({ caseStudies, heading }) => {
+const FeaturedWork = ({ caseStudies }) => {
   if (caseStudies && caseStudies.length) {
-    const images = caseStudies.map(({ uid, data }) => (
-      <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
-        <a>
-          <AspectImage src={data.image.url} alt="" />
-        </a>
-      </Link>
+    const images = caseStudies.map(({ data }) => (
+      <a>
+        <AspectImage src={data.image.url} alt="" />
+      </a>
     ))
 
     return (
-      <FeaturedWorkCtx.Provider value={{ caseStudies, heading }}>
-        <SectionHead>{heading}</SectionHead>
-        <Carousel.Wrapper items={images}>
-          <Carousel.ImageWrapper />
-          <Carousel.Nav />
-        </Carousel.Wrapper>
-      </FeaturedWorkCtx.Provider>
+      <Carousel.Wrapper items={images}>
+        <CarouselConsumer>
+          {({ index }) => {
+            const currentCs = caseStudies[index]
+            const { uid } = currentCs
+            const title = currentCs.data.name[0].text
+
+            return (
+              <>
+                <SectionHead link={<Carousel.FractionIndicator />} noArrow>
+                  <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
+                    {title}
+                  </Link>
+                </SectionHead>
+                <Carousel.ImageWrapper />
+              </>
+            )
+          }}
+        </CarouselConsumer>
+      </Carousel.Wrapper>
     )
   }
   return null

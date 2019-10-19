@@ -123,6 +123,7 @@ const useHandlers = () => {
   }
 
   const handlers = useSwipeable({
+    delta: 10,
     onSwiping: onSwipe,
     trackMouse: true,
     trackTouch: true,

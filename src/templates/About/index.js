@@ -34,6 +34,7 @@ const About = React.memo(({ site }) => {
   return (
     <>
       <Wrap>
+        {/*  */}
         <PageIntro>{RichText.render(heroText)}</PageIntro>
         <Section>
           <LazyImg src={heroImg.url} />

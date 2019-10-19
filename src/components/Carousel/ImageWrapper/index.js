@@ -5,13 +5,15 @@ import useSwipe from './hooks/useSwipe'
 import Styled from './Styled'
 
 const ImageWrapper = () => {
-  const { items } = useContext(CarouselCtx)
+  const { items, getNext, getPrev } = useContext(CarouselCtx)
   const { handlers, wrapperRef } = useSwipe()
 
   if (items && items.length) {
     return (
       <Styled.GalleryWrapper ref={wrapperRef}>
-        <Styled.SlideWrapper {...handlers} className="js-swipe">
+        <Styled.NavOverlay.Prev onClick={getPrev} {...handlers} />
+        <Styled.NavOverlay.Next onClick={getNext} {...handlers} />
+        <Styled.SlideWrapper className="js-swipe">
           <Slides />
         </Styled.SlideWrapper>
       </Styled.GalleryWrapper>
