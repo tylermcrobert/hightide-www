@@ -1,4 +1,4 @@
-import { createRef, useEffect, useContext } from 'react'
+import { createRef, useEffect, useContext, useRef } from 'react'
 import { CarouselCtx } from '../..'
 import 'flickity/dist/flickity.min.css'
 
@@ -44,9 +44,44 @@ const useIndexChange = () => {
   }, [setCurrentIndex])
 }
 
+function getIsNext(e) {
+  const targetRect = e.target.getBoundingClientRect()
+  const w = targetRect.width
+  const x = e.clientX - targetRect.x
+  // get percent of mouse relative to target
+  const xPerc = Math.round((x / w) * 100)
+  return xPerc > 50
+}
+
+const useNav = () => {
+  const { getNext, getPrev } = useContext(CarouselCtx)
+  const isNext = useRef()
+
+  useEffect(() => {
+    const handleHover = e => {
+      isNext.current = getIsNext(e)
+      ref.current.style.cursor = isNext.current ? 'e-resize' : 'w-resize'
+    }
+
+    const handleClick = () => {
+      if (isNext.current) getNext()
+      else getPrev()
+    }
+
+    ref.current.addEventListener('click', handleClick)
+    ref.current.addEventListener('mousemove', handleHover)
+
+    return () => {
+      ref.current.removeEventListener('click', handleClick)
+      ref.current.removeEventListener('mousemove', handleHover)
+    }
+  })
+}
+
 const useFlickity = () => {
   useMount()
   useIndexChange()
+  useNav()
 
   return ref
 }
