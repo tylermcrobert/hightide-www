@@ -2,6 +2,25 @@ import styled from 'styled-components'
 
 const GalleryWrapper = styled.div`
   overflow: hidden;
+  position: relative;
+`
+
+const NavOverlay = styled.div`
+  z-index: 10;
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  top: 0;
+  left: 0;
+`
+
+NavOverlay.Prev = styled(NavOverlay)`
+  cursor: w-resize;
+`
+
+NavOverlay.Next = styled(NavOverlay)`
+  cursor: e-resize;
+  left: 50%;
 `
 
 const SlideWrapper = styled.ul`
@@ -19,4 +38,4 @@ const Slide = styled.li`
   cursor: -webkit-grab;
 `
 
-export default { Slide, SlideWrapper, GalleryWrapper }
+export default { Slide, SlideWrapper, NavOverlay, GalleryWrapper }

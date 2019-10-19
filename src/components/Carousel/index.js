@@ -25,7 +25,7 @@ export const Wrapper = ({ children, items }) => {
       </ThemeProvider>
     )
   }
-  console.error('items must be an array')
+  console.error('CAROUSEL: items must be an array')
   return null
 }
 
