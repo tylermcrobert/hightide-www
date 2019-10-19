@@ -15,20 +15,28 @@
         "label": "Introduction"
       }
     },
-    "featured_work_1": {
-      "type": "Link",
+    "featured_text_header": {
+      "type": "Text",
       "config": {
-        "select": "document",
-        "customtypes": ["work"],
-        "label": "Featured Work 01"
+        "label": "Featured Text Header",
+        "placeholder": "Featured Projects"
       }
     },
-    "featured_work_2": {
-      "type": "Link",
+    "featured_case_studies": {
+      "type": "Group",
       "config": {
-        "select": "document",
-        "customtypes": ["work"],
-        "label": "Featured Work 02"
+        "fields": {
+          "case_study": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["work"],
+              "label": "Case Study",
+              "placeholder": "Case Study"
+            }
+          }
+        },
+        "label": "Featured Case Studies"
       }
     }
   },
@@ -167,14 +175,11 @@
         "label": "About Image 4"
       }
     },
-    "about_image_5": {
-      "type": "Image",
+    "about_video_1": {
+      "type": "Link",
       "config": {
-        "constraint": {
-          "width": 1200
-        },
-        "thumbnails": [],
-        "label": "About Image 5"
+        "select": "media",
+        "label": "About Video 1"
       }
     },
     "recognition": {
@@ -224,6 +229,13 @@
         "label": "Careers"
       }
     },
+    "clients_speed": {
+      "type": "Number",
+      "config": {
+        "label": "Clients Speed",
+        "placeholder": "Default: 1"
+      }
+    },
     "clients": {
       "type": "Group",
       "config": {
@@ -249,11 +261,13 @@
               "label": "Logo"
             }
           },
-          "client_name": {
-            "type": "Text",
+          "link_to_project": {
+            "type": "Link",
             "config": {
-              "label": "Client Name",
-              "placeholder": "Nike"
+              "select": "document",
+              "customtypes": ["work"],
+              "label": "Link to Project",
+              "placeholder": "Link to Project"
             }
           }
         },

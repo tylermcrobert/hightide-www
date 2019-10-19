@@ -31,11 +31,16 @@ const Post = React.memo(({ data }) => {
   )
 })
 
+export const getValidRelatedJournals = items =>
+  items.filter(item => item.entry && item.entry.uid && item)
+
 function Related({ items }) {
-  if (items && items.length && items[0].data) {
+  const validItems = getValidRelatedJournals(items)
+
+  if (validItems) {
     return (
       <RelatedWrapper heading="Related Entries">
-        {items.map(({ entry }) => {
+        {validItems.map(({ entry }) => {
           const title = RichText.asText(entry.data.title)
           const thumbnail =
             entry.data.thumbnail_image && entry.data.thumbnail_image.url

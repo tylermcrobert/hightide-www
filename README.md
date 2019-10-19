@@ -4,7 +4,7 @@
 
 The site is built on React/Next.js with Prismic CMS using Next’s static export function. Static export allows the site to be hosted without running a server.
 
-The site uses serverless functions to request data from Spotify’s API because it requires a server-side OAuth connection. Note: Netlify offers serverless functions to run for free up until a point so we'll have to keep an eye on that.
+The site uses serverless functions to request data from Spotify’s API because it requires a server-side OAuth connection.
 
 ## File Structure
 
@@ -24,6 +24,7 @@ The site uses serverless functions to request data from Spotify’s API because 
 ```
 
 - **`src`** - Source of project
+
   - **`/components`** - Houses all reusable components.
 
     - **`/prismic`** -Reusable site blocks powered by prismic data.
@@ -44,6 +45,7 @@ The site uses serverless functions to request data from Spotify’s API because 
   - **`/middleware`** - Middleware, mostly for pages to use in `getInitialProps`.
 
     - **`/prismic`** - utility functions for Prismic.
+
 - **`serverless`**: - Lambda functions for spotify integration.
 - **`public`**: - Public files like fonts and favicon.
 

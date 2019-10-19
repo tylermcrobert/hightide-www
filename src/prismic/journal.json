@@ -27,8 +27,8 @@
       "config": {
         "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
         "allowTargetBlank": true,
-        "label": "Abstract Description",
-        "placeholder": "We interviewed Chris Black, a writer and owner of Done to Death Projects based in New York, about starting his own media company, Public Announcement, writing books, and the wonderful hell that is New York City."
+        "label": "Introduction",
+        "placeholder": "Introduction to article. Appears next to title in post"
       }
     },
     "main_image": {
@@ -61,10 +61,37 @@
       "type": "Image",
       "config": {
         "constraint": {
-          "width": 960
+          "width": 1200
         },
-        "thumbnails": [],
+        "thumbnails": [
+          {
+            "name": "portrait",
+            "width": 900,
+            "height": 1500
+          },
+          {
+            "name": "landscape",
+            "width": 900,
+            "height": 600
+          }
+        ],
         "label": "Thumbnail (Optional)"
+      }
+    },
+    "related_journals": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "entry": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["journal"],
+              "label": "Entry"
+            }
+          }
+        },
+        "label": "Related Journals"
       }
     },
     "body": {

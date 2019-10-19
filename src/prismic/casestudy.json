@@ -62,34 +62,6 @@
       "fieldset": "Slice zone",
       "config": {
         "choices": {
-          "related_work": {
-            "type": "Slice",
-            "fieldset": "related_work",
-            "description": "Related Work",
-            "icon": "compare_arrows",
-            "display": "list",
-            "non-repeat": {
-              "r_work_title": {
-                "type": "StructuredText",
-                "config": {
-                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-                  "label": "r_work_title",
-                  "placeholder": "Related work title"
-                }
-              }
-            },
-            "repeat": {
-              "r_work": {
-                "type": "Link",
-                "config": {
-                  "select": "document",
-                  "customtypes": ["work"],
-                  "label": "r_work",
-                  "placeholder": "Related Work"
-                }
-              }
-            }
-          },
           "text_block": {
             "type": "Slice",
             "fieldset": "Text Block",
@@ -151,6 +123,32 @@
                 "config": {
                   "single": "paragraph, em",
                   "label": "Description"
+                }
+              }
+            }
+          },
+          "image_carousel": {
+            "type": "Slice",
+            "fieldset": "Image Carousel",
+            "description": "Add a carousel",
+            "icon": "view_carousel",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "carousel_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1600
+                  },
+                  "thumbnails": [
+                    {
+                      "name": "800",
+                      "width": 800,
+                      "height": null
+                    }
+                  ],
+                  "label": "Image"
                 }
               }
             }
