@@ -23,11 +23,7 @@ NavOverlay.Next = styled(NavOverlay)`
   left: 50%;
 `
 
-const SlideWrapper = styled.ul`
-  display: flex;
-  width: ${({ theme }) => theme.count * 100}%;
-  transition: transform ${props => props.theme.ease.standard};
-`
+const SlideWrapper = styled.ul``
 
 const Slide = styled.li`
   width: 100%;

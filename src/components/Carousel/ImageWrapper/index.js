@@ -1,19 +1,19 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { CarouselCtx } from '..'
-import useSwipe from './hooks/useSwipe'
 import Styled from './Styled'
+import useFlickity from './hooks/useFlickity'
 
 const ImageWrapper = () => {
   const { items, getNext, getPrev } = useContext(CarouselCtx)
-  const { handlers, wrapperRef } = useSwipe()
+  const flickityRef = useFlickity()
 
   if (items && items.length) {
     return (
-      <Styled.GalleryWrapper ref={wrapperRef}>
-        <Styled.NavOverlay.Prev onClick={getPrev} {...handlers} />
-        <Styled.NavOverlay.Next onClick={getNext} {...handlers} />
-        <Styled.SlideWrapper className="js-swipe">
+      <Styled.GalleryWrapper>
+        <Styled.NavOverlay.Prev onClick={getPrev} />
+        <Styled.NavOverlay.Next onClick={getNext} />
+        <Styled.SlideWrapper ref={flickityRef}>
           <Slides />
         </Styled.SlideWrapper>
       </Styled.GalleryWrapper>
