@@ -38,7 +38,7 @@ export default function Contact({ hero }) {
               <Styled.SubmitWrapper>
                 <Styled.Submit
                   type="submit"
-                  value="Send It"
+                  value="Submit"
                   active={canSubmit}
                 />
               </Styled.SubmitWrapper>

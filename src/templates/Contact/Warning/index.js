@@ -1,18 +1,10 @@
-import { motion } from 'framer-motion'
+import useExpand from 'hooks/useExpand'
 import Styled from './Styled'
 
 export default function Warning({ active, children }) {
+  const ref = useExpand(active)
+
   return (
-    <motion.div
-      initial={false}
-      transition={{ duration: 0.2 }}
-      animate={{
-        height: active ? 'auto' : '0',
-        opacity: active ? 1 : 0,
-        y: active ? '0%' : '-50%',
-      }}
-    >
-      <Styled.ValidationWarning>{children}</Styled.ValidationWarning>
-    </motion.div>
+    <Styled.ValidationWarning ref={ref}>{children}</Styled.ValidationWarning>
   )
 }
