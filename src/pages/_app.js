@@ -3,6 +3,7 @@ import App from 'next/app'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { PageTransition } from 'next-page-transitions'
+import Client from 'shopify-buy'
 
 import theme from 'style/theme'
 import Layout from 'components/Layout'
@@ -21,6 +22,11 @@ const AmericaMdTtf = '/fonts/GT-America-Standard-Medium.ttf'
 
 const LyonLtWoff = '/fonts/LyonDisplay-Light-Web.woff'
 const LyonLtWoff2 = '/fonts/LyonDisplay-Light-Web.woff2'
+
+export const client = Client.buildClient({
+  storefrontAccessToken: '9395d0399ded34d4a90d8e45db500a76',
+  domain: 'hightidenyc.myshopify.com',
+})
 
 async function loadPolyfills() {
   if (
