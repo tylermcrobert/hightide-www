@@ -5,6 +5,7 @@ const BREAKPOINT = mq.sm
 
 const Body = styled.div`
   line-height: ${props => props.theme.lineHeights.tight};
+  overflow: hidden;
 `
 
 const Wrapper = styled.div`
