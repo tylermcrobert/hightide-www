@@ -2,9 +2,9 @@ import React, { useState, useContext, createContext } from 'react'
 import { ThemeProvider } from 'styled-components'
 import PropTypes from 'prop-types'
 import splitArr from 'util/splitArr'
+import useExpand from 'hooks/useExpand'
 import Styled from './Styled'
 
-import useExpand from './hooks/useExpand'
 
 export const TextSwitcherCtx = createContext()
 export const ItemCtx = createContext()
@@ -20,7 +20,10 @@ function TextSwitcher({ cols, children }) {
 }
 
 const Body = ({ children }) => {
-  const bodyRef = useExpand()
+  const { currentIndex } = useContext(TextSwitcherCtx)
+  const { i } = useContext(ItemCtx)
+  const bodyRef = useExpand(currentIndex === i)
+
   return (
     <Styled.Body ref={bodyRef}>
       <p>{children}</p>
