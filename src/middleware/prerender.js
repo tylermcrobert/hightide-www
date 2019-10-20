@@ -1,5 +1,5 @@
 export default function SPR(res) {
   if (res) {
-    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate')
+    res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate')
   }
 }
