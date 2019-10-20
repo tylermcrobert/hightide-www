@@ -28,7 +28,8 @@ Header.defaultProps = {
 Header.propTypes = {
   line: PropTypes.bool,
   link: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+    .isRequired,
   noArrow: PropTypes.bool,
 }
 export default Header

@@ -1,18 +1,21 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import * as Carousel from 'components/Carousel'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
-import AspectImage from 'components/AspectImage'
 import SectionHead from 'components/SectionHead'
+import AspectImage from 'components/AspectImage'
 
 const CarouselConsumer = Carousel.CarouselCtx.Consumer
 
 const FeaturedWork = ({ caseStudies }) => {
   if (caseStudies && caseStudies.length) {
     const images = caseStudies.map(({ data }) => (
-      <a>
-        <AspectImage src={data.image.url} alt="" />
-      </a>
+      <AspectImage>
+        <picture>
+          <source srcSet={data.image.small.url} media="(max-width: 800px)" />
+          <img src={data.image.url} alt="" />
+        </picture>
+      </AspectImage>
     ))
 
     return (
@@ -27,7 +30,7 @@ const FeaturedWork = ({ caseStudies }) => {
               <>
                 <SectionHead link={<Carousel.FractionIndicator />} noArrow>
                   <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
-                    {title}
+                    <a>{title}</a>
                   </Link>
                 </SectionHead>
                 <Carousel.ImageWrapper />
@@ -43,7 +46,6 @@ const FeaturedWork = ({ caseStudies }) => {
 
 FeaturedWork.propTypes = {
   caseStudies: PropTypes.array.isRequired,
-  heading: PropTypes.string.isRequired,
 }
 
 export default FeaturedWork
