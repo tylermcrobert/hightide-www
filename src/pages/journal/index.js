@@ -2,6 +2,7 @@ import React from 'react'
 import JournalTemplate from 'templates/Journal'
 import Meta from 'components/Meta'
 import { getType } from 'middleware/prismic'
+import prerender from 'middleware/prerender'
 
 export default function Journal({ journal, pageSize }) {
   return (
@@ -24,8 +25,8 @@ export const fetchOptions = {
   pageSize,
 }
 
-Journal.getInitialProps = async ({ req }) => {
+Journal.getInitialProps = async ({ req, res }) => {
   const journal = await getType(req, 'journal', fetchOptions)
-
+  prerender(res)
   return { journal, pageSize }
 }
