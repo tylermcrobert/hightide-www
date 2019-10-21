@@ -25,7 +25,7 @@ const SizeWrapper = styled.div`
 
 const Size = styled.div`
   outline: none;
-  cursor: pointer;
+  cursor: ${({ available }) => (available ? 'pointer' : 'auto')};
 
   display: inline-block;
   font-size: ${props => props.theme.fontSizes[1]};
@@ -44,6 +44,8 @@ const Size = styled.div`
     selected ? theme.colors.primary : theme.colors.secondary};
   color: ${({ selected, theme }) =>
     selected ? theme.colors.secondary : theme.colors.primary};
+
+  opacity: ${({ available }) => (available ? 1 : 0.3)};
 `
 
 const Button = styled.button`

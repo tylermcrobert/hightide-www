@@ -18,25 +18,33 @@ const Product = ({ product }) => {
   const [variationIndex, setVariationIndex] = useState(0)
   const selectedProduct = product.variants[variationIndex]
 
+  console.log(product)
   return (
     <Styled.Product key={product.id}>
       <img src={selectedProduct.image.src} alt={product.title} />
+
       <Styled.Description>
         <h2>{product.title}</h2>
-        <Styled.SizeWrapper>
-          {product.variants.map((variant, i) => (
-            <Styled.Size
-              as="button"
-              onClick={() => setVariationIndex(i)}
-              selected={i === variationIndex}
-              key={variant.title}
-            >
-              {variant.title}
-            </Styled.Size>
-          ))}
-        </Styled.SizeWrapper>
+
+        {product.variants.length > 1 && (
+          <Styled.SizeWrapper>
+            {product.variants.map((variant, i) => (
+              <Styled.Size
+                as="button"
+                onClick={() => (variant.available ? setVariationIndex(i) : {})}
+                selected={i === variationIndex}
+                key={variant.title}
+                available={variant.available}
+              >
+                {variant.title}
+              </Styled.Size>
+            ))}
+          </Styled.SizeWrapper>
+        )}
         <p>{product.description}</p>
+
         <h5>${selectedProduct.price} USD</h5>
+
         <Styled.Button
           type="button"
           onClick={() => addProductToCart(selectedProduct)}
