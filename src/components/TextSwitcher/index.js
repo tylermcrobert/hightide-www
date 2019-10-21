@@ -1,12 +1,13 @@
 import React, { useState, useContext, createContext } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 import splitArr from 'util/splitArr'
+import useExpand from 'hooks/useExpand'
 import Styled from './Styled'
 
-const TextSwitcherCtx = createContext()
-const ItemCtx = createContext()
+
+export const TextSwitcherCtx = createContext()
+export const ItemCtx = createContext()
 
 function TextSwitcher({ cols, children }) {
   const [currentIndex, setCurrentIndex] = useState(null)
@@ -21,19 +22,12 @@ function TextSwitcher({ cols, children }) {
 const Body = ({ children }) => {
   const { currentIndex } = useContext(TextSwitcherCtx)
   const { i } = useContext(ItemCtx)
+  const bodyRef = useExpand(currentIndex === i)
+
   return (
-    <motion.div
-      initial={false}
-      style={{ overflow: 'hidden' }}
-      transition={{ ease: 'easeOut', duration: 0.25 }}
-      animate={{
-        height: i === currentIndex ? 'auto' : '0',
-      }}
-    >
-      <Styled.Body>
-        <p>{children}</p>
-      </Styled.Body>
-    </motion.div>
+    <Styled.Body ref={bodyRef}>
+      <p>{children}</p>
+    </Styled.Body>
   )
 }
 

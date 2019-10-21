@@ -3,6 +3,7 @@ import { RichText } from 'prismic-reactjs'
 import Error from 'next/error'
 
 import { Client } from 'middleware/prismic'
+import prerender from 'middleware/prerender'
 
 import Meta from 'components/Meta'
 import CaseStudyTemplate from 'templates/CaseStudy'
@@ -23,11 +24,13 @@ const CaseStudy = ({ data: response }) => {
   return <Error statusCode={404} />
 }
 
-CaseStudy.getInitialProps = async ({ req, query }) => {
+CaseStudy.getInitialProps = async ({ req, res, query }) => {
   const { uid } = query
   const data = await Client(req).getByUID('work', uid, {
     fetchLinks: ['work.name', 'work.image'],
   })
+
+  prerender(res)
   return { data }
 }
 

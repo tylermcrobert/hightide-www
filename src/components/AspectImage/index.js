@@ -7,10 +7,7 @@ const Wrapper = styled.div`
   position: relative;
 `
 
-const Image = styled.div`
-  background-image: url(${props => props.src});
-  background-position: center;
-  background-size: cover;
+const AbsoluteObj = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -18,19 +15,37 @@ const Image = styled.div`
   width: 100%;
 `
 
-const AspectImage = ({ src, aspect }) => (
-  <Wrapper aspect={aspect}>
-    <Image src={src} />
-  </Wrapper>
-)
+const Image = styled(AbsoluteObj)`
+  background-image: url(${props => props.src});
+  background-position: center;
+  background-size: cover;
+`
+
+const ChildWrapper = styled(AbsoluteObj)`
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`
+
+const AspectImage = ({ src, aspect, children }) => {
+  return (
+    <Wrapper aspect={aspect}>
+      {children ? <ChildWrapper>{children}</ChildWrapper> : <Image src={src} />}
+    </Wrapper>
+  )
+}
 
 AspectImage.defaultProps = {
   aspect: 2 / 3,
+  children: null,
 }
 
 AspectImage.propTypes = {
   aspect: PropTypes.number,
   src: PropTypes.string.isRequired,
+  children: PropTypes.element,
 }
 
 export default AspectImage

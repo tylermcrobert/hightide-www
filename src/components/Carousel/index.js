@@ -19,7 +19,9 @@ export const Wrapper = ({ children, items }) => {
   if (items && items.length) {
     return (
       <ThemeProvider theme={{ count: items.length, index }}>
-        <CarouselCtx.Provider value={{ items, index, getNext, getPrev }}>
+        <CarouselCtx.Provider
+          value={{ items, index, getNext, getPrev, setCurrentIndex }}
+        >
           {children}
         </CarouselCtx.Provider>
       </ThemeProvider>
