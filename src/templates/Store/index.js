@@ -1,8 +1,11 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, createContext } from 'react'
 import { Wrap } from 'style'
-import Section from 'components/Section'
 import { client } from 'pages/_app'
-import Styled from './Styled'
+
+import ProductGrid from './ProductGrid'
+import Cart from './Cart'
+
+export const StoreContext = createContext()
 
 const Store = memo(({ products }) => {
   const [checkoutID, setCheckoutId] = useState(null)
@@ -14,9 +17,9 @@ const Store = memo(({ products }) => {
     })
   }, [])
 
-  const addItem = product => {
+  const addProductToCart = product => {
     const lineItemsToAdd = {
-      variantId: product.variants[0].id,
+      variantId: product.id,
       quantity: 1,
       customAttributes: {
         key: 'MyKey',
@@ -30,43 +33,14 @@ const Store = memo(({ products }) => {
   }
 
   return (
-    <Wrap>
-      <Section>
-        <Styled.ProductWrapper>
-          {products.map(product => {
-            return (
-              <div key={product.id}>
-                <img src={product.images[0].src} alt={product.title} />
-                <h2>{product.title}</h2>
-                <p>{product.description}</p>
-                <Styled.SizeWrapper>
-                  {product.variants.map(variant => (
-                    <Styled.Size key={variant.title}>
-                      {variant.title}
-                    </Styled.Size>
-                  ))}
-                </Styled.SizeWrapper>
-                {checkoutID && (
-                  <button onClick={() => addItem(product)}>Add to cart</button>
-                )}
-              </div>
-            )
-          })}
-        </Styled.ProductWrapper>
-      </Section>
-      <Section>
-        cart
-        {cart.map(item => (
-          <Styled.ItemWrapper key={item.title}>
-            <h2>{item.title}</h2>
-            <div>
-              <h5>QTY: {item.quantity}</h5>
-              <h5>size: MD</h5>
-            </div>
-          </Styled.ItemWrapper>
-        ))}
-      </Section>
-    </Wrap>
+    <StoreContext.Provider
+      value={{ products, cart, checkoutID, addProductToCart }}
+    >
+      <Wrap>
+        <ProductGrid />
+        <Cart />
+      </Wrap>
+    </StoreContext.Provider>
   )
 })
 
