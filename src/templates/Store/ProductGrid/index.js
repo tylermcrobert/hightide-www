@@ -1,3 +1,8 @@
+/**
+ * TODO:
+ * - Add Message like "All 5 Tote Bag are in your cart."
+ */
+
 import React, { useContext, useState } from 'react'
 import Styled from './Styled'
 import { StoreContext } from '..'
@@ -18,7 +23,6 @@ const Product = ({ product }) => {
   const [variationIndex, setVariationIndex] = useState(0)
   const selectedProduct = product.variants[variationIndex]
 
-  console.log(product)
   return (
     <Styled.Product key={product.id}>
       <img src={selectedProduct.image.src} alt={product.title} />
