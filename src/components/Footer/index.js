@@ -32,9 +32,9 @@ function Footer() {
           <Section>
             <h5>Visit</h5>
             <p>
-              231 Front Street, Ste 209
+              28 Marcy, Suite 3
               <br />
-              Brooklyn, New York 11201
+              Brooklyn, New York 11211
             </p>
             <p>
               © {new Date().getFullYear()} {config.legalTitle}
