@@ -17,41 +17,29 @@ export const StoreContext = createContext()
 const Store = memo(({ products, checkout: initialCheckout, client }) => {
   const [checkout, setCheckout] = useState(initialCheckout)
 
-  const checkoutID = initialCheckout.id
+  const checkoutId = initialCheckout.id
 
   useEffect(() => {
-    document.cookie = `checkoutID=${checkoutID}; path=/`
-  }, [checkoutID])
+    document.cookie = `checkoutId=${checkoutId}; path=/`
+  }, [checkoutId])
 
-  const addProductToCart = (product, qty = 1) => {
+  const addProductToCart = (product, qty = 1) =>
     client.checkout
-      .addLineItems(checkoutID, {
+      .addLineItems(checkoutId, {
         variantId: product.id,
         quantity: qty,
       })
-      .then(newCheckout => {
-        setCheckout(newCheckout)
-      })
-  }
+      .then(newCheckout => setCheckout(newCheckout))
 
-  const updateLineItem = (id, qty) => {
-    const lineItems = [
-      {
-        id: 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMDkyMjM3MDk0MDk3Ng==',
-        quantity: 1,
-      },
-    ]
+  const removeItem = id =>
+    client.checkout
+      .removeLineItems(checkoutId, [id])
+      .then(newCheckout => setCheckout(newCheckout))
 
-    client.checkout.updateLineItems(checkoutID, lineItems).then(newCheckout => {
-      setCheckout(newCheckout)
-    })
-  }
-
-  const removeItem = itemId => {
-    client.checkout.removeLineItems(checkoutID, [itemId]).then(newCheckout => {
-      console.log(newCheckout)
-    })
-  }
+  const updateItem = (id, quantity) =>
+    client.checkout
+      .updateLineItems(checkoutId, { id, quantity })
+      .then(newCheckout => setCheckout(newCheckout))
 
   return (
     <StoreContext.Provider
@@ -59,7 +47,7 @@ const Store = memo(({ products, checkout: initialCheckout, client }) => {
         checkout,
         products,
         removeItem,
-        updateLineItem,
+        updateItem,
         addProductToCart,
       }}
     >

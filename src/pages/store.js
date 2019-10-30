@@ -22,9 +22,9 @@ const getCheckout = async prevCheckoutID => {
 }
 
 Store.getInitialProps = async ctx => {
-  const { checkoutID } = cookies(ctx)
+  const { checkoutId } = cookies(ctx)
 
-  const checkout = await getCheckout(checkoutID)
+  const checkout = await getCheckout(checkoutId)
   const products = await client.product.fetchAll()
 
   return { products, checkout }

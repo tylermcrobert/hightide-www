@@ -23,23 +23,24 @@ function Cart() {
       <Styled.Cart>
         <Section>
           <p>Cart</p>
-          {cart.length ? (
+
+          <div>
             <div>
-              <div>
-                {cart.map((item, i) => (
-                  <CartItem data={item} key={`${item.title}${i}`} />
-                ))}
-              </div>
-              <CheckoutBottom />
+              {cart.map((item, i) => (
+                <CartItem data={item} key={`${item.title}${i}`} />
+              ))}
             </div>
-          ) : (
-            <h2>There are no items in your cart.</h2>
-          )}
+            <CheckoutBottom />
+          </div>
         </Section>
       </Styled.Cart>
     )
   }
-  return 'loading cart...'
+  return (
+    <Section>
+      <h2>There are no items in your cart.</h2>
+    </Section>
+  )
 }
 
 const CheckoutBottom = () => {
@@ -61,9 +62,13 @@ const CheckoutBottom = () => {
 }
 
 const CartItem = ({ data }) => {
-  const { removeItem } = useContext(StoreContext)
+  const { removeItem, updateItem } = useContext(StoreContext)
 
-  console.log(data.variant.id)
+  const removeOne = () => updateItem(data.id, data.quantity - 1)
+
+  const addOne = () => updateItem(data.id, data.quantity + 1)
+
+  const removeAll = () => removeItem(data.id)
 
   return (
     <Styled.ItemWrapper key={data.title}>
@@ -74,11 +79,14 @@ const CartItem = ({ data }) => {
           <h2>{data.title}</h2>
           <Styled.Secondary>
             <h6>{data.variant.title}</h6>
-            <Button onClick={removeItem}>remove</Button>
+            <h6 onClick={removeAll}>Remove</h6>
           </Styled.Secondary>
         </div>
         <div>
-          <h2>- {data.quantity} +</h2>
+          <h2>
+            <span onClick={removeOne}>-</span> {data.quantity}{' '}
+            <span onClick={addOne}>+</span>
+          </h2>
         </div>
       </Styled.Detail>
     </Styled.ItemWrapper>
