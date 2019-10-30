@@ -15,7 +15,7 @@ import Styled from './Styled'
 import { StoreContext } from '..'
 
 function Cart() {
-  const { cart, checkout } = useContext(StoreContext)
+  const { cart } = useContext(StoreContext)
 
   if (cart.length) {
     return (
@@ -23,14 +23,14 @@ function Cart() {
         <Section>
           <p>Cart</p>
           {cart.length ? (
-            <Styled.CheckoutWrapper>
+            <div>
               <div>
                 {cart.map(item => (
                   <CartItem data={item} />
                 ))}
               </div>
               <CheckoutBottom />
-            </Styled.CheckoutWrapper>
+            </div>
           ) : (
             <h2>There are no items in your cart.</h2>
           )}
@@ -46,16 +46,16 @@ const CheckoutBottom = () => {
 
   return (
     <div>
-      <Styled.CheckoutBottom>
+      <div>
         <div>Subtotal</div>
-        <Styled.TotalWrapper>
+        <div>
           <h2>${checkout.paymentDue}</h2>
           <div>USD</div>
-        </Styled.TotalWrapper>
+        </div>
         <Button type="button">Check Out</Button>
 
-        <h6>Taxes, shipping, and discount codes calculated at checkout</h6>
-      </Styled.CheckoutBottom>
+        <p>Taxes, shipping, and discount codes calculated at checkout</p>
+      </div>
     </div>
   )
 }
@@ -67,7 +67,7 @@ const CartItem = ({ data }) => {
 
       <Styled.Detail>
         <div>
-          <Styled.Title>{data.title}</Styled.Title>
+          <h2>{data.title}</h2>
           <Styled.Secondary>
             <h6>{data.variant.title}</h6>
             <h6>remove</h6>
