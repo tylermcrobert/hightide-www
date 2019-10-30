@@ -9,6 +9,7 @@
 import React, { useContext } from 'react'
 import Section from 'components/Section'
 import Button from 'components/Button'
+import pad from 'util/pad'
 import Styled from './Styled'
 import { StoreContext } from '..'
 
@@ -82,7 +83,7 @@ const CartItem = ({ data }) => {
         </div>
         <div>
           <h2>
-            <span onClick={removeOne}>-</span> {data.quantity}{' '}
+            <span onClick={removeOne}>-</span> {pad(data.quantity)}{' '}
             <span onClick={addOne}>+</span>
           </h2>
         </div>

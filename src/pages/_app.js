@@ -1,6 +1,6 @@
 // https://github.com/zeit/next.js/issues/3313#issuecomment-475337811
 import App from 'next/app'
-import React from 'react'
+import React, { createContext } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { PageTransition } from 'next-page-transitions'
 
@@ -40,7 +40,17 @@ const DARK_ROUTES = ['/work']
 const { duration, distance } = theme.routeTransition
 const { accel, decel } = theme.ease
 
+export const AppCtx = createContext()
+
 export default class HighTideApp extends App {
+  state = {
+    storeCount: 0,
+  }
+
+  updateStoreCount = count => {
+    this.setState({ storeCount: count })
+  }
+
   render() {
     const { Component, pageProps } = this.props
     const { route, asPath } = this.props.router
@@ -49,14 +59,21 @@ export default class HighTideApp extends App {
     return (
       <>
         <ThemeProvider theme={{ ...theme, isDark }}>
-          <Layout>
-            <PageTransition
-              timeout={theme.routeTransition.timeout}
-              classNames="page-transition"
-            >
-              <Component {...pageProps} key={asPath} />
-            </PageTransition>
-          </Layout>
+          <AppCtx.Provider
+            value={{
+              storeCount: this.state.storeCount,
+              updateStoreCount: this.updateStoreCount,
+            }}
+          >
+            <Layout>
+              <PageTransition
+                timeout={theme.routeTransition.timeout}
+                classNames="page-transition"
+              >
+                <Component {...pageProps} key={asPath} />
+              </PageTransition>
+            </Layout>
+          </AppCtx.Provider>
         </ThemeProvider>
         <style jsx global>
           {`

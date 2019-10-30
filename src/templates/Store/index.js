@@ -1,5 +1,12 @@
-import React, { memo, createContext, useEffect, useState } from 'react'
+import React, {
+  memo,
+  createContext,
+  useEffect,
+  useState,
+  useContext,
+} from 'react'
 import { Wrap } from 'style'
+import { AppCtx } from 'pages/_app'
 
 import ProductGrid from './ProductGrid'
 import Cart from './Cart'
@@ -8,13 +15,22 @@ export const StoreContext = createContext()
 
 const Store = memo(({ products, checkout: initialCheckout, client }) => {
   const [checkout, setCheckout] = useState(initialCheckout)
+  const { updateStoreCount } = useContext(AppCtx)
 
+  // update store count
+  useEffect(() => {
+    updateStoreCount(checkout.lineItems.length)
+  }, [checkout, updateStoreCount])
+
+  // use checkout id from initial checkout id
   const checkoutId = initialCheckout.id
 
+  // set cookie
   useEffect(() => {
     document.cookie = `checkoutId=${checkoutId}; path=/`
   }, [checkoutId])
 
+  //
   const addProductToCart = (product, qty = 1) =>
     client.checkout
       .addLineItems(checkoutId, {
@@ -23,6 +39,7 @@ const Store = memo(({ products, checkout: initialCheckout, client }) => {
       })
       .then(newCheckout => setCheckout(newCheckout))
 
+  // Remove item
   const removeItem = id =>
     client.checkout
       .removeLineItems(checkoutId, [id])

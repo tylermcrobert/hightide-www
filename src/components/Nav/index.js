@@ -3,6 +3,7 @@ import { ThemeContext } from 'styled-components'
 import Link from 'next/link'
 import { Wrap } from 'style'
 import { Opacity } from 'components/LinkEffect'
+import { AppCtx } from 'pages/_app'
 import Styled from './Styled'
 import Heading from '../Heading'
 
@@ -16,6 +17,8 @@ const NAV_ITEMS = [
 const NavContext = createContext()
 function Nav() {
   const [mobileNavEnabled, setMobileNav] = useState(false)
+  const { storeCount } = useContext(AppCtx)
+
   return (
     <NavContext.Provider value={{ mobileNavEnabled, setMobileNav }}>
       <Styled.Nav>
@@ -23,6 +26,7 @@ function Nav() {
           <Logo />
           <BurgerMenu />
           <DesktopLinks />
+          {storeCount && `cart: [${storeCount}]`}
         </Styled.Wrap>
         <MobileOverlay />
       </Styled.Nav>
