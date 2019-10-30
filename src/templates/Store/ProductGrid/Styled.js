@@ -48,10 +48,4 @@ const Size = styled.div`
   opacity: ${({ available }) => (available ? 1 : 0.3)};
 `
 
-const Button = styled.button`
-  background: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.secondary};
-  padding: 0.75rem 1.25rem;
-`
-
-export default { Button, ProductGrid, SizeWrapper, Size, Product, Description }
+export default { ProductGrid, SizeWrapper, Size, Product, Description }

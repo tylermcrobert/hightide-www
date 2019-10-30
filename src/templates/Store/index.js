@@ -52,7 +52,9 @@ const Store = memo(({ products }) => {
   }
 
   return (
-    <StoreContext.Provider value={{ products, cart, addProductToCart }}>
+    <StoreContext.Provider
+      value={{ checkout, products, cart, addProductToCart }}
+    >
       <Wrap>
         <ProductGrid />
         <Cart />

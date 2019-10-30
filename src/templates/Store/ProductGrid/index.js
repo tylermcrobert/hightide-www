@@ -4,6 +4,7 @@
  */
 
 import React, { useContext, useState } from 'react'
+import Button from 'components/Button'
 import Styled from './Styled'
 import { StoreContext } from '..'
 
@@ -49,12 +50,9 @@ const Product = ({ product }) => {
 
         <h5>${selectedProduct.price} USD</h5>
 
-        <Styled.Button
-          type="button"
-          onClick={() => addProductToCart(selectedProduct)}
-        >
+        <Button type="button" onClick={() => addProductToCart(selectedProduct)}>
           Add to cart
-        </Styled.Button>
+        </Button>
       </Styled.Description>
     </Styled.Product>
   )
