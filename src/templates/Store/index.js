@@ -1,11 +1,3 @@
-/**
- * TODO
- *
- * - Add cookie or localstorage for session
- * - Get cart on server
- *
- */
-
 import React, { memo, createContext, useEffect, useState } from 'react'
 import { Wrap } from 'style'
 

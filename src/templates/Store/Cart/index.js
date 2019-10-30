@@ -1,7 +1,5 @@
 /**
  * TODO:
- * - Add remove functionality
- * - Add Subtotal
  * - Remove  variants where they dont exist
  * - Allow for edit qty
  * - add checkout button
