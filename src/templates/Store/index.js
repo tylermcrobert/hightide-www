@@ -6,54 +6,62 @@
  *
  */
 
-import React, { memo, useState, useEffect, createContext } from 'react'
+import React, { memo, createContext, useEffect, useState } from 'react'
 import { Wrap } from 'style'
-import { client } from 'pages/_app'
 
-import getCookie from 'util/getCookie'
 import ProductGrid from './ProductGrid'
 import Cart from './Cart'
 
 export const StoreContext = createContext()
 
-const Store = memo(({ products }) => {
-  const [checkout, setCheckout] = useState(null)
-  const [cart, setCart] = useState([])
+const Store = memo(({ products, checkout: initialCheckout, client }) => {
+  const [checkout, setCheckout] = useState(initialCheckout)
+
+  const checkoutID = initialCheckout.id
 
   useEffect(() => {
-    const existingCheckout = getCookie('checkoutID')
+    document.cookie = `checkoutID=${checkoutID}; path=/`
+  }, [checkoutID])
 
-    if (existingCheckout) {
-      /* Use existing cart */
-
-      client.checkout.fetch(existingCheckout).then(res => {
-        setCheckout(res)
-        setCart(res.lineItems)
+  const addProductToCart = (product, qty = 1) => {
+    client.checkout
+      .addLineItems(checkoutID, {
+        variantId: product.id,
+        quantity: qty,
       })
-    } else {
-      /* Create new cart */
-
-      client.checkout.create().then(res => {
-        document.cookie = `checkoutID=${res.id}`
-        setCheckout(res)
+      .then(newCheckout => {
+        setCheckout(newCheckout)
       })
-    }
-  }, [])
+  }
 
-  const addProductToCart = product => {
-    const lineItemsToAdd = {
-      variantId: product.id,
-      quantity: 1,
-    }
+  const updateLineItem = (id, qty) => {
+    const lineItems = [
+      {
+        id: 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMDkyMjM3MDk0MDk3Ng==',
+        quantity: 1,
+      },
+    ]
 
-    client.checkout.addLineItems(checkout.id, lineItemsToAdd).then(data => {
-      setCart(data.lineItems)
+    client.checkout.updateLineItems(checkoutID, lineItems).then(newCheckout => {
+      setCheckout(newCheckout)
+    })
+  }
+
+  const removeItem = itemId => {
+    client.checkout.removeLineItems(checkoutID, [itemId]).then(newCheckout => {
+      console.log(newCheckout)
     })
   }
 
   return (
     <StoreContext.Provider
-      value={{ checkout, products, cart, addProductToCart }}
+      value={{
+        checkout,
+        products,
+        removeItem,
+        updateLineItem,
+        addProductToCart,
+      }}
     >
       <Wrap>
         <ProductGrid />

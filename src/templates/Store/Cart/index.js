@@ -15,7 +15,8 @@ import Styled from './Styled'
 import { StoreContext } from '..'
 
 function Cart() {
-  const { cart } = useContext(StoreContext)
+  const { checkout } = useContext(StoreContext)
+  const cart = checkout.lineItems
 
   if (cart.length) {
     return (
@@ -25,8 +26,8 @@ function Cart() {
           {cart.length ? (
             <div>
               <div>
-                {cart.map(item => (
-                  <CartItem data={item} />
+                {cart.map((item, i) => (
+                  <CartItem data={item} key={`${item.title}${i}`} />
                 ))}
               </div>
               <CheckoutBottom />
@@ -53,7 +54,6 @@ const CheckoutBottom = () => {
           <div>USD</div>
         </div>
         <Button type="button">Check Out</Button>
-
         <p>Taxes, shipping, and discount codes calculated at checkout</p>
       </div>
     </div>
@@ -61,6 +61,10 @@ const CheckoutBottom = () => {
 }
 
 const CartItem = ({ data }) => {
+  const { removeItem } = useContext(StoreContext)
+
+  console.log(data.variant.id)
+
   return (
     <Styled.ItemWrapper key={data.title}>
       <img src={data.variant.image.src} alt="" />
@@ -70,7 +74,7 @@ const CartItem = ({ data }) => {
           <h2>{data.title}</h2>
           <Styled.Secondary>
             <h6>{data.variant.title}</h6>
-            <h6>remove</h6>
+            <Button onClick={removeItem}>remove</Button>
           </Styled.Secondary>
         </div>
         <div>
