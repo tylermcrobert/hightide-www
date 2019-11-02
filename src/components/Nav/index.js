@@ -26,7 +26,7 @@ function Nav() {
           <Logo />
           <BurgerMenu />
           <DesktopLinks />
-          {storeCount && `cart: [${storeCount}]`}
+          {storeCount ? `Cart (${storeCount})` : null}
         </Styled.Wrap>
         <MobileOverlay />
       </Styled.Nav>

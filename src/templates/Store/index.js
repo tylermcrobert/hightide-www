@@ -19,7 +19,9 @@ const Store = memo(({ products, checkout: initialCheckout, client }) => {
 
   // update store count
   useEffect(() => {
-    updateStoreCount(checkout.lineItems.length)
+    if (updateStoreCount) {
+      updateStoreCount(checkout.lineItems.length)
+    }
   }, [checkout, updateStoreCount])
 
   // use checkout id from initial checkout id
