@@ -71,7 +71,7 @@ const CartItem = ({ data }) => {
 
   return (
     <Styled.ItemWrapper key={data.title}>
-      <img src={data.variant.image.src} alt="" />
+      {/* <img src={data.variant.image.src} alt="" /> */}
 
       <Styled.Detail>
         <div>

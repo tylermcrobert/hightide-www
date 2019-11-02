@@ -20,41 +20,20 @@ function ProductGrid() {
 }
 
 const Product = ({ product }) => {
-  const { addProductToCart } = useContext(StoreContext)
-  const [variationIndex, setVariationIndex] = useState(0)
-  const selectedProduct = product.variants[variationIndex]
-
+  console.log()
   return (
-    <Styled.Product key={product.id}>
-      <img src={selectedProduct.image.src} alt={product.title} />
-
-      <Styled.Description>
-        <h2>{product.title}</h2>
-
-        {product.variants.length > 1 && (
-          <Styled.SizeWrapper>
-            {product.variants.map((variant, i) => (
-              <Styled.Size
-                as="button"
-                onClick={() => (variant.available ? setVariationIndex(i) : {})}
-                selected={i === variationIndex}
-                key={variant.title}
-                available={variant.available}
-              >
-                {variant.title}
-              </Styled.Size>
-            ))}
-          </Styled.SizeWrapper>
+    <a href={`/product/${product.handle}/`}>
+      <Styled.Product key={product.id}>
+        {product.images[0] && (
+          <img src={product.images[0].src} alt={product.title} />
         )}
-        <p>{product.description}</p>
 
-        <h5>${selectedProduct.price} USD</h5>
-
-        <Button type="button" onClick={() => addProductToCart(selectedProduct)}>
-          Add to cart
-        </Button>
-      </Styled.Description>
-    </Styled.Product>
+        <Styled.Description>
+          <h2>{product.title}</h2>
+          <h5>{product.variants[0].price}</h5>
+        </Styled.Description>
+      </Styled.Product>
+    </a>
   )
 }
 
