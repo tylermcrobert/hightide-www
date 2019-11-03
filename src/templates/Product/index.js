@@ -1,8 +1,8 @@
 import React from 'react'
 import { Wrap } from 'style'
 import Section from 'components/Section'
+import PropTypes from 'prop-types'
 import Styled from './Styled'
-// import PropTypes from 'prop-types'
 
 const Product = ({ data }) => {
   const { descriptionHtml, title } = data
@@ -22,6 +22,8 @@ const Product = ({ data }) => {
   )
 }
 
-// Product.propTypes = {}
+Product.propTypes = {
+  data: PropTypes.any.isRequired,
+}
 
 export default Product

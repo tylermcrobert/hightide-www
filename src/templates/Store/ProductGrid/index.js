@@ -20,19 +20,18 @@ function ProductGrid() {
 }
 
 const Product = ({ product }) => {
-  console.log()
   return (
     <a href={`/product/${product.handle}/`}>
-      <Styled.Product key={product.id}>
+      <div key={product.id}>
         {product.images[0] && (
           <img src={product.images[0].src} alt={product.title} />
         )}
 
-        <Styled.Description>
+        <div>
           <h2>{product.title}</h2>
           <h5>{product.variants[0].price}</h5>
-        </Styled.Description>
-      </Styled.Product>
+        </div>
+      </div>
     </a>
   )
 }
