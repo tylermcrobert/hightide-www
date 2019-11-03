@@ -9,7 +9,6 @@ import { Wrap } from 'style'
 import { AppCtx } from 'pages/_app'
 
 import ProductGrid from './ProductGrid'
-import Cart from './Cart'
 
 export const StoreContext = createContext()
 
@@ -64,7 +63,6 @@ const Store = memo(({ products, checkout: initialCheckout, client }) => {
     >
       <Wrap>
         <ProductGrid />
-        <Cart />
       </Wrap>
     </StoreContext.Provider>
   )

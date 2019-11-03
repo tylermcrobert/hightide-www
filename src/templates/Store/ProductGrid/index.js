@@ -3,8 +3,9 @@
  * - Add Message like "All 5 Tote Bag are in your cart."
  */
 
-import React, { useContext, useState } from 'react'
-import Button from 'components/Button'
+import React, { useContext } from 'react'
+
+import AspectImage from 'components/AspectImage'
 import Styled from './Styled'
 import { StoreContext } from '..'
 
@@ -24,7 +25,7 @@ const Product = ({ product }) => {
     <a href={`/product/${product.handle}/`}>
       <div key={product.id}>
         {product.images[0] && (
-          <img src={product.images[0].src} alt={product.title} />
+          <AspectImage src={product.images[0].src} alt={product.title} />
         )}
 
         <div>
