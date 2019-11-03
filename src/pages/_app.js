@@ -3,7 +3,9 @@ import App from 'next/app'
 import React, { createContext } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { PageTransition } from 'next-page-transitions'
+import cookie from 'js-cookie'
 
+import getShopifyCheckout from 'middleware/getShopifyCheckout'
 import theme from 'style/theme'
 import Layout from 'components/Layout'
 
@@ -49,6 +51,23 @@ export default class HighTideApp extends App {
 
   updateStoreCount = count => {
     this.setState({ storeCount: count })
+  }
+
+  componentDidMount() {
+    // set shopify checkout id
+    cookie.set('shopifyCheckoutId', atob(this.props.checkout.id))
+  }
+
+  static async getInitialProps({ Component, ctx }) {
+    let pageProps = {}
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
+    }
+
+    const checkout = await getShopifyCheckout(ctx)
+
+    return { pageProps, checkout }
   }
 
   render() {
