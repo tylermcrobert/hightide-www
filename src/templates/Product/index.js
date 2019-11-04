@@ -4,6 +4,7 @@ import Section from 'components/Section'
 import Button from 'components/Button'
 import PropTypes from 'prop-types'
 import { StoreCtx } from 'components/StoreProvider'
+import Heading from 'components/Heading'
 import Styled from './Styled'
 import useVariant from './hooks/useVariant'
 
@@ -16,6 +17,9 @@ const Product = memo(({ data: productData }) => {
   )
   const { addItem } = useContext(StoreCtx)
   const imgUrl = productData.images[0] && productData.images[0].src
+  const price = currentVariant
+    ? currentVariant.price
+    : productData.variants[0].price
 
   return (
     <ProductCtx.Provider value={{ productData, updateOption, currentOptions }}>
@@ -25,11 +29,23 @@ const Product = memo(({ data: productData }) => {
             <img src={imgUrl} alt={title} />
             <div>
               <Styled.ProductDetail>
-                <h1>{title}</h1>
-                <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
+                <Heading level={1} headingStyle={1}>
+                  {title}
+                </Heading>
+                <div>${price} USD</div>
+                <br />
+
                 <Options />
+                <Styled.Description
+                  dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+                />
               </Styled.ProductDetail>
-              <Button onClick={() => addItem(currentVariant.id)}>
+              <Button
+                disabled={!currentVariant}
+                onClick={
+                  currentVariant ? () => addItem(currentVariant.id) : null
+                }
+              >
                 Add to Cart
               </Button>
             </div>
@@ -47,16 +63,21 @@ const Options = () => {
     <div>
       {productData.options.map(option => (
         <div key={option.name}>
-          <h4>{option.name}</h4>
+          <h5>{option.name}</h5>
+
+          {/* Variants */}
           {option.values.map(variant => {
             const isCurrent = currentOptions[option.name] === variant.value
             return (
-              <li
-                key={variant.value}
-                onClick={() => updateOption({ [option.name]: variant.value })}
-              >
-                {isCurrent ? ' - ' : ''}
-                {variant.value}
+              <li>
+                <button
+                  type="button"
+                  key={variant.value}
+                  onClick={() => updateOption({ [option.name]: variant.value })}
+                >
+                  {isCurrent ? ' - ' : ''}
+                  {variant.value}
+                </button>
               </li>
             )
           })}
