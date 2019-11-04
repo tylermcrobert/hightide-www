@@ -8,7 +8,7 @@ const useVariant = productData => {
 
   const [currentOptions, setcurrentOptions] = useState(blankOptions)
 
-  const currentVariantId = client.product.helpers.variantForOptions(
+  const currentVariant = client.product.helpers.variantForOptions(
     productData,
     currentOptions
   )
@@ -17,7 +17,7 @@ const useVariant = productData => {
     setcurrentOptions({ ...currentOptions, ...newOption })
   }
 
-  return { currentVariantId, updateOption, currentOptions }
+  return { currentVariant, updateOption, currentOptions }
 }
 
 export default useVariant
