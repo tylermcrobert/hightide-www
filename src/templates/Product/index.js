@@ -7,6 +7,7 @@ import { StoreCtx } from 'components/StoreProvider'
 import Heading from 'components/Heading'
 import Styled from './Styled'
 import useVariant from './hooks/useVariant'
+import useToggle from './hooks/useToggle'
 
 const ProductCtx = createContext()
 
@@ -20,6 +21,8 @@ const Product = memo(({ data: productData }) => {
   const price = currentVariant
     ? currentVariant.price
     : productData.variants[0].price
+
+  const toggleRef = useToggle()
 
   return (
     <ProductCtx.Provider value={{ productData, updateOption, currentOptions }}>
@@ -37,6 +40,7 @@ const Product = memo(({ data: productData }) => {
 
                 <Options />
                 <Styled.Description
+                  ref={toggleRef}
                   dangerouslySetInnerHTML={{ __html: descriptionHtml }}
                 />
               </Styled.ProductDetail>

@@ -19,12 +19,18 @@ const Description = styled.div`
     > li {
       padding: 0.75rem 0;
       border-top: 1px solid ${props => props.theme.colors.primary};
+      cursor: pointer;
     }
 
     /* Description */
     > ul {
       overflow: hidden;
       box-sizing: content-box;
+      height: 0;
+
+      &.is-current {
+        height: auto;
+      }
 
       > li:last-child {
         padding-bottom: 1rem;
