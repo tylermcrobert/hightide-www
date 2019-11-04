@@ -6,7 +6,7 @@ import React, {
   useContext,
 } from 'react'
 import { Wrap } from 'style'
-import { AppCtx } from 'pages/_app'
+import { StoreCtx } from 'components/StoreProvider'
 
 import ProductGrid from './ProductGrid'
 
@@ -14,7 +14,7 @@ export const StoreContext = createContext()
 
 const Store = memo(({ products, checkout: initialCheckout, client }) => {
   const [checkout, setCheckout] = useState(initialCheckout)
-  const { updateStoreCount } = useContext(AppCtx)
+  const { updateStoreCount } = useContext(StoreCtx)
 
   // update store count
   useEffect(() => {

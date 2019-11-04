@@ -9,6 +9,7 @@ import Fonts from 'style/Fonts'
 import getShopifyCheckout from 'middleware/getShopifyCheckout'
 import Layout from 'components/Layout'
 import theme, { routeTransition } from 'style/theme'
+import StoreProvider from 'components/StoreProvider'
 
 const DARK_ROUTES = ['/work']
 export const AppCtx = createContext()
@@ -45,18 +46,12 @@ export default class HighTideApp extends App {
     const { Component, pageProps } = this.props
     const { route, asPath } = this.props.router
     const isDark = DARK_ROUTES.indexOf(route) > -1
-    const checkout = this.props.checkout || cachedCheckout.current
-
-    console.log(checkout)
 
     return (
       <>
         <ThemeProvider theme={{ ...theme, isDark }}>
-          <AppCtx.Provider
-            value={{
-              storeCount: this.state.storeCount,
-              updateStoreCount: this.updateStoreCount,
-            }}
+          <StoreProvider
+            checkout={this.props.checkout || cachedCheckout.current}
           >
             <Layout>
               <PageTransition
@@ -66,7 +61,7 @@ export default class HighTideApp extends App {
                 <Component {...pageProps} key={asPath} />
               </PageTransition>
             </Layout>
-          </AppCtx.Provider>
+          </StoreProvider>
         </ThemeProvider>
         <Fonts />
       </>

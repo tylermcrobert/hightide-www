@@ -3,7 +3,7 @@ import { ThemeContext } from 'styled-components'
 import Link from 'next/link'
 import { Wrap } from 'style'
 import { Opacity } from 'components/LinkEffect'
-import { AppCtx } from 'pages/_app'
+import { StoreCtx } from 'components/StoreProvider'
 import Styled from './Styled'
 import Heading from '../Heading'
 
@@ -17,7 +17,7 @@ const NAV_ITEMS = [
 const NavContext = createContext()
 function Nav() {
   const [mobileNavEnabled, setMobileNav] = useState(false)
-  const { storeCount } = useContext(AppCtx)
+  const { storeCount } = useContext(StoreCtx)
 
   return (
     <NavContext.Provider value={{ mobileNavEnabled, setMobileNav }}>
