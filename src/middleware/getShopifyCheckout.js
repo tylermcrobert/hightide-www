@@ -7,14 +7,18 @@ export const client = Client.buildClient({
   domain: 'hightidenyc.myshopify.com',
 })
 
+const isServer = !process.browser
+
 export default async function getShopifyCheckout(ctx) {
   const { shopifyCheckoutId } = cookies(ctx)
 
-  if (shopifyCheckoutId && shopifyCheckoutId !== '') {
-    return client.checkout.fetch(btoa(shopifyCheckoutId)).catch(err => {
-      console.error(err)
-    })
+  if (isServer) {
+    if (shopifyCheckoutId) {
+      const encodedId = btoa(shopifyCheckoutId)
+      return client.checkout.fetch(encodedId)
+    }
+    return client.checkout.create()
   }
 
-  return client.checkout.create()
+  return null
 }
