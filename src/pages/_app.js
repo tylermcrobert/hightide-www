@@ -1,7 +1,8 @@
 // https://github.com/zeit/next.js/issues/3313#issuecomment-475337811
 import App from 'next/app'
-import React, { createContext } from 'react'
+import React, { createContext, createRef } from 'react'
 import { ThemeProvider } from 'styled-components'
+import LogRocket from 'logrocket'
 import { PageTransition } from 'next-page-transitions'
 import cookie from 'js-cookie'
 import Fonts from 'style/Fonts'
@@ -9,10 +10,9 @@ import getShopifyCheckout from 'middleware/getShopifyCheckout'
 import Layout from 'components/Layout'
 import theme, { routeTransition } from 'style/theme'
 
-import LogRocket from 'logrocket'
-
 const DARK_ROUTES = ['/work']
 export const AppCtx = createContext()
+export const cachedCheckout = createRef()
 
 export default class HighTideApp extends App {
   state = {
@@ -25,8 +25,8 @@ export default class HighTideApp extends App {
 
   componentDidMount() {
     if (this.props.checkout.id) {
-      this.cachedCheckout = this.props.checkout
-      cookie.set('shopifyCheckoutId', atob(this.cachedCheckout.id))
+      cachedCheckout.current = this.props.checkout
+      cookie.set('shopifyCheckoutId', atob(cachedCheckout.current.id))
     }
   }
 
@@ -45,7 +45,7 @@ export default class HighTideApp extends App {
     const { Component, pageProps } = this.props
     const { route, asPath } = this.props.router
     const isDark = DARK_ROUTES.indexOf(route) > -1
-    const checkout = this.props.checkout || this.cachedCheckout
+    const checkout = this.props.checkout || cachedCheckout.current
 
     console.log(checkout)
 
