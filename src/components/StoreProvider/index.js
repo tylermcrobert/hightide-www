@@ -1,12 +1,43 @@
 import React, { useState, createContext } from 'react'
 import PropTypes from 'prop-types'
+import { client } from 'middleware/getShopifyCheckout'
 
 export const StoreCtx = createContext()
+const StoreProvider = ({ children, checkout: initialCheckout }) => {
+  const [checkout, setCheckout] = useState(initialCheckout)
 
-const StoreProvider = ({ children, checkout }) => {
-  const [storeCount, updateStoreCount] = useState(0)
+  // use checkout id from initial checkout id
+  const checkoutId = initialCheckout.id
+
+  const addItem = (variantId, qty = 1) =>
+    client.checkout
+      .addLineItems(checkoutId, {
+        variantId,
+        quantity: qty,
+      })
+      .then(newCheckout => setCheckout(newCheckout))
+
+  // Remove item
+  const removeItem = id =>
+    client.checkout
+      .removeLineItems(checkoutId, [id])
+      .then(newCheckout => setCheckout(newCheckout))
+
+  const updateItem = (id, quantity) =>
+    client.checkout
+      .updateLineItems(checkoutId, { id, quantity })
+      .then(newCheckout => setCheckout(newCheckout))
+
   return (
-    <StoreCtx.Provider value={{ checkout, storeCount, updateStoreCount }}>
+    <StoreCtx.Provider
+      value={{
+        addItem,
+        removeItem,
+        updateItem,
+        checkout,
+        storeCount: checkout.lineItems.length,
+      }}
+    >
       {children}
     </StoreCtx.Provider>
   )

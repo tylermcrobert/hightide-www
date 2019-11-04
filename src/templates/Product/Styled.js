@@ -6,4 +6,8 @@ const Wrapper = styled.div`
   grid-gap: ${props => props.theme.margins.standard};
 `
 
-export default { Wrapper }
+const ProductDetail = styled.div`
+  margin-bottom: ${props => props.theme.margins.standard};
+`
+
+export default { Wrapper, ProductDetail }
