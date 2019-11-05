@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import ProductTemplate from 'templates/Product/'
-import { client } from '../store'
+import { client } from 'middleware/getShopifyCheckout'
 
 const Store = memo(({ product }) => {
   return <ProductTemplate data={product} />

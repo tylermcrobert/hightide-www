@@ -15,7 +15,7 @@ export default async function getShopifyCheckout(ctx) {
   if (isServer) {
     if (shopifyCheckoutId) {
       const encodedId = btoa(shopifyCheckoutId)
-      return client.checkout.fetch(encodedId)
+      return client.checkout.fetch(encodedId).catch(err => console.log(err))
     }
     return client.checkout.create()
   }

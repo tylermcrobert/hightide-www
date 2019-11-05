@@ -1,72 +1,38 @@
-import React, {
-  memo,
-  createContext,
-  useEffect,
-  useState,
-  useContext,
-} from 'react'
+import React, { createContext } from 'react'
 import { Wrap } from 'style'
-import { StoreCtx } from 'components/StoreProvider'
-
-import ProductGrid from './ProductGrid'
+import AspectImage from 'components/AspectImage'
+import Styled from './Styled'
 
 export const StoreContext = createContext()
 
-const Store = memo(({ products, checkout: initialCheckout, client }) => {
-  const [checkout, setCheckout] = useState(initialCheckout)
-  const { updateStoreCount } = useContext(StoreCtx)
-
-  // update store count
-  useEffect(() => {
-    if (updateStoreCount) {
-      updateStoreCount(checkout.lineItems.length)
-    }
-  }, [checkout, updateStoreCount])
-
-  // use checkout id from initial checkout id
-  const checkoutId = initialCheckout.id
-
-  // set cookie
-  useEffect(() => {
-    document.cookie = `checkoutId=${checkoutId}; path=/`
-  }, [checkoutId])
-
-  //
-  const addProductToCart = (product, qty = 1) =>
-    client.checkout
-      .addLineItems(checkoutId, {
-        variantId: product.id,
-        quantity: qty,
-      })
-      .then(newCheckout => setCheckout(newCheckout))
-
-  // Remove item
-  const removeItem = id =>
-    client.checkout
-      .removeLineItems(checkoutId, [id])
-      .then(newCheckout => setCheckout(newCheckout))
-
-  const updateItem = (id, quantity) =>
-    client.checkout
-      .updateLineItems(checkoutId, { id, quantity })
-      .then(newCheckout => setCheckout(newCheckout))
-
+function Store({ products }) {
   return (
-    <StoreContext.Provider
-      value={{
-        checkout,
-        products,
-        removeItem,
-        updateItem,
-        addProductToCart,
-      }}
-    >
-      <Wrap>
-        <ProductGrid />
-      </Wrap>
-    </StoreContext.Provider>
+    <Wrap>
+      <Styled.ProductGrid>
+        {products.map(product => {
+          return <Product product={product} key={product.id} />
+        })}
+      </Styled.ProductGrid>
+    </Wrap>
   )
-})
+}
+
+const Product = ({ product }) => {
+  return (
+    <a href={`/product/${product.handle}/`}>
+      <div key={product.id}>
+        {product.images[0] && (
+          <AspectImage src={product.images[0].src} alt={product.title} />
+        )}
+
+        <div>
+          <h2>{product.title}</h2>
+          <h5>{product.variants[0].price}</h5>
+        </div>
+      </div>
+    </a>
+  )
+}
 
 // Store.propTypes = {}
 
