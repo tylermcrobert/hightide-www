@@ -2,6 +2,7 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle from 'style/GlobalStyle'
 import theme from 'style/theme'
+import Cart from 'components/Cart'
 import Nav from '../Nav'
 import Footer from '../Footer'
 
@@ -23,6 +24,7 @@ function Layout({ children }) {
         src="https://static.cdn.prismic.io/prismic.min.js"
       />
       <Nav />
+      <Cart />
       <main>{children}</main>
       {/* Maintain black footer regardless of theme change */}
       <ThemeProvider theme={theme}>
