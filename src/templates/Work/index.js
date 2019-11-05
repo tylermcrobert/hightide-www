@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import PropTypes from 'prop-types'
 import { RichText } from 'prismic-reactjs'
 import Link from 'next/link'
@@ -9,7 +10,7 @@ import Section from 'components/Section'
 import { Opacity, Trigger, ZoomWrapper, ZoomNode } from 'components/LinkEffect'
 import Styled from './Styled'
 
-function Work({ data: response }) {
+const Work = memo(({ data: response }) => {
   return (
     <Section>
       <Wrap>
@@ -21,6 +22,7 @@ function Work({ data: response }) {
                   <WorkItem
                     key={uid}
                     image={data.image.url}
+                    thumbnail={data.thumbnail.large && data.thumbnail.large.url}
                     title={RichText.asText(data.name)}
                   />
                 </a>
@@ -31,14 +33,16 @@ function Work({ data: response }) {
       </Wrap>
     </Section>
   )
-}
+})
 
-function WorkItem({ title, image }) {
+export default Work
+
+function WorkItem({ title, image, thumbnail }) {
   return (
     <div>
       <ZoomWrapper>
         <ZoomNode>
-          <AspectImage src={image} />
+          <AspectImage src={thumbnail || image} />
         </ZoomNode>
       </ZoomWrapper>
       <Styled.Title>
@@ -54,6 +58,3 @@ WorkItem.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
 }
-// Work.propTypes = {}
-
-export default Work
