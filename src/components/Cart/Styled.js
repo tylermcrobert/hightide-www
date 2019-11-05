@@ -14,9 +14,12 @@ const Cart = styled.div`
   background: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.secondary};
 
-  h6 {
-    font-size: ${props => props.theme.fontSizes[1]};
-  }
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+`
+
+const FinePrint = styled.h6`
+  font-size: ${props => props.theme.fontSizes[1]};
 `
 
 const ItemWrapper = styled.div`
@@ -39,8 +42,8 @@ const Secondary = styled.div`
 export default {
   ItemWrapper,
   Title,
-
   Cart,
   Detail,
   Secondary,
+  FinePrint,
 }

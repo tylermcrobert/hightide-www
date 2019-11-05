@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
 import { StoreCtx } from 'components/StoreProvider'
 import Section from 'components/Section'
-import Button from 'components/Button'
 import pad from 'util/pad'
 import styled from 'styled-components'
 import Styled from './Styled'
-
+import Checkout from './Checkout'
 // import PropTypes from 'prop-types'
 //
 function Cart() {
@@ -18,18 +17,17 @@ function Cart() {
         <h2>Cart</h2>
 
         <div>
-          <div>
-            <Header>
-              <div>Item</div>
-              <div>Price</div>
-              <div>Qty</div>
-            </Header>
-            {cart.map((item, i) => (
-              <CartItem data={item} key={`${item.title}${i}`} />
-            ))}
-          </div>
-          <CheckoutBottom />
+          <Header>
+            <div>Item</div>
+            <div>Price</div>
+            <div>Qty</div>
+          </Header>
+          {cart.map((item, i) => (
+            <CartItem data={item} key={`${item.title}${i}`} />
+          ))}
         </div>
+
+        <Checkout />
       </Styled.Cart>
     )
   }
@@ -37,24 +35,6 @@ function Cart() {
     <Section>
       <h2>There are no items in your cart.</h2>
     </Section>
-  )
-}
-
-const CheckoutBottom = () => {
-  const { checkout } = useContext(StoreCtx)
-
-  return (
-    <div>
-      <div>
-        <div>Subtotal</div>
-        <div>
-          <h2>${checkout.paymentDue}</h2>
-          <div>USD</div>
-        </div>
-        <Button type="button">Check Out</Button>
-        <p>Taxes, shipping, and discount codes calculated at checkout</p>
-      </div>
-    </div>
   )
 }
 
@@ -71,24 +51,33 @@ const CartItem = ({ data }) => {
     <Styled.ItemWrapper key={data.title}>
       <ItemWrapper>
         <div>
-          {/* <img src={data.variant.image.src} alt="" /> */}
-          <div>{data.title}</div>
-          <Styled.Secondary>
-            <h6>{data.variant.title.toUpperCase()}</h6>
-          </Styled.Secondary>
+          <ItemDescWrapper>
+            <img src={data.variant.image.src} alt="" />
+            <div>
+              {data.title}
+              <Styled.FinePrint>
+                {data.variant.title.toUpperCase()}
+              </Styled.FinePrint>
+            </div>
+          </ItemDescWrapper>
         </div>
+
         <div>${data.variant.price}</div>
+
         <div>
-          <>
-            <span onClick={removeOne}>-</span> {pad(data.quantity)}{' '}
-            <span onClick={addOne}>+</span>
-          </>
+          <span onClick={removeOne}>-</span> {pad(data.quantity)}{' '}
+          <span onClick={addOne}>+</span>
         </div>
       </ItemWrapper>
     </Styled.ItemWrapper>
   )
 }
 
+const ItemDescWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  grid-gap: 1rem;
+`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 3fr 1fr 1fr;
