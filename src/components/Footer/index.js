@@ -11,10 +11,6 @@ const SOCIAL_LINKS = [
     url: `https://www.instagram.com/${social.instagram}`,
   },
   {
-    name: 'Facebook',
-    url: `https://www.facebook.com/${social.facebook}`,
-  },
-  {
     name: 'Twitter',
     url: `https://www.twitter.com/${social.twitter}`,
   },
