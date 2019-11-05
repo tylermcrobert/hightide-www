@@ -32,7 +32,7 @@ function Footer() {
           <Section>
             <h5>Visit</h5>
             <p>
-              28 Marcy, Suite 3
+              28 Marcy, Floor 3
               <br />
               Brooklyn, New York 11211
             </p>
