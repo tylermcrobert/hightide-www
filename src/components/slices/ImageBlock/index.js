@@ -3,6 +3,7 @@ import { RichText } from 'prismic-reactjs'
 import Section from 'components/Section'
 import * as Gallery from 'components/Gallery'
 import textExists from 'util/textExists'
+import getImageSize from 'util/getImageSize'
 
 /*
   Take a string like 'Two-Col'
@@ -45,10 +46,16 @@ const ImageBlock = ({ data }) => {
  */
 
 function GalleryItem({ imgSrc, caption, layout }) {
-  // const { alt } = useContext(CaseStudyCtx)
+  const src = getImageSize(imgSrc, {
+    w: layout === 'Half-Width' ? 1200 : 2400,
+    format: 'jpg',
+  })
+
   return (
     <Gallery.ImageWrap span={getSpanFromLayoutText(layout)}>
-      <img src={imgSrc} alt="" />
+      <picture>
+        <img src={src} alt="" />
+      </picture>
       {textExists(caption) && (
         <Gallery.TextWrap>{RichText.render(caption)}</Gallery.TextWrap>
       )}
