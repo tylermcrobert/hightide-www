@@ -42,12 +42,12 @@
         },
         "thumbnails": [
           {
-            "name": "large",
-            "width": 2500,
+            "name": "small",
+            "width": 800,
             "height": null
           }
         ],
-        "label": "Thumbnail (Optional. If different from main)"
+        "label": "Main Image"
       }
     },
     "related_work": {
@@ -103,9 +103,20 @@
                 "type": "Image",
                 "config": {
                   "constraint": {
-                    "width": 2400
+                    "width": 1200
                   },
-                  "thumbnails": [],
+                  "thumbnails": [
+                    {
+                      "name": "md",
+                      "width": 1200,
+                      "height": null
+                    },
+                    {
+                      "name": "lg",
+                      "width": 2400,
+                      "height": null
+                    }
+                  ],
                   "label": "Image"
                 }
               },
