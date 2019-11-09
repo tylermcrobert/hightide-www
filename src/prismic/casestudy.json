@@ -42,12 +42,12 @@
         },
         "thumbnails": [
           {
-            "name": "small",
-            "width": 800,
+            "name": "large",
+            "width": 2500,
             "height": null
           }
         ],
-        "label": "Main Image"
+        "label": "Thumbnail (Optional. If different from main)"
       }
     },
     "related_work": {
