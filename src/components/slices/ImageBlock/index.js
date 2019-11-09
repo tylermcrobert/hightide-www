@@ -4,6 +4,7 @@ import Section from 'components/Section'
 import * as Gallery from 'components/Gallery'
 import textExists from 'util/textExists'
 import getImageSize from 'util/getImageSize'
+import { sizes } from 'style/theme'
 
 /*
   Take a string like 'Two-Col'
@@ -46,16 +47,28 @@ const ImageBlock = ({ data }) => {
  */
 
 function GalleryItem({ imgSrc, caption, layout }) {
+  const isFull = layout !== 'Half-Width'
+
   const src = getImageSize(imgSrc, {
-    w: layout === 'Half-Width' ? 1200 : 2400,
-    format: 'jpg',
+    w: isFull ? 2400 : 1020,
+    fm: 'webp',
   })
+
+  const srcSet = `
+    ${getImageSize(imgSrc, { w: 720 })} 720w,
+    ${getImageSize(imgSrc, { w: 1200 })} 1200w,
+    ${getImageSize(imgSrc, { w: 2400 })} 2400w,
+  `
+
+  const imgSizes = `
+    (min-width: ${sizes.sm}px) ${isFull ? '100vw' : '50vw'},
+    100vw
+  `
 
   return (
     <Gallery.ImageWrap span={getSpanFromLayoutText(layout)}>
-      <picture>
-        <img src={src} alt="" />
-      </picture>
+      <img src={src} srcSet={srcSet} sizes={imgSizes} alt="" />
+
       {textExists(caption) && (
         <Gallery.TextWrap>{RichText.render(caption)}</Gallery.TextWrap>
       )}
