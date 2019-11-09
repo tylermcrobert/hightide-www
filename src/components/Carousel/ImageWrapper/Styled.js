@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import HoverWord from 'components/HoverWord'
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -17,14 +18,14 @@ const Slide = styled.div`
   width: 100%;
 `
 
-const Nav = styled.div`
+const Nav = styled(HoverWord)`
   display: block;
-  border: 1px solid blue;
   position: absolute;
   top: 0;
   width: 33.34%;
   height: 100%;
   z-index: 100;
+  mix-blend-mode: difference;
 
   /* hide on mobile */
   @media (hover: none) and (pointer: coarse) {
@@ -40,4 +41,7 @@ Nav.Next = styled(Nav)`
   left: 66.67%;
 `
 
+Nav.Go = styled(Nav)`
+  left: 33.34%;
+`
 export default { Slide, Images, ImageWrapper, Nav }
