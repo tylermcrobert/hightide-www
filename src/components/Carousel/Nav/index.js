@@ -4,10 +4,12 @@ import { CarouselCtx } from '..'
 import Styled from './Styled'
 
 export const FractionIndicator = () => {
-  const { items, index } = useContext(CarouselCtx)
+  const { items, index, getNext, getPrev } = useContext(CarouselCtx)
   return (
     <>
-      {pad(index + 1)}&nbsp;/&nbsp;{pad(items.length)}
+      <Styled.Span onClick={getPrev}>{pad(index + 1)}</Styled.Span>
+      &nbsp;/&nbsp;
+      <Styled.Span onClick={getNext}>{pad(items.length)}</Styled.Span>
     </>
   )
 }

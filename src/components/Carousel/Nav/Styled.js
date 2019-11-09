@@ -11,4 +11,9 @@ const NavItem = styled.div`
   cursor: pointer;
   user-select: none;
 `
-export default { NavWrapper, NavItem }
+
+const Span = styled.span`
+  cursor: pointer;
+  user-select: none;
+`
+export default { NavWrapper, Span, NavItem }
