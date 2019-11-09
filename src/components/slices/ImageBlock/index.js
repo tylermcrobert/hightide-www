@@ -5,7 +5,7 @@ import * as Gallery from 'components/Gallery'
 import textExists from 'util/textExists'
 import getImageSize from 'util/getImageSize'
 import { sizes } from 'style/theme'
-
+import getResponsiveImage from 'util/getResponsiveImage'
 /*
   Take a string like 'Two-Col'
   and convert it to span amount
@@ -54,11 +54,7 @@ function GalleryItem({ imgSrc, caption, layout }) {
     fm: 'webp',
   })
 
-  const srcSet = `
-    ${getImageSize(imgSrc, { w: 720 })} 720w,
-    ${getImageSize(imgSrc, { w: 1200 })} 1200w,
-    ${getImageSize(imgSrc, { w: 2400 })} 2400w,
-  `
+  const { srcSet } = getResponsiveImage(imgSrc)
 
   const imgSizes = `
     (min-width: ${sizes.sm}px) ${isFull ? '100vw' : '50vw'},
