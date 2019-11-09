@@ -1,22 +1,25 @@
 import React from 'react'
 import Meta from 'components/Meta'
 import Template from 'templates/Work'
-import { getType } from 'middleware/prismic'
-import prerender from 'middleware/prerender'
+import { Client } from 'middleware/prismic'
 
-function Work({ data }) {
+function Work({ site }) {
   return (
     <>
       <Meta title="Work" url="work/" />
-      <Template data={data} />
+      <Template site={site} />
     </>
   )
 }
 
-Work.getInitialProps = async ({ req, res }) => {
-  const data = await getType(req, 'work', { pageSize: 10 })
-  prerender(res)
-  return { data }
+Work.getInitialProps = async ({ req }) => {
+  const site = await Client(req)
+    .getSingle('site', {
+      fetchLinks: ['work.name', 'work.image'],
+    })
+    .then(item => item.data)
+
+  return { site }
 }
 
 export default Work
