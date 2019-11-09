@@ -28,16 +28,26 @@
       "type": "Image",
       "config": {
         "constraint": {
+          "width": 2400
+        },
+        "thumbnails": [],
+        "label": "Main Image"
+      }
+    },
+    "thumbnail": {
+      "type": "Image",
+      "config": {
+        "constraint": {
           "width": 1200
         },
         "thumbnails": [
           {
-            "name": "small",
-            "width": 800,
+            "name": "large",
+            "width": 2500,
             "height": null
           }
         ],
-        "label": "Main Image"
+        "label": "Thumbnail (Optional. If different from main)"
       }
     },
     "related_work": {
@@ -93,20 +103,9 @@
                 "type": "Image",
                 "config": {
                   "constraint": {
-                    "width": 1200
+                    "width": 2400
                   },
-                  "thumbnails": [
-                    {
-                      "name": "md",
-                      "width": 1200,
-                      "height": null
-                    },
-                    {
-                      "name": "lg",
-                      "width": 2400,
-                      "height": null
-                    }
-                  ],
+                  "thumbnails": [],
                   "label": "Image"
                 }
               },
@@ -152,6 +151,23 @@
                 }
               }
             }
+          },
+          "video_block": {
+            "type": "Slice",
+            "fieldset": "Video Block",
+            "description": "Add a looping video",
+            "icon": "ondemand_video",
+            "display": "list",
+            "non-repeat": {
+              "video_mp4": {
+                "type": "Link",
+                "config": {
+                  "select": "media",
+                  "label": "Video MP4"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }
