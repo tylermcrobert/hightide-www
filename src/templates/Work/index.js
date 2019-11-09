@@ -7,6 +7,7 @@ import Heading from 'components/Heading'
 import AspectImage from 'components/AspectImage'
 import Section from 'components/Section'
 import { Opacity, Trigger, ZoomWrapper, ZoomNode } from 'components/LinkEffect'
+import getImageSize from 'util/getImageSize'
 import Styled from './Styled'
 
 function Work({ site }) {
@@ -19,15 +20,15 @@ function Work({ site }) {
             if (data && uid) {
               return (
                 <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
-                  <Trigger>
-                    <a>
+                  <a>
+                    <Trigger>
                       <WorkItem
                         key={uid}
-                        image={data.image.url}
+                        image={getImageSize(data.image.url, { w: 1200 })}
                         title={RichText.asText(data.name)}
                       />
-                    </a>
-                  </Trigger>
+                    </Trigger>
+                  </a>
                 </Link>
               )
             }
