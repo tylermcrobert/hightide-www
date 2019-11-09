@@ -7,23 +7,28 @@ const Grid = styled.div`
   width: 100%;
 
   img {
-    width: 5rem;
+    width: 7rem;
     margin: 0 0.75rem;
     display: inline-block;
     align-self: center;
 
+    @media ${mq.xs} {
+      width: 7.5rem;
+      margin: 0 1.5rem;
+    }
+
     @media ${mq.sm} {
-      width: 6rem;
+      width: 7.5rem;
       margin: 0 1.5rem;
     }
 
     @media ${mq.md} {
-      width: 7rem;
+      width: 9rem;
       margin: 0 1.5rem;
     }
 
     @media ${mq.lg} {
-      width: 7rem;
+      width: 9rem;
       margin: 0 2rem;
     }
   }
