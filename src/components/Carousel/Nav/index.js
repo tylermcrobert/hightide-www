@@ -5,7 +5,11 @@ import Styled from './Styled'
 
 export const FractionIndicator = () => {
   const { items, index } = useContext(CarouselCtx)
-  return `${pad(index + 1)} / ${pad(items.length)}`
+  return (
+    <>
+      {pad(index + 1)}&nbsp;/&nbsp;{pad(items.length)}
+    </>
+  )
 }
 
 const Nav = () => {

@@ -5,17 +5,21 @@ import Styled from './Styled'
 import useFlickity from './hooks/useFlickity'
 
 const ImageWrapper = () => {
-  const { items } = useContext(CarouselCtx)
+  const { items, getNext, getPrev } = useContext(CarouselCtx)
   const flickityRef = useFlickity()
 
   if (items && items.length) {
     return (
-      <Styled.GalleryWrapper ref={flickityRef}>
-        {items.map((item, i) => {
-          const key = (item && `${item.key} ${i}`) || i
-          return <Styled.Slide key={key}>{item}</Styled.Slide>
-        })}
-      </Styled.GalleryWrapper>
+      <Styled.ImageWrapper>
+        <Styled.Nav.Prev onClick={getPrev} />
+        <Styled.Nav.Next onClick={getNext} />
+        <Styled.Images ref={flickityRef}>
+          {items.map((item, i) => {
+            const key = (item && `${item.key} ${i}`) || i
+            return <Styled.Slide key={key}>{item}</Styled.Slide>
+          })}
+        </Styled.Images>
+      </Styled.ImageWrapper>
     )
   }
   return null
