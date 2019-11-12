@@ -20,5 +20,6 @@ HoverText.Inner = styled.div`
 
 const HoverWrapper = styled.div`
   cursor: none;
+  overflow: hidden;
 `
 export default { HoverText, HoverWrapper }
