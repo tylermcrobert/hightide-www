@@ -9,13 +9,20 @@ const CarouselConsumer = Carousel.CarouselCtx.Consumer
 
 const FeaturedWork = ({ caseStudies }) => {
   if (caseStudies && caseStudies.length) {
-    const images = caseStudies.map(({ data }) => (
-      <AspectImage>
-        <picture>
-          <source srcSet={data.image.small.url} media="(max-width: 800px)" />
-          <img src={data.image.url} alt="" />
-        </picture>
-      </AspectImage>
+    const images = caseStudies.map(({ data, uid }) => (
+      <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
+        <a>
+          <AspectImage>
+            <picture>
+              <source
+                srcSet={data.image.small.url}
+                media="(max-width: 800px)"
+              />
+              <img src={data.image.url} alt="" />
+            </picture>
+          </AspectImage>
+        </a>
+      </Link>
     ))
 
     return (
