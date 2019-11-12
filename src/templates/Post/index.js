@@ -9,15 +9,17 @@ import { RelatedWrapper, RelatedItem } from 'components/Related'
 
 import TextBlock from 'components/slices/TextBlock'
 import ImageBlock from 'components/slices/ImageBlock'
-
+import getResponsiveImage from 'util/getResponsiveImage'
 import Styled from './Styled'
 /* eslint no-console: 0 */
 
 const Post = React.memo(({ data }) => {
+  const heroAtts = getResponsiveImage(data.main_image.url)
+
   return (
     <>
       <Wrap>
-        <LazyImg src={data.main_image.url} alt="" />
+        <img {...heroAtts} alt="" />
         <Section>
           <PostIntro>
             <PostIntro.Heading>{RichText.asText(data.title)}</PostIntro.Heading>
