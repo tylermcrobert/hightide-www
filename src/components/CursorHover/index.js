@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Styled from './Styled'
 import useHoverWord from './useHoverWord'
 
-function HoverWord({ children, hover, ...props }) {
+function CursorHover({ children, hover, ...props }) {
   const { wrapperRef, hoverRef } = useHoverWord()
   return (
     <Styled.HoverWrapper {...props} ref={wrapperRef}>
@@ -15,13 +15,13 @@ function HoverWord({ children, hover, ...props }) {
   )
 }
 
-HoverWord.defaultProps = {
+CursorHover.defaultProps = {
   children: null,
 }
 
-HoverWord.propTypes = {
+CursorHover.propTypes = {
   children: PropTypes.any,
-  hover: PropTypes.string.isRequired,
+  hover: PropTypes.any.isRequired,
 }
 
-export default HoverWord
+export default CursorHover

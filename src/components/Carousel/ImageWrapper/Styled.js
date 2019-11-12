@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import HoverWord from 'components/HoverWord'
+import CursorHover from 'components/CursorHover'
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -18,7 +18,7 @@ const Slide = styled.div`
   width: 100%;
 `
 
-const Nav = styled(HoverWord)`
+const Nav = styled(CursorHover)`
   display: block;
   position: absolute;
   top: 0;

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 
+import Arrow from 'components/Arrow'
 import { CarouselCtx } from '..'
 import Styled from './Styled'
 import useFlickity from './hooks/useFlickity'
@@ -11,9 +12,8 @@ const ImageWrapper = () => {
   if (items && items.length) {
     return (
       <Styled.ImageWrapper>
-        <Styled.Nav.Prev onClick={getPrev} hover="prev" />
-        <Styled.Nav.Next onClick={getNext} hover="next" />
-        <Styled.Nav.Go onClick={null} hover="see project" />
+        <Styled.Nav.Prev onClick={getPrev} hover={<Arrow white reverse />} />
+        <Styled.Nav.Next onClick={getNext} hover={<Arrow white />} />
         <Styled.Images ref={flickityRef}>
           {items.map((item, i) => {
             const key = (item && `${item.key} ${i}`) || i
