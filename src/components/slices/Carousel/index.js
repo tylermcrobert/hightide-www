@@ -20,7 +20,6 @@ function Carousel({ data }) {
       <Section>
         <CarouselWrap items={images}>
           <ImageWrapper />
-          <Nav />
         </CarouselWrap>
       </Section>
     )
