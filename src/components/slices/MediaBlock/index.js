@@ -47,7 +47,7 @@ MediaBlock.propTypes = {
  */
 
 const GalleryItem = ({ data }) => {
-  if (data.video.url) {
+  if (data.video && data.video.url) {
     return (
       <video autoPlay loop muted playsInline>
         <source type="video/mp4" src={data.video.url} />
