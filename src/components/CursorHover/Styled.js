@@ -7,7 +7,6 @@ const HoverText = styled.div`
   left: 0;
   pointer-events: none;
 
-  font-size: ${props => props.theme.fontSizes[4]};
   color: white;
 
   user-select: none;

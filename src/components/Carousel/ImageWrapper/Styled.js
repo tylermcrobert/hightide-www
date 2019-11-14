@@ -41,7 +41,4 @@ Nav.Next = styled(Nav)`
   left: 66.67%;
 `
 
-Nav.Go = styled(Nav)`
-  left: 33.34%;
-`
 export default { Slide, Images, ImageWrapper, Nav }
