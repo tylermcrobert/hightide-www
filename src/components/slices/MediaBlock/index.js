@@ -7,7 +7,7 @@ import getImageSize from 'util/getImageSize'
 import { sizes } from 'style/theme'
 import getResponsiveImage from 'util/getResponsiveImage'
 import PropTypes from 'prop-types'
-import Styled from './styled'
+import Styled from './Styled'
 /*
   Take a string like 'Two-Col'
   and convert it to span amount
