@@ -1,11 +1,13 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
 import Section from 'components/Section'
-import * as Gallery from 'components/Gallery'
+
 import textExists from 'util/textExists'
 import getImageSize from 'util/getImageSize'
 import { sizes } from 'style/theme'
 import getResponsiveImage from 'util/getResponsiveImage'
+import PropTypes from 'prop-types'
+import Styled from './styled'
 /*
   Take a string like 'Two-Col'
   and convert it to span amount
@@ -25,28 +27,46 @@ const getSpanFromLayoutText = text => {
 const MediaBlock = ({ data }) => {
   return (
     <Section>
-      <Gallery.Wrapper>
-        {data.items.map(
-          (item, i) =>
-            item.img.url && (
-              <GalleryItem
-                imgSrc={item.img.url}
-                caption={item.desc}
-                key={`${item.img.url}${i}`}
-                layout={item.layout}
-              />
-            )
-        )}
-      </Gallery.Wrapper>
+      <Styled.Wrapper>
+        {data.items.map((item, i) => (
+          <Styled.Item key={i} span={getSpanFromLayoutText(item.layout)}>
+            <GalleryItem data={item} />
+          </Styled.Item>
+        ))}
+      </Styled.Wrapper>
     </Section>
   )
+}
+
+MediaBlock.propTypes = {
+  data: PropTypes.object.isRequired,
 }
 
 /*
   Item that goes in gallery
  */
 
-function GalleryItem({ imgSrc, caption, layout }) {
+const GalleryItem = ({ data }) => {
+  if (data.video.url) {
+    return (
+      <video autoPlay loop muted playsInline>
+        <source type="video/mp4" src={data.video.url} />
+      </video>
+    )
+  }
+
+  if (data.img.url) {
+    return <Image src={data.img.url} caption={data.desc} layout={data.layout} />
+  }
+
+  return null
+}
+
+GalleryItem.propTypes = {
+  data: PropTypes.object.isRequired,
+}
+
+function Image({ src: imgSrc, caption, layout }) {
   const isFull = layout !== 'Half-Width'
 
   const src = getImageSize(imgSrc, {
@@ -62,14 +82,22 @@ function GalleryItem({ imgSrc, caption, layout }) {
   `
 
   return (
-    <Gallery.ImageWrap span={getSpanFromLayoutText(layout)}>
+    <>
       <img src={src} srcSet={srcSet} sizes={imgSizes} alt="" />
-
       {textExists(caption) && (
-        <Gallery.TextWrap>{RichText.render(caption)}</Gallery.TextWrap>
+        <div className="text-wrap">{RichText.render(caption)}</div>
       )}
-    </Gallery.ImageWrap>
+    </>
   )
+}
+
+Image.defaultProps = {
+  caption: [],
+}
+Image.propTypes = {
+  src: PropTypes.string.isRequired,
+  caption: PropTypes.array,
+  layout: PropTypes.string.isRequired,
 }
 
 export default MediaBlock
