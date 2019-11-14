@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import SectionHead from 'components/SectionHead'
 import AspectImage from 'components/AspectImage'
-import CursorHover from 'components/CursorHover'
+import { CursorTrigger } from 'components/CursorHover'
 import getResponsiveImage from 'util/getResponsiveImage'
 
 const CarouselConsumer = Carousel.CarouselCtx.Consumer
@@ -18,9 +18,9 @@ const FeaturedWork = ({ caseStudies }) => {
           <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
             <a>
               <AspectImage>
-                <CursorHover hover={<Carousel.Expand />}>
+                <CursorTrigger cursor={<Carousel.Expand />}>
                   <img {...imageAtts} alt="" />
-                </CursorHover>
+                </CursorTrigger>
               </AspectImage>
             </a>
           </Link>

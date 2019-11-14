@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import CursorHover from 'components/CursorHover'
+import { CursorTrigger } from 'components/CursorHover'
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -18,7 +18,7 @@ const Slide = styled.div`
   width: 100%;
 `
 
-const Nav = styled(CursorHover)`
+const Nav = styled(CursorTrigger)`
   display: block;
   position: absolute;
   top: 0;
