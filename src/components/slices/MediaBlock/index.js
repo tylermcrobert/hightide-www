@@ -22,7 +22,7 @@ const getSpanFromLayoutText = text => {
   }
 }
 
-const ImageBlock = ({ data }) => {
+const MediaBlock = ({ data }) => {
   return (
     <Section>
       <Gallery.Wrapper>
@@ -72,4 +72,4 @@ function GalleryItem({ imgSrc, caption, layout }) {
   )
 }
 
-export default ImageBlock
+export default MediaBlock
