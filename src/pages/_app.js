@@ -3,8 +3,8 @@ import App from 'next/app'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { PageTransition } from 'next-page-transitions'
-
 import theme from 'style/theme'
+import { CursorProvider } from 'components/CursorHover'
 import Layout from 'components/Layout'
 
 import LogRocket from 'logrocket'
@@ -50,12 +50,14 @@ export default class HighTideApp extends App {
       <>
         <ThemeProvider theme={{ ...theme, isDark }}>
           <Layout>
-            <PageTransition
-              timeout={theme.routeTransition.timeout}
-              classNames="page-transition"
-            >
-              <Component {...pageProps} key={asPath} />
-            </PageTransition>
+            <CursorProvider>
+              <PageTransition
+                timeout={theme.routeTransition.timeout}
+                classNames="page-transition"
+              >
+                <Component {...pageProps} key={asPath} />
+              </PageTransition>
+            </CursorProvider>
           </Layout>
         </ThemeProvider>
         <style jsx global>

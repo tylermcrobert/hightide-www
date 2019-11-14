@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { ThemeProvider } from 'styled-components'
 import Nav, { FractionIndicator } from './Nav'
 import ImageWrapper from './ImageWrapper'
+import { Expand } from './Icons'
 
 export const CarouselCtx = createContext()
 
@@ -36,4 +37,4 @@ Wrapper.propTypes = {
   items: PropTypes.arrayOf(PropTypes.element).isRequired,
 }
 
-export { Nav, FractionIndicator, ImageWrapper }
+export { Nav, FractionIndicator, ImageWrapper, Expand }

@@ -4,19 +4,30 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import SectionHead from 'components/SectionHead'
 import AspectImage from 'components/AspectImage'
+import { CursorTrigger } from 'components/CursorHover'
+import getResponsiveImage from 'util/getResponsiveImage'
 
 const CarouselConsumer = Carousel.CarouselCtx.Consumer
 
 const FeaturedWork = ({ caseStudies }) => {
   if (caseStudies && caseStudies.length) {
-    const images = caseStudies.map(({ data }) => (
-      <AspectImage>
-        <picture>
-          <source srcSet={data.image.small.url} media="(max-width: 800px)" />
-          <img src={data.image.url} alt="" />
-        </picture>
-      </AspectImage>
-    ))
+    const images = caseStudies.map(({ data, uid }) => {
+      if (data.image.url) {
+        const imageAtts = getResponsiveImage(data.image.url)
+        return (
+          <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
+            <a>
+              <AspectImage>
+                <CursorTrigger cursor={<Carousel.Expand />}>
+                  <img {...imageAtts} alt="" />
+                </CursorTrigger>
+              </AspectImage>
+            </a>
+          </Link>
+        )
+      }
+      return null
+    })
 
     return (
       <Carousel.Wrapper items={images}>

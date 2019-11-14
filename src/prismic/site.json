@@ -38,6 +38,22 @@
         },
         "label": "Featured Case Studies"
       }
+    },
+    "site_case_studies": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "case_study": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["work"],
+              "label": "Case Study"
+            }
+          }
+        },
+        "label": "Site Case Studies"
+      }
     }
   },
   "About": {

@@ -28,16 +28,26 @@
       "type": "Image",
       "config": {
         "constraint": {
+          "width": 2400
+        },
+        "thumbnails": [],
+        "label": "Main Image"
+      }
+    },
+    "thumbnail": {
+      "type": "Image",
+      "config": {
+        "constraint": {
           "width": 1200
         },
         "thumbnails": [
           {
-            "name": "small",
-            "width": 800,
+            "name": "large",
+            "width": 2500,
             "height": null
           }
         ],
-        "label": "Main Image"
+        "label": "Thumbnail (Optional. If different from main)"
       }
     },
     "related_work": {
@@ -61,6 +71,10 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
+        "labels": {
+          "video_block": [],
+          "image_block": []
+        },
         "choices": {
           "text_block": {
             "type": "Slice",
@@ -83,7 +97,7 @@
           },
           "image_block": {
             "type": "Slice",
-            "fieldset": "Image Block",
+            "fieldset": "Media Block",
             "description": "Add one or more images",
             "icon": "image",
             "display": "list",
@@ -116,6 +130,14 @@
                   "options": ["Full-Width", "Half-Width"],
                   "default_value": "Full-Width",
                   "label": "Layout"
+                }
+              },
+              "video": {
+                "type": "Link",
+                "config": {
+                  "select": "media",
+                  "label": "Video (Optional)",
+                  "placeholder": "Select a video"
                 }
               },
               "desc": {
@@ -152,6 +174,23 @@
                 }
               }
             }
+          },
+          "video_block": {
+            "type": "Slice",
+            "fieldset": "[Deprecated] Video Block",
+            "description": "Don't use!",
+            "icon": "ondemand_video",
+            "display": "list",
+            "non-repeat": {
+              "video_mp4": {
+                "type": "Link",
+                "config": {
+                  "select": "media",
+                  "label": "Video MP4"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }

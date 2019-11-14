@@ -10,7 +10,7 @@ const Meta = ({ url, title: titleProp, image, description }) => {
 
   return (
     <Head>
-      <meta charset="utf-8" />
+      <meta charSet="utf-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 
       <Favicon />
@@ -66,10 +66,7 @@ const Favicon = () => (
     />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
     <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta
-      name="msapplication-config"
-      content="/favicon/browserconfig.xml"
-    />
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
   </>
 )

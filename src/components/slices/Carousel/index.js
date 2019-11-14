@@ -1,7 +1,7 @@
 import React from 'react'
 import Section from 'components/Section'
 import PropTypes from 'prop-types'
-import { Wrapper as CarouselWrap, Nav, ImageWrapper } from 'components/Carousel'
+import { Wrapper as CarouselWrap, ImageWrapper } from 'components/Carousel'
 import AspectImage from 'components/AspectImage'
 
 function Carousel({ data }) {
@@ -20,7 +20,6 @@ function Carousel({ data }) {
       <Section>
         <CarouselWrap items={images}>
           <ImageWrapper />
-          <Nav />
         </CarouselWrap>
       </Section>
     )
