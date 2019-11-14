@@ -71,6 +71,10 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
+        "labels": {
+          "video_block": [],
+          "image_block": []
+        },
         "choices": {
           "text_block": {
             "type": "Slice",
@@ -93,7 +97,7 @@
           },
           "image_block": {
             "type": "Slice",
-            "fieldset": "Image Block",
+            "fieldset": "Media Block",
             "description": "Add one or more images",
             "icon": "image",
             "display": "list",
@@ -126,6 +130,14 @@
                   "options": ["Full-Width", "Half-Width"],
                   "default_value": "Full-Width",
                   "label": "Layout"
+                }
+              },
+              "video": {
+                "type": "Link",
+                "config": {
+                  "select": "media",
+                  "label": "Video (Optional)",
+                  "placeholder": "Select a video"
                 }
               },
               "desc": {
@@ -165,8 +177,8 @@
           },
           "video_block": {
             "type": "Slice",
-            "fieldset": "Video Block",
-            "description": "Add a looping video",
+            "fieldset": "[Deprecated] Video Block",
+            "description": "Don't use!",
             "icon": "ondemand_video",
             "display": "list",
             "non-repeat": {
