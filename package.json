@@ -54,7 +54,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",
-    "lint": "eslint  pages/** style/** templates/** components/**",
+    "lint": "eslint  src",
     "kill-port": "kill $(lsof -t -i:5000)",
     "tryout": "npm run export && http-server out",
     "lambda-serve": "netlify-lambda -c serverless/webpack.functions.config.js serve serverless/functions",
