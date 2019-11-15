@@ -10,4 +10,12 @@ const ProductGrid = styled.div`
   }
 `
 
-export default { ProductGrid }
+const ItemTitle = styled.div`
+  padding: 1rem 0;
+
+  h2 {
+    margin-bottom: 0.25rem;
+  }
+`
+
+export default { ProductGrid, ItemTitle }

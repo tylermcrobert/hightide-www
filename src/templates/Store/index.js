@@ -25,10 +25,10 @@ const Product = ({ product }) => {
           <AspectImage src={product.images[0].src} alt={product.title} />
         )}
 
-        <div>
+        <Styled.ItemTitle>
           <h2>{product.title}</h2>
-          <h5>{product.variants[0].price}</h5>
-        </div>
+          <h5>${product.variants[0].price}</h5>
+        </Styled.ItemTitle>
       </div>
     </a>
   )
