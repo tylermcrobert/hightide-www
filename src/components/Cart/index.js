@@ -11,30 +11,30 @@ function Cart() {
   const { checkout } = useContext(StoreCtx)
   const cart = checkout.lineItems
 
-  if (cart.length) {
-    return (
-      <Styled.Cart>
-        <h2>Cart</h2>
-
-        <div>
-          <Header>
-            <div>Item</div>
-            <div>Price</div>
-            <div>Qty</div>
-          </Header>
-          {cart.map((item, i) => (
-            <CartItem data={item} key={`${item.title}${i}`} />
-          ))}
-        </div>
-
-        <Checkout />
-      </Styled.Cart>
-    )
-  }
   return (
-    <Section>
-      <h2>There are no items in your cart.</h2>
-    </Section>
+    <Styled.Cart>
+      <h2>Cart</h2>
+
+      {cart.length ? (
+        <>
+          <div>
+            <Header>
+              <div>Item</div>
+              <div>Price</div>
+              <div>Qty</div>
+            </Header>
+            {cart.map((item, i) => (
+              <CartItem data={item} key={`${item.title}${i}`} />
+            ))}
+          </div>
+          <Checkout />
+        </>
+      ) : (
+        <Section>
+          <p>There are no items in your cart.</p>
+        </Section>
+      )}
+    </Styled.Cart>
   )
 }
 
