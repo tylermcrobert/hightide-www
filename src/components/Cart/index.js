@@ -54,7 +54,7 @@ const CartItem = ({ data }) => {
       <ItemWrapper>
         <div>
           <ItemDescWrapper>
-            <img src={data.variant.image.src} alt="" />
+            <img src={data.variant.image && data.variant.image.src} alt="" />
             <div>
               {data.title}
               <Styled.FinePrint>
