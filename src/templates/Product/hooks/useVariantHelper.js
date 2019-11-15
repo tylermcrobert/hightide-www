@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { client } from 'middleware/getShopifyCheckout'
 
 const useVariantHelper = productData => {
-  // change to firstAvailableOptions or firstOptions (idk which)
-  const blankOptions = productData.options.reduce((acc, cur) => {
-    return { ...acc, [cur.name]: null }
-  }, {})
+  const firstOptions = productData.options.reduce(
+    (acc, cur) => ({ ...acc, [cur.name]: cur.values[0].value }),
+    {}
+  )
 
-  const [selectedOptions, setcurrentOptions] = useState(blankOptions)
+  const [selectedOptions, setcurrentOptions] = useState(firstOptions)
 
   const currentVariant = client.product.helpers.variantForOptions(
     productData,

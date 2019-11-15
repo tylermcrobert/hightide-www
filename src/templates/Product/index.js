@@ -65,8 +65,6 @@ const Product = memo(({ data: productData }) => {
 const Options = () => {
   const { updateOption, selectedOptions, productData } = useContext(ProductCtx)
 
-  console.log(selectedOptions)
-
   return (
     <div>
       {productData.options.map(option => (
