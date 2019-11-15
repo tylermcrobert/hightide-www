@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import Section from 'components/Section'
 import { Wrap } from 'style'
 import Link from 'next/link'
-import { Trigger, Opacity, ZoomWrapper, ZoomNode } from 'components/LinkEffect'
+import { Trigger, Opacity } from 'components/LinkEffect'
 import Styled from './Styled'
 
 function RelatedWrapper({ children, heading }) {
@@ -37,11 +37,7 @@ function RelatedItem({ src, title, link, as }) {
     <Trigger>
       <Link href={link} as={as}>
         <a>
-          <ZoomWrapper>
-            <ZoomNode>
-              <Styled.Item src={src}></Styled.Item>
-            </ZoomNode>
-          </ZoomWrapper>
+          <Styled.Item src={src}></Styled.Item>
           {title && (
             <Styled.Title>
               <Opacity invert>{title}</Opacity>

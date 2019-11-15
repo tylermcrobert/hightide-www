@@ -5,6 +5,7 @@ import SoundSystemTemplate from 'templates/SoundSystem'
 import Meta from 'components/Meta'
 import { Client } from 'middleware/prismic'
 import SoundSystemReq from 'middleware/SoundSystemReq'
+import prerender from 'middleware/prerender'
 
 const Post = ({ journal, soundSystem }) => {
   if (journal) {
@@ -35,7 +36,9 @@ const Post = ({ journal, soundSystem }) => {
   return <Error statusCode={404} />
 }
 
-Post.getInitialProps = async ({ query, req }) => {
+Post.getInitialProps = async ({ query, req, res }) => {
+  prerender(res)
+
   try {
     /**
      * Get journal page from prismic

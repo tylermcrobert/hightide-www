@@ -6,27 +6,34 @@ import { Wrap } from 'style'
 import Heading from 'components/Heading'
 import AspectImage from 'components/AspectImage'
 import Section from 'components/Section'
-import { Opacity, Trigger, ZoomWrapper, ZoomNode } from 'components/LinkEffect'
+import { Opacity, Trigger } from 'components/LinkEffect'
+import getImageSize from 'util/getImageSize'
 import Styled from './Styled'
 
-function Work({ data: response }) {
+function Work({ site }) {
+  const caseStudies = site.site_case_studies.map(item => item.case_study)
   return (
     <Section>
       <Wrap>
         <Styled.Wrapper>
-          {response.results.map(({ uid, data }) => (
-            <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
-              <Trigger>
-                <a>
-                  <WorkItem
-                    key={uid}
-                    image={data.image.url}
-                    title={RichText.asText(data.name)}
-                  />
-                </a>
-              </Trigger>
-            </Link>
-          ))}
+          {caseStudies.map(({ data, uid }) => {
+            if (data && uid) {
+              return (
+                <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
+                  <a>
+                    <Trigger>
+                      <WorkItem
+                        key={uid}
+                        image={getImageSize(data.image.url, { w: 1200 })}
+                        title={RichText.asText(data.name)}
+                      />
+                    </Trigger>
+                  </a>
+                </Link>
+              )
+            }
+            return null
+          })}
         </Styled.Wrapper>
       </Wrap>
     </Section>
@@ -36,11 +43,7 @@ function Work({ data: response }) {
 function WorkItem({ title, image }) {
   return (
     <div>
-      <ZoomWrapper>
-        <ZoomNode>
-          <AspectImage src={image} />
-        </ZoomNode>
-      </ZoomWrapper>
+      <AspectImage src={image} />
       <Styled.Title>
         <Heading as="h2" headingStyle={2}>
           <Opacity invert>{title}</Opacity>

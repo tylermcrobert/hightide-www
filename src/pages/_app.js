@@ -7,6 +7,7 @@ import { PageTransition } from 'next-page-transitions'
 import cookie from 'js-cookie'
 import Fonts from 'style/Fonts'
 import getShopifyCheckout from 'middleware/getShopifyCheckout'
+import { CursorProvider } from 'components/CursorHover'
 import Layout from 'components/Layout'
 import theme, { routeTransition } from 'style/theme'
 import StoreProvider from 'components/StoreProvider'
@@ -54,12 +55,14 @@ export default class HighTideApp extends App {
             checkout={this.props.checkout || cachedCheckout.current}
           >
             <Layout>
-              <PageTransition
-                timeout={routeTransition.timeout}
-                classNames="page-transition"
-              >
-                <Component {...pageProps} key={asPath} />
-              </PageTransition>
+              <CursorProvider>
+                <PageTransition
+                  timeout={routeTransition.timeout}
+                  classNames="page-transition"
+                >
+                  <Component {...pageProps} key={asPath} />
+                </PageTransition>
+              </CursorProvider>
             </Layout>
           </StoreProvider>
         </ThemeProvider>

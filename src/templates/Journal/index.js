@@ -7,7 +7,7 @@ import Section from 'components/Section'
 import fmtDate from 'util/fmtDate'
 import Heading from 'components/Heading'
 import { ThemeProvider } from 'styled-components'
-import { Opacity, Trigger, ZoomWrapper, ZoomNode } from 'components/LinkEffect'
+import { Opacity, Trigger } from 'components/LinkEffect'
 
 import Styled from './Styled'
 import getImage from './getImage'
@@ -64,9 +64,7 @@ function JournalCard({ uid, mainImg, date, title, large, thumbnail }) {
         <Link href="/journal/[uid]" as={`/journal/${uid}/`}>
           <a>
             <Styled.CardLayout>
-              <ZoomWrapper>
-                <Styled.PostImage src={image} as={ZoomNode} />
-              </ZoomWrapper>
+              <Styled.PostImage src={image} />
               <Styled.DescWrapper>
                 <Heading as="h2" headingStyle={2} noMargin>
                   <Opacity>{title}</Opacity>

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { mq } from 'style/theme'
 
-const Gallery = styled.div`
+const Wrapper = styled.div`
   display: grid;
   grid-gap: ${props => props.theme.margins.standard};
 
@@ -30,4 +30,8 @@ const Gallery = styled.div`
   }
 `
 
-export default { Gallery }
+const Item = ({ span, ...props }) => {
+  return <div className={`item span-${span}`} {...props} />
+}
+
+export default { Wrapper, Item }

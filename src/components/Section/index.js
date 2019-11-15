@@ -20,13 +20,13 @@ const Section = styled(FadeIn)`
   margin: 3rem 0;
 
   @media ${mq.sm} {
-    margin: 4rem 0;
+    margin: 3.5rem 0;
   }
   @media ${mq.md} {
-    margin: 4.5rem 0;
+    margin: 4rem 0;
   }
   @media ${mq.lg} {
-    margin: 5rem 0;
+    margin: 4.25rem 0;
   }
 
   ${props =>

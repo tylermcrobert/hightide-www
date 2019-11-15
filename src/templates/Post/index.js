@@ -8,16 +8,18 @@ import PostIntro from 'components/PostIntro'
 import { RelatedWrapper, RelatedItem } from 'components/Related'
 
 import TextBlock from 'components/slices/TextBlock'
-import ImageBlock from 'components/slices/ImageBlock'
-
+import MediaBlock from 'components/slices/MediaBlock'
+import getResponsiveImage from 'util/getResponsiveImage'
 import Styled from './Styled'
 /* eslint no-console: 0 */
 
 const Post = React.memo(({ data }) => {
+  const heroAtts = getResponsiveImage(data.main_image.url)
+
   return (
     <>
       <Wrap>
-        <LazyImg src={data.main_image.url} alt="" />
+        <img {...heroAtts} alt="" />
         <Section>
           <PostIntro>
             <PostIntro.Heading>{RichText.asText(data.title)}</PostIntro.Heading>
@@ -81,7 +83,7 @@ function SliceSwitch({ data }) {
          * Tyler McRobert shitshow
          */
         case 'image_block':
-          return <ImageBlock data={sliceItem} />
+          return <MediaBlock data={sliceItem} />
         case 'text_block':
           return <TextBlock data={sliceItem} />
         default:

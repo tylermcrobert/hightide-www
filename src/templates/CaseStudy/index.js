@@ -9,9 +9,10 @@ import textExists from 'util/textExists'
 import formatTitle from 'util/formatTitle'
 
 import TextBlock from 'components/slices/TextBlock'
-import ImageBlock from 'components/slices/ImageBlock'
+import MediaBlock from 'components/slices/MediaBlock'
 import Carousel from 'components/slices/Carousel'
 import Video from 'components/slices/Video'
+import getResponsiveImage from 'util/getResponsiveImage'
 import Gallery from './Gallery'
 
 export const CaseStudyCtx = createContext()
@@ -20,11 +21,13 @@ const CaseStudy = memo(({ data }) => {
   const title = RichText.asText(data.name)
   const alt = formatTitle(title)
 
+  const heroAtts = getResponsiveImage(data.image.url)
+
   return (
     <CaseStudyCtx.Provider value={{ title, alt }}>
       <Wrap>
         <Section noTop>
-          <img src={data.image.url} alt={alt} />
+          <img {...heroAtts} alt={alt} />
         </Section>
         <Section>
           <PostIntro>
@@ -78,7 +81,7 @@ function Slices({ data }) {
         case 'image_carousel':
           return <Carousel data={slice} />
         case 'image_block':
-          return <ImageBlock data={slice} />
+          return <MediaBlock data={slice} />
         case 'text_block':
           return <TextBlock data={slice} />
         case 'video_block':

@@ -1,19 +1,33 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import * as Carousel from 'components/Carousel'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
-import AspectImage from 'components/AspectImage'
 import SectionHead from 'components/SectionHead'
+import AspectImage from 'components/AspectImage'
+import { CursorTrigger } from 'components/CursorHover'
+import getResponsiveImage from 'util/getResponsiveImage'
 
 const CarouselConsumer = Carousel.CarouselCtx.Consumer
 
 const FeaturedWork = ({ caseStudies }) => {
   if (caseStudies && caseStudies.length) {
-    const images = caseStudies.map(({ data }) => (
-      <a>
-        <AspectImage src={data.image.url} alt="" />
-      </a>
-    ))
+    const images = caseStudies.map(({ data, uid }) => {
+      if (data.image.url) {
+        const imageAtts = getResponsiveImage(data.image.url)
+        return (
+          <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
+            <a>
+              <AspectImage>
+                <CursorTrigger cursor={<Carousel.Expand />}>
+                  <img {...imageAtts} alt="" />
+                </CursorTrigger>
+              </AspectImage>
+            </a>
+          </Link>
+        )
+      }
+      return null
+    })
 
     return (
       <Carousel.Wrapper items={images}>
@@ -27,7 +41,7 @@ const FeaturedWork = ({ caseStudies }) => {
               <>
                 <SectionHead link={<Carousel.FractionIndicator />} noArrow>
                   <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
-                    {title}
+                    <a>{title}</a>
                   </Link>
                 </SectionHead>
                 <Carousel.ImageWrapper />
@@ -43,7 +57,6 @@ const FeaturedWork = ({ caseStudies }) => {
 
 FeaturedWork.propTypes = {
   caseStudies: PropTypes.array.isRequired,
-  heading: PropTypes.string.isRequired,
 }
 
 export default FeaturedWork

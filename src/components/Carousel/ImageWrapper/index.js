@@ -1,54 +1,30 @@
 import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
+
 import { CarouselCtx } from '..'
-import useSwipe from './hooks/useSwipe'
 import Styled from './Styled'
+import useFlickity from './hooks/useFlickity'
+import { ArrowNext, ArrowPrev } from '../Icons'
 
 const ImageWrapper = () => {
   const { items, getNext, getPrev } = useContext(CarouselCtx)
-  const { handlers, wrapperRef } = useSwipe()
+  const flickityRef = useFlickity()
 
   if (items && items.length) {
     return (
-      <Styled.GalleryWrapper ref={wrapperRef}>
-        <Styled.NavOverlay.Prev onClick={getPrev} {...handlers} />
-        <Styled.NavOverlay.Next onClick={getNext} {...handlers} />
-        <Styled.SlideWrapper className="js-swipe">
-          <Slides />
-        </Styled.SlideWrapper>
-      </Styled.GalleryWrapper>
+      <Styled.ImageWrapper>
+        <Styled.Nav.Prev onClick={getPrev} cursor={<ArrowPrev />} />
+        <Styled.Nav.Next onClick={getNext} cursor={<ArrowNext />} />
+
+        <Styled.Images ref={flickityRef}>
+          {items.map((item, i) => {
+            const key = (item && `${item.key} ${i}`) || i
+            return <Styled.Slide key={key}>{item}</Styled.Slide>
+          })}
+        </Styled.Images>
+      </Styled.ImageWrapper>
     )
   }
   return null
-}
-
-const Slides = () => {
-  const { items, index: currentIndex } = useContext(CarouselCtx)
-  /* add first item to end */
-
-  return items.map((item, i) => {
-    const isCurrent = i === currentIndex
-    const key = (item && `${item.key} ${i}`) || i
-
-    return (
-      <Slide current={isCurrent} key={key}>
-        {item}
-      </Slide>
-    )
-  })
-}
-
-const Slide = ({ children, current }) => {
-  return (
-    <Styled.Slide className="slide" current={current}>
-      {children}
-    </Styled.Slide>
-  )
-}
-
-Slide.propTypes = {
-  children: PropTypes.any.isRequired,
-  current: PropTypes.bool.isRequired,
 }
 
 export default ImageWrapper

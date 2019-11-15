@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { ThemeProvider } from 'styled-components'
 import Nav, { FractionIndicator } from './Nav'
 import ImageWrapper from './ImageWrapper'
+import { Expand } from './Icons'
 
 export const CarouselCtx = createContext()
 
@@ -19,7 +20,9 @@ export const Wrapper = ({ children, items }) => {
   if (items && items.length) {
     return (
       <ThemeProvider theme={{ count: items.length, index }}>
-        <CarouselCtx.Provider value={{ items, index, getNext, getPrev }}>
+        <CarouselCtx.Provider
+          value={{ items, index, getNext, getPrev, setCurrentIndex }}
+        >
           {children}
         </CarouselCtx.Provider>
       </ThemeProvider>
@@ -34,4 +37,4 @@ Wrapper.propTypes = {
   items: PropTypes.arrayOf(PropTypes.element).isRequired,
 }
 
-export { Nav, FractionIndicator, ImageWrapper }
+export { Nav, FractionIndicator, ImageWrapper, Expand }

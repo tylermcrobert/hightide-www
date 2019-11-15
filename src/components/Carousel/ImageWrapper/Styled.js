@@ -1,41 +1,44 @@
 import styled from 'styled-components'
+import { CursorTrigger } from 'components/CursorHover'
 
-const GalleryWrapper = styled.div`
-  overflow: hidden;
+const ImageWrapper = styled.div`
   position: relative;
 `
 
-const NavOverlay = styled.div`
-  z-index: 10;
+const Images = styled.div`
+  overflow: hidden;
+  position: relative;
+
+  .flickity-viewport {
+    cursor: inherit !important;
+  }
+`
+
+const Slide = styled.div`
+  width: 100%;
+`
+
+const Nav = styled(CursorTrigger)`
+  display: block;
   position: absolute;
-  height: 100%;
-  width: 50%;
   top: 0;
+  width: 33.34%;
+  height: 100%;
+  z-index: 100;
+  mix-blend-mode: difference;
+
+  /* hide on mobile */
+  @media (hover: none) and (pointer: coarse) {
+    display: none;
+  }
+`
+
+Nav.Prev = styled(Nav)`
   left: 0;
 `
 
-NavOverlay.Prev = styled(NavOverlay)`
-  cursor: w-resize;
+Nav.Next = styled(Nav)`
+  left: 66.67%;
 `
 
-NavOverlay.Next = styled(NavOverlay)`
-  cursor: e-resize;
-  left: 50%;
-`
-
-const SlideWrapper = styled.ul`
-  display: flex;
-  width: ${({ theme }) => theme.count * 100}%;
-  transition: transform ${props => props.theme.ease.standard};
-`
-
-const Slide = styled.li`
-  width: 100%;
-  flex: 1;
-  cursor: move;
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-`
-
-export default { Slide, SlideWrapper, NavOverlay, GalleryWrapper }
+export default { Slide, Images, ImageWrapper, Nav }
