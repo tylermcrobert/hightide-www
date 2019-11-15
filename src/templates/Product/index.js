@@ -6,18 +6,19 @@ import PropTypes from 'prop-types'
 import { StoreCtx } from 'components/StoreProvider'
 import Heading from 'components/Heading'
 import Styled from './Styled'
-import useVariant from './hooks/useVariant'
+import useVariantHelper from './hooks/useVariantHelper'
 import useToggle from './hooks/useToggle'
 
 const ProductCtx = createContext()
 
 const Product = memo(({ data: productData }) => {
   const { descriptionHtml, title } = productData
-  const { currentVariant, updateOption, currentOptions } = useVariant(
+  const { currentVariant, updateOption, selectedOptions } = useVariantHelper(
     productData
   )
   const { addItem } = useContext(StoreCtx)
   const imgUrl = productData.images[0] && productData.images[0].src
+
   const price = currentVariant
     ? currentVariant.price
     : productData.variants[0].price
@@ -25,7 +26,7 @@ const Product = memo(({ data: productData }) => {
   const toggleRef = useToggle()
 
   return (
-    <ProductCtx.Provider value={{ productData, updateOption, currentOptions }}>
+    <ProductCtx.Provider value={{ productData, updateOption, selectedOptions }}>
       <Wrap>
         <Section>
           <Styled.Wrapper>
@@ -62,7 +63,9 @@ const Product = memo(({ data: productData }) => {
 })
 
 const Options = () => {
-  const { updateOption, currentOptions, productData } = useContext(ProductCtx)
+  const { updateOption, selectedOptions, productData } = useContext(ProductCtx)
+
+  console.log(selectedOptions)
 
   return (
     <div>
@@ -73,7 +76,7 @@ const Options = () => {
           {/* Variants */}
           <Styled.OptionWrapper>
             {option.values.map(variant => {
-              const isSelected = currentOptions[option.name] === variant.value
+              const isSelected = selectedOptions[option.name] === variant.value
 
               return (
                 <Styled.Option
