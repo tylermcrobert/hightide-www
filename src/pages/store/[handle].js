@@ -1,9 +1,15 @@
 import { memo } from 'react'
 import ProductTemplate from 'templates/Product/'
 import { client } from 'middleware/getShopifyCheckout'
+import Meta from 'components/Meta'
 
 const Store = memo(({ product }) => {
-  return <ProductTemplate data={product} />
+  return (
+    <>
+      <Meta title={product.title} url={`/store/${product.handle}`} />
+      <ProductTemplate data={product} />
+    </>
+  )
 })
 
 Store.getInitialProps = async ({ query }) => {
