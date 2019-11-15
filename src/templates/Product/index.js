@@ -33,7 +33,7 @@ const Product = memo(({ data: productData }) => {
             <div>
               <Styled.ProductDetail>
                 <Styled.TitlePriceWrapper>
-                  <Heading level={1} headingStyle={1}>
+                  <Heading level={1} as="h1" headingStyle={1}>
                     {title}
                   </Heading>
                   <div>${price} USD</div>
