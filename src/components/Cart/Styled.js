@@ -16,6 +16,9 @@ const Cart = styled.div`
 
   display: grid;
   grid-template-rows: auto 1fr auto;
+
+  transform: translate3d(${props => (props.isOpen ? 0 : 100)}%, 0, 0);
+  transition: transform 300ms ${props => props.theme.ease.standard};
 `
 
 const FinePrint = styled.h6`

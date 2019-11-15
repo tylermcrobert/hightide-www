@@ -8,12 +8,14 @@ import Checkout from './Checkout'
 // import PropTypes from 'prop-types'
 //
 function Cart() {
-  const { checkout } = useContext(StoreCtx)
+  const { checkout, setCartOpen, isCartOpen } = useContext(StoreCtx)
   const cart = checkout.lineItems
 
   return (
-    <Styled.Cart>
-      <h2>Cart</h2>
+    <Styled.Cart isOpen={isCartOpen}>
+      <h2>
+        Cart <span onClick={() => setCartOpen(false)}>[x]</span>
+      </h2>
 
       {cart.length ? (
         <>

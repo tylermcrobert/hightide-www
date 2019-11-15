@@ -18,7 +18,7 @@ const NAV_ITEMS = [
 const NavContext = createContext()
 function Nav() {
   const [mobileNavEnabled, setMobileNav] = useState(false)
-  const { storeCount } = useContext(StoreCtx)
+  const { storeCount, setCartOpen } = useContext(StoreCtx)
 
   return (
     <NavContext.Provider value={{ mobileNavEnabled, setMobileNav }}>
@@ -27,7 +27,9 @@ function Nav() {
           <Logo />
           <BurgerMenu />
           <DesktopLinks />
-          {storeCount ? `Cart (${storeCount})` : null}
+          {storeCount ? (
+            <span onClick={() => setCartOpen(true)}>Cart ({storeCount})</span>
+          ) : null}
         </Styled.Wrap>
         <MobileOverlay />
       </Styled.Nav>
