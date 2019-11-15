@@ -27,11 +27,12 @@ const Product = ({ product }) => {
     <Link href="/store/[handle]" as={`/store/${product.handle}/`}>
       <a>
         <div key={product.id}>
-          {product.images[0] && (
-            <AspectImage aspect={5 / 4}>
-              <img src={product.images[0].src} alt={product.title} />
-            </AspectImage>
-          )}
+          <AspectImage aspect={5 / 4}>
+            <img
+              src={product.images[0] && product.images[0].src}
+              alt={product.title}
+            />
+          </AspectImage>
 
           <Styled.ItemTitle>
             <Heading headingStyle={2} as="h2">
