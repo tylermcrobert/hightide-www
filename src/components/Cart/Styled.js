@@ -42,6 +42,10 @@ const Secondary = styled.div`
   display: flex;
 `
 
+const QtyEdit = styled.button`
+  padding: 0 0.5em;
+`
+
 export default {
   ItemWrapper,
   Title,
@@ -49,4 +53,5 @@ export default {
   Detail,
   Secondary,
   FinePrint,
+  QtyEdit,
 }

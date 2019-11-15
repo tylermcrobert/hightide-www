@@ -67,8 +67,13 @@ const CartItem = ({ data }) => {
         <div>${data.variant.price}</div>
 
         <div>
-          <span onClick={removeOne}>-</span> {pad(data.quantity)}{' '}
-          <span onClick={addOne}>+</span>
+          <Styled.QtyEdit type="button" onClick={removeOne}>
+            -
+          </Styled.QtyEdit>
+          {pad(data.quantity)}
+          <Styled.QtyEdit type="button" onClick={addOne}>
+            +
+          </Styled.QtyEdit>
         </div>
       </ItemWrapper>
     </Styled.ItemWrapper>
