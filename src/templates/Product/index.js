@@ -32,11 +32,12 @@ const Product = memo(({ data: productData }) => {
             <img src={imgUrl} alt={title} />
             <div>
               <Styled.ProductDetail>
-                <Heading level={1} headingStyle={1}>
-                  {title}
-                </Heading>
-                <div>${price} USD</div>
-                <br />
+                <Styled.TitlePriceWrapper>
+                  <Heading level={1} headingStyle={1}>
+                    {title}
+                  </Heading>
+                  <div>${price} USD</div>
+                </Styled.TitlePriceWrapper>
 
                 <Options />
                 <Styled.Description
@@ -70,21 +71,26 @@ const Options = () => {
           <h5>{option.name}</h5>
 
           {/* Variants */}
-          {option.values.map(variant => {
-            const isCurrent = currentOptions[option.name] === variant.value
-            return (
-              <li>
-                <button
-                  type="button"
-                  key={variant.value}
-                  onClick={() => updateOption({ [option.name]: variant.value })}
-                >
-                  {isCurrent ? ' - ' : ''}
-                  {variant.value}
-                </button>
-              </li>
-            )
-          })}
+          <Styled.OptionWrapper>
+            {option.values.map(variant => {
+              console.log(variant)
+              const isSelected = currentOptions[option.name] === variant.value
+
+              return (
+                <Styled.Option isSelected={isSelected}>
+                  <button
+                    type="button"
+                    key={variant.value}
+                    onClick={() =>
+                      updateOption({ [option.name]: variant.value })
+                    }
+                  >
+                    {variant.value}
+                  </button>
+                </Styled.Option>
+              )
+            })}
+          </Styled.OptionWrapper>
         </div>
       ))}
     </div>
