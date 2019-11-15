@@ -25,13 +25,13 @@ function Nav() {
       <Styled.Nav>
         <Styled.Wrap>
           <Logo />
-          <BurgerMenu />
           <DesktopLinks />
           {storeCount ? (
             <button type="button" onClick={() => setCartOpen(true)}>
               Bag ({storeCount})
             </button>
           ) : null}
+          <BurgerMenu />
         </Styled.Wrap>
         <MobileOverlay />
       </Styled.Nav>
