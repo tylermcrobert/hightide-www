@@ -8,6 +8,11 @@ const ProductGrid = styled.div`
     grid-gap: ${props => props.theme.margins.standard};
     grid-template-columns: 1fr 1fr;
   }
+
+  @media ${mq.md} {
+    grid-gap: ${props => props.theme.margins.standard};
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `
 
 const ItemTitle = styled.div`
