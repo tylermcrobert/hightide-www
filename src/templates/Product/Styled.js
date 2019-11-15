@@ -13,28 +13,15 @@ const ProductDetail = styled.div`
 const Description = styled.div`
   margin-bottom: ${props => props.theme.margins.standard};
 
-  > ul {
-    margin-top: 3rem;
+  li {
+    padding-left: 1em;
+    position: relative;
+    margin-bottom: 0.5rem;
 
-    > li {
-      padding: 0.75rem 0;
-      border-top: 1px solid ${props => props.theme.colors.primary};
-      cursor: pointer;
-    }
-
-    /* Description */
-    > ul {
-      overflow: hidden;
-      box-sizing: content-box;
-      height: 0;
-
-      &.is-current {
-        height: auto;
-      }
-
-      > li:last-child {
-        padding-bottom: 1rem;
-      }
+    &:before {
+      content: '•';
+      position: absolute;
+      left: 0;
     }
   }
 `
