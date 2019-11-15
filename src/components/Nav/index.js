@@ -28,7 +28,9 @@ function Nav() {
           <BurgerMenu />
           <DesktopLinks />
           {storeCount ? (
-            <span onClick={() => setCartOpen(true)}>Bag ({storeCount})</span>
+            <button type="button" onClick={() => setCartOpen(true)}>
+              Bag ({storeCount})
+            </button>
           ) : null}
         </Styled.Wrap>
         <MobileOverlay />
