@@ -14,7 +14,9 @@ const Checkout = () => {
         <h2>${checkout.paymentDue}</h2>
         <div>USD</div>
       </Styled.SubtotalWrapper>
-      <Styled.CheckoutButton type="button">Check Out</Styled.CheckoutButton>
+      <a href={checkout.webUrl} target="_blank" rel="noopener noreferrer">
+        <Styled.CheckoutButton type="button">Check Out</Styled.CheckoutButton>
+      </a>
       <GlobalStyled.FinePrint>
         Taxes, shipping, and discount codes calculated at checkout
       </GlobalStyled.FinePrint>
