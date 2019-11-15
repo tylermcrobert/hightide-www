@@ -19,7 +19,7 @@ function Store({ products }) {
 
 const Product = ({ product }) => {
   return (
-    <a href={`/product/${product.handle}/`}>
+    <a href={`/store/${product.handle}/`}>
       <div key={product.id}>
         {product.images[0] && (
           <AspectImage src={product.images[0].src} alt={product.title} />
