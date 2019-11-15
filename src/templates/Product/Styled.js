@@ -28,6 +28,8 @@ const Option = styled.li`
   align-items: center;
   margin-right: 0.5rem;
   overflow: hidden;
+  text-transform: uppercase;
+  cursor: pointer;
 
   ${props =>
     props.isSelected &&

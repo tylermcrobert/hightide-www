@@ -73,20 +73,15 @@ const Options = () => {
           {/* Variants */}
           <Styled.OptionWrapper>
             {option.values.map(variant => {
-              console.log(variant)
               const isSelected = currentOptions[option.name] === variant.value
 
               return (
-                <Styled.Option isSelected={isSelected}>
-                  <button
-                    type="button"
-                    key={variant.value}
-                    onClick={() =>
-                      updateOption({ [option.name]: variant.value })
-                    }
-                  >
-                    {variant.value}
-                  </button>
+                <Styled.Option
+                  isSelected={isSelected}
+                  key={variant.value}
+                  onClick={() => updateOption({ [option.name]: variant.value })}
+                >
+                  {variant.value}
                 </Styled.Option>
               )
             })}
