@@ -38,7 +38,14 @@ const Product = memo(({ data: productData }) => {
                   <Heading level={1} as="h1" headingStyle={1}>
                     {title}
                   </Heading>
-                  <div>${price} USD</div>
+                  <div>
+                    ${price}{' '}
+                    {currentVariant.compareAtPrice && (
+                      <Styled.ComparePrice>
+                        ${currentVariant.compareAtPrice}
+                      </Styled.ComparePrice>
+                    )}
+                  </div>
                 </Styled.TitlePriceWrapper>
 
                 <Options />

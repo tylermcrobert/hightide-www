@@ -13,6 +13,20 @@ const TitlePriceWrapper = styled.div`
   }
 `
 
+const ComparePrice = styled.span`
+  color: ${props => props.theme.colors.error};
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    border-top: 1px solid ${props => props.theme.colors.error};
+  }
+`
+
 const OptionWrapper = styled.ul`
   margin-bottom: 1rem;
 `
@@ -74,4 +88,5 @@ export default {
   TitlePriceWrapper,
   OptionWrapper,
   Option,
+  ComparePrice,
 }
