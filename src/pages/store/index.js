@@ -13,7 +13,9 @@ const Store = memo(({ products }) => {
 })
 
 Store.getInitialProps = async () => {
-  const products = await client.product.fetchAll()
+  const products = await client.collection
+    .fetchAllWithProducts()
+    .then(collections => collections[0].products)
 
   return { products }
 }
