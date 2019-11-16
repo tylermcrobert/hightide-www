@@ -9,52 +9,28 @@ import { client } from 'middleware/getShopifyCheckout'
 import { Price } from 'components/shopify'
 import Styled from './Styled'
 import useVariantHelper from './hooks/useVariantHelper'
-import useToggle from './hooks/useToggle'
 
 const ProductCtx = createContext()
 
 const Product = memo(({ data: productData }) => {
-  const { descriptionHtml, title } = productData
   const { currentVariant, updateOption, selectedOptions } = useVariantHelper(
     productData
   )
-  const { addItem } = useContext(StoreCtx)
-  const imgUrl = productData.images[0] && productData.images[0].src
-
-  const toggleRef = useToggle()
 
   return (
-    <ProductCtx.Provider value={{ productData, updateOption, selectedOptions }}>
+    <ProductCtx.Provider
+      value={{ currentVariant, productData, updateOption, selectedOptions }}
+    >
       <Wrap>
         <Section>
           <Styled.Wrapper>
-            <img src={imgUrl} alt={title} />
+            <img
+              src={productData.images[0] && productData.images[0].src}
+              alt={productData.title}
+            />
             <div>
-              <Styled.ProductDetail>
-                <Styled.SectionWrapper>
-                  <Heading level={1} as="h1" headingStyle={1}>
-                    {title}
-                  </Heading>
-                  <div>
-                    <Price variant={currentVariant} product={productData} />
-                  </div>
-                </Styled.SectionWrapper>
-                <Styled.SectionWrapper>
-                  <Options />
-                </Styled.SectionWrapper>
-                <Styled.Description
-                  ref={toggleRef}
-                  dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-                />
-              </Styled.ProductDetail>
-              <Button
-                disabled={!currentVariant.available}
-                onClick={
-                  currentVariant ? () => addItem(currentVariant.id) : null
-                }
-              >
-                {currentVariant.available ? 'Add to Cart' : 'Unavailable'}
-              </Button>
+              <ProductDetail />
+              <AddToCartButton />
             </div>
           </Styled.Wrapper>
         </Section>
@@ -63,8 +39,34 @@ const Product = memo(({ data: productData }) => {
   )
 })
 
+const ProductDetail = () => {
+  const { productData, currentVariant } = useContext(ProductCtx)
+  const { descriptionHtml, title } = productData
+
+  return (
+    <div>
+      <Styled.SectionWrapper>
+        <Heading level={1} as="h1" headingStyle={1}>
+          {title}
+        </Heading>
+        <div>
+          <Price variant={currentVariant} product={productData} />
+        </div>
+      </Styled.SectionWrapper>
+      <Styled.SectionWrapper>
+        <Options />
+      </Styled.SectionWrapper>
+      <Styled.SectionWrapper>
+        <Styled.Description
+          dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+        />
+      </Styled.SectionWrapper>
+    </div>
+  )
+}
+
 const Options = () => {
-  const { updateOption, selectedOptions, productData } = useContext(ProductCtx)
+  const { productData } = useContext(ProductCtx)
 
   return (
     <div>
@@ -77,40 +79,57 @@ const Options = () => {
 
             {/* Variants */}
             <ul>
-              {option.values.map(variant => {
-                const isSelected =
-                  selectedOptions[option.name] === variant.value
-
-                const currentOptions = {
-                  ...selectedOptions,
-                  [option.name]: variant.value,
-                }
-
-                const currentVariant = client.product.helpers.variantForOptions(
-                  productData,
-                  currentOptions
-                )
-
-                const isAvailable = currentVariant.available
-
-                return (
-                  <Styled.Option
-                    isSelected={isSelected}
-                    isAvailable={isAvailable}
-                    key={variant.value}
-                    onClick={() =>
-                      updateOption({ [option.name]: variant.value })
-                    }
-                  >
-                    {variant.value}
-                  </Styled.Option>
-                )
-              })}
+              {option.values.map(variant => (
+                <Variant
+                  option={option}
+                  variant={variant}
+                  key={variant.value}
+                />
+              ))}
             </ul>
           </div>
         ) : null
       })}
     </div>
+  )
+}
+
+const Variant = ({ variant, option }) => {
+  const { updateOption, selectedOptions, productData } = useContext(ProductCtx)
+
+  const variantButtonOptions = {
+    ...selectedOptions,
+    [option.name]: variant.value,
+  }
+
+  const optionVariant = client.product.helpers.variantForOptions(
+    productData,
+    variantButtonOptions
+  )
+
+  return (
+    <Styled.Option
+      isSelected={selectedOptions[option.name] === variant.value}
+      isAvailable={optionVariant.available}
+      key={variant.value}
+      onClick={() => updateOption({ [option.name]: variant.value })}
+    >
+      {variant.value}
+    </Styled.Option>
+  )
+}
+
+const AddToCartButton = () => {
+  const { currentVariant } = useContext(ProductCtx)
+  const { addItem } = useContext(StoreCtx)
+
+  return (
+    <Button
+      disabled={!currentVariant.available}
+      onClick={currentVariant ? () => addItem(currentVariant.id) : null}
+    >
+      {currentVariant.available ? 'Add to Cart' : 'Unavailable'}
+    </Button>
   )
 }
 
