@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { StoreCtx } from 'components/StoreProvider'
 import Heading from 'components/Heading'
 import { client } from 'middleware/getShopifyCheckout'
+import { Price } from 'components/shopify'
 import Styled from './Styled'
 import useVariantHelper from './hooks/useVariantHelper'
 import useToggle from './hooks/useToggle'
@@ -19,10 +20,6 @@ const Product = memo(({ data: productData }) => {
   )
   const { addItem } = useContext(StoreCtx)
   const imgUrl = productData.images[0] && productData.images[0].src
-
-  const price = currentVariant
-    ? currentVariant.price
-    : productData.variants[0].price
 
   const toggleRef = useToggle()
 
@@ -39,15 +36,9 @@ const Product = memo(({ data: productData }) => {
                     {title}
                   </Heading>
                   <div>
-                    ${price}{' '}
-                    {currentVariant.compareAtPrice && (
-                      <Styled.ComparePrice>
-                        ${currentVariant.compareAtPrice}
-                      </Styled.ComparePrice>
-                    )}
+                    <Price variant={currentVariant} />
                   </div>
                 </Styled.TitlePriceWrapper>
-
                 <Options />
                 <Styled.Description
                   ref={toggleRef}

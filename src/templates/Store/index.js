@@ -4,6 +4,7 @@ import AspectImage from 'components/AspectImage'
 import Link from 'next/link'
 import Heading from 'components/Heading'
 import Section from 'components/Section'
+import { Price } from 'components/shopify'
 import Styled from './Styled'
 
 export const StoreContext = createContext()
@@ -38,7 +39,9 @@ const Product = ({ product }) => {
             <Heading headingStyle={2} as="h2">
               {product.title}
             </Heading>
-            <h5>${product.variants[0].price}</h5>
+            <h5>
+              <Price variant={product.variants[0]} />
+            </h5>
           </Styled.ItemTitle>
         </div>
       </a>
