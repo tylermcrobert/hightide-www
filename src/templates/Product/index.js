@@ -66,41 +66,48 @@ const Options = () => {
 
   return (
     <div>
-      {productData.options.map(option => (
-        <div key={option.name}>
-          <h5>{option.name}</h5>
+      {productData.options.map(option => {
+        const isShown = option.values.length > 1
 
-          {/* Variants */}
-          <Styled.OptionWrapper>
-            {option.values.map(variant => {
-              const isSelected = selectedOptions[option.name] === variant.value
+        return isShown ? (
+          <div key={option.name}>
+            <h5>{option.name}</h5>
 
-              const currentOptions = {
-                ...selectedOptions,
-                [option.name]: variant.value,
-              }
+            {/* Variants */}
+            <Styled.OptionWrapper>
+              {option.values.map(variant => {
+                const isSelected =
+                  selectedOptions[option.name] === variant.value
 
-              const currentVariant = client.product.helpers.variantForOptions(
-                productData,
-                currentOptions
-              )
+                const currentOptions = {
+                  ...selectedOptions,
+                  [option.name]: variant.value,
+                }
 
-              const isAvailable = currentVariant.available
+                const currentVariant = client.product.helpers.variantForOptions(
+                  productData,
+                  currentOptions
+                )
 
-              return (
-                <Styled.Option
-                  isSelected={isSelected}
-                  isAvailable={isAvailable}
-                  key={variant.value}
-                  onClick={() => updateOption({ [option.name]: variant.value })}
-                >
-                  {variant.value}
-                </Styled.Option>
-              )
-            })}
-          </Styled.OptionWrapper>
-        </div>
-      ))}
+                const isAvailable = currentVariant.available
+
+                return (
+                  <Styled.Option
+                    isSelected={isSelected}
+                    isAvailable={isAvailable}
+                    key={variant.value}
+                    onClick={() =>
+                      updateOption({ [option.name]: variant.value })
+                    }
+                  >
+                    {variant.value}
+                  </Styled.Option>
+                )
+              })}
+            </Styled.OptionWrapper>
+          </div>
+        ) : null
+      })}
     </div>
   )
 }
