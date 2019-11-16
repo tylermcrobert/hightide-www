@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Plus } from 'components/icons'
 
 const Cart = styled.div`
   position: fixed;
@@ -19,6 +20,22 @@ const Cart = styled.div`
 
   transform: translate3d(${props => (props.isOpen ? 0 : 100)}%, 0, 0);
   transition: transform 300ms ${props => props.theme.ease.standard};
+`
+
+const CartHeader = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin-bottom: ${props => props.theme.fontSizes[2]};
+`
+
+const CloseButton = styled(Plus)`
+  transform: rotate(45deg) scale(0.96);
+  width: ${props => props.theme.fontSizes[3]};
+  cursor: pointer;
+
+  g {
+    stroke-width: 1.3;
+  }
 `
 
 const FinePrint = styled.h6`
@@ -54,4 +71,6 @@ export default {
   Secondary,
   FinePrint,
   QtyEdit,
+  CloseButton,
+  CartHeader,
 }

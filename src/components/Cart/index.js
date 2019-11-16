@@ -3,19 +3,21 @@ import { StoreCtx } from 'components/StoreProvider'
 import Section from 'components/Section'
 import pad from 'util/pad'
 import styled from 'styled-components'
+
 import Styled from './Styled'
 import Checkout from './Checkout'
-// import PropTypes from 'prop-types'
-//
+
 function Cart() {
   const { checkout, setCartOpen, isCartOpen } = useContext(StoreCtx)
   const cart = checkout.lineItems
+  const closeCart = () => setCartOpen(false)
 
   return (
     <Styled.Cart isOpen={isCartOpen}>
-      <h2>
-        Cart <span onClick={() => setCartOpen(false)}>[x]</span>
-      </h2>
+      <Styled.CartHeader>
+        <h2>Cart</h2>
+        <Styled.CloseButton onClick={closeCart}></Styled.CloseButton>
+      </Styled.CartHeader>
 
       {cart.length ? (
         <>
@@ -41,13 +43,16 @@ function Cart() {
 }
 
 const CartItem = ({ data }) => {
-  const { removeItem, updateItem } = useContext(StoreCtx)
+  const {
+    // removeItem,
+    updateItem,
+  } = useContext(StoreCtx)
 
   const removeOne = () => updateItem(data.id, data.quantity - 1)
 
   const addOne = () => updateItem(data.id, data.quantity + 1)
 
-  const removeAll = () => removeItem(data.id)
+  // const removeAll = () => removeItem(data.id)
 
   return (
     <Styled.ItemWrapper key={data.title}>
