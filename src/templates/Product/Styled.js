@@ -13,13 +13,6 @@ const Wrapper = styled.div`
   }
 `
 
-const SectionWrapper = styled.div`
-  margin-bottom: ${props => props.theme.fontSizes[3]};
-  h1 {
-    margin-bottom: 0.5rem;
-  }
-`
-
 const Option = styled.li`
   display: inline-flex;
   font-size: ${props => props.theme.fontSizes[1]};
@@ -50,12 +43,7 @@ const Option = styled.li`
     `};
 `
 
-const ProductDetail = styled.div`
-  margin-bottom: ${props => props.theme.margins.standard};
-`
-
 const Description = styled.div`
-  margin-bottom: ${props => props.theme.margins.standard};
   line-height: 1.5;
 
   li {
@@ -73,8 +61,6 @@ const Description = styled.div`
 
 export default {
   Wrapper,
-  ProductDetail,
   Description,
-  SectionWrapper,
   Option,
 }

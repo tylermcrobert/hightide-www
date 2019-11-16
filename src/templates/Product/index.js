@@ -7,6 +7,7 @@ import { StoreCtx } from 'components/StoreProvider'
 import Heading from 'components/Heading'
 import { client } from 'middleware/getShopifyCheckout'
 import { Price } from 'components/shopify'
+import Box from 'components/Box'
 import Styled from './Styled'
 import useVariantHelper from './hooks/useVariantHelper'
 
@@ -28,10 +29,8 @@ const Product = memo(({ data: productData }) => {
               src={productData.images[0] && productData.images[0].src}
               alt={productData.title}
             />
-            <div>
-              <ProductDetail />
-              <AddToCartButton />
-            </div>
+
+            <ProductDetail />
           </Styled.Wrapper>
         </Section>
       </Wrap>
@@ -45,22 +44,24 @@ const ProductDetail = () => {
 
   return (
     <div>
-      <Styled.SectionWrapper>
-        <Heading level={1} as="h1" headingStyle={1}>
-          {title}
-        </Heading>
-        <div>
-          <Price variant={currentVariant} product={productData} />
-        </div>
-      </Styled.SectionWrapper>
-      <Styled.SectionWrapper>
+      <Box mb={5}>
+        <Box mb={0}>
+          <Heading level={1} as="h1" noMargin headingStyle={1}>
+            {title}
+          </Heading>
+        </Box>
+
+        <Price variant={currentVariant} product={productData} />
+      </Box>
+      <Box mb={5}>
         <ProductOptions />
-      </Styled.SectionWrapper>
-      <Styled.SectionWrapper>
+      </Box>
+      <Box mb={3}>
         <Styled.Description
           dangerouslySetInnerHTML={{ __html: descriptionHtml }}
         />
-      </Styled.SectionWrapper>
+      </Box>
+      <AddToCartButton />
     </div>
   )
 }
