@@ -23,20 +23,30 @@ const Product = memo(({ data: productData }) => {
       value={{ currentVariant, productData, updateOption, selectedOptions }}
     >
       <Wrap>
-        <Section>
-          <Styled.Wrapper>
-            <img
-              src={productData.images[0] && productData.images[0].src}
-              alt={productData.title}
-            />
-
+        <Styled.Wrapper>
+          <Section>
+            <ProductImages />
+          </Section>
+          <Section>
             <ProductDetail />
-          </Styled.Wrapper>
-        </Section>
+          </Section>
+        </Styled.Wrapper>
       </Wrap>
     </ProductCtx.Provider>
   )
 })
+
+const ProductImages = () => {
+  const { productData } = useContext(ProductCtx)
+
+  return (
+    <div>
+      {productData.images.map(item => (
+        <img src={item.src} alt={item.altText} />
+      ))}
+    </div>
+  )
+}
 
 const ProductDetail = () => {
   const { productData, currentVariant } = useContext(ProductCtx)
