@@ -9,18 +9,18 @@ import { client } from 'middleware/getShopifyCheckout'
 import { Price } from 'components/shopify'
 import Box from 'components/Box'
 import Styled from './Styled'
-import useVariantHelper from './hooks/useVariantHelper'
+import useOptionSelect from './hooks/useOptionSelect'
 
 const ProductCtx = createContext()
+const { variantForOptions } = client.product.helpers
 
 const Product = memo(({ data: productData }) => {
-  const { currentVariant, updateOption, selectedOptions } = useVariantHelper(
-    productData
-  )
+  const { updateOptions, selectedOptions } = useOptionSelect(productData)
+  const currentVariant = variantForOptions(productData, selectedOptions)
 
   return (
     <ProductCtx.Provider
-      value={{ currentVariant, productData, updateOption, selectedOptions }}
+      value={{ currentVariant, productData, updateOptions, selectedOptions }}
     >
       <Wrap>
         <Styled.Wrapper>
@@ -115,7 +115,7 @@ const ProductOptions = () => {
 }
 
 const Variant = ({ optionName, optionCategory }) => {
-  const { updateOption, selectedOptions, productData } = useContext(ProductCtx)
+  const { updateOptions, selectedOptions, productData } = useContext(ProductCtx)
 
   const getAvailibility = () => {
     const variantButtonOptions = {
@@ -123,10 +123,7 @@ const Variant = ({ optionName, optionCategory }) => {
       [optionCategory]: optionName,
     }
 
-    const optionVariant = client.product.helpers.variantForOptions(
-      productData,
-      variantButtonOptions
-    )
+    const optionVariant = variantForOptions(productData, variantButtonOptions)
 
     return optionVariant.available
   }
@@ -136,7 +133,7 @@ const Variant = ({ optionName, optionCategory }) => {
       isSelected={selectedOptions[optionCategory] === optionName}
       isAvailable={getAvailibility()}
       key={optionName}
-      onClick={() => updateOption({ [optionCategory]: optionName })}
+      onClick={() => updateOptions({ [optionCategory]: optionName })}
     >
       {optionName}
     </Styled.Option>
