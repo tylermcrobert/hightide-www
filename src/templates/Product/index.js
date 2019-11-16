@@ -117,7 +117,7 @@ const ProductOptions = () => {
 const Variant = ({ optionName, optionCategory }) => {
   const { updateOptions, selectedOptions, productData } = useContext(ProductCtx)
 
-  const getAvailibility = () => {
+  const isAvailable = (() => {
     const variantButtonOptions = {
       ...selectedOptions,
       [optionCategory]: optionName,
@@ -126,12 +126,14 @@ const Variant = ({ optionName, optionCategory }) => {
     const optionVariant = variantForOptions(productData, variantButtonOptions)
 
     return optionVariant.available
-  }
+  })()
 
   return (
     <Styled.Option
-      isSelected={selectedOptions[optionCategory] === optionName}
-      isAvailable={getAvailibility()}
+      isSelected={
+        isAvailable ? selectedOptions[optionCategory] === optionName : false
+      }
+      isAvailable={isAvailable}
       key={optionName}
       onClick={() => updateOptions({ [optionCategory]: optionName })}
     >
