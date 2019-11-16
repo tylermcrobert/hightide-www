@@ -36,7 +36,7 @@ const Product = memo(({ data: productData }) => {
                     {title}
                   </Heading>
                   <div>
-                    <Price variant={currentVariant} />
+                    <Price variant={currentVariant} product={productData} />
                   </div>
                 </Styled.TitlePriceWrapper>
                 <Options />

@@ -40,7 +40,7 @@ const Product = ({ product }) => {
               {product.title}
             </Heading>
             <h5>
-              <Price variant={product.variants[0]} />
+              <Price variant={product.variants[0]} product={product} />
             </h5>
           </Styled.ItemTitle>
         </div>

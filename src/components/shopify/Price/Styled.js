@@ -17,7 +17,12 @@ const ComparePrice = styled.span`
   }
 `
 
+const SoldOut = styled.span`
+  color: ${props => props.theme.colors.grey};
+`
+
 export default {
   ComparePrice,
   CurrentPrice,
+  SoldOut,
 }
