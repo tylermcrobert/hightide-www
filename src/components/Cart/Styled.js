@@ -28,6 +28,10 @@ const CartHeader = styled.div`
   margin-bottom: ${props => props.theme.fontSizes[2]};
 `
 
+const LineItems = styled.div`
+  overflow: scroll;
+`
+
 const CloseButton = styled(Plus)`
   transform: rotate(45deg) scale(0.96);
   width: ${props => props.theme.fontSizes[3]};
@@ -73,4 +77,5 @@ export default {
   QtyEdit,
   CloseButton,
   CartHeader,
+  LineItems,
 }
