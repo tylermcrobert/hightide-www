@@ -13,15 +13,11 @@ const Wrapper = styled.div`
   }
 `
 
-const TitlePriceWrapper = styled.div`
-  margin-bottom: 2rem;
+const SectionWrapper = styled.div`
+  margin-bottom: ${props => props.theme.fontSizes[3]};
   h1 {
     margin-bottom: 0.5rem;
   }
-`
-
-const OptionWrapper = styled.ul`
-  margin-bottom: 1rem;
 `
 
 const Option = styled.li`
@@ -60,6 +56,7 @@ const ProductDetail = styled.div`
 
 const Description = styled.div`
   margin-bottom: ${props => props.theme.margins.standard};
+  line-height: 1.5;
 
   li {
     padding-left: 1em;
@@ -78,7 +75,6 @@ export default {
   Wrapper,
   ProductDetail,
   Description,
-  TitlePriceWrapper,
-  OptionWrapper,
+  SectionWrapper,
   Option,
 }

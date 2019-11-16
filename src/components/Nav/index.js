@@ -28,7 +28,7 @@ function Nav() {
           <DesktopLinks />
           {storeCount ? (
             <button type="button" onClick={() => setCartOpen(true)}>
-              Bag ({storeCount})
+              Cart ({storeCount})
             </button>
           ) : null}
           <BurgerMenu />

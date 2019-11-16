@@ -31,15 +31,17 @@ const Product = memo(({ data: productData }) => {
             <img src={imgUrl} alt={title} />
             <div>
               <Styled.ProductDetail>
-                <Styled.TitlePriceWrapper>
+                <Styled.SectionWrapper>
                   <Heading level={1} as="h1" headingStyle={1}>
                     {title}
                   </Heading>
                   <div>
                     <Price variant={currentVariant} product={productData} />
                   </div>
-                </Styled.TitlePriceWrapper>
-                <Options />
+                </Styled.SectionWrapper>
+                <Styled.SectionWrapper>
+                  <Options />
+                </Styled.SectionWrapper>
                 <Styled.Description
                   ref={toggleRef}
                   dangerouslySetInnerHTML={{ __html: descriptionHtml }}
@@ -74,7 +76,7 @@ const Options = () => {
             <h5>{option.name}</h5>
 
             {/* Variants */}
-            <Styled.OptionWrapper>
+            <ul>
               {option.values.map(variant => {
                 const isSelected =
                   selectedOptions[option.name] === variant.value
@@ -104,7 +106,7 @@ const Options = () => {
                   </Styled.Option>
                 )
               })}
-            </Styled.OptionWrapper>
+            </ul>
           </div>
         ) : null
       })}
