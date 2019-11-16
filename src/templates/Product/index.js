@@ -54,7 +54,7 @@ const ProductDetail = () => {
         </div>
       </Styled.SectionWrapper>
       <Styled.SectionWrapper>
-        <Options />
+        <ProductOptions />
       </Styled.SectionWrapper>
       <Styled.SectionWrapper>
         <Styled.Description
@@ -65,56 +65,69 @@ const ProductDetail = () => {
   )
 }
 
-const Options = () => {
+/*
+  NAMING
+
+  OPTION CATEGORY:
+    the category like 'size', color
+  OPTION CATEGORY:
+    The actual option like 'sm'
+  VARIANT:
+    the name of the SHOPIFY PRODUCT like 'sm / purple'
+
+ */
+
+const ProductOptions = () => {
   const { productData } = useContext(ProductCtx)
 
   return (
     <div>
-      {productData.options.map(option => {
-        const isShown = option.values.length > 1
-
-        return isShown ? (
+      {productData.options.map(option =>
+        // only return if there are multiple options
+        option.values.length > 1 ? (
           <div key={option.name}>
             <h5>{option.name}</h5>
-
-            {/* Variants */}
             <ul>
               {option.values.map(variant => (
                 <Variant
-                  option={option}
-                  variant={variant}
+                  optionCategory={option.name}
+                  optionName={variant.value}
                   key={variant.value}
                 />
               ))}
             </ul>
           </div>
         ) : null
-      })}
+      )}
     </div>
   )
 }
 
-const Variant = ({ variant, option }) => {
+const Variant = ({ optionName, optionCategory }) => {
   const { updateOption, selectedOptions, productData } = useContext(ProductCtx)
 
-  const variantButtonOptions = {
-    ...selectedOptions,
-    [option.name]: variant.value,
-  }
+  const getAvailibility = () => {
+    const variantButtonOptions = {
+      ...selectedOptions,
+      [optionCategory]: optionName,
+    }
 
-  const optionVariant = client.product.helpers.variantForOptions(
-    productData,
-    variantButtonOptions
-  )
+    const optionVariant = client.product.helpers.variantForOptions(
+      productData,
+      variantButtonOptions
+    )
+
+    return optionVariant.available
+  }
 
   return (
     <Styled.Option
-      isSelected={selectedOptions[option.name] === variant.value}
-      isAvailable={optionVariant.available}
-      key={variant.value}
-      onClick={() => updateOption({ [option.name]: variant.value })}
+      isSelected={selectedOptions[optionCategory] === optionName}
+      isAvailable={getAvailibility()}
+      key={optionName}
+      onClick={() => updateOption({ [optionCategory]: optionName })}
     >
-      {variant.value}
+      {optionName}
     </Styled.Option>
   )
 }
