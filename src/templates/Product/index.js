@@ -48,12 +48,12 @@ const Product = memo(({ data: productData }) => {
                 />
               </Styled.ProductDetail>
               <Button
-                disabled={!currentVariant}
+                disabled={!currentVariant.available}
                 onClick={
                   currentVariant ? () => addItem(currentVariant.id) : null
                 }
               >
-                Add to Cart
+                {currentVariant.available ? 'Add to Cart' : 'Unavailable'}
               </Button>
             </div>
           </Styled.Wrapper>
