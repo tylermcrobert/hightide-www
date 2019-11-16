@@ -38,6 +38,13 @@ const Option = styled.li`
       background: ${props.theme.colors.primary};
       color: ${props.theme.colors.secondary};
     `};
+
+  ${props =>
+    !props.isAvailable &&
+    css`
+      opacity: 0.2;
+      pointer-events: none;
+    `};
 `
 
 const ProductDetail = styled.div`

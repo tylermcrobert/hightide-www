@@ -5,6 +5,7 @@ import Button from 'components/Button'
 import PropTypes from 'prop-types'
 import { StoreCtx } from 'components/StoreProvider'
 import Heading from 'components/Heading'
+import { client } from 'middleware/getShopifyCheckout'
 import Styled from './Styled'
 import useVariantHelper from './hooks/useVariantHelper'
 import useToggle from './hooks/useToggle'
@@ -76,9 +77,22 @@ const Options = () => {
             {option.values.map(variant => {
               const isSelected = selectedOptions[option.name] === variant.value
 
+              const currentOptions = {
+                ...selectedOptions,
+                [option.name]: variant.value,
+              }
+
+              const currentVariant = client.product.helpers.variantForOptions(
+                productData,
+                currentOptions
+              )
+
+              const isAvailable = currentVariant.available
+
               return (
                 <Styled.Option
                   isSelected={isSelected}
+                  isAvailable={isAvailable}
                   key={variant.value}
                   onClick={() => updateOption({ [option.name]: variant.value })}
                 >
