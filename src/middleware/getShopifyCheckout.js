@@ -1,11 +1,15 @@
 import cookies from 'next-cookies'
 import Client from 'shopify-buy'
 import btoa from 'btoa'
+import fetch from 'isomorphic-unfetch'
 
-export const client = Client.buildClient({
-  storefrontAccessToken: '9395d0399ded34d4a90d8e45db500a76',
-  domain: 'hightidenyc.myshopify.com',
-})
+export const client = Client.buildClient(
+  {
+    storefrontAccessToken: '9395d0399ded34d4a90d8e45db500a76',
+    domain: 'hightidenyc.myshopify.com',
+  },
+  fetch
+)
 
 const isServer = !process.browser
 
