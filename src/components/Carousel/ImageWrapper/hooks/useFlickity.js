@@ -1,6 +1,6 @@
 import { createRef, useEffect, useContext } from 'react'
 import { CarouselCtx } from '../..'
-import 'flickity/dist/flickity.min.css'
+// import 'flickity/dist/flickity.min.css'
 
 /* eslint-disable global-require */
 
