@@ -92,11 +92,11 @@ const ProductOptions = () => {
   const { productData } = useContext(ProductCtx)
 
   return (
-    <div>
+    <>
       {productData.options.map(option =>
         // only return if there are multiple options
         option.values.length > 1 ? (
-          <div key={option.name}>
+          <Box mb={3} key={option.name}>
             <h5>{option.name}</h5>
             <ul>
               {option.values.map(variant => (
@@ -107,10 +107,10 @@ const ProductOptions = () => {
                 />
               ))}
             </ul>
-          </div>
+          </Box>
         ) : null
       )}
-    </div>
+    </>
   )
 }
 
