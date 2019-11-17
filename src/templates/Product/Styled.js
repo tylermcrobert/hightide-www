@@ -26,6 +26,7 @@ const Option = styled.li`
   overflow: hidden;
   text-transform: uppercase;
   cursor: pointer;
+  user-select: none;
 
   ${props =>
     props.isSelected &&
