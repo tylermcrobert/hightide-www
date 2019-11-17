@@ -42,7 +42,9 @@ const ProductImages = () => {
   return (
     <div>
       {productData.images.map(item => (
-        <img src={item.src} alt={item.altText} />
+        <Box mb={0}>
+          <img src={item.src} alt={item.altText} />
+        </Box>
       ))}
     </div>
   )
