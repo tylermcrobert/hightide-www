@@ -1,8 +1,14 @@
 import styled from 'styled-components'
+import { mq } from 'style/theme'
 
 const LineItems = styled.div`
   overflow: scroll;
   margin-bottom: ${props => props.theme.fontSizes[2]};
+  font-size: 80%;
+
+  @media ${mq.xs} {
+    font-size: 100%;
+  }
 `
 
 const QtyEdit = styled.button`
@@ -11,13 +17,24 @@ const QtyEdit = styled.button`
 
 const ItemDescWrapper = styled.div`
   display: grid;
-  grid-template-columns: 4rem 1fr;
   grid-gap: 1rem;
+
+  img {
+    display: none;
+
+    @media ${mq.sm} {
+      display: block;
+    }
+  }
+
+  @media ${mq.sm} {
+    grid-template-columns: 4rem 1fr;
+  }
 `
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-columns: 1fr 3.75em 5em;
   grid-gap: 1rem;
 `
 
