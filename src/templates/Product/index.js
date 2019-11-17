@@ -26,7 +26,7 @@ const Product = memo(({ data: productData }) => {
     >
       <Wrap>
         <Styled.Wrapper>
-          <Section>
+          <Section noTop>
             <ProductImages />
           </Section>
           <Section>
