@@ -1,29 +1,8 @@
 import styled from 'styled-components'
-import { Plus } from 'components/icons'
-
-const CartHeader = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  margin-bottom: ${props => props.theme.fontSizes[2]};
-`
 
 const LineItems = styled.div`
   overflow: scroll;
   margin-bottom: ${props => props.theme.fontSizes[2]};
-`
-
-const CloseButton = styled(Plus)`
-  transform: rotate(45deg) scale(0.96);
-  width: ${props => props.theme.fontSizes[3]};
-  cursor: pointer;
-
-  g {
-    stroke-width: 1.3;
-  }
-`
-
-const Title = styled.h2`
-  margin-bottom: 0.25rem;
 `
 
 const QtyEdit = styled.button`
@@ -54,10 +33,7 @@ const ItemWrapper = styled(Grid)`
 
 export default {
   ItemWrapper,
-  Title,
   QtyEdit,
-  CloseButton,
-  CartHeader,
   LineItems,
   ItemDescWrapper,
   LineItemHeader,

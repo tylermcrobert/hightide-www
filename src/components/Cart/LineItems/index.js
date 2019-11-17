@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { StoreCtx } from 'components/StoreProvider'
 import pad from 'util/pad'
+import PropTypes from 'prop-types'
 import Styled from './Styled'
 import GlobalStyled from '../Styled'
 
@@ -15,23 +16,17 @@ const LineItems = () => {
         <div>Qty</div>
       </Styled.LineItemHeader>
       {checkout.lineItems.map((item, i) => (
-        <CartItem data={item} key={`${item.title}${i}`} />
+        <LineItem data={item} key={`${item.title}${i}`} />
       ))}
     </Styled.LineItems>
   )
 }
 
-const CartItem = ({ data }) => {
-  const {
-    // removeItem,
-    updateItem,
-  } = useContext(StoreCtx)
+const LineItem = ({ data }) => {
+  const { updateItem } = useContext(StoreCtx)
 
   const removeOne = () => updateItem(data.id, data.quantity - 1)
-
   const addOne = () => updateItem(data.id, data.quantity + 1)
-
-  // const removeAll = () => removeItem(data.id)
 
   return (
     <Styled.ItemWrapper>
@@ -60,6 +55,15 @@ const CartItem = ({ data }) => {
       </div>
     </Styled.ItemWrapper>
   )
+}
+
+LineItem.propTypes = {
+  data: PropTypes.shape({
+    variant: PropTypes.object.isRequired,
+    quantity: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string,
+  }).isRequired,
 }
 
 export default LineItems
