@@ -8,6 +8,7 @@ import Heading from 'components/Heading'
 import { client } from 'middleware/getShopifyCheckout'
 import { Price } from 'components/shopify'
 import Box from 'components/Box'
+import { Wrapper as CarouselWrap, ImageWrapper } from 'components/Carousel'
 import Styled from './Styled'
 import useOptionSelect from './hooks/useOptionSelect'
 
@@ -39,13 +40,20 @@ const Product = memo(({ data: productData }) => {
 const ProductImages = () => {
   const { productData } = useContext(ProductCtx)
 
+  const images = productData.images.map(item => (
+    <Box mb={0}>
+      <img src={item.src} alt={item.altText} />
+    </Box>
+  ))
+
   return (
     <div>
-      {productData.images.map(item => (
-        <Box mb={0}>
-          <img src={item.src} alt={item.altText} />
-        </Box>
-      ))}
+      <Styled.CarouselWrapper>
+        <CarouselWrap items={images}>
+          <ImageWrapper />
+        </CarouselWrap>
+      </Styled.CarouselWrapper>
+      <Styled.ImageWrapper>{images}</Styled.ImageWrapper>
     </div>
   )
 }

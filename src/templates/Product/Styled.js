@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components'
 import { mq } from 'style/theme'
 
+const COL_BREAKPOINT = mq.xs
+
 const Wrapper = styled.div`
-  @media ${mq.xs} {
+  @media ${COL_BREAKPOINT} {
     display: grid;
     grid-gap: ${props => props.theme.margins.standard};
     grid-template-columns: 1fr 1fr;
@@ -59,8 +61,25 @@ const Description = styled.div`
   }
 `
 
+const ImageWrapper = styled.div`
+  display: none;
+  @media ${COL_BREAKPOINT} {
+    display: block;
+  }
+`
+
+const CarouselWrapper = styled.div`
+  display: block;
+  @media ${COL_BREAKPOINT} {
+    display: none;
+  }
+`
+
 export default {
   Wrapper,
   Description,
   Option,
+
+  ImageWrapper,
+  CarouselWrapper,
 }
