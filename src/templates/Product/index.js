@@ -127,7 +127,8 @@ const Variant = ({ optionName, optionCategory }) => {
 
     const optionVariant = variantForOptions(productData, variantButtonOptions)
 
-    return optionVariant.available
+    // make available in instances where thees multiple option groups
+    return productData.options.length > 1 ? true : optionVariant.available
   })()
 
   return (
