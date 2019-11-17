@@ -55,6 +55,10 @@ const NavItem = styled.a`
   text-decoration: none;
   cursor: pointer;
 
+  @media ${mq.sm} {
+    margin-right: ${props => props.last && 0};
+  }
+
   &:last-child {
     margin-right: none;
   }
