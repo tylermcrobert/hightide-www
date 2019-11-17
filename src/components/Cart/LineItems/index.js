@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { StoreCtx } from 'components/StoreProvider'
 import pad from 'util/pad'
 import PropTypes from 'prop-types'
+import OrphanRemover from 'components/OrphanRemover'
 import Styled from './Styled'
-import GlobalStyled from '../Styled'
 
 const LineItems = () => {
   const { checkout } = useContext(StoreCtx)
@@ -34,10 +34,12 @@ const LineItem = ({ data }) => {
         <Styled.ItemDescWrapper>
           <img src={data.variant.image && data.variant.image.src} alt="" />
           <div>
-            {data.title}
-            <GlobalStyled.FinePrint>
-              {data.variant.title.toUpperCase()}
-            </GlobalStyled.FinePrint>
+            <OrphanRemover>{data.title}</OrphanRemover>
+            &nbsp;
+            <Styled.VariantIndicator>
+              {data.variant.title !== 'Default Title' &&
+                `(${data.variant.title.toUpperCase()})`}
+            </Styled.VariantIndicator>
           </div>
         </Styled.ItemDescWrapper>
       </div>

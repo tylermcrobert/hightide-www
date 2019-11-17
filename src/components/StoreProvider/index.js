@@ -5,7 +5,7 @@ import { client } from 'middleware/getShopifyCheckout'
 export const StoreCtx = createContext()
 const StoreProvider = ({ children, checkout: initialCheckout }) => {
   const [checkout, setCheckout] = useState(initialCheckout)
-  const [isCartOpen, setCartOpen] = useState(true)
+  const [isCartOpen, setCartOpen] = useState(false)
 
   // use checkout id from initial checkout id
   const checkoutId = initialCheckout.id

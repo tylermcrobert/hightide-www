@@ -1,5 +1,7 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { mq } from 'style/theme'
+
+// Wrapper
 
 const LineItems = styled.div`
   overflow: scroll;
@@ -11,8 +13,32 @@ const LineItems = styled.div`
   }
 `
 
+// Line Item
+
+const grid = css`
+  display: grid;
+  grid-template-columns: 1fr 3.75em 5em;
+  grid-gap: 1rem;
+`
+
+const LineItemHeader = styled.div`
+  ${grid}
+  border-bottom: 1px solid ${props => props.theme.colors.grey};
+  padding-bottom: 0.5rem;
+`
+
+const ItemWrapper = styled.div`
+  ${grid}
+  padding: 1rem 0;
+  border-bottom: 1px solid grey;
+`
+
 const QtyEdit = styled.button`
   padding: 0 0.5em;
+`
+
+const VariantIndicator = styled.span`
+  opacity: 0.5;
 `
 
 const ItemDescWrapper = styled.div`
@@ -22,30 +48,14 @@ const ItemDescWrapper = styled.div`
   img {
     display: none;
 
-    @media ${mq.sm} {
+    @media ${mq.xs} {
       display: block;
     }
   }
 
-  @media ${mq.sm} {
+  @media ${mq.xs} {
     grid-template-columns: 4rem 1fr;
   }
-`
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 3.75em 5em;
-  grid-gap: 1rem;
-`
-
-const LineItemHeader = styled(Grid)`
-  border-bottom: 1px solid ${props => props.theme.colors.grey};
-  padding-bottom: 0.5rem;
-`
-
-const ItemWrapper = styled(Grid)`
-  padding: 1rem 0;
-  border-bottom: 1px solid grey;
 `
 
 export default {
@@ -54,4 +64,5 @@ export default {
   LineItems,
   ItemDescWrapper,
   LineItemHeader,
+  VariantIndicator,
 }
