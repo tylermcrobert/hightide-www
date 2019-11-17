@@ -9,6 +9,7 @@ import { client } from 'middleware/getShopifyCheckout'
 import { Price } from 'components/shopify'
 import Box from 'components/Box'
 import { Wrapper as CarouselWrap, ImageWrapper } from 'components/Carousel'
+import OrphanRemover from 'components/OrphanRemover'
 import Styled from './Styled'
 import useOptionSelect from './hooks/useOptionSelect'
 
@@ -67,7 +68,7 @@ const ProductDetail = () => {
       <Box mb={5}>
         <Box mb={0}>
           <Heading level={1} as="h1" noMargin headingStyle={1}>
-            {title}
+            <OrphanRemover>{title}</OrphanRemover>
           </Heading>
         </Box>
 
