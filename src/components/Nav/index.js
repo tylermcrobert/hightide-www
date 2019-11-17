@@ -18,7 +18,10 @@ const NAV_ITEMS = [
 const NavContext = createContext()
 function Nav() {
   const [mobileNavEnabled, setMobileNav] = useState(false)
-  const { storeCount, setCartOpen } = useContext(StoreCtx)
+  const { setCartOpen, checkout } = useContext(StoreCtx)
+
+  const scReducer = (total, item) => total + item.quantity
+  const storeCount = checkout.lineItems.reduce(scReducer, 0)
 
   return (
     <NavContext.Provider value={{ mobileNavEnabled, setMobileNav }}>
