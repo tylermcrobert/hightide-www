@@ -3,7 +3,7 @@ import { Wrap as GlobalWrap } from 'style'
 import { mq } from 'style/theme'
 import LogoSvg from '../Logo'
 
-const BREAKPOINT = mq.xs
+const BREAKPOINT = mq.sm
 
 const Nav = styled.nav`
   position: fixed;
@@ -53,6 +53,7 @@ const Logo = styled(LogoSvg)`
 const NavItem = styled.a`
   margin: 0 0.5em;
   text-decoration: none;
+  cursor: pointer;
 
   &:last-child {
     margin-right: none;

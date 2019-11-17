@@ -30,9 +30,9 @@ function Nav() {
           <Logo />
           <DesktopLinks />
           {storeCount ? (
-            <button type="button" onClick={() => setCartOpen(true)}>
-              Cart ({storeCount})
-            </button>
+            <Styled.NavItem onClick={() => setCartOpen(true)}>
+              <Opacity invert={false}>Cart ({storeCount})</Opacity>
+            </Styled.NavItem>
           ) : null}
           <BurgerMenu />
         </Styled.Wrap>
@@ -59,7 +59,7 @@ function DesktopLinks() {
     <Styled.Links>
       {NAV_ITEMS.map(item => (
         <Link href={item.href} key={item.display}>
-          <Styled.NavItem href="#">
+          <Styled.NavItem>
             <Opacity invert={isDark}>{item.display}</Opacity>
           </Styled.NavItem>
         </Link>
