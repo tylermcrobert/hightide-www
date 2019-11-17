@@ -5,6 +5,7 @@ import Error from 'next/error'
 
 import Section from 'components/Section'
 import PageIntro from 'components/PageIntro'
+import Button from 'components/Button'
 import useForm from './hooks/useForm'
 // Blocks
 import ContactInfo from './ContactInfo'
@@ -36,11 +37,9 @@ export default function Contact({ hero }) {
             </Section>
             <Section>
               <Styled.SubmitWrapper>
-                <Styled.Submit
-                  type="submit"
-                  value="Submit"
-                  active={canSubmit}
-                />
+                <Button type="submit" disabled={!canSubmit}>
+                  Submit
+                </Button>
               </Styled.SubmitWrapper>
             </Section>
           </form>
