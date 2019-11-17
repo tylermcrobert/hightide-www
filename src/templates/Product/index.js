@@ -42,9 +42,7 @@ const ProductImages = () => {
   const { productData } = useContext(ProductCtx)
 
   const images = productData.images.map(item => (
-    <Box mb={0}>
-      <img src={item.src} alt={item.altText} />
-    </Box>
+    <img src={item.src} alt={item.altText} />
   ))
 
   return (
@@ -54,7 +52,11 @@ const ProductImages = () => {
           <ImageWrapper />
         </CarouselWrap>
       </Styled.CarouselWrapper>
-      <Styled.ImageWrapper>{images}</Styled.ImageWrapper>
+      <Styled.ImageWrapper>
+        {images.map(item => (
+          <Box mb={0}>{item}</Box>
+        ))}
+      </Styled.ImageWrapper>
     </div>
   )
 }
