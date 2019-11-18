@@ -10,8 +10,6 @@ const StoreProvider = ({ children, checkout: initialCheckout }) => {
   // use checkout id from initial checkout id
   const checkoutId = initialCheckout.id
 
-  console.log(checkout.completedAt)
-
   const addItem = (variantId, qty = 1) =>
     client.checkout
       .addLineItems(checkoutId, {

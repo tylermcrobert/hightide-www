@@ -36,10 +36,9 @@ const loadCheckout = encodedId => {
 export default async function getShopifyCheckout(ctx) {
   const { shopifyCheckoutId } = cookies(ctx)
 
-  const encodedId = btoa(shopifyCheckoutId)
-
   if (isServer) {
     if (shopifyCheckoutId) {
+      const encodedId = btoa(shopifyCheckoutId)
       return loadCheckout(encodedId)
     }
     return createCheckout()
