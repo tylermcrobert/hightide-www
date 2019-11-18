@@ -73,9 +73,9 @@ function DesktopLinks() {
 function BurgerMenu() {
   const { mobileNavEnabled, setMobileNav } = useContext(NavContext)
   return (
-    <Styled.NavItem onClick={() => setMobileNav(!mobileNavEnabled)}>
+    <Styled.BurgerWrapper onClick={() => setMobileNav(!mobileNavEnabled)}>
       <Styled.Burger enabled={mobileNavEnabled} />
-    </Styled.NavItem>
+    </Styled.BurgerWrapper>
   )
 }
 

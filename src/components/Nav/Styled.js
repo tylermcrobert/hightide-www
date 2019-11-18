@@ -51,25 +51,19 @@ const Logo = styled(LogoSvg)`
 `
 
 const NavItem = styled.a`
-  margin: 0 0.5em;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   text-decoration: none;
   cursor: pointer;
 
   @media ${mq.sm} {
     margin-right: ${props => props.last && 0};
   }
-
-  &:last-child {
-    margin-right: none;
-  }
-
-  &:first-child {
-    margin-left: none;
-  }
 `
 
 const Links = styled.div`
   display: none;
+  margin-right: -0.5rem;
 
   @media ${BREAKPOINT} {
     display: block;
@@ -91,6 +85,11 @@ const line = css`
   top: 50%;
 `
 
+const BurgerWrapper = styled(NavItem)`
+  @media ${BREAKPOINT} {
+    display: none;
+  }
+`
 const Burger = styled.div`
   display: block;
   position: relative;
@@ -137,4 +136,13 @@ const Overlay = styled.div`
   text-align: center;
 `
 
-export default { Logo, Nav, Wrap, NavItem, Links, Burger, Overlay }
+export default {
+  BurgerWrapper,
+  Logo,
+  Nav,
+  Wrap,
+  NavItem,
+  Links,
+  Burger,
+  Overlay,
+}
