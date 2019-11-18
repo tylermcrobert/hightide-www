@@ -3,6 +3,10 @@ import { CursorTrigger } from 'components/CursorHover'
 
 const ImageWrapper = styled.div`
   position: relative;
+
+  * {
+    outline: none;
+  }
 `
 
 const Images = styled.div`
