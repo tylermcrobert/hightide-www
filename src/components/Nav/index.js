@@ -30,7 +30,7 @@ function Nav() {
           <Logo />
           <DesktopLinks />
           {storeCount ? (
-            <Styled.NavItem last onClick={() => setCartOpen(true)}>
+            <Styled.NavItem cart onClick={() => setCartOpen(true)}>
               <Opacity invert={false}>Cart ({storeCount})</Opacity>
             </Styled.NavItem>
           ) : null}

@@ -56,8 +56,14 @@ const NavItem = styled.a`
   text-decoration: none;
   cursor: pointer;
 
+  ${props =>
+    props.cart &&
+    css`
+      margin-left: 1rem;
+    `}
+
+
   @media ${mq.sm} {
-    margin-right: ${props => props.last && 0};
   }
 `
 
