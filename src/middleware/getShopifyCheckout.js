@@ -13,15 +13,36 @@ export const client = Client.buildClient(
 
 const isServer = !process.browser
 
+const createCheckout = () => client.checkout.create()
+
+const loadCheckout = encodedId => {
+  return client.checkout
+    .fetch(encodedId)
+    .then(checkout => {
+      // if checkout has been completed
+      if (checkout.completedAt) {
+        // return new checkout
+        return createCheckout()
+      }
+      // otherwise return existing checkout
+      return checkout
+    })
+    .catch(err => {
+      console.log(err)
+      return createCheckout()
+    })
+}
+
 export default async function getShopifyCheckout(ctx) {
   const { shopifyCheckoutId } = cookies(ctx)
 
+  const encodedId = btoa(shopifyCheckoutId)
+
   if (isServer) {
     if (shopifyCheckoutId) {
-      const encodedId = btoa(shopifyCheckoutId)
-      return client.checkout.fetch(encodedId).catch(err => console.log(err))
+      return loadCheckout(encodedId)
     }
-    return client.checkout.create()
+    return createCheckout()
   }
 
   return null
