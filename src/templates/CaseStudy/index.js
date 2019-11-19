@@ -60,7 +60,7 @@ function Related({ items }) {
             <RelatedItem
               key={item.id}
               title={name}
-              src={item.data.image.small.url}
+              src={item.data.image.url}
               link="/work/[uid]"
               as={`/work/${item.uid}`}
             />
