@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { mq } from 'style/theme'
+import Section from 'components/Section'
 
 const COL_BREAKPOINT = mq.xs
 
@@ -61,25 +62,29 @@ const Description = styled.div`
   }
 `
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled(Section)`
   display: none;
   @media ${COL_BREAKPOINT} {
     display: block;
   }
 `
 
-const CarouselWrapper = styled.div`
+const CarouselWrapper = styled(Section)`
   display: block;
   @media ${COL_BREAKPOINT} {
     display: none;
   }
 `
 
+const StickyPanel = styled.div`
+  position: sticky;
+  top: ${props => props.theme.navHeight};
+`
 export default {
   Wrapper,
   Description,
   Option,
-
+  StickyPanel,
   ImageWrapper,
   CarouselWrapper,
 }

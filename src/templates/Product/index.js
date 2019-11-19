@@ -27,12 +27,8 @@ const Product = memo(({ data: productData }) => {
     >
       <Wrap>
         <Styled.Wrapper>
-          <Section>
-            <ProductImages />
-          </Section>
-          <Section>
-            <ProductDetail />
-          </Section>
+          <ProductImages />
+          <ProductDetail />
         </Styled.Wrapper>
       </Wrap>
     </ProductCtx.Provider>
@@ -43,22 +39,24 @@ const ProductImages = () => {
   const { productData } = useContext(ProductCtx)
 
   const images = productData.images.map(item => (
-    <img src={item.src} alt={item.altText} />
+    <img src={item.src} key={item.src} alt={item.altText} />
   ))
 
   return (
-    <div>
-      <Styled.CarouselWrapper>
+    <>
+      <Styled.CarouselWrapper noBottom>
         <CarouselWrap items={images}>
           <ImageWrapper />
         </CarouselWrap>
       </Styled.CarouselWrapper>
       <Styled.ImageWrapper>
-        {images.map(item => (
-          <Box mb={0}>{item}</Box>
+        {images.map((item, i) => (
+          <Box key={i} mb={0}>
+            {item}
+          </Box>
         ))}
       </Styled.ImageWrapper>
-    </div>
+    </>
   )
 }
 
@@ -66,27 +64,30 @@ const ProductDetail = () => {
   const { productData, currentVariant } = useContext(ProductCtx)
   const { descriptionHtml, title } = productData
 
-  const ref = useFixedPanel()
   return (
-    <div ref={ref}>
-      <Box mb={5}>
-        <Box mb={0}>
-          <Heading level={1} as="h1" noMargin headingStyle={1}>
-            <OrphanRemover>{title}</OrphanRemover>
-          </Heading>
-        </Box>
+    <div>
+      <Styled.StickyPanel>
+        <Section.Padding>
+          <Box mb={5}>
+            <Box mb={0}>
+              <Heading level={1} as="h1" noMargin headingStyle={1}>
+                <OrphanRemover>{title}</OrphanRemover>
+              </Heading>
+            </Box>
 
-        <Price variant={currentVariant} product={productData} />
-      </Box>
-      <Box mb={5}>
-        <ProductOptions />
-      </Box>
-      <Box mb={3}>
-        <Styled.Description
-          dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-        />
-      </Box>
-      <AddToCartButton />
+            <Price variant={currentVariant} product={productData} />
+          </Box>
+          <Box mb={5}>
+            <ProductOptions />
+          </Box>
+          <Box mb={3}>
+            <Styled.Description
+              dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+            />
+          </Box>
+          <AddToCartButton />
+        </Section.Padding>
+      </Styled.StickyPanel>
     </div>
   )
 }

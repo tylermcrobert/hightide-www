@@ -16,17 +16,19 @@ const FadeIn = ({ ...props }) => {
   return <FadeInNode ref={ref} isInView={inView} {...props} />
 }
 
+const VALUES = [3, 3.5, 4, 4.25]
+
 const Section = styled(FadeIn)`
-  margin: 3rem 0;
+  margin: ${VALUES[0]}rem 0;
 
   @media ${mq.sm} {
-    margin: 3.5rem 0;
+    margin: ${VALUES[1]}rem 0;
   }
   @media ${mq.md} {
-    margin: 4rem 0;
+    margin: ${VALUES[2]}rem 0;
   }
   @media ${mq.lg} {
-    margin: 4.25rem 0;
+    margin: ${VALUES[3]}rem 0;
   }
 
   ${props =>
@@ -39,6 +41,20 @@ const Section = styled(FadeIn)`
     css`
       margin-bottom: 0 !important;
     `}
+`
+
+Section.Padding = styled(FadeIn)`
+  padding: ${VALUES[0]}rem 0;
+
+  @media ${mq.sm} {
+    padding: ${VALUES[1]}rem 0;
+  }
+  @media ${mq.md} {
+    padding: ${VALUES[2]}rem 0;
+  }
+  @media ${mq.lg} {
+    padding: ${VALUES[3]}rem 0;
+  }
 `
 
 export default Section
