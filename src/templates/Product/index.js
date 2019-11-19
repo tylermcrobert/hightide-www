@@ -12,6 +12,7 @@ import { Wrapper as CarouselWrap, ImageWrapper } from 'components/Carousel'
 import OrphanRemover from 'components/OrphanRemover'
 import Styled from './Styled'
 import useOptionSelect from './hooks/useOptionSelect'
+import useFixedPanel from './hooks/useFixedPanel'
 
 const ProductCtx = createContext()
 const { variantForOptions } = client.product.helpers
@@ -65,8 +66,9 @@ const ProductDetail = () => {
   const { productData, currentVariant } = useContext(ProductCtx)
   const { descriptionHtml, title } = productData
 
+  const ref = useFixedPanel()
   return (
-    <div>
+    <div ref={ref}>
       <Box mb={5}>
         <Box mb={0}>
           <Heading level={1} as="h1" noMargin headingStyle={1}>
