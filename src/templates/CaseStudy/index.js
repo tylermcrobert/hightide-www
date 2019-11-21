@@ -46,7 +46,6 @@ const CaseStudy = memo(({ data }) => {
     </CaseStudyCtx.Provider>
   )
 })
-// test
 
 function Related({ items }) {
   const validItems = items.filter(
