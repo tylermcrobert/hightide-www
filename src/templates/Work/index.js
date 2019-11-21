@@ -18,13 +18,14 @@ function Work({ site }) {
         <Styled.Wrapper>
           {caseStudies.map(({ data, uid }) => {
             if (data && uid) {
+              const image = data.thumbnail ? data.thumbnail.url : data.image.url
               return (
                 <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
                   <a>
                     <Trigger>
                       <WorkItem
                         key={uid}
-                        image={getImageSize(data.image.url, { w: 1200 })}
+                        image={image}
                         title={RichText.asText(data.name)}
                       />
                     </Trigger>
@@ -41,9 +42,11 @@ function Work({ site }) {
 }
 
 function WorkItem({ title, image }) {
+  const resizedImage = getImageSize(image, { w: 1200, q: 80, fm: 'webp' })
+
   return (
     <div>
-      <AspectImage src={image} />
+      <AspectImage src={resizedImage} />
       <Styled.Title>
         <Heading as="h2" headingStyle={2}>
           <Opacity invert>{title}</Opacity>

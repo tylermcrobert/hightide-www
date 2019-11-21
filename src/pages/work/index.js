@@ -15,7 +15,7 @@ function Work({ site }) {
 Work.getInitialProps = async ({ req }) => {
   const site = await Client(req)
     .getSingle('site', {
-      fetchLinks: ['work.name', 'work.image'],
+      fetchLinks: ['work.name', 'work.image', 'work.thumbnail'],
     })
     .then(item => item.data)
 
