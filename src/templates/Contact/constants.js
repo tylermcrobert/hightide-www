@@ -11,7 +11,13 @@ export const PROJECT_TYPE_CODE = '7625ec9bf26c798abdde1a427f4858ac294ef2a1'
 export const BUDGET_CODE = 'bae7dfdd58831aa6492a5cbf8c804bd8b5cf6b59'
 export const SYNOPSIS_CODE = 'a95adc7d999587f6a55466c6850f03f15bd8ccd7'
 
-export const BUDGET = ['Above 100k', '75–100k', '50–75k', '25-50k', 'Below 25k']
+export const BUDGET = [
+  '250K+',
+  '150 –  249K',
+  '100 – 149K',
+  '50 – 99K',
+  'Below 50k',
+]
 
 export const INPUTS = [
   {
@@ -80,12 +86,20 @@ const toObj = (keys, defaultVal) =>
 
 export const initialState = {
   /* get valid and value for INPUTS  */
-  ...toObj(INPUTS.map(item => item.id), {
-    value: '',
-    valid: false,
-  }),
+  ...toObj(
+    INPUTS.map(item => item.id),
+    {
+      value: '',
+      valid: false,
+    }
+  ),
   /* Set {projectTypes: {...}} */
-  projectTypes: { ...toObj(PROJECT_TYPE.map(item => item.id), false) },
+  projectTypes: {
+    ...toObj(
+      PROJECT_TYPE.map(item => item.id),
+      false
+    ),
+  },
   budget: null,
   synopsis: { value: null, valid: false },
 }

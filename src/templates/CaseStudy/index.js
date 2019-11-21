@@ -13,6 +13,7 @@ import MediaBlock from 'components/slices/MediaBlock'
 import Carousel from 'components/slices/Carousel'
 import Video from 'components/slices/Video'
 import getResponsiveImage from 'util/getResponsiveImage'
+import getImageSize from 'util/getImageSize'
 import Gallery from './Gallery'
 
 export const CaseStudyCtx = createContext()
@@ -57,11 +58,18 @@ function Related({ items }) {
       <RelatedWrapper heading="Other Projects">
         {items.map(({ item }) => {
           const name = RichText.asText(item.data.name)
+
+          const image = item.data.thumbnail
+            ? item.data.thumbnail.url
+            : item.data.image.url
+
+          const resizedImage = getImageSize(image, { w: 800 })
+
           return (
             <RelatedItem
               key={item.id}
               title={name}
-              src={item.data.image.small.url}
+              src={resizedImage}
               link="/work/[uid]"
               as={`/work/${item.uid}`}
             />

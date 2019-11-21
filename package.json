@@ -49,6 +49,8 @@
     "dev": "next -- -p 5000",
     "build": "next build",
     "start": "next start",
+    "deploy:staging": "now",
+    "deploy:production": "now --prod",
     "export": "next build && next export",
     "lint": "eslint  src",
     "kill-port": "kill $(lsof -t -i:5000)",

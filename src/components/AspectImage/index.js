@@ -40,11 +40,12 @@ const AspectImage = ({ src, aspect, children }) => {
 AspectImage.defaultProps = {
   aspect: 2 / 3,
   children: null,
+  src: null,
 }
 
 AspectImage.propTypes = {
   aspect: PropTypes.number,
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   children: PropTypes.element,
 }
 

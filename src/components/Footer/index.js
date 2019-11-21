@@ -11,10 +11,6 @@ const SOCIAL_LINKS = [
     url: `https://www.instagram.com/${social.instagram}`,
   },
   {
-    name: 'Facebook',
-    url: `https://www.facebook.com/${social.facebook}`,
-  },
-  {
     name: 'Twitter',
     url: `https://www.twitter.com/${social.twitter}`,
   },
@@ -32,9 +28,9 @@ function Footer() {
           <Section>
             <h5>Visit</h5>
             <p>
-              231 Front Street, Ste 209
+              28 Marcy, Floor 3
               <br />
-              Brooklyn, New York 11201
+              Brooklyn, New York 11211
             </p>
             <p>
               © {new Date().getFullYear()} {config.legalTitle}
