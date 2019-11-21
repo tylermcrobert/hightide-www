@@ -79,7 +79,7 @@ const Tracks = ({ items }) => {
   return (
     <ul>
       {items.map(({ track }) => {
-        const albumCover = track.album.images[0].url
+        const albumCover = track.album.images[0] && track.album.images[0].url
         const artists = track.artists.map(artist => artist.name).join(', ')
         const duration = msToTime(track.duration_ms)
 
