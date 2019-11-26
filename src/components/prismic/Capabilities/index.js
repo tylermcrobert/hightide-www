@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import TextSwitcher from 'components/TextSwitcher'
 import Section from 'components/Section'
 import SectionHead from 'components/SectionHead'
+import textExists from 'util/textExists'
 
 export default function Capabilities({ data }) {
   return (
@@ -16,18 +17,18 @@ export default function Capabilities({ data }) {
 
 /* eslint-disable react/prop-types */
 export function CapabilitiesNode({ data }) {
+  const validItems = data.filter(
+    item => textExists(item.capacity) && textExists(item.description)
+  )
+
   return (
     <TextSwitcher cols={2}>
-      {data.map(({ capacity, description }, i) =>
-        capacity.length ? (
-          <TextSwitcher.item i={i} key={RichText.asText(capacity)}>
-            <TextSwitcher.Head>{RichText.asText(capacity)}</TextSwitcher.Head>
-            <TextSwitcher.Body>
-              {RichText.asText(description)}
-            </TextSwitcher.Body>
-          </TextSwitcher.item>
-        ) : null
-      )}
+      {validItems.map(({ capacity, description }, i) => (
+        <TextSwitcher.item i={i} key={RichText.asText(capacity)}>
+          <TextSwitcher.Head>{RichText.asText(capacity)}</TextSwitcher.Head>
+          <TextSwitcher.Body>{RichText.asText(description)}</TextSwitcher.Body>
+        </TextSwitcher.item>
+      ))}
     </TextSwitcher>
   )
 }
