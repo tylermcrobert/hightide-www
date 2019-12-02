@@ -1,9 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Styled from './Styled'
 import Arrow from '../Arrow'
 
-function Header({ children, link, line, noArrow }) {
+interface Props {
+  children: string
+  link?: React.ReactElement
+  line?: boolean
+  noArrow?: boolean
+}
+
+const Header: React.FC<Props> = ({ children, link, line, noArrow }: Props) => {
   return (
     <Styled.Header line={line}>
       <h5>{children}</h5>
@@ -19,17 +25,4 @@ function Header({ children, link, line, noArrow }) {
   )
 }
 
-Header.defaultProps = {
-  line: false,
-  link: null,
-  noArrow: false,
-}
-
-Header.propTypes = {
-  line: PropTypes.bool,
-  link: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
-    .isRequired,
-  noArrow: PropTypes.bool,
-}
 export default Header

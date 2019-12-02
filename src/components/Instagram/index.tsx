@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import config from 'site.config'
 import LazyImg from '@tylermcrobert/react-lazyimg'
 import Section from 'components/Section'
 import SectionHead from 'components/SectionHead'
+import config from '../../../site.config'
 
 import Styled from './Styled'
 

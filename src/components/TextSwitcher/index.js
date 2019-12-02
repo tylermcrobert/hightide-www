@@ -5,7 +5,6 @@ import splitArr from 'util/splitArr'
 import useExpand from 'hooks/useExpand'
 import Styled from './Styled'
 
-
 export const TextSwitcherCtx = createContext()
 export const ItemCtx = createContext()
 
