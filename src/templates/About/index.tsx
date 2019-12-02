@@ -12,7 +12,7 @@ import AboutSwitcher from 'components/prismic/AboutSwitcher'
 import LazyImg from '@tylermcrobert/react-lazyimg'
 import Section from 'components/Section'
 
-const About = React.memo(({ site }) => {
+const About: React.FC<{ site: any }> = React.memo(({ site }) => {
   const {
     about_hero: heroText,
     about_intro_image: heroImg,

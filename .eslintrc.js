@@ -3,7 +3,6 @@ module.exports = {
   extends: [
     // Uses the recommended rules from @typescript-eslint/eslint-plugin
     'plugin:@typescript-eslint/recommended',
-    '@tylermcrobert/eslint-config/react',
     'plugin:prettier/recommended',
   ],
   rules: {
@@ -11,6 +10,7 @@ module.exports = {
     '@typescript-eslint/member-delimiter-style': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     'import/extensions': 0,
+    'react/react-in-jsx-scope': 0,
   },
   settings: {
     'import/resolver': {

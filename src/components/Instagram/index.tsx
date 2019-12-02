@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import LazyImg from '@tylermcrobert/react-lazyimg'
 import Section from 'components/Section'
 import SectionHead from 'components/SectionHead'
-import config from '../../../site.config'
+import config from 'siteconfig'
 
 import Styled from './Styled'
 

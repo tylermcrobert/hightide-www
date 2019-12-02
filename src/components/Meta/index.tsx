@@ -1,11 +1,21 @@
-import PropTypes from 'prop-types'
 import Head from 'next/head'
-import config, { siteUrl, social, previewImage } from 'site.config'
+import config, { siteUrl, social, previewImage } from 'siteconfig'
 import formatTitle from 'util/formatTitle'
 
 const removeLeadingSlash = str => str.replace(/^\/+/, '')
 
-const Meta = ({ url, title: titleProp, image, description }) => {
+interface Props {
+  url: string
+  title: string
+  image?: string
+  description?: string
+}
+const Meta: React.FC<Props> = ({
+  url,
+  title: titleProp,
+  image = previewImage,
+  description = config.description,
+}) => {
   const pageUrl = url ? `${siteUrl}/${removeLeadingSlash(url)}` : siteUrl
 
   return (
@@ -70,18 +80,5 @@ const Favicon = () => (
     <meta name="theme-color" content="#ffffff" />
   </>
 )
-
-Meta.defaultProps = {
-  title: null,
-  image: previewImage,
-  description: config.description,
-}
-
-Meta.propTypes = {
-  url: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
-  title: PropTypes.string,
-  image: PropTypes.string,
-  description: PropTypes.string,
-}
 
 export default Meta
