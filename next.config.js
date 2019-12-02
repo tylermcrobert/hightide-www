@@ -10,15 +10,18 @@ module.exports = withCSS(
   withFonts({
     // For absolute imports
     webpack(config) {
-      config.resolve = config.resolve || {}
-
-      config.resolve.modules = [
-        path.join('src'),
-        path.join(__dirname, 'node_modules'),
-        './',
-      ]
-
-      return config
+      return {
+        ...config,
+        resolve: {
+          ...config.resolve,
+          modules: [
+            path.join('src'),
+            path.join(__dirname, 'node_modules'),
+            './',
+          ],
+          extensions: ['.tsx', '.ts', '.js'],
+        },
+      }
     },
 
     env: {
