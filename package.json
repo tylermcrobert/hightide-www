@@ -53,7 +53,7 @@
     "deploy:staging": "now",
     "deploy:production": "now --prod",
     "export": "next build && next export",
-    "lint": "eslint  src",
+    "lint": "eslint --ext .js,.tsx 'src/**/*'",
     "kill-port": "kill $(lsof -t -i:5000)",
     "tryout": "npm run export && http-server out",
     "lambda-serve": "netlify-lambda -c serverless/webpack.functions.config.js serve serverless/functions",
