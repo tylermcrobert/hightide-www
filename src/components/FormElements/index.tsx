@@ -3,6 +3,8 @@ import { HEADING_LEVELS } from 'style/GlobalStyle'
 import { mq } from 'style/theme'
 
 const GREY = props => props.theme.colors.grey
+const BLACK = props => props.theme.colors.primary
+const WHITE = props => props.theme.colors.secondary
 
 const fs = (input: number) => props => props.theme.fontSizes[input]
 
@@ -36,4 +38,37 @@ export const Input = styled.input`
 export const Header = styled.div`
   margin-top: ${fs(5)};
   padding-bottom: ${fs(0)};
+`
+
+export const Radio = styled.input<{ value: string }>`
+  appearance: none;
+  outline: none;
+  border: 1px solid ${BLACK};
+  width: ${fs(8)};
+  height: ${fs(8)};
+  border-radius: 50%;
+  margin: 0;
+  margin-right: ${fs(1)};
+
+  :checked {
+    background: ${BLACK};
+
+    &:after{
+      color: ${WHITE}
+    }
+  }
+  
+
+  &:after {
+    content: "${props => props.value}";
+    font-size: ${fs(2)};
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    line-height: 1;
+  }
 `

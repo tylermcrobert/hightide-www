@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Section from 'components/Section'
 import useForm from './useForm'
 import { ContactCtx } from '.'
-import { TextArea, Input, Header } from 'components/FormElements'
+import { TextArea, Input, Header, Radio } from 'components/FormElements'
 
 const Form: React.FC = () => {
   const { setOpenState, isOpen } = useContext(ContactCtx)
@@ -15,7 +15,10 @@ const Form: React.FC = () => {
           <form onSubmit={e => handleSubmit(e)}>
             <div>
               <Header>Were you referred to us?</Header>
-              <div>(Yes) (No)</div>
+              <div>
+                <Radio type="radio" name="gender" value="Yes" />
+                <Radio type="radio" name="gender" value="No" />
+              </div>
             </div>
             <Header>Tell us a little bit about your project?</Header>
             <div>
