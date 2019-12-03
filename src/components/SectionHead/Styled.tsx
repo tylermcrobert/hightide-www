@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-const Header = styled.div<{ line: boolean }>`
+const Header = styled.div<{ line?: boolean }>`
   display: grid;
   grid-template-columns: 1fr auto;
 
