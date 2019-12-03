@@ -1,16 +1,22 @@
 module.exports = {
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-  extends: [
-    // Uses the recommended rules from @typescript-eslint/eslint-plugin
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['plugin:@typescript-eslint/recommended'],
+  plugins: ['@typescript-eslint'],
   rules: {
-    'react/prop-types': 0,
-    '@typescript-eslint/member-delimiter-style': 0,
+    // Disabling because of bug
+    '@typescript-eslint/no-unused-vars': 0,
+    // No commas or semi in interfaces
+    '@typescript-eslint/member-delimiter-style': [
+      1,
+      {
+        multiline: {
+          delimiter: 'none',
+        },
+      },
+    ],
+    // Disable warning abotut function return types.
+    // Warns too often for React arrow functions.
     '@typescript-eslint/explicit-function-return-type': 0,
-    'import/extensions': 0,
-    'react/react-in-jsx-scope': 0,
   },
   settings: {
     'import/resolver': {

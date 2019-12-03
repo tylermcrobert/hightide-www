@@ -14,7 +14,6 @@ export default function Capabilities({ data }) {
   )
 }
 
-/* eslint-disable react/prop-types */
 export function CapabilitiesNode({ data }) {
   return (
     <TextSwitcher cols={2}>

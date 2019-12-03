@@ -33,8 +33,6 @@ async function loadPolyfills() {
 
 loadPolyfills()
 
-/* eslint import/no-named-as-default-member: 0 */
-
 const DARK_ROUTES = ['/work']
 
 const { duration, distance } = theme.routeTransition

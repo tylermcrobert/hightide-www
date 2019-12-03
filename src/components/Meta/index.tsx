@@ -10,6 +10,7 @@ interface Props {
   image?: string
   description?: string
 }
+
 const Meta: React.FC<Props> = ({
   url,
   title: titleProp,
