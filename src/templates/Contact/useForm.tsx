@@ -16,7 +16,6 @@ const useForm = (): FormMethods => {
 
   const handleChange = (e, objectKey: string) => {
     setFormState({ ...formState, [objectKey]: e.target.value })
-
     console.log(formState)
   }
 

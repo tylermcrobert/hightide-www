@@ -16,8 +16,18 @@ const Form: React.FC = () => {
             <div>
               <Header>Were you referred to us?</Header>
               <div>
-                <Radio type="radio" name="gender" value="Yes" />
-                <Radio type="radio" name="gender" value="No" />
+                <Radio
+                  type="radio"
+                  name="referral"
+                  value="Yes"
+                  onChange={e => handleChange(e, 'isReferral')}
+                />
+                <Radio
+                  type="radio"
+                  name="referral"
+                  value="No"
+                  onChange={e => handleChange(e, 'isReferral')}
+                />
               </div>
             </div>
             <Header>Tell us a little bit about your project?</Header>
