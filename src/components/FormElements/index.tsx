@@ -40,7 +40,12 @@ export const Header = styled.div`
   padding-bottom: ${fs(0)};
 `
 
-export const Radio = styled.input<{ value: string }>`
+interface RadioProps {
+  value: string
+}
+
+export const Radio = styled.input<RadioProps>`
+  cursor: pointer;
   appearance: none;
   outline: none;
   border: 1px solid ${BLACK};
@@ -53,14 +58,13 @@ export const Radio = styled.input<{ value: string }>`
   :checked {
     background: ${BLACK};
 
-    &:after{
-      color: ${WHITE}
+    &:after {
+      color: ${WHITE};
     }
   }
-  
 
   &:after {
-    content: "${props => props.value}";
+    content: ${props => `"${props.value}"`};
     font-size: ${fs(2)};
     width: 100%;
     height: 100%;

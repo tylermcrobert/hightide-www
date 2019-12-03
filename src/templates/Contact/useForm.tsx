@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { FormMethods, FormState, FormEl } from './types'
+import { FormState, FormEl } from './types'
 
-// dynamically create?
 const initialState = {
   email: '',
   firstName: '',
@@ -10,6 +9,11 @@ const initialState = {
   synopsis: '',
   isValid: false,
   isReferral: '',
+}
+
+export interface FormMethods {
+  handleChange: (e: any, objectKey: FormEl) => void
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
 const useForm = (): FormMethods => {
