@@ -53,7 +53,7 @@ const SubmitWrapper = styled.div`
   justify-content: flex-end;
 `
 
-const Submit = styled.input`
+const Submit = styled.input<{ active?: boolean }>`
   display: inline-block;
   border: none;
   margin: 0;
