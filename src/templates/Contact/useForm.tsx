@@ -1,5 +1,19 @@
 import React, { useState } from 'react'
-import { FormState, FormMethods } from './types'
+
+export interface FormState {
+  email: string
+  firstName: string
+  lastName: string
+  company: string
+  synopsis: string
+  isReferral: boolean
+  isValid: boolean
+}
+
+export interface FormMethods {
+  handleChange: (e: any, objectKey: string) => void
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+}
 
 const initialState = {
   email: '',
@@ -16,13 +30,15 @@ const useForm = (): FormMethods => {
 
   const handleChange = (e, objectKey: string) => {
     setFormState({ ...formState, [objectKey]: e.target.value })
-    console.log(formState)
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formState)
   }
+
+  React.useEffect(() => {
+    console.log(formState)
+  }, [formState])
 
   return { handleChange, handleSubmit }
 }

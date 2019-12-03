@@ -2,8 +2,12 @@ import React, { useState, createContext, useContext } from 'react'
 import PageIntro from 'components/PageIntro'
 import Section from 'components/Section'
 import { Wrap } from 'style'
-import { PageState } from './types'
 import Form from './form'
+
+export interface PageState {
+  setOpenState: React.Dispatch<React.SetStateAction<boolean>>
+  isOpen: boolean
+}
 
 export const ContactCtx = React.createContext<PageState>({
   setOpenState: () => false,
