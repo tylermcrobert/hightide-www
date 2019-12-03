@@ -4,12 +4,16 @@ export interface FormState {
   lastName: string
   company: string
   synopsis: string
+  isReferral: boolean
   isValid: boolean
 }
 
-export interface Context {
+export interface FormMethods {
   handleChange: (e: any, objectKey: string) => void
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+}
+
+export interface PageState {
   setOpenState: React.Dispatch<React.SetStateAction<boolean>>
   isOpen: boolean
 }

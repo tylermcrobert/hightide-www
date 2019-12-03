@@ -2,42 +2,19 @@ import React, { useState, createContext, useContext } from 'react'
 import PageIntro from 'components/PageIntro'
 import Section from 'components/Section'
 import { Wrap } from 'style'
-import siteConfig from 'siteconfig'
-import { FormState, Context } from './types'
+import { PageState } from './types'
+import useForm from './useForm'
 
-const initialState = {
-  email: '',
-  firstName: '',
-  lastName: '',
-  company: '',
-  synopsis: '',
-  isValid: false,
-}
-
-const ContactCtx = React.createContext<Context>({
-  handleChange: () => null,
-  handleSubmit: () => null,
+const ContactCtx = React.createContext<PageState>({
   setOpenState: () => false,
   isOpen: false,
 })
 
 const Contact: React.FC<{ hero }> = ({ hero }) => {
-  const [formState, setFormState] = useState<FormState>(initialState)
   const [isOpen, setOpenState] = useState<boolean>(false)
 
-  const handleChange = (e, objectKey: string) => {
-    setFormState({ ...formState, [objectKey]: e.target.value })
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(formState)
-  }
-
   return (
-    <ContactCtx.Provider
-      value={{ handleChange, handleSubmit, setOpenState, isOpen }}
-    >
+    <ContactCtx.Provider value={{ setOpenState, isOpen }}>
       <Wrap>
         <PageIntro>
           <h1>Interested in working together?</h1>
@@ -45,7 +22,6 @@ const Contact: React.FC<{ hero }> = ({ hero }) => {
         </PageIntro>
 
         <Form />
-
         <Info />
       </Wrap>
     </ContactCtx.Provider>
@@ -53,19 +29,18 @@ const Contact: React.FC<{ hero }> = ({ hero }) => {
 }
 
 const Form: React.FC = () => {
-  const {
-    //
-    handleSubmit,
-    handleChange,
-    setOpenState,
-    isOpen,
-  } = useContext(ContactCtx)
+  const { setOpenState, isOpen } = useContext(ContactCtx)
+  const { handleSubmit, handleChange } = useForm()
 
   return (
     <Section>
       {isOpen && (
         <div>
           <form onSubmit={e => handleSubmit(e)}>
+            <div>
+              Were you referred to us?
+              <div>(Yes) (No)</div>
+            </div>
             Tell us a little bit about your project?
             <div>
               <textarea onChange={e => handleChange(e, 'synopsis')}></textarea>
