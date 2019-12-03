@@ -45,13 +45,12 @@ export const lineHeights = {
   loose: 1.75,
 }
 
-export const mq = Object.keys(sizes).reduce(
-  (acc, current) => ({
-    ...acc,
-    [current]: `(min-width: ${sizes[current]}px)`,
-  }),
-  {}
-)
+const reducer = (acc, current) => ({
+  ...acc,
+  [current]: `(min-width: ${sizes[current]}px)`,
+})
+
+export const mq = Object.keys(sizes).reduce(reducer, {})
 
 const ROUTE_TRANSITION_DURATION = 250
 // Blank time between
