@@ -3,6 +3,14 @@ import Section from 'components/Section'
 import useForm from './useForm'
 import { ContactCtx } from '.'
 import { TextArea, Input, Header, Radio } from 'components/FormElements'
+import { FormEl } from './types'
+
+const formEls: { key: FormEl; label: string }[] = [
+  { key: 'firstName', label: 'Last Name' },
+  { key: 'lastName', label: 'Last Name' },
+  { key: 'email', label: 'Email' },
+  { key: 'company', label: 'Company' },
+]
 
 const Form: React.FC = () => {
   const { setOpenState, isOpen } = useContext(ContactCtx)
@@ -37,12 +45,7 @@ const Form: React.FC = () => {
                 onChange={e => handleChange(e, 'synopsis')}
               ></TextArea>
             </div>
-            {[
-              { key: 'firstName', label: 'Last Name' },
-              { key: 'lastName', label: 'Last Name' },
-              { key: 'email', label: 'Email' },
-              { key: 'company', label: 'Company' },
-            ].map(({ key, label }) => (
+            {formEls.map(({ key, label }) => (
               <div key={key}>
                 <Input
                   onChange={e => handleChange(e, key)}
