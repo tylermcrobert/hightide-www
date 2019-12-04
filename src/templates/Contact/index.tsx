@@ -4,6 +4,7 @@ import Section from 'components/Section'
 import { Wrap } from 'style'
 import Form from './form'
 import Heading from 'components/Heading'
+import Cols from 'components/Cols'
 
 export interface PageState {
   setOpenState: React.Dispatch<React.SetStateAction<boolean>>
@@ -41,16 +42,23 @@ const EMAILS: { title: string; email: string }[] = [
 
 const Info: React.FC = () => {
   return (
-    <Section>
-      <div>
-        {EMAILS.map(({ title, email }) => (
-          <div key={title}>
-            <strong>{title}</strong>
-            <div>{email}</div>
-          </div>
-        ))}
-      </div>
-    </Section>
+    <Cols>
+      <Section>
+        <div>
+          {EMAILS.map(({ title, email }) => (
+            <div key={title}>
+              <strong>{title}</strong>
+              <p>{email}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+      <Section>
+        <p>
+          28 Marcy Avenue, Floor 3<br /> Brooklyn, NY 11211
+        </p>
+      </Section>
+    </Cols>
   )
 }
 export default Contact

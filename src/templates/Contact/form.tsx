@@ -24,33 +24,23 @@ const Form: React.FC = () => {
       <Styled.Prompt isHidden={isOpen} onClick={() => setOpenState(true)}>
         Answer a Few Questions
       </Styled.Prompt>
-
       <div ref={ref}>
         <form onSubmit={e => handleSubmit(e)}>
-          <div>
-            <Header>Were you referred to us?</Header>
-            <div>
-              <Radio
-                type="radio"
-                name="referral"
-                value="Yes"
-                onChange={e => handleChange(e, 'isReferral')}
-              />
-              <Radio
-                type="radio"
-                name="referral"
-                value="No"
-                onChange={e => handleChange(e, 'isReferral')}
-              />
-            </div>
-          </div>
+          <Header>Were you referred to us?</Header>
+          <Radio
+            type="radio"
+            name="referral"
+            value="Yes"
+            onChange={e => handleChange(e, 'isReferral')}
+          />
+          <Radio
+            type="radio"
+            name="referral"
+            value="No"
+            onChange={e => handleChange(e, 'isReferral')}
+          />
           <Header>Tell us a little bit about your project?</Header>
-          <div>
-            <TextArea
-              rows={5}
-              onChange={e => handleChange(e, 'synopsis')}
-            ></TextArea>
-          </div>
+          <TextArea rows={5} onChange={e => handleChange(e, 'synopsis')} />
           {formEls.map(({ key, label }) => (
             <div key={key}>
               <Input
