@@ -3,6 +3,7 @@ import PageIntro from 'components/PageIntro'
 import Section from 'components/Section'
 import { Wrap } from 'style'
 import Form from './form'
+import Heading from 'components/Heading'
 
 export interface PageState {
   setOpenState: React.Dispatch<React.SetStateAction<boolean>>
@@ -15,26 +16,27 @@ export const ContactCtx = React.createContext<PageState>({
 })
 
 const Contact: React.FC<{ hero }> = ({ hero }) => {
-  const [isOpen, setOpenState] = useState<boolean>(true)
+  const [isOpen, setOpenState] = useState<boolean>(false)
 
   return (
     <ContactCtx.Provider value={{ setOpenState, isOpen }}>
       <Wrap>
-        <PageIntro>
-          <h1>Interested in working together?</h1>
-          <div onClick={() => setOpenState(true)}>Answer a few questions</div>
-        </PageIntro>
-        <Form />
-        <Info />
+        <Section>
+          <Heading headingStyle={0} as="h1" noMargin={true}>
+            Interested in working together?
+          </Heading>
+          <Form />
+          <Info />
+        </Section>
       </Wrap>
     </ContactCtx.Provider>
   )
 }
 
 const EMAILS: { title: string; email: string }[] = [
-  { title: 'Inquiries', email: 'infoahightidenyc.com' },
-  { title: 'Careers', email: 'careersahightidenyc.com' },
-  { title: 'Press', email: 'pressahightidenyc.com' },
+  { title: 'Inquiries', email: 'info@hightidenyc.com' },
+  { title: 'Careers', email: 'careers@hightidenyc.com' },
+  { title: 'Press', email: 'press@hightidenyc.com' },
 ]
 
 const Info: React.FC = () => {
@@ -43,7 +45,7 @@ const Info: React.FC = () => {
       <div>
         {EMAILS.map(({ title, email }) => (
           <div key={title}>
-            <div>{title}</div>
+            <strong>{title}</strong>
             <div>{email}</div>
           </div>
         ))}
@@ -52,4 +54,3 @@ const Info: React.FC = () => {
   )
 }
 export default Contact
-// About.propTypes = {}
