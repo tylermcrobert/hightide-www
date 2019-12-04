@@ -55,7 +55,8 @@ const Info: React.FC = () => {
       </Section>
       <Section>
         <p>
-          28 Marcy Avenue, Floor 3<br /> Brooklyn, NY 11211
+          28 Marcy Avenue, Floor 3<br />
+          Brooklyn, NY 11211
         </p>
       </Section>
     </Cols>

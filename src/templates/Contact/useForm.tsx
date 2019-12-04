@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { FormState, FormEl } from './types'
+import axios from 'axios'
+import Router from 'next/router'
+import { COMPANY_CODE, SYNOPSIS_CODE } from './constants'
 
-const initialState = {
+const initialState: FormState = {
   email: '',
   firstName: '',
   lastName: '',
@@ -25,11 +28,34 @@ const useForm = (): FormMethods => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-  }
 
-  React.useEffect(() => {
-    console.log(formState)
-  }, [formState])
+    const structureObj = () => {
+      const { firstName, lastName, email, company, synopsis } = formState
+      return {
+        name: `${firstName} ${lastName}`,
+        email: email,
+        [COMPANY_CODE]: company,
+        [SYNOPSIS_CODE]: synopsis,
+      }
+    }
+
+    const handleSuccess = () => {
+      Router.push({
+        pathname: '/submit',
+      })
+    }
+
+    const postForm = () => {
+      const postObject = structureObj()
+
+      axios
+        .post('/api/submitForm', postObject)
+        .then(() => handleSuccess())
+        .catch(err => console.error('err', err))
+    }
+
+    postForm()
+  }
 
   return { handleChange, handleSubmit }
 }

@@ -4,13 +4,11 @@ const pipediveUrl = `${process.env.PIPEDRIVE_ENDPOINT}?api_token=${process.env.P
 
 export default (req, res) => {
   axios
-    .post(pipediveUrl, { name: 'testingform' })
+    .post(pipediveUrl, req.body)
     .then(pdRes => {
       res.status(200).json(pdRes.data)
     })
     .catch(err => {
-      console.log(err)
-
-      res.status(500).json(err.response.data)
+      res.status(err.request.res.statusCode).json(err.response.data)
     })
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Section from 'components/Section'
+import Cols from 'components/Cols'
 import useForm from './useForm'
 import { ContactCtx } from '.'
 import { TextArea, Input, Header, Radio } from 'components/FormElements'
