@@ -3,6 +3,11 @@ import { CursorTrigger } from 'components/CursorHover'
 
 const ImageWrapper = styled.div`
   position: relative;
+
+  /* Fixes weird 1px bug  */
+  .flickity-viewport {
+    width: calc(100% + 1px);
+  }
 `
 
 const Images = styled.div`
