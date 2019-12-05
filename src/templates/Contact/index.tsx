@@ -5,6 +5,8 @@ import { Wrap } from 'style'
 import Form from './form'
 import Heading from 'components/Heading'
 import Cols from 'components/Cols'
+import { social } from 'siteconfig'
+import Styled from './Styled'
 
 export interface PageState {
   setOpenState: React.Dispatch<React.SetStateAction<boolean>>
@@ -15,6 +17,21 @@ export const ContactCtx = React.createContext<PageState>({
   setOpenState: () => false,
   isOpen: false,
 })
+
+const SOCIAL_LINKS = [
+  {
+    name: 'Instagram',
+    url: `https://www.instagram.com/${social.instagram}`,
+  },
+  {
+    name: 'Twitter',
+    url: `https://www.twitter.com/${social.twitter}`,
+  },
+  {
+    name: 'Tumblr',
+    url: `https://${social.tumblr}.tumblr.com/`,
+  },
+]
 
 const Contact: React.FC<{ hero }> = ({ hero }) => {
   const [isOpen, setOpenState] = useState<boolean>(false)
@@ -42,24 +59,43 @@ const EMAILS: { title: string; email: string }[] = [
 
 const Info: React.FC = () => {
   return (
-    <Cols>
-      <Section>
-        <div>
-          {EMAILS.map(({ title, email }) => (
-            <div key={title}>
-              <strong>{title}</strong>
-              <p>{email}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-      <Section>
-        <p>
-          28 Marcy Avenue, Floor 3<br />
-          Brooklyn, NY 11211
-        </p>
-      </Section>
-    </Cols>
+    <Styled.Information>
+      <Cols>
+        <Section>
+          <div>
+            {EMAILS.map(({ title, email }) => (
+              <Styled.InformationSection key={title}>
+                <strong>{title}</strong>
+                <a href={`mailto:${email}`}>{email}</a>
+              </Styled.InformationSection>
+            ))}
+          </div>
+        </Section>
+        <Section>
+          <Styled.InformationSection>
+            <strong>Visit</strong>
+            <p>
+              28 Marcy Avenue, Floor 3<br />
+              Brooklyn, NY 11211
+            </p>
+          </Styled.InformationSection>
+          <Styled.InformationSection>
+            <strong>Follow</strong>
+            {SOCIAL_LINKS.map(({ name, url }) => (
+              <a
+                key={url}
+                href={url}
+                style={{ display: 'block' }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {name}
+              </a>
+            ))}
+          </Styled.InformationSection>
+        </Section>
+      </Cols>
+    </Styled.Information>
   )
 }
 export default Contact

@@ -21,4 +21,21 @@ const SubmitWrapper = styled.div`
   padding-top: 1rem;
 `
 
-export default { Link, Prompt, SubmitWrapper }
+const Information = styled.div`
+  line-height: 1.5;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+`
+
+const InformationSection = styled.div`
+  margin-bottom: 1.5rem;
+`
+
+export default { Link, Prompt, SubmitWrapper, Information, InformationSection }
