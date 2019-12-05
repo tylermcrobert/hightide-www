@@ -1,35 +1,28 @@
 module.exports = {
-  parser: 'babel-eslint',
-  extends: ['airbnb', 'prettier'],
-  plugins: ['import', 'react', 'react-hooks'],
+  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
+  extends: ['plugin:@typescript-eslint/recommended'],
+  plugins: ['@typescript-eslint'],
   rules: {
-    'no-console': [1, { allow: ['warn', 'error'] }],
-    'no-underscore-dangle': 0,
-    'react/jsx-filename-extension': 0,
-    'react/jsx-one-expression-per-line': 0,
-    'react/forbid-prop-types': 0,
-    'import/no-cycle': 0,
-    'react/prop-types': 0,
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
-    'jsx-a11y/iframe-has-title': 0,
-    'jsx-a11y/no-static-element-interactions': 0,
-    'jsx-a11y/anchor-is-valid': 0,
-    'jsx-a11y/click-events-have-key-events': 0,
-    'react/no-danger': 0,
-    'react/no-array-index-key': 0,
-    'react/react-in-jsx-scope': 0,
-    'import/prefer-default-export': 0,
-  },
-  env: {
-    browser: true,
-    node: true,
+    // Disabling because of bug
+    '@typescript-eslint/no-unused-vars': 0,
+    // No commas or semi in interfaces
+    '@typescript-eslint/member-delimiter-style': [
+      1,
+      {
+        multiline: {
+          delimiter: 'none',
+        },
+      },
+    ],
+    // Disable warning abotut function return types.
+    // Warns too often for React arrow functions.
+    '@typescript-eslint/explicit-function-return-type': 0,
   },
   settings: {
     'import/resolver': {
       node: {
-        paths: ['/', 'src', __dirname],
-        moduleDirectory: ['node_modules'],
+        paths: ['src'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
   },

@@ -33,17 +33,18 @@
     "webpack": "^4.41.0"
   },
   "devDependencies": {
+    "@tylermcrobert/eslint-config": "^1.0.0",
+    "@types/node": "^12.12.14",
+    "@types/react": "^16.9.13",
+    "@types/styled-components": "^4.4.0",
+    "@typescript-eslint/eslint-plugin": "^2.10.1-alpha.0",
+    "@typescript-eslint/parser": "^2.9.0",
     "babel-eslint": "latest",
     "babel-plugin-styled-components": "^1.10.6",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-prettier": "latest",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-jsx-a11y": "latest",
-    "eslint-plugin-prettier": "latest",
-    "eslint-plugin-react": "latest",
-    "eslint-plugin-react-hooks": "latest",
-    "prettier": "latest"
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.2"
   },
   "scripts": {
     "dev": "next -- -p 5000",
@@ -52,7 +53,7 @@
     "deploy:staging": "now",
     "deploy:production": "now --prod",
     "export": "next build && next export",
-    "lint": "eslint  src",
+    "lint": "eslint --ext .js,.tsx 'src/**/*'",
     "kill-port": "kill $(lsof -t -i:5000)",
     "tryout": "npm run export && http-server out",
     "lambda-serve": "netlify-lambda -c serverless/webpack.functions.config.js serve serverless/functions",

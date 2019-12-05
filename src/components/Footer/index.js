@@ -1,6 +1,6 @@
 import React from 'react'
 import { Wrap } from 'style'
-import config, { social } from 'site.config'
+import config, { social } from 'siteconfig'
 import { Opacity } from 'components/LinkEffect'
 import Styled from './Styled'
 import Section from '../Section'

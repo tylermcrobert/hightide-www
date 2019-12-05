@@ -115,9 +115,24 @@ const style = css`
   }
 `
 
+const buttonStyle = css`
+  button,
+  input[type='submit'],
+  input[type='reset'] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+`
+
 const GlobalStyle = createGlobalStyle`
   ${reset}
   ${style}
+  ${buttonStyle}
 `
 
 export default GlobalStyle

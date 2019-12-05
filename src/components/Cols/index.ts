@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { mq } from 'style/theme'
 
-const GalleryWrap = styled.div`
+const Cols = styled.div`
   display: grid;
   grid-gap: ${props => props.theme.margins.standard};
 
@@ -10,4 +10,4 @@ const GalleryWrap = styled.div`
   }
 `
 
-export default { GalleryWrap }
+export default Cols

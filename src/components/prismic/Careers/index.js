@@ -27,8 +27,6 @@ Careers.propTypes = {
   ).isRequired,
 }
 
-/* eslint-disable react/prop-types */
-
 export function CareerSwitcher({ data }) {
   return (
     <TextSwitcher cols={1}>
