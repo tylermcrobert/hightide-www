@@ -5,18 +5,19 @@ import Router from 'next/router'
 import { COMPANY_CODE, SYNOPSIS_CODE } from './constants'
 
 const initialState: FormState = {
-  email: '',
-  firstName: '',
-  lastName: '',
-  company: '',
-  synopsis: '',
+  email: null,
+  firstName: null,
+  lastName: null,
+  company: null,
+  synopsis: null,
   isValid: false,
-  isReferral: '',
+  isReferral: null,
 }
 
 export interface FormMethods {
   handleChange: (e: any, objectKey: FormEl) => void
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  formState: FormState
 }
 
 const useForm = (): FormMethods => {
@@ -57,7 +58,7 @@ const useForm = (): FormMethods => {
     postForm()
   }
 
-  return { handleChange, handleSubmit }
+  return { handleChange, handleSubmit, formState }
 }
 
 export default useForm

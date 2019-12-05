@@ -16,15 +16,16 @@ const formEls: { key: FormEl; label: string }[] = [
 
 const Form: React.FC = () => {
   const { setOpenState, isOpen } = useContext(ContactCtx)
-  const { handleSubmit, handleChange } = useForm()
-  const ref = useExpand(isOpen, 0.5)
+  const { handleSubmit, handleChange, formState } = useForm()
+  const formRef = useExpand(isOpen, 0.5)
+  const referralRef = useExpand(formState.isReferral === 'Yes')
 
   return (
     <div>
       <Styled.Prompt isHidden={isOpen} onClick={() => setOpenState(true)}>
         Answer a Few Questions
       </Styled.Prompt>
-      <div ref={ref}>
+      <div ref={formRef}>
         <form onSubmit={e => handleSubmit(e)}>
           <Header>Were you referred to us?</Header>
           <Radio
@@ -39,6 +40,12 @@ const Form: React.FC = () => {
             value="No"
             onChange={e => handleChange(e, 'isReferral')}
           />
+
+          <div ref={referralRef}>
+            <Header>Who were you referred by?</Header>
+            <Input placeholder="Name" style={{ marginTop: 0 }} />
+          </div>
+
           <Header>Tell us a little bit about your project?</Header>
           <TextArea rows={5} onChange={e => handleChange(e, 'synopsis')} />
           {formEls.map(({ key, label }) => (

@@ -8,9 +8,10 @@ export type FormEl =
   | 'isReferral'
 
 export type FormEls = {
-  [key in FormEl]: string
+  [key in FormEl]: string | null
 }
 
 export interface FormState extends FormEls {
   isValid: boolean
+  isReferral: 'Yes' | 'No' | null
 }
