@@ -10,6 +10,7 @@ import {
   ItemProps,
   ColSplitterProps,
   TabsComposition,
+  HeadProps,
 } from './types'
 
 /**
@@ -70,11 +71,11 @@ const Item: React.FC<ItemProps> = ({ children, i }) => {
  * Wrapper for title
  */
 
-const Head: React.FC = ({ children }) => {
+const Head: React.FC<HeadProps> = ({ children, noExpand = false }) => {
   return (
     <Styled.HeadWrapper>
       <Styled.Head>{children}</Styled.Head>
-      <Styled.CloseMarker>&#65291;</Styled.CloseMarker>
+      {!noExpand && <Styled.CloseMarker>&#65291;</Styled.CloseMarker>}
     </Styled.HeadWrapper>
   )
 }

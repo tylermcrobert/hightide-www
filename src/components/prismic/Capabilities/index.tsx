@@ -17,13 +17,12 @@ export default function Capabilities({ data }) {
 export function CapabilitiesNode({ data }) {
   return (
     <TextSwitcher cols={2}>
-      {data.map(({ capacity, description }, i) =>
+      {data.map(({ capacity }, i: number) =>
         capacity.length ? (
           <TextSwitcher.item i={i} key={RichText.asText(capacity)}>
-            <TextSwitcher.Head>{RichText.asText(capacity)}</TextSwitcher.Head>
-            <TextSwitcher.Body>
-              {RichText.asText(description)}
-            </TextSwitcher.Body>
+            <TextSwitcher.Head noExpand>
+              {RichText.asText(capacity)}
+            </TextSwitcher.Head>
           </TextSwitcher.item>
         ) : null
       )}

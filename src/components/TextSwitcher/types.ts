@@ -21,8 +21,12 @@ export interface ColSplitterProps {
   cols: number
 }
 
+export interface HeadProps {
+  noExpand?: boolean
+}
+
 export interface TabsComposition {
   Body: React.FC
-  Head: React.FC
+  Head: React.FC<HeadProps>
   item: React.FC<ItemProps>
 }
