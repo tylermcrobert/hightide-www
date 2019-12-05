@@ -59,7 +59,9 @@ const Form: React.FC = () => {
           <Styled.SubmitWrapper>
             <Styled.Link onClick={() => setOpenState(false)}>Close</Styled.Link>
             <div>
-              <Button type="submit">Submit</Button>
+              <Button type="submit" disabled={!formState.isValid}>
+                Submit
+              </Button>
             </div>
           </Styled.SubmitWrapper>
         </form>

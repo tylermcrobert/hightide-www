@@ -24,7 +24,14 @@ const useForm = (): FormMethods => {
   const [formState, setFormState] = useState<FormState>(initialState)
 
   const handleChange = (e, objectKey: FormEl) => {
-    setFormState({ ...formState, [objectKey]: e.target.value })
+    const validate = (updatedState: FormState): boolean => {
+      const { email, firstName, lastName, company, synopsis } = updatedState
+      return !!(email && firstName && lastName && company && synopsis)
+    }
+
+    const updatedState = { ...formState, [objectKey]: e.target.value }
+    const isValid = validate(updatedState)
+    setFormState({ ...updatedState, isValid })
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
