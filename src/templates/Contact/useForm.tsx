@@ -15,7 +15,7 @@ const initialState: FormState = {
 }
 
 export interface FormMethods {
-  handleChange: (e: any, objectKey: FormEl) => void
+  handleChange: (e: React.SyntheticEvent, objectKey: FormEl) => void
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   formState: FormState
 }
