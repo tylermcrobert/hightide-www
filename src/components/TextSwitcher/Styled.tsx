@@ -8,7 +8,7 @@ const Body = styled.div`
   overflow: hidden;
 `
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ cols: number }>`
   @media ${BREAKPOINT} {
     display: ${props => (props.cols > 1 ? 'grid' : 'block')};
     grid-template-columns: repeat(${props => props.cols}, 1fr);
