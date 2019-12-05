@@ -1,9 +1,8 @@
 import styled from 'styled-components'
-import { log } from 'util'
+import Button from 'components/Button'
 
 const Link = styled.div`
   cursor: pointer;
-  text-decoration: underline;
 `
 
 const Prompt = styled(Link)<{ isHidden: boolean }>`
@@ -13,8 +12,13 @@ const Prompt = styled(Link)<{ isHidden: boolean }>`
   transition-timing-function: ${props => props.theme.ease.standard};
 `
 
-const Close = styled(Link)`
-  text-align: center;
+const SubmitWrapper = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: flex-end;
+  align-items: center;
+  grid-gap: 1rem;
+  padding-top: 1rem;
 `
 
-export default { Link, Prompt, Close }
+export default { Link, Prompt, SubmitWrapper }

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Cols from 'components/Cols'
+import Button from 'components/Button'
 import useForm from './useForm'
 import { ContactCtx } from '.'
 import { TextArea, Input, Header, Radio } from 'components/FormElements'
@@ -49,9 +49,13 @@ const Form: React.FC = () => {
               />
             </div>
           ))}
-          <button type="submit">Submit</button>
+          <Styled.SubmitWrapper>
+            <Styled.Link onClick={() => setOpenState(false)}>Close</Styled.Link>
+            <div>
+              <Button type="submit">Submit</Button>
+            </div>
+          </Styled.SubmitWrapper>
         </form>
-        <Styled.Close onClick={() => setOpenState(false)}>Close</Styled.Close>
       </div>
     </div>
   )
