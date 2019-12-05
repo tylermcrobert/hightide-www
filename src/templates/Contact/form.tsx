@@ -28,6 +28,7 @@ const Form: React.FC = () => {
       <div ref={formRef}>
         <form onSubmit={e => handleSubmit(e)}>
           <Header>Were you referred to us?</Header>
+
           <Radio
             type="radio"
             name="referral"
@@ -46,8 +47,13 @@ const Form: React.FC = () => {
             <Input placeholder="Name" style={{ marginTop: 0 }} />
           </div>
 
-          <Header>Tell us a little bit about your project?</Header>
+          <Header>
+            Tell us about your project. Please include estimated timeline,
+            budget, and goals.
+          </Header>
+
           <TextArea rows={5} onChange={e => handleChange(e, 'synopsis')} />
+
           {formEls.map(({ key, label }) => (
             <div key={key}>
               <Input
@@ -56,6 +62,7 @@ const Form: React.FC = () => {
               />
             </div>
           ))}
+
           <Styled.SubmitWrapper>
             <Styled.Link onClick={() => setOpenState(false)}>Close</Styled.Link>
             <div>
