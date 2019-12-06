@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { mq } from 'style/theme'
+import { mq, sizes } from 'style/theme'
 
 const RATIO = (2 / 3) * 100
 
@@ -46,8 +46,11 @@ const PostImage = styled.div`
 
 const DescWrapper = styled.div`
   display: grid;
-  grid-gap: ${props => props.theme.margins.standard};
   grid-template-columns: 1fr auto;
+  grid-gap: ${props => props.theme.margins.standard};
+  @media (min-width: ${sizes.xs}px) and (max-width: ${sizes.sm}px) {
+    display: block;
+  }
 `
 
 const LoadMore = styled.div`
