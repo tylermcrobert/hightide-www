@@ -20,7 +20,11 @@ export default function Recognition({ items }) {
             >
               <Styled.Item>
                 {RichText.render(title)}
-                {link.url && <Arrow />}
+                {link.url && (
+                  <div className="arrow">
+                    <Arrow />
+                  </div>
+                )}
               </Styled.Item>
             </a>
           ))}
