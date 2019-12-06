@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import Section from 'components/Section'
 import { RichText } from 'prismic-reactjs'
 import PropTypes from 'prop-types'
@@ -5,7 +6,10 @@ import Arrow from 'components/Arrow'
 import SectionHead from 'components/SectionHead'
 import Styled from './Styled'
 
-export default function Recognition({ items }) {
+interface RecognitionProps {
+  items: any[]
+}
+const Recognition: React.FC<RecognitionProps> = memo(({ items }) => {
   if (items && items.length) {
     return (
       <Section>
@@ -20,11 +24,7 @@ export default function Recognition({ items }) {
             >
               <Styled.Item>
                 {RichText.render(title)}
-                {link.url && (
-                  <div className="arrow">
-                    <Arrow />
-                  </div>
-                )}
+                {link.url && <Arrow />}
               </Styled.Item>
             </a>
           ))}
@@ -33,8 +33,10 @@ export default function Recognition({ items }) {
     )
   }
   return null
-}
+})
 
 Recognition.propTypes = {
   items: PropTypes.array.isRequired,
 }
+
+export default Recognition

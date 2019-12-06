@@ -15,14 +15,14 @@ const Item = styled.li`
   align-items: center;
   margin-bottom: ${props => props.theme.margins.slim};
 
-  .arrow {
+  svg {
     transform: translateX(0);
     transition: 200ms transform ${props => props.theme.ease.standard};
   }
 
   &:hover {
-    .arrow {
-      transform: translateX(0.5em);
+    svg {
+      transform: translate3d(0.5em, 0, 0);
     }
   }
 
