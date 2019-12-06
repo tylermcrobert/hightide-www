@@ -24,7 +24,8 @@ const Journal = React.memo(({ results: initialResults, totalPages }) => {
       <Wrap>
         <Styled.Wrapper>
           {allResults.map(({ data, uid }, i) => {
-            const date = new Date(data.date)
+            const [y, m, d] = data.date.split('-')
+            const date = new Date(y, m, d)
             const formattedDate = fmtDate(date)
             const title = RichText.asText(data.title)
             const mainImg = data.main_image.url
