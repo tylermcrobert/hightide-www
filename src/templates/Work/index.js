@@ -28,19 +28,28 @@ function Work({ site, tag }) {
       id: toUrlFormat(item),
     }))
 
+  const activeCaseStudies = tag
+    ? caseStudies.filter(item => {
+        const tags = item.tags.map(item => toUrlFormat(item))
+        return tags.indexOf(tag) !== -1
+      })
+    : caseStudies
+
   return (
-    <Section>
-      <Wrap>
-        <Styled.Title>
-          <div>current tag: {tag}</div>
-          {allTags.map(item => (
-            <Link key={item.id} href={`/work/?tag=${item.id}`} as="/work">
-              <a>{item.name}</a>
-            </Link>
-          ))}
-        </Styled.Title>
+    <Wrap>
+      <Section>
+        <Link href="/work" as="/work">
+          <Styled.Tag current={tag === null}>All</Styled.Tag>
+        </Link>
+        {allTags.map(item => (
+          <Link key={item.id} href={`/work?tag=${item.id}`} as="/work">
+            <Styled.Tag>{item.name}</Styled.Tag>
+          </Link>
+        ))}
+      </Section>
+      <Section>
         <Styled.Wrapper>
-          {caseStudies.map(({ data, uid, tags }) => {
+          {activeCaseStudies.map(({ data, uid }) => {
             if (data && uid) {
               const image = data.thumbnail ? data.thumbnail.url : data.image.url
               return (
@@ -60,8 +69,8 @@ function Work({ site, tag }) {
             return null
           })}
         </Styled.Wrapper>
-      </Wrap>
-    </Section>
+      </Section>
+    </Wrap>
   )
 }
 

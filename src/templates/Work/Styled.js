@@ -13,11 +13,19 @@ const Wrapper = styled.div`
 const Title = styled.div`
   color: ${props => props.theme.colors.secondary};
   margin: ${props => props.theme.margins.slim} 0;
+`
 
-  * {
-    color: ${props => props.theme.colors.secondary};
-    margin: ${props => props.theme.margins.slim} 0;
+const Tag = styled.a`
+  color: ${props => props.theme.colors.secondary};
+  margin: ${props => props.theme.margins.slim};
+  margin-right: 0;
+
+  line-height: 2;
+  cursor: pointer;
+
+  &:first-child {
+    margin-left: 0;
   }
 `
 
-export default { Wrapper, Title }
+export default { Wrapper, Title, Tag }
