@@ -14,7 +14,7 @@ const toUrlFormat = tag => {
   return tag.replace(' ', '-').toLowerCase()
 }
 
-function Work({ site }) {
+function Work({ site, tag }) {
   const caseStudies = site.site_case_studies.map(item => item.case_study)
 
   const allTags = caseStudies
@@ -28,11 +28,17 @@ function Work({ site }) {
       id: toUrlFormat(item),
     }))
 
-  console.log(allTags)
-
   return (
     <Section>
       <Wrap>
+        <Styled.Title>
+          <div>current tag: {tag}</div>
+          {allTags.map(item => (
+            <Link key={item.id} href={`/work/?tag=${item.id}`} as="/work">
+              <a>{item.name}</a>
+            </Link>
+          ))}
+        </Styled.Title>
         <Styled.Wrapper>
           {caseStudies.map(({ data, uid, tags }) => {
             if (data && uid) {

@@ -13,6 +13,11 @@ const Wrapper = styled.div`
 const Title = styled.div`
   color: ${props => props.theme.colors.secondary};
   margin: ${props => props.theme.margins.slim} 0;
+
+  * {
+    color: ${props => props.theme.colors.secondary};
+    margin: ${props => props.theme.margins.slim} 0;
+  }
 `
 
 export default { Wrapper, Title }
