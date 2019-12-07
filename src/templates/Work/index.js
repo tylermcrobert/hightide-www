@@ -10,13 +10,31 @@ import { Opacity, Trigger } from 'components/LinkEffect'
 import getImageSize from 'util/getImageSize'
 import Styled from './Styled'
 
+const toUrlFormat = tag => {
+  return tag.replace(' ', '-').toLowerCase()
+}
+
 function Work({ site }) {
   const caseStudies = site.site_case_studies.map(item => item.case_study)
+
+  const allTags = caseStudies
+    // Get all tags
+    .reduce((acc, item) => [...acc, ...item.tags], [])
+    // filter unique
+    .filter((item, index, origArr) => origArr.indexOf(item) === index)
+    // format into uid and name
+    .map(item => ({
+      name: item,
+      id: toUrlFormat(item),
+    }))
+
+  console.log(allTags)
+
   return (
     <Section>
       <Wrap>
         <Styled.Wrapper>
-          {caseStudies.map(({ data, uid }) => {
+          {caseStudies.map(({ data, uid, tags }) => {
             if (data && uid) {
               const image = data.thumbnail ? data.thumbnail.url : data.image.url
               return (
