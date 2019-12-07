@@ -14,13 +14,24 @@ import Carousel from 'components/slices/Carousel'
 import Video from 'components/slices/Video'
 import getResponsiveImage from 'util/getResponsiveImage'
 import getImageSize from 'util/getImageSize'
+import renderText, { PrismicRichText } from 'util/renderText'
 import Gallery from './Gallery'
+import Styled from './Styled'
 
-export const CaseStudyCtx = createContext()
+interface CaseStudyCtxProps {
+  title: string
+  alt: string
+}
+export const CaseStudyCtx = createContext({
+  title: '',
+  alt: '',
+})
 
-const CaseStudy = memo(({ data }) => {
+const CaseStudy = memo(({ data }: { data }) => {
   const title = RichText.asText(data.name)
   const alt = formatTitle(title)
+
+  console.log(data.credits)
 
   const heroAtts = getResponsiveImage(data.image.url)
 
@@ -41,11 +52,30 @@ const CaseStudy = memo(({ data }) => {
           </PostIntro>
         </Section>
         <Slices data={data} />
+        <Credits data={data.credits} />
       </Wrap>
       <Related items={data.related_work} />
     </CaseStudyCtx.Provider>
   )
 })
+
+interface CreditsProps {
+  data: PrismicRichText
+}
+
+const Credits: React.FC<CreditsProps> = ({ data }) => {
+  const credits = renderText(data)
+
+  return (
+    <>
+      {credits ? (
+        <Section>
+          <Styled.Credits>{credits}</Styled.Credits>
+        </Section>
+      ) : null}
+    </>
+  )
+}
 
 function Related({ items }) {
   const validItems = items.filter(
