@@ -52,19 +52,17 @@ function Work({ site, tag }) {
 
               return (
                 isActive && (
-                  <div>
-                    <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
-                      <a>
-                        <Trigger>
-                          <WorkItem
-                            key={uid}
-                            image={image}
-                            title={RichText.asText(data.name)}
-                          />
-                        </Trigger>
-                      </a>
-                    </Link>
-                  </div>
+                  <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
+                    <a>
+                      <Trigger>
+                        <WorkItem
+                          key={uid}
+                          image={image}
+                          title={RichText.asText(data.name)}
+                        />
+                      </Trigger>
+                    </a>
+                  </Link>
                 )
               )
             }
