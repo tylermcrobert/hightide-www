@@ -8,7 +8,7 @@ module.exports = {
     */
     // NextJs doesn't require React to be in scope
     'react/react-in-jsx-scope': 0,
-    // <a> is required in <Link /> without herf
+    // <a> is required in <Link/> without herf
     'jsx-a11y/anchor-is-valid': 0,
 
     /*
