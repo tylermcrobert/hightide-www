@@ -22,6 +22,9 @@ module.exports = {
       },
     ],
 
+    // handle with typescript
+    'react/prop-types': 0,
+
     // Disable warning abotut function return types.
     // Warns too often for React arrow functions.
     '@typescript-eslint/explicit-function-return-type': 0,
