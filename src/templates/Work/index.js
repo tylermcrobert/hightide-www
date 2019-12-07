@@ -28,42 +28,44 @@ function Work({ site, tag }) {
       id: toUrlFormat(item),
     }))
 
-  const activeCaseStudies = tag
-    ? caseStudies.filter(item => {
-        const tags = item.tags.map(item => toUrlFormat(item))
-        return tags.indexOf(tag) !== -1
-      })
-    : caseStudies
-
   return (
     <Wrap>
       <Section>
-        <Link href="/work" as="/work">
-          <Styled.Tag current={tag === null}>All</Styled.Tag>
-        </Link>
-        {allTags.map(item => (
-          <Link key={item.id} href={`/work?tag=${item.id}`} as="/work">
-            <Styled.Tag>{item.name}</Styled.Tag>
+        <Styled.TagWrapper>
+          <Link href="/work" as="/work">
+            <Styled.Tag greyed={!!tag}>All</Styled.Tag>
           </Link>
-        ))}
-      </Section>
-      <Section>
+          {allTags.map(item => (
+            <Link key={item.id} href={`/work?tag=${item.id}`}>
+              <Styled.Tag greyed={tag !== item.id}>{item.name}</Styled.Tag>
+            </Link>
+          ))}
+        </Styled.TagWrapper>
+
         <Styled.Wrapper>
-          {activeCaseStudies.map(({ data, uid }) => {
+          {caseStudies.map(({ data, uid, tags }) => {
             if (data && uid) {
               const image = data.thumbnail ? data.thumbnail.url : data.image.url
+              const isActive = tag
+                ? tags.map(item => toUrlFormat(item)).indexOf(tag) !== -1
+                : true
+
               return (
-                <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
-                  <a>
-                    <Trigger>
-                      <WorkItem
-                        key={uid}
-                        image={image}
-                        title={RichText.asText(data.name)}
-                      />
-                    </Trigger>
-                  </a>
-                </Link>
+                isActive && (
+                  <div>
+                    <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
+                      <a>
+                        <Trigger>
+                          <WorkItem
+                            key={uid}
+                            image={image}
+                            title={RichText.asText(data.name)}
+                          />
+                        </Trigger>
+                      </a>
+                    </Link>
+                  </div>
+                )
               )
             }
             return null

@@ -2,10 +2,10 @@ import React, { useState, createContext, useContext } from 'react'
 import PageIntro from 'components/PageIntro'
 import Section from 'components/Section'
 import { Wrap } from 'style'
-import Form from './form'
 import Heading from 'components/Heading'
 import Cols from 'components/Cols'
 import { social } from 'siteconfig'
+import Form from './form'
 import Styled from './Styled'
 
 export interface PageState {
@@ -40,7 +40,7 @@ const Contact: React.FC<{ hero }> = ({ hero }) => {
     <ContactCtx.Provider value={{ setOpenState, isOpen }}>
       <Wrap>
         <Section>
-          <Heading headingStyle={0} as="h1" noMargin={true}>
+          <Heading headingStyle={0} as="h1" noMargin>
             Interested in working together?
           </Heading>
           <Form />
@@ -75,7 +75,8 @@ const Info: React.FC = () => {
           <Styled.InformationSection>
             <strong>Visit</strong>
             <p>
-              28 Marcy Avenue, Floor 3<br />
+              28 Marcy Avenue, Floor 3
+<br />
               Brooklyn, NY 11211
             </p>
           </Styled.InformationSection>

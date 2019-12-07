@@ -15,8 +15,13 @@ const Title = styled.div`
   margin: ${props => props.theme.margins.slim} 0;
 `
 
+const TagWrapper = styled.div`
+  margin-bottom: ${props => props.theme.margins.standard};
+`
+
 const Tag = styled.a`
-  color: ${props => props.theme.colors.secondary};
+  color: ${props =>
+    props.greyed ? props.theme.colors.grey : props.theme.colors.secondary};
   margin: ${props => props.theme.margins.slim};
   margin-right: 0;
 
@@ -28,4 +33,4 @@ const Tag = styled.a`
   }
 `
 
-export default { Wrapper, Title, Tag }
+export default { Wrapper, Title, Tag, TagWrapper }
