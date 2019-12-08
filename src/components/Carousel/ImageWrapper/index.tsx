@@ -12,8 +12,8 @@ const ImageWrapper = () => {
   if (items && items.length) {
     return (
       <Styled.ImageWrapper>
-        <Styled.Nav.Prev onClick={getPrev} cursor={<ArrowPrev />} />
-        <Styled.Nav.Next onClick={getNext} cursor={<ArrowNext />} />
+        <Styled.Prev onClick={getPrev} cursor={<ArrowPrev />} />
+        <Styled.Next onClick={getNext} cursor={<ArrowNext />} />
 
         <Styled.Images ref={flickityRef}>
           {items.map((item, i) => {

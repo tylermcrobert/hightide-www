@@ -1,9 +1,17 @@
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
+
 import Router from 'next/router'
 import { useSetCursor } from './index'
 
-export const CursorTrigger = ({ children, cursor, ...props }) => {
+interface Props {
+  cursor: React.FC | React.ReactElement
+}
+
+export const CursorTrigger: React.FC<Props> = ({
+  children,
+  cursor,
+  ...props
+}) => {
   const setCursor = useSetCursor()
 
   const handleEnter = () => setCursor(cursor)
@@ -13,7 +21,7 @@ export const CursorTrigger = ({ children, cursor, ...props }) => {
   Router.events.on('routeChangeComplete', handleLeave)
 
   return (
-    <Trigger {...props} onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+    <Trigger onMouseEnter={handleEnter} onMouseLeave={handleLeave} {...props}>
       {children}
     </Trigger>
   )
@@ -23,8 +31,4 @@ const Trigger = styled.div`
   cursor: none;
 `
 
-CursorTrigger.propTypes = {
-  cursor: PropTypes.any.isRequired,
-  children: PropTypes.any.isRequired,
-}
 export default CursorTrigger

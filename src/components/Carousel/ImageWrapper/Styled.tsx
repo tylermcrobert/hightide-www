@@ -37,13 +37,14 @@ const Nav = styled(CursorTrigger)`
     display: none;
   }
 `
+type Props = React.HTMLAttributes<HTMLElement>
 
-Nav.Prev = styled(Nav)`
+const Prev = styled(Nav)<Props>`
   left: 0;
 `
 
-Nav.Next = styled(Nav)`
+const Next = styled(Nav)<Props>`
   left: 66.67%;
 `
 
-export default { Slide, Images, ImageWrapper, Nav }
+export default { Slide, Images, ImageWrapper, Nav, Prev, Next }
