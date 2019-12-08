@@ -7,12 +7,12 @@ const Wrapper = styled(Cols)`
 `
 
 const Item = styled.div`
-  border-bottom: 1px solid ${props => props.theme.colors.primary};
+  border-top: 1px solid ${props => props.theme.colors.primary};
   padding: ${props => props.theme.margins.slim} 0;
 
-  &:first-child {
+  &:last-child {
     @media ${mq.sm} {
-      border-top: 1px solid ${props => props.theme.colors.primary};
+      border-bottom: 1px solid ${props => props.theme.colors.primary};
     }
   }
 `
