@@ -71,7 +71,7 @@ function Image({ src: imgSrc, caption, layout }) {
 
   const src = getImageSize(imgSrc, {
     w: isFull ? 2400 : 1020,
-    fm: 'webp',
+    fm: 'jpg',
   })
 
   const { srcSet } = getResponsiveImage(imgSrc)

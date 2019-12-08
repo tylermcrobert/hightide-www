@@ -75,7 +75,7 @@ function Work({ site, tag }) {
 }
 
 function WorkItem({ title, image }) {
-  const resizedImage = getImageSize(image, { w: 1200, q: 80, fm: 'webp' })
+  const resizedImage = getImageSize(image, { w: 1200, q: 80, fm: 'jpg' })
 
   return (
     <div>
