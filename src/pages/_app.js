@@ -6,7 +6,7 @@ import { PageTransition } from 'next-page-transitions'
 import theme from 'style/theme'
 import { CursorProvider } from 'components/CursorHover'
 import Layout from 'components/Layout'
-
+import includeCredit from 'util/includeCredit'
 import LogRocket from 'logrocket'
 
 LogRocket.init('mto3as/high-tide')
@@ -40,6 +40,7 @@ const { accel, decel } = theme.ease
 
 export default class HighTideApp extends App {
   render() {
+    includeCredit()
     const { Component, pageProps } = this.props
     const { route, asPath } = this.props.router
     const isDark = DARK_ROUTES.indexOf(route) > -1
