@@ -1,14 +1,16 @@
 import { useEffect, useRef } from 'react'
 
-const useCursor = () => {
-  const ref = useRef()
+const useCursor = (): React.Ref<HTMLDivElement> => {
+  const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const handleMove = e => {
       const x = e.clientX
       const y = e.clientY
 
-      ref.current.style.transform = `translate3d(${x}px, ${y}px, 0)`
+      if (ref.current) {
+        ref.current.style.transform = `translate3d(${x}px, ${y}px, 0)`
+      }
     }
 
     document.addEventListener('mousemove', handleMove)

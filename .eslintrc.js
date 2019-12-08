@@ -18,6 +18,7 @@ const TYPESCRIPT_RULES = {
   '@typescript-eslint/explicit-function-return-type': 0,
   // Disabling because of bug
   '@typescript-eslint/no-unused-vars': 0,
+  'no-unused-vars': 0,
 }
 
 const NEXTJS_RULES = {
@@ -55,5 +56,10 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
+  },
+
+  env: {
+    browser: true,
+    node: true,
   },
 }

@@ -2,9 +2,10 @@ import styled from 'styled-components'
 
 import Router from 'next/router'
 import { useSetCursor } from './index'
+import { CursorType } from './types'
 
 interface Props {
-  cursor: React.FC | React.ReactElement
+  cursor: CursorType
 }
 
 export const CursorTrigger: React.FC<Props> = ({

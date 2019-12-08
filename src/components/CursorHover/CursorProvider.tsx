@@ -1,16 +1,20 @@
 import React, { createContext, useContext, useState } from 'react'
 import styled from 'styled-components'
 import useCursor from './hooks/useCursor'
+import { CursorType } from './types'
 
-const CursorCtx = createContext()
+type CursorCtxProps = React.Dispatch<React.SetStateAction<CursorType>>
+
+export const CursorCtx = createContext<CursorCtxProps>(() => null)
 
 export const CursorProvider = ({ children }) => {
-  const [currentCursor, setCursor] = useState(null)
+  const [currentCursor, setCursor] = useState<CursorType>(null)
   const ref = useCursor()
+
   return (
     <CursorCtx.Provider value={setCursor}>
       <Cursor ref={ref}>
-        <Cursor.Inner>{currentCursor}</Cursor.Inner>
+        <CursorInner>{currentCursor}</CursorInner>
       </Cursor>
       {children}
     </CursorCtx.Provider>
@@ -28,6 +32,6 @@ const Cursor = styled.div`
   mix-blend-mode: difference;
 `
 
-Cursor.Inner = styled.div`
+const CursorInner = styled.div`
   transform: translate3d(-50%, -50%, 0);
 `
