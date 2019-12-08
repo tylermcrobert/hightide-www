@@ -39,6 +39,9 @@ module.exports = {
     //needed in certain instances
     'react/jsx-props-no-spreading': 0,
 
+    // Nah
+    'import/prefer-default-export': 0,
+
     ...TYPESCRIPT_RULES,
     ...NEXTJS_RULES,
   },
