@@ -30,9 +30,6 @@ export const CaseStudyCtx = createContext({
 const CaseStudy = memo(({ data }: { data }) => {
   const title = RichText.asText(data.name)
   const alt = formatTitle(title)
-
-  console.log(data.credits)
-
   const heroAtts = getResponsiveImage(data.image.url)
 
   return (
