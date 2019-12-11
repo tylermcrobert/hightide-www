@@ -38,6 +38,7 @@ export const Input = styled.input`
 export const Header = styled.div`
   margin-top: ${fs(5)};
   padding-bottom: ${fs(0)};
+  line-height: 1.5;
 `
 
 interface RadioProps {

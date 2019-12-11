@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { FormState, FormEl } from './types'
 import axios from 'axios'
 import Router from 'next/router'
+import { FormState, FormEl } from './types'
 import { COMPANY_CODE, SYNOPSIS_CODE } from './constants'
 
 const initialState: FormState = {
@@ -11,7 +11,6 @@ const initialState: FormState = {
   company: null,
   synopsis: null,
   isValid: false,
-  isReferral: null,
 }
 
 export interface FormMethods {
@@ -41,7 +40,7 @@ const useForm = (): FormMethods => {
       const { firstName, lastName, email, company, synopsis } = formState
       return {
         name: `${firstName} ${lastName}`,
-        email: email,
+        email,
         [COMPANY_CODE]: company,
         [SYNOPSIS_CODE]: synopsis,
       }
