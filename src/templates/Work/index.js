@@ -31,17 +31,6 @@ function Work({ site, tag }) {
   return (
     <Wrap>
       <Section>
-        <Styled.TagWrapper>
-          <Link href="/work" as="/work">
-            <Styled.Tag greyed={!!tag}>All</Styled.Tag>
-          </Link>
-          {allTags.map(item => (
-            <Link key={item.id} href={`/work?tag=${item.id}`}>
-              <Styled.Tag greyed={tag !== item.id}>{item.name}</Styled.Tag>
-            </Link>
-          ))}
-        </Styled.TagWrapper>
-
         <Styled.Wrapper>
           {caseStudies.map(({ data, uid, tags }) => {
             if (data && uid) {
@@ -69,8 +58,24 @@ function Work({ site, tag }) {
             return null
           })}
         </Styled.Wrapper>
+        <Tags tag={tag} allTags={allTags} />
       </Section>
     </Wrap>
+  )
+}
+
+const Tags = ({ tag, allTags }) => {
+  return (
+    <Styled.TagWrapper>
+      <Link href="/work" as="/work">
+        <Styled.Tag greyed={!!tag}>All</Styled.Tag>
+      </Link>
+      {allTags.map(item => (
+        <Link key={item.id} href={`/work?tag=${item.id}`}>
+          <Styled.Tag greyed={tag !== item.id}>{item.name}</Styled.Tag>
+        </Link>
+      ))}
+    </Styled.TagWrapper>
   )
 }
 
