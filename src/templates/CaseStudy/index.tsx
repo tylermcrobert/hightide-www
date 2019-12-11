@@ -1,13 +1,12 @@
 import React, { createContext, memo } from 'react'
 import { RichText } from 'prismic-reactjs'
-
+import Link from 'next/link'
 import { Wrap } from 'style'
 import PostIntro from 'components/PostIntro'
 import { RelatedWrapper, RelatedItem } from 'components/Related'
 import Section from 'components/Section'
 import textExists from 'util/textExists'
 import formatTitle from 'util/formatTitle'
-
 import TextBlock from 'components/slices/TextBlock'
 import MediaBlock from 'components/slices/MediaBlock'
 import Carousel from 'components/slices/Carousel'
@@ -15,6 +14,7 @@ import Video from 'components/slices/Video'
 import getResponsiveImage from 'util/getResponsiveImage'
 import getImageSize from 'util/getImageSize'
 import renderText, { PrismicRichText } from 'util/renderText'
+import toUrlFormat from 'util/toUrlFormat'
 import Gallery from './Gallery'
 import Styled from './Styled'
 
@@ -27,7 +27,12 @@ export const CaseStudyCtx = createContext({
   alt: '',
 })
 
-const CaseStudy = memo(({ data }: { data }) => {
+interface CsProps {
+  data: any
+  tags: string[]
+}
+
+const CaseStudy: React.FC<CsProps> = memo(({ data, tags }) => {
   const title = RichText.asText(data.name)
   const alt = formatTitle(title)
   const heroAtts = getResponsiveImage(data.image.url)
@@ -49,7 +54,16 @@ const CaseStudy = memo(({ data }: { data }) => {
           </PostIntro>
         </Section>
         <Slices data={data} />
-        <Credits data={data.credits} />
+        <Section>
+          <Credits data={data.credits} />
+          <Styled.Tags>
+            {tags.map(tag => (
+              <Link key={tag} href={`/work?tag=${toUrlFormat(tag)}`}>
+                <Styled.Tag>{tag}</Styled.Tag>
+              </Link>
+            ))}
+          </Styled.Tags>
+        </Section>
       </Wrap>
       <Related items={data.related_work} />
     </CaseStudyCtx.Provider>
@@ -63,15 +77,7 @@ interface CreditsProps {
 const Credits: React.FC<CreditsProps> = ({ data }) => {
   const credits = renderText(data)
 
-  return (
-    <>
-      {credits ? (
-        <Section>
-          <Styled.Credits>{credits}</Styled.Credits>
-        </Section>
-      ) : null}
-    </>
-  )
+  return <>{credits ? <Styled.Credits>{credits}</Styled.Credits> : null}</>
 }
 
 function Related({ items }) {

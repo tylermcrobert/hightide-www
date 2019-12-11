@@ -21,7 +21,7 @@ const CaseStudy = ({ data: response }) => {
           image={image}
           url={`work/${response.uid}`}
         />
-        <CaseStudyTemplate data={response.data} />
+        <CaseStudyTemplate data={response.data} tags={response.tags} />
       </>
     )
   }

@@ -8,11 +8,8 @@ import AspectImage from 'components/AspectImage'
 import Section from 'components/Section'
 import { Opacity, Trigger } from 'components/LinkEffect'
 import getImageSize from 'util/getImageSize'
+import toUrlFormat from 'util/toUrlFormat'
 import Styled from './Styled'
-
-const toUrlFormat = tag => {
-  return tag.replace(' ', '-').toLowerCase()
-}
 
 function Work({ site, tag }) {
   const caseStudies = site.site_case_studies.map(item => item.case_study)
