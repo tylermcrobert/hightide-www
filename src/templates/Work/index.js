@@ -63,16 +63,18 @@ function Work({ site, tag }) {
 
 const Tags = ({ tag, allTags }) => {
   return (
-    <Styled.TagWrapper>
-      <Link href="/work" as="/work">
-        <Styled.Tag greyed={!!tag}>All</Styled.Tag>
-      </Link>
-      {allTags.map(item => (
-        <Link key={item.id} href={`/work?tag=${item.id}`}>
-          <Styled.Tag greyed={tag !== item.id}>{item.name}</Styled.Tag>
+    <Section>
+      <Styled.TagWrapper>
+        <Link href="/work" as="/work">
+          <Styled.Tag greyed={!!tag}>All</Styled.Tag>
         </Link>
-      ))}
-    </Styled.TagWrapper>
+        {allTags.map(item => (
+          <Link key={item.id} href={`/work?tag=${item.id}`}>
+            <Styled.Tag greyed={tag !== item.id}>{item.name}</Styled.Tag>
+          </Link>
+        ))}
+      </Styled.TagWrapper>
+    </Section>
   )
 }
 
