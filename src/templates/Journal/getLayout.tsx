@@ -1,5 +1,3 @@
-const isNth = (i: number, nth: number): boolean => (i + nth) % 6 === 0
-
 /*
 
 a b
@@ -8,16 +6,11 @@ d f
 e f
 
 */
+const isNth = (i: number, nth: number): boolean => (i - nth) % 6 === 0
 
 const getOrder = (i: number): number => {
-  if (isNth(i, 2)) {
-    return i + 1
-  }
-
-  if (isNth(i, 1)) {
-    return i - 1
-  }
-
+  if (isNth(i, 4)) return i + 1
+  if (isNth(i, 5)) return i - 1
   return i
 }
 
@@ -26,15 +19,9 @@ const getLayout = (
 ): {
   order: number
   isLarge: boolean
-} => {
-  const order = getOrder(i)
-  const isLargeLeft = isNth(i, 0)
-  const isLargeRight = isNth(i, 1)
-
-  return {
-    order,
-    isLarge: isLargeRight || isLargeLeft,
-  }
-}
+} => ({
+  order: getOrder(i),
+  isLarge: isNth(i, 0) || isNth(i, 5),
+})
 
 export default getLayout

@@ -64,15 +64,19 @@ const Journal: React.FC<JournalProps> = React.memo(
   }
 )
 
-interface CardProps {
-  uid: string
-  mainImg: string
+interface TextProps {
   date: string
   title: string
+}
+
+interface CardProps extends TextProps {
+  uid: string
+  mainImg: string
   large: boolean
   thumbnail: object
   order: number
 }
+
 const JournalCard: React.FC<CardProps> = ({
   uid,
   mainImg,
@@ -91,19 +95,25 @@ const JournalCard: React.FC<CardProps> = ({
           <a>
             <Styled.CardLayout>
               <Styled.PostImage src={image} />
-              <Styled.DescWrapper>
-                <Heading as="h2" headingStyle={2} noMargin>
-                  <Opacity>{title}</Opacity>
-                </Heading>
-                <Heading as="h3" headingStyle={2} noMargin>
-                  {date}
-                </Heading>
-              </Styled.DescWrapper>
+              <Text title={title} date={date} />
             </Styled.CardLayout>
           </a>
         </Link>
       </Styled.JournalCard>
     </ThemeProvider>
+  )
+}
+
+const Text: React.FC<TextProps> = ({ title, date }) => {
+  return (
+    <Styled.DescWrapper>
+      <Heading as="h2" headingStyle={2} noMargin>
+        <Opacity>{title}</Opacity>
+      </Heading>
+      <Heading as="h3" headingStyle={2} noMargin>
+        {date}
+      </Heading>
+    </Styled.DescWrapper>
   )
 }
 

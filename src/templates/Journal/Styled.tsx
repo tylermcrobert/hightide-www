@@ -52,6 +52,7 @@ const DescWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
   grid-gap: ${props => props.theme.margins.standard};
+
   @media (min-width: ${sizes.xs}px) and (max-width: ${sizes.sm}px) {
     display: block;
   }
