@@ -8,7 +8,7 @@ const Intro = styled(Section)`
   }
   @media ${mq.sm} {
     h1 {
-      max-width: 15em;
+      max-width: 18em;
     }
 
     br {
