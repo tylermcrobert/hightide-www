@@ -16,9 +16,13 @@ const Wrapper = styled.div`
  * Journal Card Items
  */
 
-const JournalCard = styled.a`
+const JournalCard = styled.a<{ order: number }>`
   cursor: pointer;
   grid-row: ${props => props.theme.large && 'auto / span 2'};
+
+  @media ${mq.xs} {
+    order: ${props => props.order};
+  }
 `
 
 const CardLayout = styled.div`
@@ -28,7 +32,7 @@ const CardLayout = styled.div`
   grid-template-rows: 1fr min-content;
 `
 
-const PostImage = styled.div`
+const PostImage = styled.div<{ src: string }>`
   padding-top: ${RATIO}%;
   background: url(${props => props.src});
   background-size: cover;

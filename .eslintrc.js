@@ -42,6 +42,9 @@ module.exports = {
     // Nah
     'import/prefer-default-export': 0,
 
+    // This is fucking with prettier
+    'react/jsx-one-expression-per-line': 0,
+
     ...TYPESCRIPT_RULES,
     ...NEXTJS_RULES,
   },

@@ -17,6 +17,6 @@ export default function getImage({ mainImg, thumbnail, large }) {
      */
     return thumbnail.url
   }
-  s
+
   return mainImg
 }
