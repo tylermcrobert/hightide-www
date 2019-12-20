@@ -3,16 +3,23 @@ import styled from 'styled-components'
 import useCursor from './hooks/useCursor'
 import { CursorType } from './types'
 
-type CursorCtxProps = React.Dispatch<React.SetStateAction<CursorType>>
+type CursorCtxProps = {
+  setCursor: React.Dispatch<React.SetStateAction<CursorType>>
+  currentCursor: CursorType
+}
 
-export const CursorCtx = createContext<CursorCtxProps>(() => null)
+export const CursorCtx = createContext<CursorCtxProps>({
+  setCursor: () => null,
+  currentCursor: null,
+})
 
 export const CursorProvider = ({ children }) => {
   const [currentCursor, setCursor] = useState<CursorType>(null)
+
   const ref = useCursor()
 
   return (
-    <CursorCtx.Provider value={setCursor}>
+    <CursorCtx.Provider value={{ setCursor, currentCursor }}>
       <Cursor ref={ref}>
         <CursorInner>{currentCursor}</CursorInner>
       </Cursor>

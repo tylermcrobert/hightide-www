@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import styled from 'styled-components'
-
+import { useEffect, useState } from 'react'
 import Router from 'next/router'
 import { useSetCursor } from './index'
 import { CursorType } from './types'
@@ -13,23 +14,28 @@ export const CursorTrigger: React.FC<Props> = ({
   cursor,
   ...props
 }) => {
-  const setCursor = useSetCursor()
+  const { setCursor, currentCursor } = useSetCursor()
 
   const handleEnter = () => setCursor(cursor)
   const handleLeave = () => setCursor(null)
 
-  // if cursor is triggered by link
+  // if cursor is triggered by lin
   Router.events.on('routeChangeComplete', handleLeave)
 
   return (
-    <Trigger onMouseEnter={handleEnter} onMouseLeave={handleLeave} {...props}>
+    <Trigger
+      cursorVisible={!currentCursor}
+      onMouseOver={handleEnter}
+      onMouseLeave={handleLeave}
+      {...props}
+    >
       {children}
     </Trigger>
   )
 }
 
-const Trigger = styled.div`
-  cursor: none;
+const Trigger = styled.div<{ cursorVisible: boolean }>`
+  cursor: ${props => (props.cursorVisible ? 'inherit' : 'none')};
 `
 
 export default CursorTrigger
