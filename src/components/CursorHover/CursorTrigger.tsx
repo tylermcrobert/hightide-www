@@ -22,6 +22,14 @@ export const CursorTrigger: React.FC<Props> = ({
   // if cursor is triggered by lin
   Router.events.on('routeChangeComplete', handleLeave)
 
+  useEffect(() => {
+    document.addEventListener('scroll', handleLeave)
+
+    return () => {
+      document.removeEventListener('scroll', handleLeave)
+    }
+  }, [])
+
   return (
     <Trigger
       cursorVisible={!currentCursor}
