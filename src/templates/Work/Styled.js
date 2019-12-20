@@ -17,20 +17,17 @@ const Title = styled.div`
 
 const TagWrapper = styled.div`
   margin-bottom: ${props => props.theme.margins.standard};
+  margin: -0.5rem;
 `
 
 const Tag = styled.a`
   color: ${props =>
     props.greyed ? props.theme.colors.grey : props.theme.colors.secondary};
-  margin: ${props => props.theme.margins.slim};
-  margin-right: 0;
 
+  display: inline-block;
   line-height: 2;
+  margin: 0 0.5rem;
   cursor: pointer;
-
-  &:first-child {
-    margin-left: 0;
-  }
 `
 
 export default { Wrapper, Title, Tag, TagWrapper }
