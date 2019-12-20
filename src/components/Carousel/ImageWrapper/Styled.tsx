@@ -3,11 +3,13 @@ import { CursorTrigger } from 'components/CursorHover'
 
 const ImageWrapper = styled.div`
   position: relative;
+  outline: none;
 
   /* removes blue line */
   * {
     outline: none;
   }
+
   /* Fixes weird 1px bug  */
   .flickity-viewport {
     width: calc(100% + 1px);
