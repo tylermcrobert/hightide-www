@@ -37,6 +37,10 @@ const Cursor = styled.div`
   z-index: 100;
   pointer-events: none;
   mix-blend-mode: difference;
+
+  @media (hover: none) {
+    display: none;
+  }
 `
 
 const CursorInner = styled.div`
