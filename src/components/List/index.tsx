@@ -15,8 +15,9 @@ export const Wrapper: React.FC<WrapperProps> = ({ children, title }) => {
         {title}
       </Heading>
       <Styled.Wrapper>
-        {splitArr(children, 2).map(item => (
-          <div>{item}</div>
+        {splitArr(children, 2).map((item, i) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <div key={i}>{item}</div>
         ))}
       </Styled.Wrapper>
     </>

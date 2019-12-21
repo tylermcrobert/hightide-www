@@ -10,7 +10,7 @@ export default function Capabilities({ data }) {
       <List.Wrapper title="What We Do">
         {data.map(({ capacity }) =>
           capacity.length ? (
-            <List.Item>
+            <List.Item key={RichText.asText(capacity)}>
               <List.Title noMargin>{RichText.asText(capacity)}</List.Title>
             </List.Item>
           ) : null
