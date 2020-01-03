@@ -1,6 +1,5 @@
 const getPlaylistLink = link => link.split('/playlist/')[1].split('?')[0]
-const API_ROUTE =
-  'https://tm-hightide.netlify.com/.netlify/functions/getSpotifyAuth'
+const API_ROUTE = 'https://hightidenyc.com/api/getSpotifyPlaylist'
 /**
  * handle sound system
  */
@@ -28,9 +27,9 @@ export default class SoundSystemReq {
    */
   async fetch() {
     try {
-      const apiRes = await fetch(`${API_ROUTE}?id=${this.playlistId}`)
-        .then(res => res.json())
-        .then(data => data.body)
+      const apiRes = await fetch(
+        `${API_ROUTE}?id=${this.playlistId}`
+      ).then(res => res.json())
 
       this.spotifyName = apiRes.name
       this.spotifyDesc = apiRes.description
