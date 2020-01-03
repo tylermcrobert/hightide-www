@@ -1033,6 +1033,18 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/spotify-api@*":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@types/spotify-api/-/spotify-api-0.0.1.tgz#64657f24616ade5d41bf37876cd1a9a4ae7bf349"
+  integrity sha512-U04VetSyHF/hceog6JbpzukMjEiYzqLu4+nXIeAGTrJuW8f+3cDN/Igw7HBtdvLtGE1FUR6E22ILotnsB9cpgA==
+
+"@types/spotify-web-api-node@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/spotify-web-api-node/-/spotify-web-api-node-4.0.1.tgz#0a2b85a1d40ae312de37deeb3c7e85bf7f4e6812"
+  integrity sha512-uxoz7DcSj/v2URDo54FjzctIfdQdEFvmUreHrR26G/Vf0Qm5S0lbt7LdKJeW2EoWUzzfjetYV3TcfMxRm1bWIw==
+  dependencies:
+    "@types/spotify-api" "*"
+
 "@types/styled-components@^4.4.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.4.0.tgz#15a3d59533fd3a5bd013db4a7c4422ec542c59d2"

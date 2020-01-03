@@ -39,8 +39,11 @@ const { duration, distance } = theme.routeTransition
 const { accel, decel } = theme.ease
 
 export default class HighTideApp extends App {
-  render() {
+  componentDidMount() {
     includeCredit()
+  }
+
+  render() {
     const { Component, pageProps } = this.props
     const { route, asPath } = this.props.router
     const isDark = DARK_ROUTES.indexOf(route) > -1

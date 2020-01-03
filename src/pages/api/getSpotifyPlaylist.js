@@ -1,27 +1,33 @@
 require('dotenv').config()
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const SpotifyWebApi = require('spotify-web-api-node')
-
-const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } = process.env
 
 export default async (req, res) => {
   const { id } = req.query
 
   if (id) {
     const spotifyApi = new SpotifyWebApi({
-      clientId: SPOTIFY_CLIENT_ID,
-      clientSecret: SPOTIFY_CLIENT_SECRET,
+      clientId: process.env.SPOTIFY_CLIENT_ID,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
       redirectUri: 'http://localhost:9000/getSpotifyAuth',
     })
 
-    const token = spotifyApi.clientCredentialsGrant()
-    spotifyApi.setAccessToken(token)
+    spotifyApi
+      .clientCredentialsGrant()
+      .then(data => {
+        spotifyApi.setAccessToken(data.body.access_token)
+        console.log('TOKEN', data.body.access_token)
 
-    try {
-      const playlist = await spotifyApi.getPlaylist(id)
-      res.status(200).json(playlist)
-    } catch (error) {
-      res.status(400).json(error)
-    }
+        spotifyApi
+          .getPlaylist(id)
+          .then(playlistData => {
+            res.status(200).json(playlistData.body)
+          })
+          .catch(err => {
+            res.status(err.statusCode).json(err)
+          })
+      })
+      .catch(err => res.status(err.statusCode).json(err))
   } else {
     res.status(401).json({ error: 'ID field is required' })
   }
