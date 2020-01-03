@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-require('dotenv').config()
-
 const fetch = require('isomorphic-unfetch')
 
-const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } = process.env
+const clientId = process.env.SPOTIFY_CLIENT_ID
+const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
 
 const getAuthToken = async () => {
-  const base64Auth = Buffer.from(
-    `${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`
-  ).toString('base64')
+  const base64Auth = Buffer.from(`${clientId}:${clientSecret}`).toString(
+    'base64'
+  )
 
   const data = await fetch(
     'https://accounts.spotify.com/api/token?grant_type=client_credentials',
@@ -16,13 +15,11 @@ const getAuthToken = async () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-
         Authorization: `Basic ${base64Auth}`,
       },
     }
   )
   const { access_token: token } = await data.json()
-
   return token
 }
 
