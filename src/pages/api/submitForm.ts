@@ -25,8 +25,7 @@ export default (req, res) => {
   sgMail.setApiKey(process.env.SENDGRID_TOKEN)
   sgMail
     .send({
-      // to: 'info@hightidenyc.com',
-      to: 'hello@tylermcrobert.com',
+      to: 'info@hightidenyc.com',
       from: {
         email,
         name,
