@@ -2,7 +2,13 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import Router from 'next/router'
 import { FormState, FormEl } from './types'
-import { COMPANY_CODE, SYNOPSIS_CODE } from './constants'
+
+export type FormReturn = {
+  name
+  email
+  company
+  synopsis
+}
 
 const initialState: FormState = {
   email: null,
@@ -38,12 +44,15 @@ const useForm = (): FormMethods => {
 
     const structureObj = () => {
       const { firstName, lastName, email, company, synopsis } = formState
-      return {
+
+      const formReturn: FormReturn = {
         name: `${firstName} ${lastName}`,
         email,
-        [COMPANY_CODE]: company,
-        [SYNOPSIS_CODE]: synopsis,
+        company,
+        synopsis,
       }
+
+      return formReturn
     }
 
     const handleSuccess = () => {

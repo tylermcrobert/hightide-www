@@ -31,6 +31,7 @@ module.exports = withCSS(
       PRISMIC_ACCESS_TOKEN: process.env.PRISMIC_ACCESS_TOKEN,
       PIPEDRIVE_ENDPOINT: process.env.PIPEDRIVE_ENDPOINT,
       PIPEDRIVE_TOKEN: process.env.PIPEDRIVE_TOKEN,
+      SENDGRID_TOKEN: process.env.SENDGRID_TOKEN,
     },
   })
 )
