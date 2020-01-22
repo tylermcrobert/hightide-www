@@ -8,16 +8,20 @@ require('dotenv').config()
 
 module.exports = withCSS(
   withFonts({
+    // For absolute imports
     webpack(config) {
-      config.resolve = config.resolve || {}
-
-      config.resolve.modules = [
-        path.join('src'),
-        path.join(__dirname, 'node_modules'),
-        './',
-      ]
-
-      return config
+      return {
+        ...config,
+        resolve: {
+          ...config.resolve,
+          modules: [
+            path.join('src'),
+            path.join(__dirname, 'node_modules'),
+            './',
+          ],
+          extensions: ['.tsx', '.ts', '.js'],
+        },
+      }
     },
 
     env: {
@@ -27,6 +31,7 @@ module.exports = withCSS(
       PRISMIC_ACCESS_TOKEN: process.env.PRISMIC_ACCESS_TOKEN,
       PIPEDRIVE_ENDPOINT: process.env.PIPEDRIVE_ENDPOINT,
       PIPEDRIVE_TOKEN: process.env.PIPEDRIVE_TOKEN,
+      SENDGRID_TOKEN: process.env.SENDGRID_TOKEN,
     },
   })
 )

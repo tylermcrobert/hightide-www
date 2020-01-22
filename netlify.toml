@@ -1,3 +1,0 @@
-# netlify.com/docs/functions
-[build]
-  functions = "serverless/lambda"

@@ -9,8 +9,14 @@
       "SPOTIFY_CLIENT_ID": "@spotify_client_id",
       "SPOTIFY_CLIENT_SECRET": "@spotify_client_secret",
       "PIPEDRIVE_ENDPOINT": "@pipedrive_endpoint",
-      "PIPEDRIVE_TOKEN": "@pipedrive_token"
+      "PIPEDRIVE_TOKEN": "@pipedrive_token",
+      "SENDGRID_TOKEN": "@sendgrid_token"
     }
+  },
+  "env": {
+    "SPOTIFY_CLIENT_ID": "@spotify_client_id",
+    "SPOTIFY_CLIENT_SECRET": "@spotify_client_secret",
+    "SENDGRID_TOKEN": "@sendgrid_token"
   },
   "github": {
     "silent": true

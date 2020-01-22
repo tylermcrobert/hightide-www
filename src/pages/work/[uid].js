@@ -10,14 +10,18 @@ import CaseStudyTemplate from 'templates/CaseStudy'
 
 const CaseStudy = ({ data: response }) => {
   if (response) {
+    const image = response.data.thumbnail
+      ? response.data.thumbnail.url
+      : response.data.image.url
+
     return (
       <>
         <Meta
           title={RichText.asText(response.data.name)}
-          image={response.data.image.url}
+          image={image}
           url={`work/${response.uid}`}
         />
-        <CaseStudyTemplate data={response.data} />
+        <CaseStudyTemplate data={response.data} tags={response.tags} />
       </>
     )
   }
@@ -27,7 +31,7 @@ const CaseStudy = ({ data: response }) => {
 CaseStudy.getInitialProps = async ({ req, res, query }) => {
   const { uid } = query
   const data = await Client(req).getByUID('work', uid, {
-    fetchLinks: ['work.name', 'work.image'],
+    fetchLinks: ['work.name', 'work.image', 'work.thumbnail'],
   })
 
   prerender(res)

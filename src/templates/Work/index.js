@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import { RichText } from 'prismic-reactjs'
 import Link from 'next/link'
-
 import { Wrap } from 'style'
 import Heading from 'components/Heading'
 import AspectImage from 'components/AspectImage'
@@ -10,13 +9,14 @@ import { Opacity, Trigger } from 'components/LinkEffect'
 import getImageSize from 'util/getImageSize'
 import Styled from './Styled'
 
-function Work({ site }) {
+function Work({ site, tag }) {
   const caseStudies = site.site_case_studies.map(item => item.case_study)
+
   return (
-    <Section>
-      <Wrap>
+    <Wrap>
+      <Section>
         <Styled.Wrapper>
-          {caseStudies.map(({ data, uid }) => {
+          {caseStudies.map(({ data, uid, tags }) => {
             if (data && uid) {
               return (
                 <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
@@ -24,7 +24,9 @@ function Work({ site }) {
                     <Trigger>
                       <WorkItem
                         key={uid}
-                        image={getImageSize(data.image.url, { w: 1200 })}
+                        image={
+                          data.thumbnail ? data.thumbnail.url : data.image.url
+                        }
                         title={RichText.asText(data.name)}
                       />
                     </Trigger>
@@ -35,15 +37,17 @@ function Work({ site }) {
             return null
           })}
         </Styled.Wrapper>
-      </Wrap>
-    </Section>
+      </Section>
+    </Wrap>
   )
 }
 
 function WorkItem({ title, image }) {
+  const resizedImage = getImageSize(image, { w: 1200, q: 80, fm: 'jpg' })
+
   return (
     <div>
-      <AspectImage src={image} />
+      <AspectImage src={resizedImage} />
       <Styled.Title>
         <Heading as="h2" headingStyle={2}>
           <Opacity invert>{title}</Opacity>

@@ -2,6 +2,7 @@ import { createRef, useEffect, useContext } from 'react'
 import { CarouselCtx } from '../..'
 // import 'flickity/dist/flickity.min.css'
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable global-require */
 
 const flickity = createRef()

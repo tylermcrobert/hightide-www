@@ -10,9 +10,12 @@ import getShopifyCheckout from 'middleware/getShopifyCheckout'
 import { CursorProvider } from 'components/CursorHover'
 import Layout from 'components/Layout'
 import theme, { routeTransition } from 'style/theme'
+import includeCredit from 'util/includeCredit'
 import StoreProvider from 'components/StoreProvider'
 
+LogRocket.init('mto3as/high-tide')
 const DARK_ROUTES = ['/work']
+
 export const AppCtx = createContext()
 export const cachedCheckout = createRef()
 
@@ -26,6 +29,8 @@ export default class HighTideApp extends App {
   }
 
   componentDidMount() {
+    includeCredit()
+
     if (this.props.checkout.id) {
       cachedCheckout.current = this.props.checkout
       cookie.set('shopifyCheckoutId', atob(cachedCheckout.current.id))
@@ -48,6 +53,8 @@ export default class HighTideApp extends App {
     const { route, asPath } = this.props.router
     const isDark = DARK_ROUTES.indexOf(route) > -1
 
+    const pathWithoutParams = asPath.split('?')[0]
+
     return (
       <>
         <ThemeProvider theme={{ ...theme, isDark }}>
@@ -60,7 +67,7 @@ export default class HighTideApp extends App {
                   timeout={routeTransition.timeout}
                   classNames="page-transition"
                 >
-                  <Component {...pageProps} key={asPath} />
+                  <Component {...pageProps} key={pathWithoutParams} />
                 </PageTransition>
               </CursorProvider>
             </Layout>

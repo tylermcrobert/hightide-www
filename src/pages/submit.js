@@ -1,4 +1,4 @@
-import SubmitPage from 'templates/Contact/SubmitPage'
+import SubmitPage from 'templates/SubmitPage'
 
 export default function Submit() {
   return <SubmitPage />

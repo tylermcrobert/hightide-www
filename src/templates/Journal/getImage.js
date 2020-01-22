@@ -1,3 +1,4 @@
+import getImageSize from 'util/getImageSize'
 /**
  * Get approrpriate image
  */
@@ -8,7 +9,7 @@ export default function getImage({ mainImg, thumbnail, large }) {
      * use portrait if it exists
      */
     if (large && thumbnail.portrait) {
-      return thumbnail.portrait.url
+      return getImageSize(thumbnail.portrait.url, { w: 1200, ar: 0.691 })
     }
 
     /**
