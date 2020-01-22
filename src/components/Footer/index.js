@@ -1,6 +1,6 @@
 import React from 'react'
 import { Wrap } from 'style'
-import config, { social } from 'site.config'
+import config, { social } from 'siteconfig'
 import { Opacity } from 'components/LinkEffect'
 import Styled from './Styled'
 import Section from '../Section'
@@ -28,7 +28,7 @@ function Footer() {
           <Section>
             <h5>Visit</h5>
             <p>
-              28 Marcy, Floor 3
+              28 Marcy Avenue, Floor 3
               <br />
               Brooklyn, New York 11211
             </p>
