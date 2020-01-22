@@ -16,7 +16,10 @@ const StoreProvider = ({ children, checkout: initialCheckout }) => {
         variantId,
         quantity: qty,
       })
-      .then(newCheckout => setCheckout(newCheckout))
+      .then(newCheckout => {
+        setCheckout(newCheckout)
+        setCartOpen(true)
+      })
 
   // Remove item
   const removeItem = id =>
