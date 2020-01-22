@@ -14,67 +14,33 @@ import Styled from './Styled'
 function Work({ site, tag }) {
   const caseStudies = site.site_case_studies.map(item => item.case_study)
 
-  const allTags = caseStudies
-    // Get all tags
-    .reduce((acc, item) => [...acc, ...item.tags], [])
-    // filter unique
-    .filter((item, index, origArr) => origArr.indexOf(item) === index)
-    // format into uid and name
-    .map(item => ({
-      name: item,
-      id: toUrlFormat(item),
-    }))
-
   return (
     <Wrap>
       <Section>
         <Styled.Wrapper>
           {caseStudies.map(({ data, uid, tags }) => {
             if (data && uid) {
-              const image = data.thumbnail ? data.thumbnail.url : data.image.url
-              const isActive = tag
-                ? tags.map(item => toUrlFormat(item)).indexOf(tag) !== -1
-                : true
-
               return (
-                isActive && (
-                  <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
-                    <a>
-                      <Trigger>
-                        <WorkItem
-                          key={uid}
-                          image={image}
-                          title={RichText.asText(data.name)}
-                        />
-                      </Trigger>
-                    </a>
-                  </Link>
-                )
+                <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
+                  <a>
+                    <Trigger>
+                      <WorkItem
+                        key={uid}
+                        image={
+                          data.thumbnail ? data.thumbnail.url : data.image.url
+                        }
+                        title={RichText.asText(data.name)}
+                      />
+                    </Trigger>
+                  </a>
+                </Link>
               )
             }
             return null
           })}
         </Styled.Wrapper>
-        <Tags tag={tag} allTags={allTags} />
       </Section>
     </Wrap>
-  )
-}
-
-const Tags = ({ tag, allTags }) => {
-  return (
-    <Section>
-      <Styled.TagWrapper>
-        <Link href="/work" as="/work">
-          <Styled.Tag greyed={!!tag}>All</Styled.Tag>
-        </Link>
-        {allTags.map(item => (
-          <Link key={item.id} href={`/work?tag=${item.id}`}>
-            <Styled.Tag greyed={tag !== item.id}>{item.name}</Styled.Tag>
-          </Link>
-        ))}
-      </Styled.TagWrapper>
-    </Section>
   )
 }
 

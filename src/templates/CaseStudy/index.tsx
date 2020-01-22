@@ -1,6 +1,5 @@
 import React, { createContext, memo } from 'react'
 import { RichText } from 'prismic-reactjs'
-import Link from 'next/link'
 import { Wrap } from 'style'
 import PostIntro from 'components/PostIntro'
 import { RelatedWrapper, RelatedItem } from 'components/Related'
@@ -14,7 +13,6 @@ import Video from 'components/slices/Video'
 import getResponsiveImage from 'util/getResponsiveImage'
 import getImageSize from 'util/getImageSize'
 import renderText, { PrismicRichText } from 'util/renderText'
-import toUrlFormat from 'util/toUrlFormat'
 import Gallery from './Gallery'
 import Styled from './Styled'
 
@@ -29,10 +27,9 @@ export const CaseStudyCtx = createContext({
 
 interface CsProps {
   data: any
-  tags: string[]
 }
 
-const CaseStudy: React.FC<CsProps> = memo(({ data, tags }) => {
+const CaseStudy: React.FC<CsProps> = memo(({ data }) => {
   const title = RichText.asText(data.name)
   const alt = formatTitle(title)
   const heroAtts = getResponsiveImage(data.image.url)
@@ -56,13 +53,6 @@ const CaseStudy: React.FC<CsProps> = memo(({ data, tags }) => {
         <Slices data={data} />
         <Section>
           <Credits data={data.credits} />
-          <Styled.Tags>
-            {tags.map(tag => (
-              <Link key={tag} href={`/work?tag=${toUrlFormat(tag)}`}>
-                <Styled.Tag>{tag}</Styled.Tag>
-              </Link>
-            ))}
-          </Styled.Tags>
         </Section>
       </Wrap>
       <Related items={data.related_work} />
