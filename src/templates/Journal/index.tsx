@@ -55,7 +55,11 @@ const Journal: React.FC<JournalProps> = React.memo(
           </Styled.Wrapper>
           {(!isEnd || loading) && (
             <Section>
-              <Styled.LoadMore onClick={getNextPage}>Load More</Styled.LoadMore>
+              <Trigger>
+                <Styled.LoadMore onClick={getNextPage}>
+                  <Opacity>Load More</Opacity>
+                </Styled.LoadMore>
+              </Trigger>
             </Section>
           )}
         </Wrap>
@@ -106,14 +110,16 @@ const JournalCard: React.FC<CardProps> = ({
 
 const Text: React.FC<TextProps> = ({ title, date }) => {
   return (
-    <Styled.DescWrapper>
-      <Heading as="h2" headingStyle={2} noMargin>
-        <Opacity>{title}</Opacity>
-      </Heading>
-      <Heading as="h3" headingStyle={2} noMargin>
-        {date}
-      </Heading>
-    </Styled.DescWrapper>
+    <Opacity>
+      <Styled.DescWrapper>
+        <Heading as="h2" headingStyle={2} noMargin>
+          {title}
+        </Heading>
+        <Heading as="h3" headingStyle={2} noMargin>
+          {date}
+        </Heading>
+      </Styled.DescWrapper>
+    </Opacity>
   )
 }
 
