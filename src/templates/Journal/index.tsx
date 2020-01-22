@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react'
 // import { RichText } from 'prismic-reactjs'
 import Link from 'next/link'
@@ -6,17 +7,56 @@ import { Wrap } from 'style'
 import Section from 'components/Section'
 import fmtDate from 'util/fmtDate'
 import Heading from 'components/Heading'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import { Opacity, Trigger } from 'components/LinkEffect'
 
+import { PrismicImage } from 'types'
 import Styled from './Styled'
 import getImage from './getImage'
-import getLayout from './getLayout'
 import useNextPage from './hooks/useNextPage'
 
+type RichText = { type: string }[]
+
+type JournalLink = {
+  id: string
+  uid: string
+  type: string
+  href: string
+  tags: string[]
+  first_publication_date: string
+  last_publication_date: string
+  slugs: string[]
+  linked_documents: any[]
+  lang: string
+  alternate_languages: any[]
+  data: {
+    title: RichText
+    date: string
+    abstract: RichText
+    thumbnail_image: PrismicImage | null
+    // main_image: {400: {…}, 900: {…}, 2400: {…}, dimensions: {…}, alt: null, copyright: null, url: "https://images.prismic.io/hightidesite/b39c28d4-60…to=compress,format&rect=0,0,1200,800&w=1400&h=933"}
+    // thumbnail_image: {dimensions: {…}, alt: null, copyright: null, url: "https://images.prismic.io/hightidesite/b39c28d4-60…to=compress,format&rect=0,0,1200,800&w=1200&h=800", portrait: {…}, …}
+    // related_journals: (3) [{…}, {…}, {…}]
+    // body: (8) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+    // version: null
+    // spotify_link: {}
+  }
+}
 interface JournalProps {
   totalPages: number
   results: any[]
+}
+
+const subArr = (array: any[], n: number): any[] => {
+  const subArrCount = array.length / n
+
+  const emptySubArrs = Array.from({ length: subArrCount })
+  const fullSubArrs = emptySubArrs.map((_, i) => {
+    const ArrStart = i * n
+    return [...array].slice(ArrStart, ArrStart + n)
+  })
+
+  return fullSubArrs
 }
 
 const Journal: React.FC<JournalProps> = React.memo(
@@ -24,35 +64,44 @@ const Journal: React.FC<JournalProps> = React.memo(
     const { getNextPage, isEnd, additionalPages, loading } = useNextPage(
       totalPages
     )
-    const allResults = [...initialResults, ...additionalPages]
+    const allResults: JournalLink[] = [...initialResults, ...additionalPages]
+
+    type JournalLinks = JournalLink[]
+    const sections: JournalLinks[] = subArr(allResults, 3)
 
     return (
       <Section noTop>
         <Wrap>
-          <Styled.Wrapper>
-            {allResults.map(({ data, uid }, i) => {
-              const [y, m, d] = data.date.split('-')
-              const date = new Date(y, m - 1, d)
-              const formattedDate = fmtDate(date)
-              const title = RichText.asText(data.title)
-              const mainImg = data.main_image.url
-              const thumbnail = data.thumbnail_image
-              const { isLarge, order } = getLayout(i)
+          {/* <Styled.Wrapper> */}
 
-              return (
-                <JournalCard
-                  key={uid}
-                  uid={uid}
-                  mainImg={mainImg}
-                  thumbnail={thumbnail}
-                  date={formattedDate}
-                  title={title}
-                  large={isLarge}
-                  order={order}
-                />
-              )
-            })}
-          </Styled.Wrapper>
+          {sections.map((section, sectionIndex) => (
+            <JSection>
+              {section.map((item, itemIndex) => {
+                const isSectionEven = sectionIndex % 2 === 0
+                const isLarge = isSectionEven
+                  ? itemIndex === 0
+                  : itemIndex === 2
+
+                const image =
+                  (item.data.thumbnail_image &&
+                    item.data.thumbnail_image.url) ||
+                  ''
+
+                return (
+                  <>
+                    <ImageWrap isLarge={isLarge}>
+                      <img src={image} alt="asdf" />
+                    </ImageWrap>
+                    <Text
+                      date="data"
+                      title={RichText.asText(item.data.title)}
+                    />
+                  </>
+                )
+              })}
+            </JSection>
+          ))}
+          {/* </Styled.Wrapper> */}
           {(!isEnd || loading) && (
             <Section>
               <Trigger>
@@ -67,6 +116,23 @@ const Journal: React.FC<JournalProps> = React.memo(
     )
   }
 )
+
+const JSection = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-auto-flow: column;
+`
+
+const ImageWrap = styled.div<{ isLarge: boolean }>`
+  grid-row: ${props => (props.isLarge ? 'auto / span 3' : 'auto')};
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`
 
 interface TextProps {
   date: string

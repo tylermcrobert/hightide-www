@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   display: grid;
   grid-gap: ${props => props.theme.margins.standard};
 
-  @media ${mq.xs} {
+  @media ${mq.sm} {
     grid-template-columns: repeat(2, 1fr);
   }
 `

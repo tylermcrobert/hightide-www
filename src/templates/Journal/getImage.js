@@ -2,6 +2,7 @@ import getImageSize from 'util/getImageSize'
 /**
  * Get approrpriate image
  */
+
 export default function getImage({ mainImg, thumbnail, large }) {
   if (thumbnail.url) {
     /**
