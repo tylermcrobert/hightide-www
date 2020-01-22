@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types'
 import { RichText } from 'prismic-reactjs'
 import Link from 'next/link'
-
 import { Wrap } from 'style'
 import Heading from 'components/Heading'
 import AspectImage from 'components/AspectImage'
 import Section from 'components/Section'
 import { Opacity, Trigger } from 'components/LinkEffect'
 import getImageSize from 'util/getImageSize'
-import toUrlFormat from 'util/toUrlFormat'
 import Styled from './Styled'
 
 function Work({ site, tag }) {
