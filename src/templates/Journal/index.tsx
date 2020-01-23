@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React from 'react'
+import React, { useState } from 'react'
 // import { RichText } from 'prismic-reactjs'
 import Link from 'next/link'
 import { RichText } from 'prismic-reactjs'
@@ -7,27 +7,11 @@ import { Wrap } from 'style'
 import Section from 'components/Section'
 import Heading from 'components/Heading'
 import { Opacity, Trigger } from 'components/LinkEffect'
-
+import subArr from 'util/subarr'
 import { PrismicImage } from 'types'
 import getImage from './getImage'
 import Styled from './Styled'
-
 import useNextPage from './hooks/useNextPage'
-
-// TODO: add hover
-// TODO: add link
-
-const subArr = (array: any[], n: number): any[] => {
-  const subArrCount = array.length / n
-
-  const emptySubArrs = Array.from({ length: subArrCount })
-  const fullSubArrs = emptySubArrs.map((_, i) => {
-    const ArrStart = i * n
-    return [...array].slice(ArrStart, ArrStart + n)
-  })
-
-  return fullSubArrs
-}
 
 /**
  * Main Component
@@ -82,6 +66,7 @@ const JournalSections: React.FC<SectionsProps> = ({ allResults }) => {
 
             return (
               <Item
+                uid={item.uid}
                 isLarge={isLarge}
                 itemIndex={itemIndex}
                 isSectionEven={isSectionEven}
@@ -100,6 +85,7 @@ const JournalSections: React.FC<SectionsProps> = ({ allResults }) => {
  */
 
 interface ItemProps {
+  uid: string
   data: JournalLink['data']
   itemIndex: number
   isLarge: boolean
@@ -107,11 +93,13 @@ interface ItemProps {
 }
 
 const Item: React.FC<ItemProps> = ({
+  uid,
   data,
   itemIndex,
   isLarge,
   isSectionEven,
 }) => {
+  const [isHovered, setHovered] = useState<boolean>(false)
   const image = getImage({
     isLarge: isSectionEven ? itemIndex === 0 : itemIndex === 2,
     mainImg: data.main_image,
@@ -124,12 +112,22 @@ const Item: React.FC<ItemProps> = ({
 
   const title = RichText.asText(data.title)
 
+  const linkProps = {
+    href: '/journal/[uid]',
+    as: `/journal/${uid}/`,
+    onMouseOver: () => setHovered(true),
+  }
+
   return (
     <>
-      <Styled.ImageWrap isLarge={isLarge}>
-        <img src={image} alt={title} />
-      </Styled.ImageWrap>
-      <Text date={date} title={title} hovered={false} />
+      <Link {...linkProps}>
+        <Styled.ImageWrap isLarge={isLarge}>
+          <img src={image} alt={title} />
+        </Styled.ImageWrap>
+      </Link>
+      <Link {...linkProps}>
+        <Text date={date} title={title} hovered={isHovered} />
+      </Link>
     </>
   )
 }
@@ -156,6 +154,10 @@ const Text: React.FC<TextProps> = ({ title, date, hovered }) => (
 )
 
 export default Journal
+
+/**
+ * Types
+ */
 
 type RichText = { type: string }[]
 

@@ -15,7 +15,7 @@ const DescWrapper = styled.div<{ hovered: boolean }>`
   margin-top: ${props => props.theme.margins.slim};
 
   opacity: ${props => (props.hovered ? 0.5 : 1)};
-  transform: 200ms ease opacity;
+  transform: 400ms ${props => props.theme.ease.standard} opacity;
 
   @media (min-width: ${sizes.xs}px) and (max-width: ${sizes.sm}px) {
     display: block;
