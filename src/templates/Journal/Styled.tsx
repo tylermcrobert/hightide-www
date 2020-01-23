@@ -3,47 +3,6 @@ import { mq, sizes } from 'style/theme'
 
 const RATIO = (2 / 3) * 100
 
-const Wrapper = styled.div`
-  display: grid;
-  grid-gap: ${props => props.theme.margins.standard};
-
-  @media ${mq.sm} {
-    grid-template-columns: repeat(2, 1fr);
-  }
-`
-
-/**
- * Journal Card Items
- */
-
-const JournalCard = styled.a<{ order: number }>`
-  cursor: pointer;
-  grid-row: ${props => props.theme.large && 'auto / span 2'};
-
-  @media ${mq.xs} {
-    order: ${props => props.order};
-  }
-`
-
-const CardLayout = styled.div`
-  height: 100%;
-  display: grid;
-  grid-gap: ${props => props.theme.margins.slim};
-  grid-template-rows: 1fr min-content;
-`
-
-const PostImage = styled.div<{ src: string }>`
-  padding-top: ${RATIO}%;
-  background: url(${props => props.src});
-  background-size: cover;
-  background-position: center center;
-
-  @media ${mq.xs} {
-    height: ${props => (!props.theme.large ? 0 : '100%')};
-    padding-top: ${props => !props.theme.large && `${RATIO}%`};
-  }
-`
-
 /**
  * Description Area
  */
@@ -52,9 +11,29 @@ const DescWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
   grid-gap: ${props => props.theme.margins.standard};
+  margin-bottom: ${props => props.theme.margins.standard};
+  margin-top: ${props => props.theme.margins.slim};
 
   @media (min-width: ${sizes.xs}px) and (max-width: ${sizes.sm}px) {
     display: block;
+  }
+`
+
+const JournalSection = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-column-gap: ${props => props.theme.margins.standard};
+  grid-auto-flow: column;
+`
+
+const ImageWrap = styled.div<{ isLarge: boolean }>`
+  grid-row: ${props => (props.isLarge ? 'auto / span 3' : 'auto')};
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `
 
@@ -66,10 +45,8 @@ const LoadMore = styled.div`
 `
 
 export default {
-  Wrapper,
-  JournalCard,
-  PostImage,
-  CardLayout,
   DescWrapper,
   LoadMore,
+  JournalSection,
+  ImageWrap,
 }

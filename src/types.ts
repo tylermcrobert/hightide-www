@@ -5,5 +5,5 @@ export type PrismicImage = {
   }
   alt: string
   copyright: any
-  url: string
+  url: string | null
 }
