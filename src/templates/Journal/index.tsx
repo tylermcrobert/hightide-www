@@ -115,18 +115,24 @@ const Item: React.FC<ItemProps> = ({
   const linkProps = {
     href: '/journal/[uid]',
     as: `/journal/${uid}/`,
-    onMouseOver: () => setHovered(true),
+  }
+
+  const hoverProps = {
+    onMouseEnter: () => setHovered(true),
+    onMouseLeave: () => setHovered(false),
   }
 
   return (
     <>
       <Link {...linkProps}>
-        <Styled.ImageWrap isLarge={isLarge}>
+        <Styled.ImageWrap isLarge={isLarge} {...hoverProps}>
           <img src={image} alt={title} />
         </Styled.ImageWrap>
       </Link>
       <Link {...linkProps}>
-        <Text date={date} title={title} hovered={isHovered} />
+        <a {...hoverProps}>
+          <Text date={date} title={title} hovered={isHovered} />
+        </a>
       </Link>
     </>
   )

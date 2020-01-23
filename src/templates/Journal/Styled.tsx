@@ -15,7 +15,7 @@ const DescWrapper = styled.div<{ hovered: boolean }>`
   margin-top: ${props => props.theme.margins.slim};
 
   opacity: ${props => (props.hovered ? 0.5 : 1)};
-  transform: 400ms ${props => props.theme.ease.standard} opacity;
+  transition: 400ms ${props => props.theme.ease.standard} opacity;
 
   @media (min-width: ${sizes.xs}px) and (max-width: ${sizes.sm}px) {
     display: block;
@@ -50,6 +50,7 @@ const ImageWrap = styled.div<{ isLarge: boolean }>`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: pointer;
   }
 `
 
