@@ -14,6 +14,9 @@ import Styled from './Styled'
 
 import useNextPage from './hooks/useNextPage'
 
+// TODO: add hover
+// TODO: add link
+
 const subArr = (array: any[], n: number): any[] => {
   const subArrCount = array.length / n
 
@@ -126,7 +129,7 @@ const Item: React.FC<ItemProps> = ({
       <Styled.ImageWrap isLarge={isLarge}>
         <img src={image} alt={title} />
       </Styled.ImageWrap>
-      <Text date={date} title={title} />
+      <Text date={date} title={title} hovered={false} />
     </>
   )
 }
@@ -138,19 +141,18 @@ const Item: React.FC<ItemProps> = ({
 interface TextProps {
   date: string
   title: string
+  hovered: boolean
 }
 
-const Text: React.FC<TextProps> = ({ title, date }) => (
-  <Opacity>
-    <Styled.DescWrapper>
-      <Heading as="h2" headingStyle={2} noMargin>
-        {title}
-      </Heading>
-      <Heading as="h3" headingStyle={2} noMargin>
-        {date}
-      </Heading>
-    </Styled.DescWrapper>
-  </Opacity>
+const Text: React.FC<TextProps> = ({ title, date, hovered }) => (
+  <Styled.DescWrapper hovered={hovered}>
+    <Heading as="h2" headingStyle={2} noMargin>
+      {title}
+    </Heading>
+    <Heading as="h3" headingStyle={2} noMargin>
+      {date}
+    </Heading>
+  </Styled.DescWrapper>
 )
 
 export default Journal

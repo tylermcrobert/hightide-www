@@ -19,7 +19,7 @@ export default function getImage({
   if (isLarge && portrait.url) {
     return getImageSize(portrait.url, {
       w: 1200,
-      ar: 2 / 3,
+      ar: 0.691,
       fit: 'crop',
     })
   }
