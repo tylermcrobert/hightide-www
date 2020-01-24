@@ -109,7 +109,7 @@ const Item: React.FC<ItemProps> = ({
   })
 
   const [y, m, d] = data.date.split('-')
-  const date = `${d}.${m}.${y}`
+  const date = `${m}.${d}.${y}`
 
   const title = RichText.asText(data.title)
 
