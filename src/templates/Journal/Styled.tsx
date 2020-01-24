@@ -23,11 +23,13 @@ const DescWrapper = styled.div<{ hovered: boolean }>`
 `
 
 const JournalSection = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto auto;
-  grid-column-gap: ${props => props.theme.margins.standard};
-  grid-auto-flow: column;
+  @media ${mq.sm} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-column-gap: ${props => props.theme.margins.standard};
+    grid-auto-flow: column;
+  }
 `
 
 const ImageWrap = styled.div<{ isLarge: boolean }>`

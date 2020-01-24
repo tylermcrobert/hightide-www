@@ -59,13 +59,14 @@ const JournalSections: React.FC<SectionsProps> = ({ allResults }) => {
   return (
     <Wrap>
       {sections.map((section, sectionIndex) => (
-        <Styled.JournalSection>
+        <Styled.JournalSection key={section[0].uid}>
           {section.map((item, itemIndex) => {
             const isSectionEven = sectionIndex % 2 === 0
             const isLarge = isSectionEven ? itemIndex === 0 : itemIndex === 2
 
             return (
               <Item
+                key={item.uid}
                 uid={item.uid}
                 isLarge={isLarge}
                 itemIndex={itemIndex}
