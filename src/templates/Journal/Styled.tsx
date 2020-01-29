@@ -35,17 +35,19 @@ const JournalSection = styled.div`
 const ImageWrap = styled.div<{ isLarge: boolean }>`
   grid-row: ${props => (props.isLarge ? 'auto / span 3' : 'auto')};
   position: relative;
+  padding-top: ${RATIO}%;
 
-  ${props =>
-    props.isLarge
-      ? css`
-          height: 100%;
-        `
-      : css`
-          padding-top: ${RATIO}%;
-          height: 0;
-        `}
-
+  @media ${mq.sm} {
+    ${props =>
+      props.isLarge
+        ? css`
+            height: 100%;
+            padding-top: 0;
+          `
+        : css`
+            height: 0;
+          `}
+  }
   img {
     position: absolute;
     top: 0;

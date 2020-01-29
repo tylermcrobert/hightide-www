@@ -56,6 +56,7 @@ const JournalSections: React.FC<SectionsProps> = ({ allResults }) => {
   type JournalLinks = JournalLink[]
   const sections: JournalLinks[] = subArr(allResults, 3)
 
+  // console.log(sections[0][0].data)
   return (
     <Wrap>
       {sections.map((section, sectionIndex) => (
@@ -107,6 +108,8 @@ const Item: React.FC<ItemProps> = ({
     portrait: data.thumbnail_image.portrait,
     thumbnail: data.thumbnail_image,
   })
+
+  console.log(image)
 
   const [y, m, d] = data.date.split('-')
   const date = `${m}.${d}.${y}`
