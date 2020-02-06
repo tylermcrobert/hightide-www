@@ -89,7 +89,7 @@ export default class HighTideApp extends App {
             }
 
             .page-transition-enter-done {
-              transform: translateY(0);
+              transform: none;
               transition: ${duration}ms transform ${decel},
                 ${duration}ms opacity ${decel};
             }

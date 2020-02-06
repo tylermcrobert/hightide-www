@@ -9,10 +9,10 @@ import Heading from 'components/Heading'
 import { Opacity, Trigger } from 'components/LinkEffect'
 import subArr from 'util/subarr'
 import { PrismicImage } from 'types'
+import ScrollToTop from 'components/ScrollToTop'
 import getImage from './getImage'
 import Styled from './Styled'
 import useNextPage from './hooks/useNextPage'
-
 /**
  * Main Component
  */
@@ -27,20 +27,23 @@ const Journal: React.FC<JournalProps> = ({
   const allResults: JournalLink[] = [...initialResults, ...additionalPages]
 
   return (
-    <Section noTop>
-      <JournalSections allResults={allResults} />
-      <Wrap>
-        {(!isEnd || loading) && (
-          <Section>
-            <Trigger>
-              <Styled.LoadMore onClick={getNextPage}>
-                <Opacity>Load More</Opacity>
-              </Styled.LoadMore>
-            </Trigger>
-          </Section>
-        )}
-      </Wrap>
-    </Section>
+    <>
+      <ScrollToTop />
+      <Section noTop>
+        <JournalSections allResults={allResults} />
+        <Wrap>
+          {(!isEnd || loading) && (
+            <Section>
+              <Trigger>
+                <Styled.LoadMore onClick={getNextPage}>
+                  <Opacity>Load More</Opacity>
+                </Styled.LoadMore>
+              </Trigger>
+            </Section>
+          )}
+        </Wrap>
+      </Section>
+    </>
   )
 }
 
@@ -108,8 +111,6 @@ const Item: React.FC<ItemProps> = ({
     portrait: data.thumbnail_image.portrait,
     thumbnail: data.thumbnail_image,
   })
-
-  console.log(image)
 
   const [y, m, d] = data.date.split('-')
   const date = `${m}.${d}.${y}`
