@@ -10,10 +10,10 @@ const Columns = styled.div`
 `
 const Track = styled.li`
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto;
   grid-gap: ${props => props.theme.margins.slim};
   align-items: center;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 
   &:nth-child(1) {
     margin-top: 0;

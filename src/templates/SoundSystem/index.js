@@ -100,9 +100,6 @@ const Tracks = ({ items }) => {
 const Track = ({ albumCover, artists, name, duration }) => {
   return (
     <Styled.Track>
-      <Styled.AlbumCoverWrapper>
-        <img src={albumCover} alt="" />
-      </Styled.AlbumCoverWrapper>
       <div>
         <div>
           <strong>{name}</strong>
