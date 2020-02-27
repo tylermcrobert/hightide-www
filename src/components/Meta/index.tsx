@@ -42,7 +42,7 @@ const Meta: React.FC<Props> = ({
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content={`@${social.twitter}`} />
       <meta name="twitter:creator" content={`@${social.twitter}`} />
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={`${siteUrl}${image}`} />
 
       {url && <link rel="canonical" href={pageUrl} />}
       <title>{formatTitle(titleProp)}</title>
