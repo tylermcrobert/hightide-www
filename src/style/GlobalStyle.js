@@ -83,6 +83,10 @@ const style = css`
     font-weight: 500;
   }
 
+  em {
+    font-style: italic;
+  }
+
   img,
   video {
     display: block;
