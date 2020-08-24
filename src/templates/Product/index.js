@@ -5,6 +5,7 @@ import Button from 'components/Button'
 import PropTypes from 'prop-types'
 import { StoreCtx } from 'components/StoreProvider'
 import Heading from 'components/Heading'
+import BackInStock from 'components/BackInStock/BackInStock'
 import { client } from 'middleware/getShopifyCheckout'
 import { Price } from 'components/shopify'
 import Box from 'components/Box'
@@ -21,6 +22,18 @@ const Product = memo(({ data: productData }) => {
   const { updateOptions, selectedOptions } = useOptionSelect(productData)
   const currentVariant = variantForOptions(productData, selectedOptions)
 
+  const productId = parseFloat(
+    Buffer.from(productData.id, 'base64')
+      .toString()
+      .split('Product/')[1]
+  )
+
+  const currentVariantId = parseFloat(
+    Buffer.from(currentVariant.id, 'base64')
+      .toString()
+      .split('ProductVariant/')[1]
+  )
+
   return (
     <ProductCtx.Provider
       value={{ currentVariant, productData, updateOptions, selectedOptions }}
@@ -30,31 +43,11 @@ const Product = memo(({ data: productData }) => {
           <ProductImages />
           <ProductDetail />
         </Styled.Wrapper>
-        {/* <BackInStockModal /> */}
+        <BackInStock variantId={currentVariantId} productId={productId} />
       </Wrap>
     </ProductCtx.Provider>
   )
 })
-
-const BackInStockModal = () => {
-  return (
-    <div>
-      <Styled.BackInStockModalWrapper>
-        <Styled.BackInStockModal>
-          Sorry, we&apos;re sold out. Register your email address below to
-          receive an email as soon as this becomes available again.
-          <form>
-            <Box mb={0}>
-              <Input type="email" placeholder="Email" />
-            </Box>
-            <Button>Notify me</Button>
-          </form>
-        </Styled.BackInStockModal>
-      </Styled.BackInStockModalWrapper>
-      <Styled.ModalShadow />
-    </div>
-  )
-}
 
 const ProductImages = () => {
   const { productData } = useContext(ProductCtx)
