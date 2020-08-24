@@ -6,6 +6,7 @@ import Button from 'components/Button'
 import Heading from 'components/Heading'
 import Box from 'components/Box'
 import { Input } from 'components/FormElements'
+import { log } from 'logrocket'
 import S from './BackInStock.Styled'
 
 type EmailOptions = {
@@ -49,7 +50,7 @@ const fetchBackInStock = (options: BackInStockOptions) => {
   }
   const url = `${BIS_URL}?${qs.stringify(params)}`
 
-  fetch(url).then(res => {
+  return fetch(url).then(res => {
     if (res.ok) {
       return res.json()
     }
@@ -62,9 +63,15 @@ const fetchBackInStock = (options: BackInStockOptions) => {
  * Back in stock component
  */
 
-type BackInStockProps = Omit<BackInStockOptions, 'email'>
+type BackInStockProps = Omit<BackInStockOptions, 'email'> & {
+  onClose: () => void
+}
 
-const BackInStock: React.FC<BackInStockProps> = ({ variantId, productId }) => {
+const BackInStock: React.FC<BackInStockProps> = ({
+  variantId,
+  productId,
+  onClose,
+}) => {
   const notify = (email: string) =>
     fetchBackInStock({
       email,
@@ -74,8 +81,8 @@ const BackInStock: React.FC<BackInStockProps> = ({ variantId, productId }) => {
 
   return (
     <>
-      <S.Wrapper>
-        <S.Window>
+      <S.Wrapper className="js-wrapper" onClick={onClose}>
+        <S.Window onClick={e => e.stopPropagation()}>
           <Heading headingStyle={1} as="h2">
             Out of stock
           </Heading>
@@ -97,7 +104,7 @@ const BackInStock: React.FC<BackInStockProps> = ({ variantId, productId }) => {
           </form>
         </S.Window>
       </S.Wrapper>
-      <S.Shadow />
+      <S.Shadow onClick={() => onClose()} />
     </>
   )
 }

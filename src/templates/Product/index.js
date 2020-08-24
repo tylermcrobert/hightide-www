@@ -1,4 +1,4 @@
-import React, { useContext, memo, createContext } from 'react'
+import React, { useContext, memo, createContext, useState } from 'react'
 import { Wrap } from 'style'
 import Section from 'components/Section'
 import Button from 'components/Button'
@@ -21,6 +21,7 @@ const { variantForOptions } = client.product.helpers
 const Product = memo(({ data: productData }) => {
   const { updateOptions, selectedOptions } = useOptionSelect(productData)
   const currentVariant = variantForOptions(productData, selectedOptions)
+  const [isModalOpen, setModalOpen] = useState(false)
 
   const productId = parseFloat(
     Buffer.from(productData.id, 'base64')
@@ -36,14 +37,26 @@ const Product = memo(({ data: productData }) => {
 
   return (
     <ProductCtx.Provider
-      value={{ currentVariant, productData, updateOptions, selectedOptions }}
+      value={{
+        currentVariant,
+        productData,
+        updateOptions,
+        selectedOptions,
+        setModalOpen,
+      }}
     >
       <Wrap>
         <Styled.Wrapper>
           <ProductImages />
           <ProductDetail />
         </Styled.Wrapper>
-        <BackInStock variantId={currentVariantId} productId={productId} />
+        {isModalOpen && (
+          <BackInStock
+            variantId={currentVariantId}
+            productId={productId}
+            onClose={() => setModalOpen(false)}
+          />
+        )}
       </Wrap>
     </ProductCtx.Provider>
   )
@@ -184,7 +197,7 @@ const Variant = ({ optionName, optionCategory, isFullWidth }) => {
 }
 
 const AddToCartButton = () => {
-  const { currentVariant } = useContext(ProductCtx)
+  const { currentVariant, setModalOpen } = useContext(ProductCtx)
   const { addItem } = useContext(StoreCtx)
 
   return (
@@ -198,7 +211,9 @@ const AddToCartButton = () => {
         </Button>
       ) : (
         <Box mb={0}>
-          <Button>Notify when available</Button>
+          <Button onClick={() => setModalOpen(true)}>
+            Notify when available
+          </Button>
         </Box>
       )}
     </>
