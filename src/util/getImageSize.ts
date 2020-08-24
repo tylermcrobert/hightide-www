@@ -16,6 +16,16 @@ interface SettingsProps {
     | 'webm'
     | 'web'
   q?: number
+  ar?: number
+  fit?:
+    | 'clamp'
+    | 'clip'
+    | 'crop'
+    | 'facearea'
+    | 'fill'
+    | 'fillmax'
+    | 'max'
+    | 'min'
 }
 
 const DEFAULT_SETTINGS: SettingsProps = { w: 2400, fm: 'jpg' }

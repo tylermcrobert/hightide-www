@@ -1,60 +1,60 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { mq, sizes } from 'style/theme'
 
 const RATIO = (2 / 3) * 100
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-gap: ${props => props.theme.margins.standard};
-
-  @media ${mq.xs} {
-    grid-template-columns: repeat(2, 1fr);
-  }
-`
-
-/**
- * Journal Card Items
- */
-
-const JournalCard = styled.a<{ order: number }>`
-  cursor: pointer;
-  grid-row: ${props => props.theme.large && 'auto / span 2'};
-
-  @media ${mq.xs} {
-    order: ${props => props.order};
-  }
-`
-
-const CardLayout = styled.div`
-  height: 100%;
-  display: grid;
-  grid-gap: ${props => props.theme.margins.slim};
-  grid-template-rows: 1fr min-content;
-`
-
-const PostImage = styled.div<{ src: string }>`
-  padding-top: ${RATIO}%;
-  background: url(${props => props.src});
-  background-size: cover;
-  background-position: center center;
-
-  @media ${mq.xs} {
-    height: ${props => (!props.theme.large ? 0 : '100%')};
-    padding-top: ${props => !props.theme.large && `${RATIO}%`};
-  }
-`
 
 /**
  * Description Area
  */
 
-const DescWrapper = styled.div`
+const DescWrapper = styled.div<{ hovered: boolean }>`
   display: grid;
   grid-template-columns: 1fr auto;
   grid-gap: ${props => props.theme.margins.standard};
+  margin-bottom: ${props => props.theme.margins.standard};
+  margin-top: ${props => props.theme.margins.slim};
+
+  opacity: ${props => (props.hovered ? 0.5 : 1)};
+  transition: 400ms ${props => props.theme.ease.standard} opacity;
 
   @media (min-width: ${sizes.xs}px) and (max-width: ${sizes.sm}px) {
     display: block;
+  }
+`
+
+const JournalSection = styled.div`
+  @media ${mq.sm} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-column-gap: ${props => props.theme.margins.standard};
+    grid-auto-flow: column;
+  }
+`
+
+const ImageWrap = styled.div<{ isLarge: boolean }>`
+  grid-row: ${props => (props.isLarge ? 'auto / span 3' : 'auto')};
+  position: relative;
+  padding-top: ${RATIO}%;
+
+  @media ${mq.sm} {
+    ${props =>
+      props.isLarge
+        ? css`
+            height: 100%;
+            padding-top: 0;
+          `
+        : css`
+            height: 0;
+          `}
+  }
+  img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
   }
 `
 
@@ -66,10 +66,8 @@ const LoadMore = styled.div`
 `
 
 export default {
-  Wrapper,
-  JournalCard,
-  PostImage,
-  CardLayout,
   DescWrapper,
   LoadMore,
+  JournalSection,
+  ImageWrap,
 }

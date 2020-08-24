@@ -1,5 +1,5 @@
 const getPlaylistLink = link => link.split('/playlist/')[1].split('?')[0]
-const API_ROUTE = '/api/getSpotifyPlaylist'
+const API_ROUTE = 'https://hightidenyc.com/api/getSpotifyPlaylist'
 /**
  * handle sound system
  */
@@ -39,6 +39,8 @@ export default class SoundSystemReq {
 
       return apiRes
     } catch (err) {
+      console.log(err)
+
       return null
     }
   }
