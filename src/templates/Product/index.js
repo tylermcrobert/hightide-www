@@ -79,7 +79,7 @@ const ProductDetail = () => {
           <Box mb={5}>
             <ProductOptions />
           </Box>
-          <Box mb={3}>
+          <Box mb={5}>
             <Styled.Description
               dangerouslySetInnerHTML={{ __html: descriptionHtml }}
             />
