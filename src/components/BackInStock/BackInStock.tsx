@@ -47,7 +47,13 @@ const fetchBackInStock = (options: BackInStockOptions) => {
   }
   const url = `${BIS_URL}?${qs.stringify(params)}`
 
-  console.log(params, url)
+  fetch(url).then(res => {
+    if (res.ok) {
+      return res.json()
+    }
+    console.log('error')
+    return null
+  })
 }
 
 /**
@@ -66,7 +72,7 @@ const BackInStock: React.FC<BackInStockProps> = ({ variantId, productId }) => {
 
   return (
     <Button onClick={() => notify('tyler@hightidenyc.com')} role="button">
-      a;lsdfkfj
+      Notify when available
     </Button>
   )
 }
