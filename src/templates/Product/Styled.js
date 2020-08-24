@@ -87,11 +87,43 @@ const StickyPanel = styled.div`
   position: sticky;
   top: ${props => props.theme.navHeight};
 `
+
+const BackInStockModalWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const BackInStockModal = styled.div`
+  max-width: 25em;
+  background: white;
+  padding: 1rem;
+`
+
+const ModalShadow = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 100;
+`
+
 export default {
+  BackInStockModalWrapper,
+  ModalShadow,
   Wrapper,
   Description,
   Option,
   StickyPanel,
   ImageWrapper,
   CarouselWrapper,
+  BackInStockModal,
 }

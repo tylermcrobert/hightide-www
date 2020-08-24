@@ -10,6 +10,7 @@ import { Price } from 'components/shopify'
 import Box from 'components/Box'
 import { Wrapper as CarouselWrap, ImageWrapper } from 'components/Carousel'
 import OrphanRemover from 'components/OrphanRemover'
+import { Input } from 'components/FormElements'
 import Styled from './Styled'
 import useOptionSelect from './hooks/useOptionSelect'
 
@@ -29,10 +30,31 @@ const Product = memo(({ data: productData }) => {
           <ProductImages />
           <ProductDetail />
         </Styled.Wrapper>
+        {/* <BackInStockModal /> */}
       </Wrap>
     </ProductCtx.Provider>
   )
 })
+
+const BackInStockModal = () => {
+  return (
+    <div>
+      <Styled.BackInStockModalWrapper>
+        <Styled.BackInStockModal>
+          Sorry, we&apos;re sold out. Register your email address below to
+          receive an email as soon as this becomes available again.
+          <form>
+            <Box mb={0}>
+              <Input type="email" placeholder="Email" />
+            </Box>
+            <Button>Notify me</Button>
+          </form>
+        </Styled.BackInStockModal>
+      </Styled.BackInStockModalWrapper>
+      <Styled.ModalShadow />
+    </div>
+  )
+}
 
 const ProductImages = () => {
   const { productData } = useContext(ProductCtx)
@@ -173,12 +195,20 @@ const AddToCartButton = () => {
   const { addItem } = useContext(StoreCtx)
 
   return (
-    <Button
-      disabled={!currentVariant.available}
-      onClick={currentVariant ? () => addItem(currentVariant.id) : null}
-    >
-      {currentVariant.available ? 'Add to Cart' : 'Unavailable'}
-    </Button>
+    <>
+      {currentVariant.available ? (
+        <Button
+          disabled={!currentVariant.available}
+          onClick={currentVariant ? () => addItem(currentVariant.id) : null}
+        >
+          {currentVariant.available ? 'Add to Cart' : 'Unavailable'}
+        </Button>
+      ) : (
+        <Box mb={0}>
+          <Button>Notify when available</Button>
+        </Box>
+      )}
+    </>
   )
 }
 
