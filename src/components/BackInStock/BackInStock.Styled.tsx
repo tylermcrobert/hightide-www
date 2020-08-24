@@ -29,11 +29,17 @@ const Shadow = styled.div`
 
 const Window = styled.div`
   width: 100%;
-  max-width: 30rem;
+  max-width: 25rem;
   background: white;
-  padding: ${theme.margins.slim};
+  padding: ${theme.margins.standard} ${theme.margins.slim};
+`
+
+const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `
 export default {
+  ButtonWrap,
   Shadow,
   Wrapper,
   Window,

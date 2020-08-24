@@ -84,7 +84,7 @@ const BackInStock: React.FC<BackInStockProps> = ({
     }).then(res => {
       if (res.errors) {
         setErrors(res.errors[Object.keys(res.errors)[0]][0])
-      } else if (res.status === 'ok') {
+      } else {
         onClose()
       }
     })
@@ -94,12 +94,14 @@ const BackInStock: React.FC<BackInStockProps> = ({
     <>
       <S.Wrapper className="js-wrapper" onClick={onClose}>
         <S.Window onClick={e => e.stopPropagation()}>
-          <Heading headingStyle={1} as="h2">
-            Out of stock
-          </Heading>
+          <Box mb={1}>
+            <Heading headingStyle={1} as="h2">
+              We&apos;ll let you know
+            </Heading>
+          </Box>
           <p>
-            Sorry, we&apos;re sold out. Register your email address below to
-            receive an email as soon as this becomes available again.
+            Register your email receive an email as soon as this becomes
+            available again.
           </p>
 
           <form onSubmit={handleForm}>
@@ -113,7 +115,9 @@ const BackInStock: React.FC<BackInStockProps> = ({
               />
             </Box>
             {errors && <p>{errors}</p>}
-            <Button role="button">Notify when available</Button>
+            <S.ButtonWrap>
+              <Button role="button">Notify when available</Button>
+            </S.ButtonWrap>
           </form>
         </S.Window>
       </S.Wrapper>
