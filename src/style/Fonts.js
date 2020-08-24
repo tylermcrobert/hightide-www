@@ -41,7 +41,7 @@ export default function Fuck() {
         }
 
         .page-transition-enter-done {
-          transform: translateY(0);
+          transform: none;
           transition: ${duration}ms transform ${decel},
             ${duration}ms opacity ${decel};
         }

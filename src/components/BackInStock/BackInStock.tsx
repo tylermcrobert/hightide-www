@@ -3,8 +3,10 @@
 import React from 'react'
 import qs from 'querystring'
 import Button from 'components/Button'
-
-const token = 'fb1a98fd92754bbda129ea59309119b3'
+import Heading from 'components/Heading'
+import Box from 'components/Box'
+import { Input } from 'components/FormElements'
+import S from './BackInStock.Styled'
 
 type EmailOptions = {
   'notification[email]': string
@@ -71,35 +73,33 @@ const BackInStock: React.FC<BackInStockProps> = ({ variantId, productId }) => {
     })
 
   return (
-    <Button onClick={() => notify('tyler@hightidenyc.com')} role="button">
-      Notify when available
-    </Button>
+    <>
+      <S.Wrapper>
+        <S.Window>
+          <Heading headingStyle={1} as="h2">
+            Out of stock
+          </Heading>
+          <p>
+            Sorry, we&apos;re sold out. Register your email address below to
+            receive an email as soon as this becomes available again.
+          </p>
+
+          <form>
+            <Box mb={3}>
+              <Input type="email" placeholder="Email" />
+            </Box>
+            <Button
+              onClick={() => notify('tyler@hightidenyc.com')}
+              role="button"
+            >
+              Notify when available
+            </Button>
+          </form>
+        </S.Window>
+      </S.Wrapper>
+      <S.Shadow />
+    </>
   )
 }
 
 export default BackInStock
-
-/*
-
-const BackInStockModal = () => {
-  return (
-    <div>
-      <Styled.BackInStockModalWrapper>
-        <Styled.BackInStockModal>
-          Sorry, we&apos;re sold out. Register your email address below to
-          receive an email as soon as this becomes available again.
-          <form>
-            <Box mb={0}>
-              <Input type="email" placeholder="Email" />
-            </Box>
-            <Button>Notify me</Button>
-          </form>
-        </Styled.BackInStockModal>
-      </Styled.BackInStockModalWrapper>
-      <BackInStock />
-      <Styled.ModalShadow />
-    </div>
-  )
-}
-
-*/
