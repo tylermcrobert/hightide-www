@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable camelcase */
-import React from 'react'
+import React, { useState } from 'react'
 import qs from 'querystring'
 import Button from 'components/Button'
 import Heading from 'components/Heading'
@@ -72,12 +72,23 @@ const BackInStock: React.FC<BackInStockProps> = ({
   productId,
   onClose,
 }) => {
-  const notify = (email: string) =>
+  const [email, setEmail] = useState<string>('')
+  const [errors, setErrors] = useState<string>('')
+
+  const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     fetchBackInStock({
       email,
       variantId,
       productId,
+    }).then(res => {
+      if (res.errors) {
+        setErrors(res.errors[Object.keys(res.errors)[0]][0])
+      } else if (res.status === 'ok') {
+        onClose()
+      }
     })
+  }
 
   return (
     <>
@@ -91,16 +102,18 @@ const BackInStock: React.FC<BackInStockProps> = ({
             receive an email as soon as this becomes available again.
           </p>
 
-          <form>
+          <form onSubmit={handleForm}>
             <Box mb={3}>
-              <Input type="email" placeholder="Email" />
+              <Input
+                type="email"
+                placeholder="Email"
+                name="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
             </Box>
-            <Button
-              onClick={() => notify('tyler@hightidenyc.com')}
-              role="button"
-            >
-              Notify when available
-            </Button>
+            {errors && <p>{errors}</p>}
+            <Button role="button">Notify when available</Button>
           </form>
         </S.Window>
       </S.Wrapper>
