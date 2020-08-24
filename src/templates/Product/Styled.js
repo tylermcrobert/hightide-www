@@ -20,7 +20,7 @@ const Option = styled.li`
   font-size: ${props => props.theme.fontSizes[1]};
   width: 2rem;
   height: 2rem;
-  border-radius: 50%;
+  border-radius: 999px;
   border: 1px solid ${props => props.theme.colors.grey};
   justify-content: center;
   align-items: center;
@@ -29,6 +29,13 @@ const Option = styled.li`
   text-transform: uppercase;
   cursor: pointer;
   user-select: none;
+
+  ${props =>
+    props.isFullWidth &&
+    css`
+      padding: 0.5rem 3rem;
+      margin: 0 0.5rem 0.5rem 0;
+    `}
 
   ${props =>
     props.isSelected &&

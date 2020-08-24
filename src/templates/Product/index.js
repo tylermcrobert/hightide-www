@@ -12,7 +12,6 @@ import { Wrapper as CarouselWrap, ImageWrapper } from 'components/Carousel'
 import OrphanRemover from 'components/OrphanRemover'
 import Styled from './Styled'
 import useOptionSelect from './hooks/useOptionSelect'
-import useFixedPanel from './hooks/useFixedPanel'
 
 const ProductCtx = createContext()
 const { variantForOptions } = client.product.helpers
@@ -109,28 +108,37 @@ const ProductOptions = () => {
 
   return (
     <>
-      {productData.options.map(option =>
+      {productData.options.map(option => {
         // only return if there are multiple options
-        option.values.length > 1 ? (
+        const isCircleVariant = option.values
+          .map(v => v.value.length)
+          .some(e => e < 2)
+
+        const isGenericTitle = option.name === 'Title'
+
+        return option.values.length > 1 ? (
           <Box mb={3} key={option.name}>
-            <h5>{option.name}</h5>
+            {!isGenericTitle && <h5>{option.name}</h5>}
             <ul>
-              {option.values.map(variant => (
-                <Variant
-                  optionCategory={option.name}
-                  optionName={variant.value}
-                  key={variant.value}
-                />
-              ))}
+              {option.values.map((variant, i) => {
+                return (
+                  <Variant
+                    isFullWidth={!isCircleVariant}
+                    optionCategory={option.name}
+                    optionName={variant.value}
+                    key={variant.value}
+                  />
+                )
+              })}
             </ul>
           </Box>
         ) : null
-      )}
+      })}
     </>
   )
 }
 
-const Variant = ({ optionName, optionCategory }) => {
+const Variant = ({ optionName, optionCategory, isFullWidth }) => {
   const { updateOptions, selectedOptions, productData } = useContext(ProductCtx)
 
   const isAvailable = (() => {
@@ -151,6 +159,7 @@ const Variant = ({ optionName, optionCategory }) => {
         isAvailable ? selectedOptions[optionCategory] === optionName : false
       }
       isAvailable={isAvailable}
+      isFullWidth={isFullWidth}
       key={optionName}
       onClick={() => updateOptions({ [optionCategory]: optionName })}
     >
@@ -174,6 +183,7 @@ const AddToCartButton = () => {
 }
 
 Product.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   data: PropTypes.any.isRequired,
 }
 
