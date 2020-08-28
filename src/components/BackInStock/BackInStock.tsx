@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable camelcase */
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import qs from 'querystring'
 import Button from 'components/Button'
 import Heading from 'components/Heading'
 import Box from 'components/Box'
 import { Input } from 'components/FormElements'
 import { log } from 'logrocket'
+import { ProductCtx, ProductOptions } from 'templates/Product'
 import S from './BackInStock.Styled'
 
 type EmailOptions = {
@@ -63,15 +64,25 @@ const fetchBackInStock = (options: BackInStockOptions) => {
  * Back in stock component
  */
 
-type BackInStockProps = Omit<BackInStockOptions, 'email'> & {
+type BackInStockProps = {
   onClose: () => void
 }
 
-const BackInStock: React.FC<BackInStockProps> = ({
-  variantId,
-  productId,
-  onClose,
-}) => {
+const BackInStock: React.FC<BackInStockProps> = ({ onClose }) => {
+  const ctx = useContext(ProductCtx) as any
+
+  const productId = parseFloat(
+    Buffer.from(ctx.productData.id, 'base64')
+      .toString()
+      .split('Product/')[1]
+  )
+
+  const variantId = parseFloat(
+    Buffer.from(ctx.currentVariant.id, 'base64')
+      .toString()
+      .split('ProductVariant/')[1]
+  )
+
   const [email, setEmail] = useState<string>('')
   const [errors, setErrors] = useState<string>('')
 
@@ -99,6 +110,7 @@ const BackInStock: React.FC<BackInStockProps> = ({
               We&apos;ll let you know
             </Heading>
           </Box>
+          <ProductOptions />
           <p>
             Register your email receive an email as soon as this becomes
             available again.

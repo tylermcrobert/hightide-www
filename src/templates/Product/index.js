@@ -15,25 +15,13 @@ import { Input } from 'components/FormElements'
 import Styled from './Styled'
 import useOptionSelect from './hooks/useOptionSelect'
 
-const ProductCtx = createContext()
+export const ProductCtx = createContext()
 const { variantForOptions } = client.product.helpers
 
 const Product = memo(({ data: productData }) => {
   const { updateOptions, selectedOptions } = useOptionSelect(productData)
   const currentVariant = variantForOptions(productData, selectedOptions)
   const [isModalOpen, setModalOpen] = useState(false)
-
-  const productId = parseFloat(
-    Buffer.from(productData.id, 'base64')
-      .toString()
-      .split('Product/')[1]
-  )
-
-  const currentVariantId = parseFloat(
-    Buffer.from(currentVariant.id, 'base64')
-      .toString()
-      .split('ProductVariant/')[1]
-  )
 
   return (
     <ProductCtx.Provider
@@ -50,13 +38,7 @@ const Product = memo(({ data: productData }) => {
           <ProductImages />
           <ProductDetail />
         </Styled.Wrapper>
-        {isModalOpen && (
-          <BackInStock
-            variantId={currentVariantId}
-            productId={productId}
-            onClose={() => setModalOpen(false)}
-          />
-        )}
+        {isModalOpen && <BackInStock onClose={() => setModalOpen(false)} />}
       </Wrap>
     </ProductCtx.Provider>
   )
@@ -131,7 +113,7 @@ const ProductDetail = () => {
 
  */
 
-const ProductOptions = () => {
+export const ProductOptions = () => {
   const { productData } = useContext(ProductCtx)
 
   return (
@@ -183,10 +165,8 @@ const Variant = ({ optionName, optionCategory, isFullWidth }) => {
 
   return (
     <Styled.Option
-      isSelected={
-        isAvailable ? selectedOptions[optionCategory] === optionName : false
-      }
-      isAvailable={isAvailable}
+      isSelected={selectedOptions[optionCategory] === optionName}
+      isAvailable
       isFullWidth={isFullWidth}
       key={optionName}
       onClick={() => updateOptions({ [optionCategory]: optionName })}
