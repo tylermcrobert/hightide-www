@@ -56,6 +56,11 @@ const Option = styled.li`
 const Description = styled.div`
   line-height: 1.5;
 
+  span[style='text-decoration: underline;'] {
+    text-decoration: none !important;
+    border-bottom: 1px solid black;
+  }
+
   li {
     padding-left: 1em;
     position: relative;
