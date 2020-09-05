@@ -49,20 +49,22 @@ export type Review = {
   product_handle: string
 }
 
+export type ReviewPost = {
+  name: string
+  email: string
+  rating: number
+  title: string
+  body: string
+  url: string
+  platform: string
+}
+
 const api = {
   getReviews: async (): Promise<Reviews> => {
     return fetch(apiLink('/reviews')).then(res => handleRes(res))
   },
 
-  createReview: async (payload: {
-    name: string
-    email: string
-    rating: number
-    title: string
-    body: string
-    url: string
-    platform: string
-  }): Promise<any> => {
+  createReview: async (payload: ReviewPost): Promise<any> => {
     return (
       fetch(apiLink('/reviews', payload), { method: 'POST' })
         //
