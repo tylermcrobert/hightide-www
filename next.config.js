@@ -32,6 +32,7 @@ module.exports = withCSS(
       PIPEDRIVE_ENDPOINT: process.env.PIPEDRIVE_ENDPOINT,
       PIPEDRIVE_TOKEN: process.env.PIPEDRIVE_TOKEN,
       SENDGRID_TOKEN: process.env.SENDGRID_TOKEN,
+      JUDGE_ME_TOKEN: process.env.JUDGE_ME_TOKEN,
     },
   })
 )

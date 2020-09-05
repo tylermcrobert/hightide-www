@@ -4,6 +4,7 @@ import Section from 'components/Section'
 import Button from 'components/Button'
 import PropTypes from 'prop-types'
 import { StoreCtx } from 'components/StoreProvider'
+import Reviews from 'components/Reviews/Reviews'
 import Heading from 'components/Heading'
 import BackInStock from 'components/BackInStock/BackInStock'
 import { client } from 'middleware/getShopifyCheckout'
@@ -113,6 +114,7 @@ const ProductDetail = () => {
             />
           </Box>
           <AddToCartButton />
+          <Reviews />
         </Section.Padding>
       </Styled.StickyPanel>
     </div>
