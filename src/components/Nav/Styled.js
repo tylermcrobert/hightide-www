@@ -3,7 +3,7 @@ import { Wrap as GlobalWrap } from 'style'
 import { mq } from 'style/theme'
 import LogoSvg from '../Logo'
 
-const BREAKPOINT = mq.xs
+const BREAKPOINT = mq.sm
 
 const Nav = styled.nav`
   position: fixed;
@@ -51,20 +51,25 @@ const Logo = styled(LogoSvg)`
 `
 
 const NavItem = styled.a`
-  margin: 0 0.5em;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   text-decoration: none;
+  cursor: pointer;
 
-  &:last-child {
-    margin-right: none;
-  }
+  ${props =>
+    props.cart &&
+    css`
+      margin-left: 1rem;
+    `}
 
-  &:first-child {
-    margin-left: none;
+
+  @media ${mq.sm} {
   }
 `
 
 const Links = styled.div`
   display: none;
+  margin-right: -0.5rem;
 
   @media ${BREAKPOINT} {
     display: block;
@@ -86,6 +91,11 @@ const line = css`
   top: 50%;
 `
 
+const BurgerWrapper = styled(NavItem)`
+  @media ${BREAKPOINT} {
+    display: none;
+  }
+`
 const Burger = styled.div`
   display: block;
   position: relative;
@@ -132,4 +142,13 @@ const Overlay = styled.div`
   text-align: center;
 `
 
-export default { Logo, Nav, Wrap, NavItem, Links, Burger, Overlay }
+export default {
+  BurgerWrapper,
+  Logo,
+  Nav,
+  Wrap,
+  NavItem,
+  Links,
+  Burger,
+  Overlay,
+}

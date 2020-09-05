@@ -1,46 +1,51 @@
 // https://github.com/zeit/next.js/issues/3313#issuecomment-475337811
 import App from 'next/app'
-import React from 'react'
+import React, { createContext, createRef } from 'react'
 import { ThemeProvider } from 'styled-components'
+import LogRocket from 'logrocket'
 import { PageTransition } from 'next-page-transitions'
-import theme from 'style/theme'
+import cookie from 'js-cookie'
+import Fonts from 'style/Fonts'
+import getShopifyCheckout from 'middleware/getShopifyCheckout'
 import { CursorProvider } from 'components/CursorHover'
 import Layout from 'components/Layout'
+import theme, { routeTransition } from 'style/theme'
 import includeCredit from 'util/includeCredit'
-import LogRocket from 'logrocket'
+import StoreProvider from 'components/StoreProvider'
 
 LogRocket.init('mto3as/high-tide')
-
-const AmericaLtWoff2 = '/fonts/GT-America-Standard-Light.woff2'
-const AmericaLtWoff = '/fonts/GT-America-Standard-Light.woff'
-const AmericaLtTtf = '/fonts/GT-America-Standard-Light.ttf'
-
-const AmericaMdWoff2 = '/fonts/GT-America-Standard-Medium.woff2'
-const AmericaMdWoff = '/fonts/GT-America-Standard-Medium.woff'
-const AmericaMdTtf = '/fonts/GT-America-Standard-Medium.ttf'
-
-const LyonLtWoff = '/fonts/LyonDisplay-Light-Web.woff'
-const LyonLtWoff2 = '/fonts/LyonDisplay-Light-Web.woff2'
-
-async function loadPolyfills() {
-  if (
-    typeof window !== 'undefined' &&
-    typeof window.IntersectionObserver === 'undefined'
-  ) {
-    await import('intersection-observer')
-  }
-}
-
-loadPolyfills()
-
 const DARK_ROUTES = ['/work']
 
-const { duration, distance } = theme.routeTransition
-const { accel, decel } = theme.ease
+export const AppCtx = createContext()
+export const cachedCheckout = createRef()
 
 export default class HighTideApp extends App {
+  state = {
+    storeCount: 0,
+  }
+
+  updateStoreCount = count => {
+    this.setState({ storeCount: count })
+  }
+
   componentDidMount() {
     includeCredit()
+
+    if (this.props.checkout.id) {
+      cachedCheckout.current = this.props.checkout
+      cookie.set('shopifyCheckoutId', atob(cachedCheckout.current.id))
+    }
+  }
+
+  static async getInitialProps({ Component, ctx }) {
+    let pageProps = {}
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
+    }
+
+    const checkout = await getShopifyCheckout(ctx)
+    return { pageProps, checkout }
   }
 
   render() {
@@ -53,75 +58,36 @@ export default class HighTideApp extends App {
     return (
       <>
         <ThemeProvider theme={{ ...theme, isDark }}>
-          <Layout>
-            <CursorProvider>
-              <PageTransition
-                timeout={theme.routeTransition.timeout}
-                classNames="page-transition"
-              >
-                <Component {...pageProps} key={pathWithoutParams} />
-              </PageTransition>
-            </CursorProvider>
-          </Layout>
+          <StoreProvider
+            checkout={this.props.checkout || cachedCheckout.current}
+          >
+            <Layout>
+              <CursorProvider>
+                <PageTransition
+                  timeout={routeTransition.timeout}
+                  classNames="page-transition"
+                >
+                  <Component {...pageProps} key={pathWithoutParams} />
+                </PageTransition>
+              </CursorProvider>
+            </Layout>
+          </StoreProvider>
         </ThemeProvider>
-        <style jsx global>
-          {`
-            .page-transition-exit {
-              opacity: 0;
-              transform: translateY(${distance}em);
-              transition: ${duration}ms transform ${accel},
-                ${duration}ms opacity ${accel};
-            }
-            .page-transition-exit-active {
-              opacity: 0;
-              transform: translateY(${distance}em);
-              transition: ${duration}ms transform ${accel},
-                ${duration}ms opacity ${accel};
-            }
-            .page-transition-enter {
-              transform: translateY(${distance}em);
-              opacity: 0;
-            }
-            .page-transition-enter-active {
-              transform: translateY(${distance}em);
-              transition: transform ${duration}ms ${decel},
-                ${duration}ms opacity ${decel};
-            }
-
-            .page-transition-enter-done {
-              transform: none;
-              transition: ${duration}ms transform ${decel},
-                ${duration}ms opacity ${decel};
-            }
-
-            @font-face {
-              font-family: 'America';
-              src: url(${AmericaLtWoff2}) format('woff2'),
-                url(${AmericaLtWoff}) format('woff'),
-                url(${AmericaLtTtf}) format('ttf');
-              font-weight: 300;
-              font-display: swap;
-            }
-
-            @font-face {
-              font-family: 'America';
-              src: url(${AmericaMdWoff2}) format('woff2'),
-                url(${AmericaMdWoff}) format('woff'),
-                url(${AmericaMdTtf}) format('ttf');
-              font-weight: 500;
-              font-display: swap;
-            }
-
-            @font-face {
-              font-family: 'Lyon';
-              src: url(${LyonLtWoff2}) format('woff2'),
-                url(${LyonLtWoff}) format('woff');
-              font-weight: 300;
-              font-display: fallback;
-            }
-          `}
-        </style>
+        <Fonts />
       </>
     )
   }
 }
+
+LogRocket.init('mto3as/high-tide')
+
+async function loadPolyfills() {
+  if (
+    typeof window !== 'undefined' &&
+    typeof window.IntersectionObserver === 'undefined'
+  ) {
+    await import('intersection-observer')
+  }
+}
+
+loadPolyfills()
