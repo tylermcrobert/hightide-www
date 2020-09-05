@@ -13,10 +13,40 @@ const handleRes = (res: Response) => {
   throw Error(res.statusText)
 }
 
-type Reviews = {
+export type Reviews = {
   current_page: number
   per_page: number
-  reviews: []
+  reviews: Review[]
+}
+
+export type Review = {
+  id: number
+  title: string
+  body: string
+  rating: number
+  product_external_id: number
+  reviewer: {
+    id: number
+    external_id: unknown
+    email: string
+    name: string
+    phone: string | null
+    accepts_marketing: boolean
+    unsubscribed_at: unknown | null
+    source_email: unknown | null
+    tags: unknown | null
+  }
+  source: string
+  curated: string
+  hidden: string
+  verified: string
+  featured: string
+  created_at: string
+  updated_at: string
+  pictures: []
+  ip_address: string
+  product_title: string
+  product_handle: string
 }
 
 const api = {
@@ -33,8 +63,6 @@ const api = {
     url: string
     platform: string
   }): Promise<any> => {
-    console.log(apiLink('/reviews', payload))
-
     return (
       fetch(apiLink('/reviews', payload), { method: 'POST' })
         //
