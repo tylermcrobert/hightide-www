@@ -4,8 +4,9 @@
 
 import qs from 'query-string'
 
-const apiLink = (route: string, payload: object | void) =>
-  `/api${route}?${payload ? qs.stringify(payload) : ''}`
+const apiLink = (route: string, payload: object | void) => {
+  return `/api/reviews?${qs.stringify({ ...payload, route })}`
+}
 
 const handleRes = (res: Response) => {
   if (res.ok) {
@@ -68,7 +69,9 @@ export class ApiController {
   }
 
   async getReviews(): Promise<Reviews> {
-    return fetch(apiLink('/reviews')).then(res => handleRes(res))
+    console.log(apiLink('/api/v1/reviews'))
+
+    return fetch(apiLink('/api/v1/reviews')).then(res => handleRes(res))
   }
 
   async createReview(payload: ReviewPost): Promise<any> {
