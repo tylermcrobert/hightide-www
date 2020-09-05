@@ -1,11 +1,17 @@
 import React, { useEffect, useState, FormEvent } from 'react'
 import styled from 'styled-components'
 import { sizes } from 'style/theme'
-import api, {
+import {
+  ApiController,
   Reviews as ReviewsType,
   Review as ReviewType,
   ReviewPost,
 } from './api'
+
+const api = new ApiController({
+  url: 'hightidenyc.myshopify.com',
+  platform: 'shopify',
+})
 
 const Star = styled.svg<{ enabled: boolean }>`
   width: 1rem;
@@ -57,8 +63,6 @@ const ReviewPrompt: React.FC = () => {
     rating: 5,
     title: '',
     body: '',
-    url: 'hightidenyc.myshopify.com',
-    platform: 'shopify',
   })
 
   const postReview = async (e: FormEvent) => {

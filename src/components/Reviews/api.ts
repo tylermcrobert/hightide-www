@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/camelcase */
 
@@ -55,22 +56,30 @@ export type ReviewPost = {
   rating: number
   title: string
   body: string
-  url: string
-  platform: string
 }
 
-const api = {
-  getReviews: async (): Promise<Reviews> => {
+export type StoreInfo = { url: string; platform: string }
+
+export class ApiController {
+  storeInfo: StoreInfo
+
+  constructor(storeInfo: StoreInfo) {
+    this.storeInfo = storeInfo
+  }
+
+  async getReviews(): Promise<Reviews> {
     return fetch(apiLink('/reviews')).then(res => handleRes(res))
-  },
+  }
 
-  createReview: async (payload: ReviewPost): Promise<any> => {
-    return (
-      fetch(apiLink('/reviews', payload), { method: 'POST' })
-        //
-        .then(res => handleRes(res))
-    )
-  },
+  async createReview(payload: ReviewPost): Promise<any> {
+    return fetch(
+      apiLink('/reviews', {
+        ...payload,
+        ...this.storeInfo,
+      }),
+      {
+        method: 'POST',
+      }
+    ).then(res => handleRes(res))
+  }
 }
-
-export default api
