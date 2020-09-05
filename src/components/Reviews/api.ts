@@ -69,14 +69,12 @@ export class ApiController {
   }
 
   async getReviews(): Promise<Reviews> {
-    console.log(apiLink('/api/v1/reviews'))
-
     return fetch(apiLink('/api/v1/reviews')).then(res => handleRes(res))
   }
 
   async createReview(payload: ReviewPost): Promise<any> {
     return fetch(
-      apiLink('/reviews', {
+      apiLink('/api/v1/reviews', {
         ...payload,
         ...this.storeInfo,
       }),
