@@ -43,7 +43,12 @@ const Reviews = () => {
     api.getReviews().then(res => {
       setReviews(res)
     })
+    api.getSortdReviews().then(res => {
+      // console.log(res.html)
+    })
   }, [])
+
+  console.log(reviews)
 
   return (
     <div>

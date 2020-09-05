@@ -69,7 +69,41 @@ export type Average = {
   averageRating: number
 }
 
+type ParsedReview = {
+  isVerifiedBuyer: boolean
+  thumbsUp: number
+  thumbsDown: number
+  body: string
+  title: string | null
+  score: number
+  date: string | null
+  reviewer: {
+    fullName: any
+    initial: any
+    lastInitial: any
+  }
+}
+
 export type StoreInfo = { url: string; platform: string }
+
+const getHtml = (html: string) => {
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(html, 'text/html')
+  return doc
+}
+
+/** search for attribute and fetch its value */
+const getAttr = (doc: Document | Element, attr: string): any => {
+  const node = doc.querySelector(`[${attr}]`)
+  return node ? node.getAttribute(attr) : undefined
+}
+
+/** Extract text from unknown element */
+const getText = (el: Element | null) => (el ? el.textContent || '' : '')
+
+/**
+ * Api Controller
+ */
 
 export class ApiController {
   storeInfo: StoreInfo
@@ -82,6 +116,53 @@ export class ApiController {
     return fetch(apiLink('/api/v1/reviews')).then(res => handleRes(res))
   }
 
+  /**
+   * Sorted reviews
+   */
+  async getSortdReviews(): Promise<null | ParsedReview[]> {
+    return fetch(
+      'https://judge.me/reviews/reviews_for_widget?url=judge-me-demo-store.myshopify.com&shop_domain=judge-me-demo-store.myshopify.com&platform=shopify&per_page=5&product_id=3784779038780&sort_by=most_helpful&sort_dir=&search='
+    )
+      .then(res => handleRes(res))
+      .then(res => {
+        if (res.html) {
+          const doc = getHtml(res.html)
+
+          const reviews = Array.from(doc.querySelectorAll('.jdgm-rev')).map(
+            reviewDOM => {
+              const $body = reviewDOM.querySelector('.jdgm-rev__body')
+              const $title = reviewDOM.querySelector('.jdgm-rev__title')
+              const $date = reviewDOM.querySelector('.jdgm-rev__timestamp')
+
+              return {
+                isVerifiedBuyer:
+                  reviewDOM.getAttribute('data-verified-buyer') === 'true',
+                thumbsUp: Number(reviewDOM.getAttribute('data-thumb-up-count')),
+                thumbsDown: Number(
+                  reviewDOM.getAttribute('data-thumb-down-count')
+                ),
+                body: getText($body),
+                title: getText($title),
+                score: Number(getAttr(reviewDOM, 'data-score')),
+                date: $date ? $date.getAttribute('data-content') : null,
+                reviewer: {
+                  fullName: getAttr(reviewDOM, 'data-fullname'),
+                  initial: getAttr(reviewDOM, 'data-all-initials'),
+                  lastInitial: getAttr(reviewDOM, 'data-last-initial'),
+                },
+              }
+            }
+          )
+
+          return reviews
+        }
+        return null
+      })
+  }
+
+  /**
+   * Get averages
+   */
   async getAverage(): Promise<Average | null> {
     return fetch(
       apiLink('/api/v1/widgets/product_review', {
@@ -91,13 +172,7 @@ export class ApiController {
       .then(res => handleRes(res))
       .then(res => {
         if (res.widget) {
-          const parser = new DOMParser()
-          const doc = parser.parseFromString(res.widget, 'text/html')
-
-          const getAttr = (attr: string): any => {
-            const node = doc.querySelector(`[${attr}]`)
-            return node ? node.getAttribute(attr) : undefined
-          }
+          const doc = getHtml(res.widget)
 
           const histogram = Array.from(
             doc.querySelectorAll('.jdgm-histogram__row')
@@ -109,8 +184,8 @@ export class ApiController {
             }))
             .filter(item => item.rating)
 
-          const averageRating = Number(getAttr('data-average-rating'))
-          const numberOfReviews = Number(getAttr('data-number-of-reviews'))
+          const averageRating = Number(getAttr(doc, 'data-average-rating'))
+          const numberOfReviews = Number(getAttr(doc, 'data-number-of-reviews'))
 
           return {
             histogram,
