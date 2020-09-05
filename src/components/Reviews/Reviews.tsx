@@ -39,6 +39,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState<ReviewsType | null>(null)
 
   useEffect(() => {
+    api.getAverage().then(res => res)
     api.getReviews().then(res => {
       setReviews(res)
     })

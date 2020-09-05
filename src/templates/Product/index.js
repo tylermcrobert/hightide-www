@@ -36,6 +36,8 @@ const Product = memo(({ data: productData }) => {
       .split('ProductVariant/')[1]
   )
 
+  console.log(productId)
+
   return (
     <ProductCtx.Provider
       value={{

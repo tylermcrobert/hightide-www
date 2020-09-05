@@ -12,7 +12,7 @@ const handleRes = (res: Response) => {
   if (res.ok) {
     return res.json()
   }
-  throw Error(res.statusText)
+  console.error(res.statusText)
 }
 
 export type Reviews = {
@@ -59,6 +59,16 @@ export type ReviewPost = {
   body: string
 }
 
+export type Average = {
+  histogram: {
+    rating: number
+    frequency: number
+    percentage: number
+  }[]
+  numberOfReviews: number
+  averageRating: number
+}
+
 export type StoreInfo = { url: string; platform: string }
 
 export class ApiController {
@@ -70,6 +80,46 @@ export class ApiController {
 
   async getReviews(): Promise<Reviews> {
     return fetch(apiLink('/api/v1/reviews')).then(res => handleRes(res))
+  }
+
+  async getAverage(): Promise<Average | null> {
+    return fetch(
+      apiLink('/api/v1/widgets/product_review', {
+        external_id: 4640900874288,
+      })
+    )
+      .then(res => handleRes(res))
+      .then(res => {
+        if (res.widget) {
+          const parser = new DOMParser()
+          const doc = parser.parseFromString(res.widget, 'text/html')
+
+          const getAttr = (attr: string): any => {
+            const node = doc.querySelector(`[${attr}]`)
+            return node ? node.getAttribute(attr) : undefined
+          }
+
+          const histogram = Array.from(
+            doc.querySelectorAll('.jdgm-histogram__row')
+          )
+            .map(item => ({
+              rating: Number(item.getAttribute('data-rating')),
+              frequency: Number(item.getAttribute('data-frequency')),
+              percentage: Number(item.getAttribute('data-percentage')),
+            }))
+            .filter(item => item.rating)
+
+          const averageRating = Number(getAttr('data-average-rating'))
+          const numberOfReviews = Number(getAttr('data-number-of-reviews'))
+
+          return {
+            histogram,
+            numberOfReviews,
+            averageRating,
+          }
+        }
+        return null
+      })
   }
 
   async createReview(payload: ReviewPost): Promise<any> {
