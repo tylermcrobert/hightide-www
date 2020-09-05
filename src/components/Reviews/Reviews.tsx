@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React, { useEffect, useState, FormEvent } from 'react'
 import styled from 'styled-components'
 import { sizes } from 'style/theme'
@@ -6,6 +7,7 @@ import {
   Reviews as ReviewsType,
   Review as ReviewType,
   ReviewPost,
+  ParsedReview,
 } from './api'
 
 const api = new ApiController({
@@ -36,16 +38,21 @@ const StarSvg: React.FC<{ className?: string; enabled: boolean }> = ({
 )
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState<ReviewsType | null>(null)
+  const [reviews, setReviews] = useState<ParsedReview[] | null>(null)
 
   useEffect(() => {
     api.getAverage().then(res => res)
-    api.getReviews().then(res => {
-      setReviews(res)
-    })
-    api.getSortdReviews().then(res => {
-      // console.log(res.html)
-    })
+
+    api
+      .getSortdReviews({
+        per_page: '10',
+        product_id: '3784779038780',
+        search: '',
+        shop_domain: 'judge-me-demo-store.myshopify.com',
+        sort_by: 'rating',
+        sort_dir: '',
+      })
+      .then(res => setReviews(res))
   }, [])
 
   console.log(reviews)
@@ -55,9 +62,7 @@ const Reviews = () => {
       <div>
         <ReviewPrompt />
       </div>
-      <div>
-        {reviews && reviews.reviews.map(review => <Review review={review} />)}
-      </div>
+      <div>{reviews && reviews.map(review => <Review review={review} />)}</div>
     </div>
   )
 }
@@ -109,8 +114,9 @@ const ReviewPrompt: React.FC = () => {
     </div>
   )
 }
-const Review: React.FC<{ review: ReviewType }> = ({ review }) => {
-  const date = new Date(review.created_at)
+
+const Review: React.FC<{ review: ParsedReview }> = ({ review }) => {
+  const date = new Date(review.date || '')
   const year = date.getFullYear()
   const day = date.getDate()
   const month = date.getMonth() + 1
@@ -127,7 +133,8 @@ const Review: React.FC<{ review: ReviewType }> = ({ review }) => {
         <strong>{review.title}</strong>
       </div>
       <S.Date>
-        {dateStr} • {review.verified && 'Verified'}
+        {dateStr}
+        {review.isVerifiedBuyer && ' • Verified'}
       </S.Date>
       {review.body}
     </S.Review>

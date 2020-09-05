@@ -69,7 +69,7 @@ export type Average = {
   averageRating: number
 }
 
-type ParsedReview = {
+export type ParsedReview = {
   isVerifiedBuyer: boolean
   thumbsUp: number
   thumbsDown: number
@@ -82,6 +82,15 @@ type ParsedReview = {
     initial: any
     lastInitial: any
   }
+}
+
+type ReviewWidgetParams = {
+  per_page: string
+  product_id: string
+  search?: string
+  sort_by: '' | 'rating' | 'most_helpful'
+  sort_dir: '' | 'asc' | 'desc'
+  shop_domain: 'judge-me-demo-store.myshopify.com'
 }
 
 export type StoreInfo = { url: string; platform: string }
@@ -105,6 +114,15 @@ const getText = (el: Element | null) => (el ? el.textContent || '' : '')
  * Api Controller
  */
 
+// const idk: ReviewWidgetParams = {
+//   per_page: '10',
+//   product_id: '3784779038780',
+//   search: '',
+//   shop_domain: 'judge-me-demo-store.myshopify.com',
+//   sort_by: 'rating',
+//   sort_dir: '',
+// }
+
 export class ApiController {
   storeInfo: StoreInfo
 
@@ -119,10 +137,17 @@ export class ApiController {
   /**
    * Sorted reviews
    */
-  async getSortdReviews(): Promise<null | ParsedReview[]> {
-    return fetch(
-      'https://judge.me/reviews/reviews_for_widget?url=judge-me-demo-store.myshopify.com&shop_domain=judge-me-demo-store.myshopify.com&platform=shopify&per_page=5&product_id=3784779038780&sort_by=most_helpful&sort_dir=&search='
-    )
+  async getSortdReviews(
+    params: ReviewWidgetParams
+  ): Promise<null | ParsedReview[]> {
+    const query = qs.stringify({
+      ...params,
+      ...this.storeInfo,
+      per_page: params.per_page || '',
+      search: params.search || '',
+    })
+
+    return fetch(`https://judge.me/reviews/reviews_for_widget?${query}`)
       .then(res => handleRes(res))
       .then(res => {
         if (res.html) {
@@ -144,7 +169,7 @@ export class ApiController {
                 body: getText($body),
                 title: getText($title),
                 score: Number(getAttr(reviewDOM, 'data-score')),
-                date: $date ? $date.getAttribute('data-content') : null,
+                date: $date ? $date.getAttribute('data-content') : '',
                 reviewer: {
                   fullName: getAttr(reviewDOM, 'data-fullname'),
                   initial: getAttr(reviewDOM, 'data-all-initials'),
