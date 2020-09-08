@@ -86,6 +86,17 @@ const CarouselWrapper = styled(Section)`
 const StickyPanel = styled.div`
   position: sticky;
   top: ${props => props.theme.navHeight};
+
+  @media ${mq.sm} {
+    max-height: calc(100vh - ${props => props.theme.navHeight} - 1rem);
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+      width: 0 !important;
+    }
+  }
 `
 
 const BackInStockModalWrapper = styled.div`
