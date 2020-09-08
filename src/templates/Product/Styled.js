@@ -70,10 +70,7 @@ const Description = styled.div`
 `
 
 const ImageWrapper = styled(Section)`
-  display: none;
-  @media ${COL_BREAKPOINT} {
-    display: block;
-  }
+  display: block;
 `
 
 const CarouselWrapper = styled(Section)`

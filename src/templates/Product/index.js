@@ -71,11 +71,6 @@ const ProductImages = () => {
 
   return (
     <>
-      <Styled.CarouselWrapper noBottom>
-        <CarouselWrap items={images}>
-          <ImageWrapper />
-        </CarouselWrap>
-      </Styled.CarouselWrapper>
       <Styled.ImageWrapper>
         {images.map((item, i) => (
           <Box key={i} mb={0}>
