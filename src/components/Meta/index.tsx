@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import Head from 'next/head'
 import config, { siteUrl, social, previewImage } from 'siteconfig'
 import formatTitle from 'util/formatTitle'
@@ -46,6 +47,22 @@ const Meta: React.FC<Props> = ({
 
       {url && <link rel="canonical" href={pageUrl} />}
       <title>{formatTitle(titleProp)}</title>
+
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-QFYMRC66ZK"
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-QFYMRC66ZK');
+        `,
+        }}
+      />
     </Head>
   )
 }
