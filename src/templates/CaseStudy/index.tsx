@@ -79,6 +79,8 @@ function Related({ items }) {
     return (
       <RelatedWrapper heading="Other Projects">
         {items.map(({ item }) => {
+          if (!item.data) return null
+
           const name = RichText.asText(item.data.name)
 
           const image = item.data.thumbnail
