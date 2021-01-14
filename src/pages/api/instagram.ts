@@ -8,14 +8,20 @@ const VARIABLES = JSON.stringify({
   first: 3,
 })
 
-const ENDPOINT = `https://www.instagram.com/graphql/query/?query_hash=003056d32c2554def87228bc3fd9668a&variables=${VARIABLES}`
+const ENDPOINT = encodeURI(
+  `https://www.instagram.com/graphql/query/?query_hash=003056d32c2554def87228bc3fd9668a&variables=${VARIABLES}`
+)
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const data = await fetch(ENDPOINT).then(endpointRes => endpointRes.json())
+  try {
+    const data = await fetch(ENDPOINT).then(endpointRes => endpointRes.json())
 
-  res.json(
-    data.data.user.edge_owner_to_timeline_media.edges.map(
-      edge => edge.node.display_resources[1].src
+    res.json(
+      data.data.user.edge_owner_to_timeline_media.edges.map(
+        edge => edge.node.display_resources[1].src
+      )
     )
-  )
+  } catch (err) {
+    res.json({ error: true, err })
+  }
 }
