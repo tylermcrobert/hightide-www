@@ -8,35 +8,23 @@ import config from 'siteconfig'
 import Styled from './Styled'
 
 const handle = config.social.instagram
+const url = `https://instagram.com/${handle}/`
 
 const InstagramLink = () => (
-  <a
-    href={`https://instagram.com/${handle}/`}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
+  <a href={url} target="_blank" rel="noopener noreferrer">
     Follow us
   </a>
 )
 
-function Instagram({ apiResponse }) {
-  if (apiResponse && apiResponse.data) {
+const Instagram: React.FC<{ images: string[] }> = ({ images }) => {
+  if (images) {
     return (
       <Section>
         <SectionHead link={<InstagramLink />}>Instagram</SectionHead>
         <Styled.Wrapper>
-          {apiResponse.data.map(item => (
-            <a
-              href={item.link}
-              rel="noopener noreferrer"
-              target="_blank"
-              key={item.images.standard_resolution.url}
-            >
-              <LazyImg
-                src={item.images.standard_resolution.url}
-                alt={item.caption.text}
-                ratio={0.5}
-              />
+          {images.map(image => (
+            <a href={url} rel="noopener noreferrer" target="_blank" key={image}>
+              <LazyImg src={image} ratio={0.5} />
             </a>
           ))}
         </Styled.Wrapper>
@@ -45,10 +33,6 @@ function Instagram({ apiResponse }) {
   }
   console.error('No Instagram API response found.')
   return null
-}
-
-Instagram.propTypes = {
-  apiResponse: PropTypes.shape({ data: PropTypes.array }).isRequired,
 }
 
 export default Instagram
