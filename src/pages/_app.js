@@ -12,22 +12,9 @@ import Layout from 'components/Layout'
 import theme, { routeTransition } from 'style/theme'
 import includeCredit from 'util/includeCredit'
 import StoreProvider from 'components/StoreProvider'
-import * as Sentry from '@sentry/react'
-import { Integrations } from '@sentry/tracing'
 
 LogRocket.init('mto3as/high-tide')
 const DARK_ROUTES = ['/work']
-
-Sentry.init({
-  dsn:
-    'https://b0fcbe99705b4ebc88cf8884cab22ed0@o457454.ingest.sentry.io/5594616',
-  autoSessionTracking: true,
-  integrations: [new Integrations.BrowserTracing()],
-
-  // We recommend adjusting this value in production, or using tracesSampler
-  // for finer control
-  tracesSampleRate: 1.0,
-})
 
 export const AppCtx = createContext()
 export const cachedCheckout = createRef()
