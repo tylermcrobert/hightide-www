@@ -17,7 +17,7 @@ const InstagramLink = () => (
 )
 
 const Instagram: React.FC<{ images: string[] }> = ({ images }) => {
-  if (images) {
+  if (images && images.length > 0) {
     return (
       <Section>
         <SectionHead link={<InstagramLink />}>Instagram</SectionHead>
