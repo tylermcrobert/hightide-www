@@ -15,7 +15,7 @@ Index.getInitialProps = async ({ req, res }) => {
   const ClientReq = Client(req)
 
   const site = await ClientReq.getSingle('site', {
-    fetchLinks: ['work.name', 'work.image'],
+    fetchLinks: ['work.name', 'work.image', 'work.homepageThumbnail'],
   })
 
   const instagramData = await getInstagramData()

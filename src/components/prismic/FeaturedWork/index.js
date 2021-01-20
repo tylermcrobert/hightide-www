@@ -13,7 +13,12 @@ const FeaturedWork = ({ caseStudies }) => {
   if (caseStudies && caseStudies.length) {
     const images = caseStudies.map(({ data, uid }) => {
       if (data.image.url) {
-        const imageAtts = getResponsiveImage(data.image.url)
+        const homepageThumbnail =
+          data.homepageThumbnail && data.homepageThumbnail.url
+        const img = homepageThumbnail || data.image.url
+
+        const imageAtts = getResponsiveImage(img)
+
         return (
           <Link href="/work/[uid]" as={`/work/${uid}/`} key={uid}>
             <a>
