@@ -4,6 +4,7 @@ import { mq } from 'style/theme'
 const Grid = styled.div`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 100%;
 
   img {
