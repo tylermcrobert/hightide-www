@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { display: 'Journal', href: '/journal/' },
   { display: 'About', href: '/about' },
   { display: 'Contact', href: '/contact' },
-  { display: 'Shop', href: '/products' },
+  { display: 'Shop', href: '/shop' },
 ]
 
 const NavContext = createContext()
