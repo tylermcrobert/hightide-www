@@ -6,7 +6,7 @@ import Meta from 'components/Meta'
 const Store = memo(({ product }) => {
   return (
     <>
-      <Meta title={product.title} url={`/store/${product.handle}`} />
+      <Meta title={product.title} url={`/shop/${product.handle}`} />
       <ProductTemplate data={product} />
     </>
   )

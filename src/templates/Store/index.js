@@ -25,7 +25,7 @@ function Store({ products }) {
 
 const Product = ({ product }) => {
   return (
-    <Link href="/store/[handle]" as={`/store/${product.handle}/`}>
+    <Link href="/shop/[handle]" as={`/shop/${product.handle}/`}>
       <a>
         <div key={product.id}>
           <AspectImage aspect={5 / 4}>
