@@ -1,4 +1,4 @@
-import Prismic from 'prismic-javascript'
+import Prismic from '@prismicio/client'
 import { accessToken, apiEndpoint } from './credentials'
 
 /**
@@ -9,7 +9,6 @@ import { accessToken, apiEndpoint } from './credentials'
  * https://github.com/prismicio/nextjs-blog/blob/c595e3ecc694b227864b5297be25b9c302620e34/prismic-configuration.js
  *
  */
-
 
 let frontClient
 
